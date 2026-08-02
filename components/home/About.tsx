@@ -1,4 +1,5 @@
 import { BadgeCheck, Target, TrendingUp } from "lucide-react";
+import Image from "next/image";
 
 export default function About() {
     return (
@@ -15,52 +16,65 @@ export default function About() {
                     disciplined investing, investor education and informed
                     decision-making.
                 </p>
+                <div className="mt-16 grid items-center gap-12 lg:grid-cols-2">
 
-                <div className="mt-16 grid gap-8 md:grid-cols-3">
+                    {/* Left Image */}
 
-                    <div className="rounded-2xl border p-8 shadow-sm">
-                        <BadgeCheck className="mb-5 h-10 w-10 text-green-700" />
-
-                        <h3 className="text-xl font-bold">
-                            Investor Education
-                        </h3>
-
-                        <p className="mt-3 text-slate-600">
-                            We focus on investor awareness and financial literacy to help
-                            investors make informed decisions.
-                        </p>
+                    <div>
+                        <Image
+                            src="/images/office.jpg"
+                            alt="Luxmi InvestCare Office"
+                            width={650}
+                            height={500}
+                            className="rounded-3xl shadow-2xl"
+                        />
                     </div>
 
-                    <div className="rounded-2xl border p-8 shadow-sm">
-                        <Target className="mb-5 h-10 w-10 text-green-700" />
+                    {/* Right Content */}
 
-                        <h3 className="text-xl font-bold">
-                            Goal-Based Planning
-                        </h3>
+                    <div>
 
-                        <p className="mt-3 text-slate-600">
-                            Investments aligned with your long-term financial goals and
-                            investment horizon.
-                        </p>
-                    </div>
+                        <div className="grid gap-6">
 
-                    <div className="rounded-2xl border p-8 shadow-sm">
-                        <TrendingUp className="mb-5 h-10 w-10 text-green-700" />
+                            <div className="rounded-2xl border p-8 shadow-sm">
+                                <BadgeCheck className="mb-5 h-10 w-10 text-green-700" />
+                                <h3 className="text-xl font-bold">
+                                    Investor Education
+                                </h3>
 
-                        <h3 className="text-xl font-bold">
-                            Disciplined Investing
-                        </h3>
+                                <p className="mt-3 text-slate-600">
+                                    We focus on investor awareness and financial literacy to help investors make informed investment decisions.
+                                </p>
+                            </div>
 
-                        <p className="mt-3 text-slate-600">
-                            Encouraging consistent investing and long-term wealth creation
-                            through investor education.
-                        </p>
+                            <div className="rounded-2xl border p-8 shadow-sm">
+                                <TrendingUp className="mb-5 h-10 w-10 text-green-700" />
+                                <h3 className="text-xl font-bold">
+                                    Goal Based Planning
+                                </h3>
+
+                                <p className="mt-3 text-slate-600">
+                                    We help clients invest systematically for retirement, children's education and wealth creation.
+                                </p>
+                            </div>
+
+                            <div className="rounded-2xl border p-8 shadow-sm">
+                                <Target className="mb-5 h-10 w-10 text-green-700" />
+                                <h3 className="text-xl font-bold">
+                                    Disciplined Investing
+                                </h3>
+
+                                <p className="mt-3 text-slate-600">
+                                    Long-term investing with regular SIPs and diversified mutual fund portfolios.
+                                </p>
+                            </div>
+
+                        </div>
+
                     </div>
 
                 </div>
-
             </div>
-
         </section>
     );
 }

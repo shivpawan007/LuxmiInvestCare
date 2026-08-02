@@ -9,14 +9,12 @@ export default function Home() {
   return (
     <>
       <Header />
-
-      <main className="overflow-hidden">
+      <main>
         <Hero />
         <About />
         <Services />
         <CTA />
       </main>
-
       <Footer />
     </>
   );
