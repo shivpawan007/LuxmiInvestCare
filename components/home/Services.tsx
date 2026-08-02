@@ -18,49 +18,49 @@ const services = [
     {
         title: "Mutual Funds",
         description:
-            "Invest in diversified mutual fund schemes through SIPs or lump sum investments to build long-term wealth.",
+            "Diversified mutual fund solutions including SIP, Lumpsum and ELSS investments.",
         icon: Landmark,
     },
     {
         title: "SIP Planning",
         description:
-            "Create wealth systematically through disciplined monthly investments aligned with your financial goals.",
+            "Build long-term wealth through disciplined monthly investments aligned with your financial goals.",
         icon: PiggyBank,
     },
     {
         title: "Life Insurance",
         description:
-            "Protect your family's financial future with comprehensive life insurance solutions.",
+            "Financial protection for your family with comprehensive life insurance solutions.",
         icon: ShieldCheck,
     },
     {
         title: "Health Insurance",
         description:
-            "Safeguard your loved ones against rising medical expenses with quality health insurance plans.",
+            "Protect yourself and your family against rising medical expenses.",
         icon: HeartPulse,
     },
     {
         title: "Child Education Planning",
         description:
-            "Plan today for your child's higher education and future aspirations through smart investments.",
+            "Create a secure financial future for your child's education and aspirations.",
         icon: GraduationCap,
     },
     {
         title: "Retirement Planning",
         description:
-            "Build a financially independent retirement with long-term investment planning.",
+            "Plan today for a financially independent and comfortable retirement.",
         icon: Target,
     },
     {
         title: "Portfolio Review",
         description:
-            "Get professional insights on your existing investment portfolio and optimize performance.",
+            "Professional review of your existing investments to optimize performance.",
         icon: LineChart,
     },
     {
         title: "Goal-Based Investing",
         description:
-            "Personalized investment strategies for buying a home, wealth creation, retirement and more.",
+            "Customized investment strategies for every important financial milestone.",
         icon: ArrowRight,
     },
 ];
@@ -75,7 +75,7 @@ export default function Services() {
                 {/* Heading */}
 
                 <motion.div
-                    initial={{ opacity: 0, y: 30 }}
+                    initial={{ opacity: 0, y: 40 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
@@ -93,10 +93,9 @@ export default function Services() {
                     </h2>
 
                     <p className="mt-6 text-lg leading-8 text-slate-600">
-                        Luxmi InvestCare offers comprehensive financial solutions
-                        designed to help individuals and families build wealth,
-                        protect their future and achieve every important financial
-                        milestone.
+                        Luxmi InvestCare offers personalized financial solutions designed
+                        to help investors build wealth, protect their families and achieve
+                        long-term financial goals.
                     </p>
                 </motion.div>
 
@@ -113,23 +112,21 @@ export default function Services() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{
-                                    delay: index * 0.08,
                                     duration: 0.5,
+                                    delay: index * 0.08,
                                 }}
-                                whileHover={{
-                                    y: -8,
-                                }}
+                                whileHover={{ y: -8 }}
                                 className="group rounded-3xl border border-slate-200 bg-white p-8 shadow-sm transition-all duration-300 hover:border-green-600 hover:shadow-2xl"
                             >
-                                <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-green-100 transition group-hover:bg-green-700">
-                                    <Icon className="h-8 w-8 text-green-700 transition group-hover:text-white" />
+                                <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-green-100 transition-colors duration-300 group-hover:bg-green-700">
+                                    <Icon className="h-8 w-8 text-green-700 transition-colors duration-300 group-hover:text-white" />
                                 </div>
 
                                 <h3 className="mt-8 text-xl font-bold text-slate-900">
                                     {service.title}
                                 </h3>
 
-                                <p className="mt-4 leading-7 text-slate-600">
+                                <p className="mt-4 text-slate-600 leading-7">
                                     {service.description}
                                 </p>
 
@@ -143,6 +140,32 @@ export default function Services() {
                         );
                     })}
                 </div>
+
+                {/* Bottom CTA */}
+
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.4 }}
+                    className="mt-20 rounded-3xl bg-gradient-to-r from-green-700 to-emerald-600 p-12 text-center text-white shadow-xl"
+                >
+                    <h3 className="text-3xl font-bold">
+                        Start Your Wealth Creation Journey Today
+                    </h3>
+
+                    <p className="mx-auto mt-4 max-w-2xl text-green-50">
+                        Whether you are planning for retirement, your child's education,
+                        wealth creation or financial protection, Luxmi InvestCare is here
+                        to guide you every step of the way.
+                    </p>
+
+                    <Button
+                        className="mt-8 rounded-xl bg-white px-8 py-6 text-green-700 hover:bg-slate-100"
+                    >
+                        Schedule a Free Consultation
+                    </Button>
+                </motion.div>
             </div>
         </section>
     );

@@ -7,7 +7,8 @@ import { Button } from "@/components/ui/Button";
 
 export default function Hero() {
     return (
-        <section className="relative overflow-hidden bg-gradient-to-br from-green-50 via-white to-emerald-50">
+        <section
+            id="home" className="relative overflow-hidden bg-gradient-to-br from-green-50 via-white to-emerald-50">
             <div className="mx-auto max-w-screen-xl px-6 py-24 lg:py-32">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                     <motion.div
