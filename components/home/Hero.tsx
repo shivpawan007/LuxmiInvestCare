@@ -14,13 +14,13 @@ export default function Hero() {
                         initial={{ opacity: 0, x: -40 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: .7 }}
-                        className="max-w-2xl"
+                        className="max-w-3xl"
                     >
                         <span className="inline-flex rounded-full bg-green-100 px-4 py-2 text-sm font-medium text-green-700">
                             AMFI Registered Mutual Fund Distributor | ARN-365140
                         </span>
 
-                        <h1 className="mt-8 text-5xl lg:text-7xl font-extrabold leading-tight tracking-tight text-slate-900 max-w-2xl">
+                        <h1 className="mt-8 text-5xl lg:text-7xl font-extrabold leading-tight tracking-tight text-slate-900 max-w-3xl">
                             Helping Investors
                             <span className="block text-green-700">
                                 Pursue Long-Term
@@ -66,7 +66,7 @@ export default function Hero() {
                         <Image
                             src="/images/hero-banner.jpg"
                             alt="Luxmi InvestCare"
-                            width={620}
+                            width={750}
                             height={520}
                             className="w-full max-w-xl rounded-3xl shadow-2xl border border-green-100 object-cover"
                             priority
