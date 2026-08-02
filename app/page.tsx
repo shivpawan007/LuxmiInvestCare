@@ -9,7 +9,7 @@ import Contact from "@/components/home/Contact";
 import Services from "@/components/home/Services";
 import CTA from "@/components/home/CTA";
 import FAQ from "@/components/home/FAQ";
-
+import FloatingWhatsApp from "@/components/common/FloatingWhatsApp";
 
 export default function Home() {
   console.log("HOME PAGE LOADED");
@@ -31,6 +31,7 @@ export default function Home() {
       </main>
 
       <Footer />
+      <FloatingWhatsApp />
     </>
 
   )
