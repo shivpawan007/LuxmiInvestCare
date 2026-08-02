@@ -10,6 +10,8 @@ import Services from "@/components/home/Services";
 import CTA from "@/components/home/CTA";
 import FAQ from "@/components/home/FAQ";
 import FloatingWhatsApp from "@/components/common/FloatingWhatsApp";
+import ScrollToTop from "@/components/common/ScrollToTop";
+
 
 export default function Home() {
   console.log("HOME PAGE LOADED");
@@ -32,6 +34,8 @@ export default function Home() {
 
       <Footer />
       <FloatingWhatsApp />
+      <ScrollToTop />
+      
     </>
 
   )
