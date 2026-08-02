@@ -11,14 +11,22 @@ export default function Header() {
             <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
 
                 <div>
-                    <Link href="/">
-                        <h2 className="text-3xl font-extrabold text-green-700">
-                            Luxmi InvestCare
-                        </h2>
+                    <Link href="/" className="inline-flex items-center gap-4">
+                        <Image
+                            src="/images/Logo.png"
+                            alt="Luxmi InvestCare"
+                            width={180}
+                            height={60}
+                        />
 
-                        <p className="text-sm text-slate-500">
-                            AMFI Registered Mutual Fund Distributor
-                        </p>
+                        <div className="hidden sm:block">
+                            <h2 className="text-2xl font-extrabold text-green-700">
+                                Luxmi InvestCare
+                            </h2>
+                            <p className="text-sm text-slate-500">
+                                AMFI Registered Mutual Fund Distributor
+                            </p>
+                        </div>
                     </Link>
                 </div>
 

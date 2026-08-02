@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/Button";
 export default function Hero() {
     return (
         <section className="relative overflow-hidden bg-gradient-to-br from-green-50 via-white to-emerald-50">
-            <div className="mx-auto max-w-screen-xl px-6 py-20 lg:py-28">
+            <div className="mx-auto max-w-screen-xl px-6 py-24 lg:py-32">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                     <motion.div
                         initial={{ opacity: 0, x: -40 }}
@@ -36,7 +36,7 @@ export default function Hero() {
                         <div className="mt-10 flex flex-wrap gap-4">
                             <Button
                                 size="lg"
-                                className="rounded-xl bg-green-700 hover:bg-green-800"
+                                className="h-12 px-8 rounded-xl bg-green-700 hover:bg-green-800"
                             >
                                 Start Investing
                                 <ArrowRight className="ml-2 h-5 w-5" />
@@ -45,7 +45,7 @@ export default function Hero() {
                             <Button
                                 size="lg"
                                 variant="outline"
-                                className="rounded-xl"
+                                className="h-12 px-8 rounded-xl"
                             >
                                 Learn More
                             </Button>
@@ -64,8 +64,8 @@ export default function Hero() {
                         className="flex justify-center"
                     >
                         <Image
-                            src="/images/hero-banner.jpg"
-                            alt="Luxmi InvestCare"
+                            src="/images/office.jpg"
+                            alt="Luxmi InvestCare office"
                             width={750}
                             height={520}
                             className="w-full max-w-xl rounded-3xl shadow-2xl border border-green-100 object-cover"
