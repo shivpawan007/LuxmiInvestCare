@@ -1,22 +1,26 @@
 "use client";
 
-import { Star } from "lucide-react";
+import { motion } from "framer-motion";
+import { Quote, Star, Users } from "lucide-react";
 
 const testimonials = [
     {
-        name: "Rajesh Kumar",
-        city: "Faridabad",
-        text: "Luxmi InvestCare helped me start my SIP journey with confidence. Their guidance is simple, transparent and professional.",
+        name: "Investor Education Focus",
+        role: "Individual Investor",
+        quote:
+            "The investment concepts were explained clearly, helping me understand my options and make informed financial decisions.",
     },
     {
-        name: "Priya Sharma",
-        city: "Delhi NCR",
-        text: "Goal-based investment planning made it easy for my family to prepare for future financial needs.",
+        name: "Professional Guidance",
+        role: "Long-Term Investor",
+        quote:
+            "I appreciate the transparent communication and disciplined approach towards financial planning and investor education.",
     },
     {
-        name: "Amit Verma",
-        city: "Gurugram",
-        text: "I appreciate the educational approach instead of sales pressure. Highly recommended for long-term investors.",
+        name: "Goal-Based Planning",
+        role: "Family Financial Planning",
+        quote:
+            "The discussions were focused on my financial goals rather than short-term market movements, which gave me greater confidence.",
     },
 ];
 
@@ -24,68 +28,194 @@ export default function Testimonials() {
     return (
         <section
             id="testimonials"
-            className="bg-slate-50 py-24"
+            className="section bg-white"
         >
-            <div className="mx-auto max-w-7xl px-6">
+            <div className="container-custom">
 
-                <div className="mx-auto mb-16 max-w-3xl text-center">
+                {/* Section Heading */}
 
-                    <span className="rounded-full bg-green-100 px-4 py-2 text-sm font-semibold text-green-700">
-                        Client Testimonials
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6 }}
+                    viewport={{ once: true }}
+                    className="mx-auto mb-20 max-w-3xl text-center"
+                >
+
+                    <span className="inline-flex items-center rounded-full border border-green-200 bg-green-50 px-5 py-2 text-sm font-semibold text-green-700 shadow-sm">
+                        CLIENT EXPERIENCES
                     </span>
 
-                    <h2 className="mt-6 text-4xl font-bold text-slate-900">
-                        Trusted by Investors
+                    <h2 className="section-title mt-8">
+                        Building Trust Through
+                        <span className="block text-green-700">
+                            Professional Guidance
+                        </span>
                     </h2>
 
-                    <p className="mt-4 text-lg text-slate-600">
-                        Our focus is on educating investors and helping them stay
-                        disciplined toward long-term financial goals.
+                    <p className="section-subtitle mx-auto">
+                        We believe trust is built through transparency, investor education
+                        and long-term relationships. The experiences below reflect the
+                        value of clear communication and disciplined financial planning.
                     </p>
 
-                </div>
+                </motion.div>
 
-                <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                {/* Testimonial Cards */}
 
-                    {testimonials.map((item) => (
+                <div className="grid gap-8 lg:grid-cols-3">
 
-                        <div
-                            key={item.name}
-                            className="rounded-3xl bg-white p-8 shadow-sm transition hover:-translate-y-1 hover:shadow-xl"
+                    {testimonials.map((testimonial, index) => (
+                        <motion.div
+                            key={testimonial.name}
+                            initial={{ opacity: 0, y: 40 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{
+                                duration: 0.5,
+                                delay: index * 0.15,
+                            }}
+                            viewport={{ once: true }}
+                            className="card flex h-full flex-col p-8"
                         >
+                            {/* Quote Icon */}
 
-                            <div className="mb-4 flex">
+                            <div className="mb-6 flex items-center justify-between">
 
-                                {[1, 2, 3, 4, 5].map((star) => (
-                                    <Star
-                                        key={star}
-                                        className="mr-1 h-5 w-5 fill-yellow-400 text-yellow-400"
-                                    />
-                                ))}
+                                <Quote className="h-12 w-12 text-green-600 opacity-80" />
+
+                                <div className="flex gap-1">
+                                    {[...Array(5)].map((_, star) => (
+                                        <Star
+                                            key={star}
+                                            className="h-5 w-5 fill-yellow-400 text-yellow-400"
+                                        />
+                                    ))}
+                                </div>
 
                             </div>
 
-                            <p className="leading-7 text-slate-600">
-                                "{item.text}"
+                            {/* Quote */}
+
+                            <p className="flex-1 text-lg leading-8 italic text-slate-600">
+                                "{testimonial.quote}"
                             </p>
 
-                            <div className="mt-8">
+                            {/* Client */}
 
-                                <h4 className="font-bold text-slate-900">
-                                    {item.name}
-                                </h4>
+                            <div className="mt-8 border-t border-slate-200 pt-6">
 
-                                <p className="text-sm text-slate-500">
-                                    {item.city}
+                                <h3 className="text-lg font-bold text-slate-900">
+                                    {testimonial.name}
+                                </h3>
+
+                                <p className="mt-1 text-sm text-slate-500">
+                                    {testimonial.role}
                                 </p>
+
+                            </div>
+
+                        </motion.div>
+                    ))}
+
+                </div>
+
+                {/* Investor First Banner */}
+
+                <motion.div
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6 }}
+                    viewport={{ once: true }}
+                    className="mt-24"
+                >
+
+                    <div className="overflow-hidden rounded-3xl bg-gradient-to-r from-green-700 to-emerald-600 p-12 text-white shadow-xl">
+
+                        <div className="grid items-center gap-10 lg:grid-cols-2">
+
+                            {/* Left */}
+
+                            <div>
+
+                                <span className="rounded-full bg-white/20 px-4 py-2 text-sm font-semibold">
+                                    INVESTOR FIRST
+                                </span>
+
+                                <h3 className="mt-6 text-4xl font-bold leading-tight">
+                                    Trust Built Through
+                                    <span className="block">
+                                        Education & Transparency
+                                    </span>
+                                </h3>
+
+                                <p className="mt-6 text-lg leading-8 text-green-50">
+                                    Every investor deserves clear communication, educational
+                                    guidance and a disciplined approach to financial planning.
+                                    We believe long-term relationships are built on trust,
+                                    transparency and informed decision-making.
+                                </p>
+
+                            </div>
+
+                            {/* Right */}
+
+                            <div className="rounded-2xl bg-white/10 p-8 backdrop-blur-sm">
+
+                                <div className="mb-6 flex items-center gap-4">
+
+                                    <Users className="h-10 w-10 text-white" />
+
+                                    <h4 className="text-2xl font-bold">
+                                        Our Commitment
+                                    </h4>
+
+                                </div>
+
+                                <ul className="space-y-4 text-green-50">
+
+                                    <li>✓ Investor Education</li>
+
+                                    <li>✓ Transparent Communication</li>
+
+                                    <li>✓ Goal-Based Financial Planning</li>
+
+                                    <li>✓ Long-Term Investment Discipline</li>
+
+                                    <li>✓ Professional Investor Support</li>
+
+                                </ul>
 
                             </div>
 
                         </div>
 
-                    ))}
+                    </div>
 
-                </div>
+                </motion.div>
+
+                {/* Educational Note */}
+
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    transition={{ duration: 0.5 }}
+                    viewport={{ once: true }}
+                    className="mt-16 rounded-2xl border border-amber-200 bg-amber-50 p-8"
+                >
+
+                    <h4 className="mb-4 text-xl font-bold text-amber-800">
+                        Important Note
+                    </h4>
+
+                    <p className="leading-8 text-slate-700">
+                        Testimonials presented on this website are intended to reflect
+                        general service experiences related to investor education,
+                        communication and financial planning. They should not be
+                        interpreted as assurance of investment performance, returns or
+                        future outcomes.
+                    </p>
+
+                </motion.div>
 
             </div>
         </section>

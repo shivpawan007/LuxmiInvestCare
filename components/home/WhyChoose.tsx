@@ -2,53 +2,50 @@
 
 import { motion } from "framer-motion";
 import {
-    BadgeCheck,
+    ShieldCheck,
     Target,
     GraduationCap,
-    Handshake,
-    ShieldCheck,
     TrendingUp,
+    Handshake,
+    HeartHandshake,
 } from "lucide-react";
-
-import SectionHeading from "@/components/common/SectionHeading";
-import FeatureCard from "@/components/common/FeatureCard";
 
 const features = [
     {
-        icon: BadgeCheck,
-        title: "AMFI Registered",
+        icon: ShieldCheck,
+        title: "Trusted Guidance",
         description:
-            "Guidance offered through an AMFI Registered Mutual Fund Distributor with a focus on investor awareness and disciplined investing.",
+            "Investment guidance focused on transparency, investor awareness and long-term financial discipline.",
     },
     {
         icon: Target,
-        title: "Goal-Based Investing",
+        title: "Goal-Based Planning",
         description:
-            "Investment planning aligned with life goals such as retirement, child education, wealth creation and financial independence.",
+            "Investment planning aligned with your financial goals, time horizon and individual priorities.",
     },
     {
         icon: GraduationCap,
         title: "Investor Education",
         description:
-            "We believe informed investors make better decisions. Educational guidance remains central to every recommendation.",
-    },
-    {
-        icon: Handshake,
-        title: "Personalized Guidance",
-        description:
-            "Every investor has different financial objectives. Solutions are discussed based on individual needs and long-term goals.",
-    },
-    {
-        icon: ShieldCheck,
-        title: "Transparent Process",
-        description:
-            "Clear communication, ethical practices and long-term relationships built on trust and transparency.",
+            "Educational support that helps investors understand products, risks and long-term investing principles.",
     },
     {
         icon: TrendingUp,
-        title: "Long-Term Wealth Creation",
+        title: "Disciplined Investing",
         description:
-            "Focus on disciplined investing and periodic portfolio review to support long-term financial well-being.",
+            "Encouraging systematic investing habits that support long-term wealth creation objectives.",
+    },
+    {
+        icon: Handshake,
+        title: "Transparent Approach",
+        description:
+            "Clear communication and an investor-first approach to help you make informed financial decisions.",
+    },
+    {
+        icon: HeartHandshake,
+        title: "Personalized Support",
+        description:
+            "Guidance tailored to your financial goals while respecting your risk profile and investment journey.",
     },
 ];
 
@@ -56,122 +53,125 @@ export default function WhyChoose() {
     return (
         <section
             id="why-choose"
-            className="bg-white py-24"
+            className="section bg-soft"
         >
-            <div className="mx-auto max-w-7xl px-6">
+            <div className="container-custom">
 
-                <SectionHeading
-                    badge="Why Choose Us"
-                    title="Why Investors Choose"
-                    highlight="Luxmi InvestCare"
-                    description="Helping investors pursue long-term financial goals through disciplined investing, investor education and a transparent advisory approach."
-                />
+                {/* Heading */}
 
-                <div className="mt-20 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6 }}
+                    viewport={{ once: true }}
+                    className="mx-auto mb-20 max-w-3xl text-center"
+                >
 
-                    {features.map((feature, index) => (
-                        <motion.div
-                            key={feature.title}
-                            initial={{ opacity: 0, y: 40 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{
-                                duration: 0.5,
-                                delay: index * 0.08,
-                            }}
-                        >
-                            <FeatureCard
-                                icon={feature.icon}
-                                title={feature.title}
-                                description={feature.description}
-                            />
-                        </motion.div>
-                    ))}
+                    <span className="inline-flex items-center rounded-full border border-green-200 bg-green-50 px-5 py-2 text-sm font-semibold text-green-700 shadow-sm">
+                        WHY CHOOSE LUXMI INVESTCARE
+                    </span>
 
+                    <h2 className="section-title mt-8">
+                        Helping You Invest With
+                        <span className="block text-green-700">
+                            Confidence & Discipline
+                        </span>
+                    </h2>
+
+                    <p className="section-subtitle mx-auto">
+                        Our focus is to simplify investing through education,
+                        transparency and disciplined financial planning,
+                        empowering investors to pursue their long-term goals.
+                    </p>
+
+                </motion.div>
+
+                {/* Feature Cards */}
+
+                <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
+
+                    {features.map((feature, index) => {
+                        const Icon = feature.icon;
+
+                        return (
+                            <motion.div
+                                key={feature.title}
+                                initial={{ opacity: 0, y: 40 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                transition={{
+                                    duration: 0.5,
+                                    delay: index * 0.1,
+                                }}
+                                viewport={{ once: true }}
+                                className="card p-8"
+                            >
+                                <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-green-100">
+
+                                    <Icon className="h-8 w-8 text-green-700" />
+
+                                </div>
+
+                                <h3 className="mb-4 text-2xl font-bold text-slate-900">
+                                    {feature.title}
+                                </h3>
+
+                                <p className="leading-7 text-slate-600">
+                                    {feature.description}
+                                </p>
+
+                            </motion.div>
+                        );
+                    })}
                 </div>
+
+                {/* Our Commitment */}
+
+                <motion.div
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6 }}
+                    viewport={{ once: true }}
+                    className="mt-24"
+                >
+
+                    <div className="card bg-gradient-to-r from-green-700 to-emerald-600 p-12 text-white">
+
+                        <div className="grid items-center gap-10 lg:grid-cols-2">
+
+                            <div>
+
+                                <span className="rounded-full bg-white/20 px-4 py-2 text-sm font-semibold">
+                                    OUR COMMITMENT
+                                </span>
+
+                                <h3 className="mt-6 text-4xl font-bold leading-tight">
+                                    Building Investor Confidence Through
+                                    <span className="block">
+                                        Education & Transparency
+                                    </span>
+                                </h3>
+
+                            </div>
+
+                            <div>
+
+                                <p className="text-lg leading-8 text-green-50">
+                                    Every investor's journey is unique. Our commitment is to
+                                    encourage informed decision-making through investor
+                                    education, disciplined investing, and goal-oriented
+                                    financial planning while maintaining transparency at every
+                                    step.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </motion.div>
+
             </div>
-            <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.3 }}
-                className="mt-20 overflow-hidden rounded-3xl bg-gradient-to-r from-green-700 via-green-600 to-emerald-600 p-10 lg:p-14"
-            >
-                <div className="grid items-center gap-10 lg:grid-cols-2">
-
-                    <div>
-                        <h3 className="text-3xl font-bold text-white lg:text-4xl">
-                            Your Financial Goals Deserve
-                            <span className="block text-yellow-300">
-                                A Disciplined Investment Approach
-                            </span>
-                        </h3>
-
-                        <p className="mt-6 max-w-2xl text-lg leading-8 text-green-50">
-                            We believe successful investing starts with clear goals,
-                            disciplined investing and continuous investor education.
-                            Our focus is to help investors make informed financial
-                            decisions aligned with their long-term objectives.
-                        </p>
-
-                        <div className="mt-8 flex flex-wrap gap-3">
-
-                            <span className="rounded-full bg-white/20 px-4 py-2 text-sm font-medium text-white">
-                                ✓ AMFI Registered
-                            </span>
-
-                            <span className="rounded-full bg-white/20 px-4 py-2 text-sm font-medium text-white">
-                                ✓ Goal Based Planning
-                            </span>
-
-                            <span className="rounded-full bg-white/20 px-4 py-2 text-sm font-medium text-white">
-                                ✓ Investor Education
-                            </span>
-
-                        </div>
-                    </div>
-
-                    <div className="rounded-3xl bg-white p-8 shadow-xl">
-
-                        <h4 className="text-2xl font-bold text-slate-900">
-                            Why Choose Luxmi InvestCare?
-                        </h4>
-
-                        <div className="mt-6 space-y-4">
-
-                            <div className="flex items-start gap-3">
-                                <BadgeCheck className="mt-1 h-5 w-5 text-green-700" />
-                                <p className="text-slate-600">
-                                    Educational approach towards financial planning.
-                                </p>
-                            </div>
-
-                            <div className="flex items-start gap-3">
-                                <BadgeCheck className="mt-1 h-5 w-5 text-green-700" />
-                                <p className="text-slate-600">
-                                    Disciplined SIP and long-term investing guidance.
-                                </p>
-                            </div>
-
-                            <div className="flex items-start gap-3">
-                                <BadgeCheck className="mt-1 h-5 w-5 text-green-700" />
-                                <p className="text-slate-600">
-                                    Personalized discussions based on your financial goals.
-                                </p>
-                            </div>
-
-                            <div className="flex items-start gap-3">
-                                <BadgeCheck className="mt-1 h-5 w-5 text-green-700" />
-                                <p className="text-slate-600">
-                                    Commitment to transparency and investor awareness.
-                                </p>
-                            </div>
-
-                        </div>
-                    </div>
-
-                </div>
-            </motion.div>
         </section>
     );
 }

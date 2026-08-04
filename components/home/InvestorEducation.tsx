@@ -3,49 +3,49 @@
 import { motion } from "framer-motion";
 import {
     BookOpen,
-    PiggyBank,
     TrendingUp,
-    Target,
+    PiggyBank,
+    PieChart,
     ShieldCheck,
-    Landmark,
+    Target,
 } from "lucide-react";
 
-const items = [
+const educationTopics = [
     {
-        title: "Start SIP Early",
+        icon: BookOpen,
+        title: "Start Early",
         description:
-            "Small monthly investments started early can help create wealth through disciplined investing.",
-        icon: PiggyBank,
+            "Beginning your investment journey early allows more time for disciplined investing and long-term financial growth.",
     },
     {
-        title: "Power of Compounding",
-        description:
-            "Time and discipline are two important factors that may benefit long-term investors.",
         icon: TrendingUp,
-    },
-    {
-        title: "Goal Based Investing",
+        title: "Stay Invested",
         description:
-            "Invest with clear financial goals like retirement, education and wealth creation.",
-        icon: Target,
+            "Long-term investing can help investors navigate market fluctuations more effectively than reacting to short-term movements.",
     },
     {
+        icon: PiggyBank,
+        title: "SIP Discipline",
+        description:
+            "Systematic Investment Plans encourage regular investing and help build disciplined financial habits over time.",
+    },
+    {
+        icon: PieChart,
+        title: "Diversification",
+        description:
+            "Diversifying investments across suitable asset classes may help manage overall portfolio risk.",
+    },
+    {
+        icon: ShieldCheck,
         title: "Understand Risk",
         description:
-            "Every investment carries market risk. Select investments according to your financial profile.",
-        icon: ShieldCheck,
+            "Every investment carries risk. Understanding your financial goals and risk profile is an important step before investing.",
     },
     {
-        title: "Asset Allocation",
+        icon: Target,
+        title: "Goal-Based Investing",
         description:
-            "Diversification across different asset classes may help manage portfolio risk.",
-        icon: Landmark,
-    },
-    {
-        title: "Investor Awareness",
-        description:
-            "Knowledge helps investors make informed financial decisions with confidence.",
-        icon: BookOpen,
+            "Align investments with specific life goals such as retirement, education or wealth creation through a disciplined approach.",
     },
 ];
 
@@ -53,87 +53,175 @@ export default function InvestorEducation() {
     return (
         <section
             id="investor-education"
-            className="bg-white py-24"
+            className="section bg-soft"
         >
-            <div className="mx-auto max-w-7xl px-6">
+            <div className="container-custom">
+
+                {/* Section Heading */}
 
                 <motion.div
-                    initial={{ opacity: 0, y: 40 }}
+                    initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6 }}
                     viewport={{ once: true }}
-                    transition={{ duration: .6 }}
-                    className="mx-auto max-w-3xl text-center"
+                    className="mx-auto mb-20 max-w-3xl text-center"
                 >
 
-                    <span className="rounded-full bg-green-100 px-4 py-2 text-sm font-semibold text-green-700">
-                        Investor Education
+                    <span className="inline-flex items-center rounded-full border border-green-200 bg-green-50 px-5 py-2 text-sm font-semibold text-green-700 shadow-sm">
+                        INVESTOR EDUCATION
                     </span>
 
-                    <h2 className="mt-6 text-4xl font-bold text-slate-900">
-                        Learn Before You Invest
+                    <h2 className="section-title mt-8">
+                        Invest First In
+                        <span className="block text-green-700">
+                            Financial Knowledge
+                        </span>
                     </h2>
 
-                    <p className="mt-5 text-lg text-slate-600">
-                        Investor education enables individuals to understand financial
-                        products, investment risks and disciplined investing.
+                    <p className="section-subtitle mx-auto">
+                        Financial awareness helps investors make informed decisions.
+                        Understanding investing principles is an important step toward
+                        pursuing long-term financial goals.
                     </p>
 
                 </motion.div>
 
-                <div className="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                {/* Education Cards */}
 
-                    {items.map((item, index) => {
+                <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
 
-                        const Icon = item.icon;
+                    {educationTopics.map((topic, index) => {
+                        const Icon = topic.icon;
 
                         return (
-
                             <motion.div
-                                key={item.title}
-                                initial={{ opacity: 0, y: 30 }}
+                                key={topic.title}
+                                initial={{ opacity: 0, y: 40 }}
                                 whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
                                 transition={{
-                                    duration: .5,
-                                    delay: index * .08,
+                                    duration: 0.5,
+                                    delay: index * 0.1,
                                 }}
-                                className="rounded-3xl border bg-white p-8 shadow-md transition hover:-translate-y-2 hover:shadow-xl"
+                                viewport={{ once: true }}
+                                className="card flex h-full flex-col p-8"
                             >
+                                {/* Icon */}
 
-                                <div className="mb-5 inline-flex rounded-2xl bg-green-100 p-4">
+                                <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-green-100">
+
                                     <Icon className="h-8 w-8 text-green-700" />
+
                                 </div>
 
-                                <h3 className="text-xl font-bold">
-                                    {item.title}
+                                {/* Title */}
+
+                                <h3 className="mb-4 text-2xl font-bold text-slate-900">
+                                    {topic.title}
                                 </h3>
 
-                                <p className="mt-4 text-slate-600 leading-7">
-                                    {item.description}
+                                {/* Description */}
+
+                                <p className="flex-1 leading-7 text-slate-600">
+                                    {topic.description}
                                 </p>
 
                             </motion.div>
-
                         );
-
                     })}
 
                 </div>
 
-                <div className="mt-16 rounded-3xl bg-green-700 p-10 text-center">
+                {/* Investor Awareness Banner */}
 
-                    <h3 className="text-3xl font-bold text-white">
-                        Mutual Fund Investor Awareness
-                    </h3>
+                <motion.div
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6 }}
+                    viewport={{ once: true }}
+                    className="mt-24"
+                >
 
-                    <p className="mx-auto mt-4 max-w-4xl text-lg text-green-100">
-                        Mutual Fund investments are subject to market risks.
-                        Read all scheme related documents carefully before investing.
-                        Investment decisions should be based on your financial goals,
-                        investment horizon and risk appetite.
+                    <div className="overflow-hidden rounded-3xl bg-gradient-to-r from-green-700 to-emerald-600 p-12 text-white shadow-xl">
+
+                        <div className="grid items-center gap-10 lg:grid-cols-2">
+
+                            {/* Left */}
+
+                            <div>
+
+                                <span className="rounded-full bg-white/20 px-4 py-2 text-sm font-semibold">
+                                    INVESTOR AWARENESS
+                                </span>
+
+                                <h3 className="mt-6 text-4xl font-bold leading-tight">
+                                    Knowledge Today.
+                                    <span className="block">
+                                        Confidence Tomorrow.
+                                    </span>
+                                </h3>
+
+                                <p className="mt-6 text-lg leading-8 text-green-50">
+                                    Successful investing is driven by informed decisions,
+                                    financial discipline and patience—not by reacting to
+                                    short-term market movements.
+                                </p>
+
+                            </div>
+
+                            {/* Right */}
+
+                            <div className="rounded-2xl bg-white/10 p-8 backdrop-blur-sm">
+
+                                <h4 className="mb-5 text-2xl font-bold">
+                                    Investor Reminder
+                                </h4>
+
+                                <ul className="space-y-4 text-green-50">
+
+                                    <li>• Define your financial goals before investing.</li>
+
+                                    <li>• Review your investments periodically.</li>
+
+                                    <li>• Stay invested for the long term whenever appropriate.</li>
+
+                                    <li>• Understand the risks before making investment decisions.</li>
+
+                                    <li>• Seek guidance whenever you need clarity.</li>
+
+                                </ul>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </motion.div>
+
+                {/* Disclaimer */}
+
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    transition={{ duration: 0.5 }}
+                    viewport={{ once: true }}
+                    className="mt-16 rounded-2xl border border-green-200 bg-green-50 p-8"
+                >
+
+                    <h4 className="mb-4 text-xl font-bold text-green-800">
+                        Investor Education Disclaimer
+                    </h4>
+
+                    <p className="leading-8 text-slate-700">
+                        This information is provided solely for investor education and
+                        awareness purposes. Mutual Fund investments are subject to market
+                        risks. Please read all scheme-related documents carefully before
+                        investing. Past performance may or may not be sustained in the
+                        future and should not be used as the sole basis for investment
+                        decisions.
                     </p>
 
-                </div>
+                </motion.div>
 
             </div>
         </section>
