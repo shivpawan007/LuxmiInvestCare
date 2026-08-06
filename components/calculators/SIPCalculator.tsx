@@ -16,6 +16,10 @@ import { calculateSIP } from "@/lib/sip";
 import SIPInputCard from "./SIPInputCard";
 import SIPChart from "./SIPChart";
 import SIPGrowthTable from "./SIPGrowthTable";
+import SIPBreakdown from "./SIPBreakdown";
+import CalculatorCTA from "./CalculatorCTA";
+import DownloadReport from "./DownloadReport";
+
 
 function formatCurrency(value: number) {
     return new Intl.NumberFormat("en-IN", {
@@ -122,14 +126,14 @@ export default function SIPCalculator() {
 
                         <SIPSummaryCard
                             title="Total Investment"
-                            value={formatCurrency(result.investedAmount)}
+                            value={result.investedAmount}
                             subtitle="Total amount invested through your monthly SIP contributions."
                             icon={<Wallet size={24} />}
                         />
 
                         <SIPSummaryCard
                             title="Estimated Returns"
-                            value={formatCurrency(result.estimatedReturns)}
+                            value={formatCurrency(result.maturityValue)}
                             subtitle="Illustrative wealth generated based on expected annual returns."
                             icon={<TrendingUp size={24} />}
                             valueColor="text-green-700"
@@ -167,6 +171,40 @@ export default function SIPCalculator() {
                     annualReturn={annualReturn}
                     years={years}
                 />
+
+                <SIPBreakdown
+                    monthlyInvestment={monthlyInvestment}
+                    annualReturn={annualReturn}
+                    years={years}
+                    investedAmount={result.investedAmount}
+                    estimatedReturns={result.estimatedReturns}
+                    maturityValue={result.maturityValue}
+                />
+
+                <SIPBreakdown
+                    monthlyInvestment={monthlyInvestment}
+                    annualReturn={annualReturn}
+                    years={years}
+                    investedAmount={result.investedAmount}
+                    estimatedReturns={result.estimatedReturns}
+                    maturityValue={result.maturityValue}
+                />
+
+                <CalculatorCTA />
+
+                <div className="mt-10 flex justify-center">
+
+                    <DownloadReport
+                        monthlyInvestment={monthlyInvestment}
+                        annualReturn={annualReturn}
+                        years={years}
+                        investedAmount={result.investedAmount}
+                        estimatedReturns={result.estimatedReturns}
+                        maturityValue={result.maturityValue}
+                    />
+
+                </div>
+
                 {/* Disclaimer */}
 
                 <div className="mt-16 rounded-3xl border border-green-200 bg-green-50 p-8">

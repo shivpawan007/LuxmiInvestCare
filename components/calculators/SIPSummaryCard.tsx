@@ -2,10 +2,10 @@
 
 import { ReactNode } from "react";
 import { TrendingUp } from "lucide-react";
-
+import AnimatedCounter from "@/components/common/AnimatedCounter";
 interface SIPSummaryCardProps {
     title: string;
-    value: string;
+    value: number | string;
     subtitle: string;
     icon?: ReactNode;
     valueColor?: string;
@@ -44,7 +44,20 @@ export default function SIPSummaryCard({
             {/* Value */}
 
             <h3 className={`text-4xl font-extrabold ${valueColor}`}>
-                {value}
+                {typeof value === "number" ? (
+                    <AnimatedCounter
+                        value={value}
+                        formatter={(v) =>
+                            new Intl.NumberFormat("en-IN", {
+                                style: "currency",
+                                currency: "INR",
+                                maximumFractionDigits: 0,
+                            }).format(v)
+                        }
+                    />
+                ) : (
+                    value
+                )}
             </h3>
 
             {/* Subtitle */}
