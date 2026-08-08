@@ -133,7 +133,7 @@ export default function SIPCalculator() {
 
                         <SIPSummaryCard
                             title="Estimated Returns"
-                            value={formatCurrency(result.maturityValue)}
+                            value={formatCurrency(result.estimatedReturns)}
                             subtitle="Illustrative wealth generated based on expected annual returns."
                             icon={<TrendingUp size={24} />}
                             valueColor="text-green-700"
@@ -181,14 +181,6 @@ export default function SIPCalculator() {
                     maturityValue={result.maturityValue}
                 />
 
-                <SIPBreakdown
-                    monthlyInvestment={monthlyInvestment}
-                    annualReturn={annualReturn}
-                    years={years}
-                    investedAmount={result.investedAmount}
-                    estimatedReturns={result.estimatedReturns}
-                    maturityValue={result.maturityValue}
-                />
 
                 <CalculatorCTA />
 
