@@ -53,7 +53,7 @@ export default function SIPBreakdown({
         {
             icon: <Calendar className="h-6 w-6 text-green-700" />,
             title: "Investment Period",
-            value: `${years} Years`,
+            value: `${years} ${years === 1 ? "Year" : "Years"}`,
         },
         {
             icon: <Percent className="h-6 w-6 text-green-700" />,
@@ -62,7 +62,7 @@ export default function SIPBreakdown({
         },
         {
             icon: <Wallet className="h-6 w-6 text-green-700" />,
-            title: "Total Investment",
+            title: "Amount Invested",
             value: formatCurrency(investedAmount),
         },
         {
@@ -152,7 +152,7 @@ export default function SIPBreakdown({
                 <div className="rounded-2xl bg-green-50 p-6">
 
                     <p className="text-sm text-slate-500">
-                        Illustrative Gain %
+                        Return on Investment
                     </p>
 
                     <h3 className="mt-2 text-3xl font-bold text-green-700">
