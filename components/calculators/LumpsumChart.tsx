@@ -10,10 +10,10 @@ import {
     Tooltip,
 } from "recharts";
 
-import type { SIPProjection } from "@/lib/sip";
+import type { LumpsumProjection } from "@/lib/lumpsum";
 
 interface Props {
-    data: SIPProjection[];
+    data: LumpsumProjection[];
 }
 
 function formatCurrency(value: number) {
@@ -24,20 +24,23 @@ function formatCurrency(value: number) {
     }).format(value);
 }
 
-export default function SIPChart({ data }: Props) {
+export default function LumpsumChart({ data }: Props) {
     return (
         <div className="card mt-10 p-8">
+
             <h2 className="mb-2 text-2xl font-bold text-slate-900">
                 Investment Growth
             </h2>
 
             <p className="mb-8 text-slate-600">
-                Illustrative year-wise projection of your investment and estimated
-                portfolio value.
+                Illustrative year-wise projection of your one-time investment
+                and estimated portfolio value.
             </p>
 
             <div className="h-[380px]">
+
                 <ResponsiveContainer width="100%" height="100%">
+
                     <LineChart
                         data={data}
                         margin={{
@@ -47,6 +50,7 @@ export default function SIPChart({ data }: Props) {
                             bottom: 10,
                         }}
                     >
+
                         <CartesianGrid strokeDasharray="3 3" />
 
                         <XAxis
@@ -87,8 +91,11 @@ export default function SIPChart({ data }: Props) {
                             dot={false}
                             name="Estimated Value"
                         />
+
                     </LineChart>
+
                 </ResponsiveContainer>
+
             </div>
         </div>
     );

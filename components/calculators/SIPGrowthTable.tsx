@@ -1,5 +1,9 @@
 "use client";
 
+import {
+    calculateSIPYearlyGrowth,
+} from "@/lib/sip";
+
 interface SIPGrowthTableProps {
     monthlyInvestment: number;
     annualReturn: number;
@@ -20,35 +24,13 @@ export default function SIPGrowthTable({
     years,
 }: SIPGrowthTableProps) {
 
-    const monthlyRate = annualReturn / 12 / 100;
-
-    const rows = [];
-
-    for (let year = 1; year <= years; year++) {
-
-        const months = year * 12;
-
-        let maturityValue = 0;
-
-        if (monthlyRate === 0) {
-            maturityValue = monthlyInvestment * months;
-        } else {
-            maturityValue =
-                monthlyInvestment *
-                (((Math.pow(1 + monthlyRate, months) - 1) / monthlyRate) *
-                    (1 + monthlyRate));
-        }
-
-        rows.push({
-            year,
-            invested: monthlyInvestment * months,
-            value: maturityValue,
-        });
-
-    }
+    const rows = calculateSIPYearlyGrowth(
+        monthlyInvestment,
+        annualReturn,
+        years
+    );
 
     return (
-
         <div className="mt-12 rounded-3xl border border-slate-200 bg-white p-8 shadow-lg">
 
             <div className="mb-8">
@@ -58,7 +40,8 @@ export default function SIPGrowthTable({
                 </h2>
 
                 <p className="mt-2 text-slate-600">
-                    Illustrative year-wise growth of your SIP investment based on the selected assumptions.
+                    Illustrative year-wise growth based on the selected SIP
+                    amount, assumed annual return and investment period.
                 </p>
 
             </div>
@@ -83,6 +66,10 @@ export default function SIPGrowthTable({
                                 Estimated Value
                             </th>
 
+                            <th className="px-6 py-4 text-right">
+                                Estimated Gain
+                            </th>
+
                         </tr>
 
                     </thead>
@@ -101,21 +88,19 @@ export default function SIPGrowthTable({
                             >
 
                                 <td className="border-b px-6 py-4 font-semibold">
-
                                     {row.year}
-
                                 </td>
 
                                 <td className="border-b px-6 py-4 text-right">
-
                                     {formatCurrency(row.invested)}
-
                                 </td>
 
                                 <td className="border-b px-6 py-4 text-right font-semibold text-green-700">
-
                                     {formatCurrency(row.value)}
+                                </td>
 
+                                <td className="border-b px-6 py-4 text-right font-semibold text-emerald-700">
+                                    {formatCurrency(row.estimatedReturns)}
                                 </td>
 
                             </tr>
@@ -129,6 +114,5 @@ export default function SIPGrowthTable({
             </div>
 
         </div>
-
     );
 }

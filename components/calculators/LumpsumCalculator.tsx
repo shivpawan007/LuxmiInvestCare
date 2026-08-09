@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 
 import { calculateLumpsum } from "@/lib/lumpsum";
 
-import SIPChart from "./SIPChart";
+import LumpsumChart from "./LumpsumChart";
 import SIPPieChart from "./SIPPieChart";
 import SIPGrowthTable from "./SIPGrowthTable";
 import SIPBreakdown from "./SIPBreakdown";
@@ -219,11 +219,7 @@ export default function LumpsumCalculator() {
 
                 {/* Charts */}
 
-                <SIPChart
-                    investment={result.investment}
-                    maturity={result.maturityValue}
-                    years={years}
-                />
+                <LumpsumChart data={result.yearlyGrowth} />
 
                 <SIPPieChart
                     invested={result.investment}

@@ -154,11 +154,7 @@ export default function SIPCalculator() {
                 {/* Investment Growth Chart */}
 
 
-                <SIPChart
-                    investment={result.investedAmount}
-                    maturity={result.maturityValue}
-                    years={years}
-                />
+                <SIPChart data={result.yearlyGrowth} />
 
                 {/* Investment Allocation */}
 

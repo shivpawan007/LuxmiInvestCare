@@ -152,7 +152,7 @@ export default function SIPBreakdown({
                 <div className="rounded-2xl bg-green-50 p-6">
 
                     <p className="text-sm text-slate-500">
-                        Estimated Return %
+                        Illustrative Gain %
                     </p>
 
                     <h3 className="mt-2 text-3xl font-bold text-green-700">

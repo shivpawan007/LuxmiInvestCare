@@ -38,7 +38,7 @@ export default function SIPPieChart({
         <div className="card mt-10 p-8">
 
             <h2 className="mb-8 text-2xl font-bold">
-                Investment Allocation
+                Projected Corpus Composition
             </h2>
 
             <div className="h-[380px]">
