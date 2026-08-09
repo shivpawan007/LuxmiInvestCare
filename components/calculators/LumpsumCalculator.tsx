@@ -16,7 +16,7 @@ import LumpsumBreakdown from "./LumpsumBreakdown";
 import LumpsumInsights from "./LumpsumInsights";
 import CalculatorShare from "./CalculatorShare";
 import CalculatorHistory from "./CalculatorHistory";
-
+import RangeControl from "./RangeControl";
 
 import {
     IndianRupee,
@@ -110,21 +110,15 @@ export default function LumpsumCalculator() {
 
                             </label>
 
-                            <input
-                                type="range"
+                            <RangeControl
+                                value={investment}
                                 min={10000}
                                 max={10000000}
-                                step={10000}
-                                value={investment}
-                                onChange={(e) => setInvestment(Number(e.target.value))}
-                                className="w-full"
+                                step={100000}
+                                onChange={setInvestment}
+                                formatValue={formatCurrency}
                             />
 
-                            <div className="mt-3 text-xl font-bold text-green-700">
-
-                                {formatCurrency(investment)}
-
-                            </div>
 
                         </div>
 
@@ -140,21 +134,17 @@ export default function LumpsumCalculator() {
 
                             </label>
 
-                            <input
-                                type="range"
+                            <RangeControl
+                                value={annualReturn}
                                 min={1}
                                 max={20}
                                 step={0.5}
-                                value={annualReturn}
-                                onChange={(e) => setAnnualReturn(Number(e.target.value))}
-                                className="w-full"
+                                onChange={setAnnualReturn}
+                                suffix="%"
+                                formatValue={(value) => `${value}%`}
                             />
 
-                            <div className="mt-3 text-xl font-bold text-green-700">
 
-                                {annualReturn}%
-
-                            </div>
 
                         </div>
 
@@ -170,20 +160,17 @@ export default function LumpsumCalculator() {
 
                             </label>
 
-                            <input
-                                type="range"
+                            <RangeControl
+                                value={years}
                                 min={1}
                                 max={40}
-                                value={years}
-                                onChange={(e) => setYears(Number(e.target.value))}
-                                className="w-full"
+                                step={1}
+                                onChange={setYears}
+                                suffix=" Years"
+                                formatValue={(value) => `${value} Years`}
                             />
 
-                            <div className="mt-3 text-xl font-bold text-green-700">
 
-                                {years} Years
-
-                            </div>
 
                         </div>
 
@@ -195,20 +182,20 @@ export default function LumpsumCalculator() {
 
                         <CalculatorResultCard
                             title="Investment Amount"
-                            value={result.investment}
+                            value={formatCurrency(result.investment)}
                             icon={<Wallet size={22} />}
                         />
 
                         <CalculatorResultCard
                             title="Estimated Returns"
-                            value={result.estimatedReturns}
+                            value={formatCurrency(result.estimatedReturns)}
                             valueColor="text-green-700"
                             icon={<TrendingUp size={22} />}
                         />
 
                         <CalculatorResultCard
                             title="Maturity Value"
-                            value={result.maturityValue}
+                            value={formatCurrency(result.maturityValue)}
                             valueColor="text-emerald-700"
                             icon={<Landmark size={22} />}
                         />
