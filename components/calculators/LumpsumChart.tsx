@@ -67,8 +67,8 @@ export default function LumpsumChart({ data }: Props) {
                         <Tooltip
                             formatter={(value, name) => [
                                 formatCurrency(Number(value)),
-                                name === "invested"
-                                    ? "Amount Invested"
+                                name === "Amount Invested"
+                                    ? "Invested Amount"
                                     : "Estimated Value",
                             ]}
                             labelFormatter={(label) => `Year ${label}`}
