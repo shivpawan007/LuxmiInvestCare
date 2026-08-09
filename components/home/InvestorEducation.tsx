@@ -60,7 +60,6 @@ export default function InvestorEducation() {
                 {/* Section Heading */}
 
                 <motion.div
-                    initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
                     viewport={{ once: true }}
@@ -96,7 +95,6 @@ export default function InvestorEducation() {
                         return (
                             <motion.div
                                 key={topic.title}
-                                initial={{ opacity: 0, y: 40 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 transition={{
                                     duration: 0.5,
@@ -134,7 +132,6 @@ export default function InvestorEducation() {
                 {/* Investor Awareness Banner */}
 
                 <motion.div
-                    initial={{ opacity: 0, y: 40 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
                     viewport={{ once: true }}
@@ -201,7 +198,6 @@ export default function InvestorEducation() {
                 {/* Disclaimer */}
 
                 <motion.div
-                    initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     transition={{ duration: 0.5 }}
                     viewport={{ once: true }}
