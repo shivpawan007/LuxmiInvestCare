@@ -4,64 +4,48 @@ import { motion } from "framer-motion";
 import {
     Landmark,
     PiggyBank,
-    ShieldCheck,
-    HeartPulse,
-    GraduationCap,
     Target,
-    LineChart,
-    ArrowRight,
+    GraduationCap,
+    ClipboardCheck,
+    BriefcaseBusiness,
 } from "lucide-react";
-
-import { Button } from "@/components/ui/Button";
 
 const services = [
     {
+        icon: Landmark,
         title: "Mutual Funds",
         description:
-            "Diversified mutual fund solutions including SIP, Lumpsum and ELSS investments.",
-        icon: Landmark,
+            "Helping investors build diversified portfolios aligned with their long-term financial goals and risk profile.",
     },
     {
+        icon: PiggyBank,
         title: "SIP Planning",
         description:
-            "Build long-term wealth through disciplined monthly investments aligned with your financial goals.",
-        icon: PiggyBank,
+            "Encouraging disciplined investing through Systematic Investment Plans for long-term wealth creation.",
     },
     {
-        title: "Life Insurance",
-        description:
-            "Financial protection for your family with comprehensive life insurance solutions.",
-        icon: ShieldCheck,
-    },
-    {
-        title: "Health Insurance",
-        description:
-            "Protect yourself and your family against rising medical expenses.",
-        icon: HeartPulse,
-    },
-    {
-        title: "Child Education Planning",
-        description:
-            "Create a secure financial future for your child's education and aspirations.",
-        icon: GraduationCap,
-    },
-    {
-        title: "Retirement Planning",
-        description:
-            "Plan today for a financially independent and comfortable retirement.",
         icon: Target,
+        title: "Goal-Based Planning",
+        description:
+            "Investment guidance for retirement, children's education, wealth creation and other financial milestones.",
     },
     {
+        icon: GraduationCap,
+        title: "Investor Education",
+        description:
+            "Educational support to help investors understand mutual funds, investment risks and financial planning concepts.",
+    },
+    {
+        icon: ClipboardCheck,
         title: "Portfolio Review",
         description:
-            "Professional review of your existing investments to optimize performance.",
-        icon: LineChart,
+            "Periodic portfolio reviews to ensure investments remain aligned with evolving financial objectives.",
     },
     {
-        title: "Goal-Based Investing",
+        icon: BriefcaseBusiness,
+        title: "Financial Guidance",
         description:
-            "Customized investment strategies for every important financial milestone.",
-        icon: ArrowRight,
+            "Transparent financial guidance focused on disciplined investing and informed decision-making.",
     },
 ];
 
@@ -69,39 +53,43 @@ export default function Services() {
     return (
         <section
             id="services"
-            className="bg-slate-50 py-24"
+            className="section bg-white"
         >
-            <div className="mx-auto max-w-7xl px-6">
-                {/* Heading */}
+            <div className="container-custom">
+
+                {/* Section Heading */}
 
                 <motion.div
-                    initial={{ opacity: 0, y: 40 }}
+                    initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
-                    className="mx-auto max-w-3xl text-center"
+                    viewport={{ once: true }}
+                    className="mx-auto mb-20 max-w-3xl text-center"
                 >
-                    <span className="rounded-full bg-green-100 px-5 py-2 text-sm font-semibold uppercase tracking-widest text-green-700">
-                        Our Services
+
+                    <span className="inline-flex items-center rounded-full border border-green-200 bg-green-50 px-5 py-2 text-sm font-semibold text-green-700 shadow-sm">
+                        OUR SERVICES
                     </span>
 
-                    <h2 className="mt-6 text-4xl font-bold text-slate-900 lg:text-5xl">
-                        Investment Solutions
+                    <h2 className="section-title mt-8">
+                        Helping You Build Wealth
                         <span className="block text-green-700">
-                            For Every Financial Goal
+                            Through Financial Discipline
                         </span>
                     </h2>
 
-                    <p className="mt-6 text-lg leading-8 text-slate-600">
-                        Luxmi InvestCare offers personalized financial solutions designed
-                        to help investors build wealth, protect their families and achieve
-                        long-term financial goals.
+                    <p className="section-subtitle mx-auto">
+                        Our services are designed to support investors through education,
+                        disciplined investing and goal-oriented financial planning while
+                        encouraging informed investment decisions.
                     </p>
+
                 </motion.div>
 
-                {/* Cards */}
+                {/* Service Cards */}
 
-                <div className="mt-20 grid gap-8 md:grid-cols-2 xl:grid-cols-4">
+                <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
+
                     {services.map((service, index) => {
                         const Icon = service.icon;
 
@@ -110,32 +98,42 @@ export default function Services() {
                                 key={service.title}
                                 initial={{ opacity: 0, y: 40 }}
                                 whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
                                 transition={{
                                     duration: 0.5,
-                                    delay: index * 0.08,
+                                    delay: index * 0.1,
                                 }}
-                                whileHover={{ y: -8 }}
-                                className="group rounded-3xl border border-slate-200 bg-white p-8 shadow-sm transition-all duration-300 hover:border-green-600 hover:shadow-2xl"
+                                viewport={{ once: true }}
+                                className="card flex h-full flex-col p-8"
                             >
-                                <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-green-100 transition-colors duration-300 group-hover:bg-green-700">
-                                    <Icon className="h-8 w-8 text-green-700 transition-colors duration-300 group-hover:text-white" />
+                                {/* Icon */}
+
+                                <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-green-100">
+
+                                    <Icon className="h-8 w-8 text-green-700" />
+
                                 </div>
 
-                                <h3 className="mt-8 text-xl font-bold text-slate-900">
+                                {/* Title */}
+
+                                <h3 className="mb-4 text-2xl font-bold text-slate-900">
                                     {service.title}
                                 </h3>
 
-                                <p className="mt-4 text-slate-600 leading-7">
+                                {/* Description */}
+
+                                <p className="flex-1 leading-7 text-slate-600">
                                     {service.description}
                                 </p>
 
-                                <Button
-                                    variant="outline"
-                                    className="mt-8 w-full rounded-xl border-green-600 text-green-700 hover:bg-green-700 hover:text-white"
+                                {/* Learn More */}
+
+                                <button
+                                    className="mt-8 inline-flex items-center font-semibold text-green-700 transition hover:text-green-800"
                                 >
-                                    Learn More
-                                </Button>
+                                    Learn More →
+
+                                </button>
+
                             </motion.div>
                         );
                     })}
@@ -144,28 +142,63 @@ export default function Services() {
                 {/* Bottom CTA */}
 
                 <motion.div
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6 }}
                     viewport={{ once: true }}
-                    transition={{ delay: 0.4 }}
-                    className="mt-20 rounded-3xl bg-gradient-to-r from-green-700 to-emerald-600 p-12 text-center text-white shadow-xl"
+                    className="mt-24"
                 >
-                    <h3 className="text-3xl font-bold">
-                        Start Your Wealth Creation Journey Today
-                    </h3>
 
-                    <p className="mx-auto mt-4 max-w-2xl text-green-50">
-                        Whether you are planning for retirement, your child's education,
-                        wealth creation or financial protection, Luxmi InvestCare is here
-                        to guide you every step of the way.
-                    </p>
+                    <div className="overflow-hidden rounded-3xl bg-gradient-to-r from-green-700 to-emerald-600 p-12 text-white shadow-xl">
 
-                    <Button
-                        className="mt-8 rounded-xl bg-white px-8 py-6 text-green-700 hover:bg-slate-100"
-                    >
-                        Schedule a Free Consultation
-                    </Button>
+                        <div className="grid items-center gap-10 lg:grid-cols-2">
+
+                            <div>
+
+                                <span className="rounded-full bg-white/20 px-4 py-2 text-sm font-semibold">
+                                    START YOUR INVESTMENT JOURNEY
+                                </span>
+
+                                <h3 className="mt-6 text-4xl font-bold leading-tight">
+                                    Build Financial Confidence
+                                    <span className="block">
+                                        Through Disciplined Investing
+                                    </span>
+                                </h3>
+
+                                <p className="mt-6 text-lg leading-8 text-green-50">
+                                    We believe every investment journey begins with education,
+                                    planning and disciplined decision-making. Explore investment
+                                    solutions that align with your financial goals and risk profile.
+                                </p>
+
+                            </div>
+
+                            <div className="flex flex-col items-start gap-5 lg:items-end">
+
+                                <a
+                                    href="https://wa.me/919650060044"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="rounded-xl bg-white px-8 py-4 font-semibold text-green-700 transition hover:bg-green-50"
+                                >
+                                    Get Started on WhatsApp
+                                </a>
+
+                                <p className="max-w-sm text-right text-sm text-green-100 lg:text-base">
+                                    Mutual Fund investments are subject to market risks.
+                                    Please read all scheme-related documents carefully before
+                                    investing.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
                 </motion.div>
+
             </div>
         </section>
     );
