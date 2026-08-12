@@ -134,3 +134,71 @@
 html {
   scroll-behavior: smooth;
 }
+
+/* ===========================================
+   LUXMI INVESTCARE DESIGN SYSTEM
+=========================================== */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-white text-slate-800 antialiased;
+}
+
+/* Section Layout */
+.section {
+  @apply py-20 md:py-24;
+}
+
+.container-custom {
+  @apply mx-auto max-w-7xl px-6 lg:px-8;
+}
+
+/* Section Heading */
+.section-title {
+  @apply text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900;
+}
+
+.section-subtitle {
+  @apply mt-5 max-w-3xl text-lg leading-8 text-slate-600;
+}
+
+/* Cards */
+.card {
+  @apply rounded-3xl border border-slate-200 bg-white shadow-sm transition-all duration-300;
+}
+
+.card:hover {
+  @apply -translate-y-2 shadow-xl;
+}
+
+/* Buttons */
+.btn-primary {
+  @apply rounded-xl bg-green-700 px-7 py-3 font-semibold text-white transition duration-300 hover:bg-green-800;
+}
+
+.btn-secondary {
+  @apply rounded-xl border border-slate-300 px-7 py-3 font-semibold transition duration-300 hover:bg-slate-100;
+}
+
+/* Section Backgrounds */
+.bg-soft {
+  background: linear-gradient(180deg,
+      #f7fcf9 0%,
+      #ffffff 100%);
+}
+
+/* Images */
+.image-card {
+  @apply overflow-hidden rounded-3xl shadow-xl;
+}
+
+.image-card img {
+  @apply transition duration-500;
+}
+
+.image-card:hover img {
+  transform: scale(1.04);
+}
