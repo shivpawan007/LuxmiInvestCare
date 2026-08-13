@@ -1,9 +1,13 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Geist } from "next/font/google";
-import { cn } from "@/lib/utils";
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
 
-const geist = Geist({ subsets: ['latin'], variable: '--font-sans' });
+const geist = Geist({
+  subsets: ["latin"],
+  variable: "--font-sans",
+});
 
 export const metadata: Metadata = {
   title: "Luxmi InvestCare | AMFI Registered Mutual Fund Distributor",
@@ -18,8 +22,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
-        {children}
+      <body className={geist.variable}>
+        <Header />
+
+        <main className="min-h-screen">
+          {children}
+        </main>
+
+        <Footer />
       </body>
     </html>
   );
