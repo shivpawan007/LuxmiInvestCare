@@ -20,6 +20,7 @@ export interface SWPResult {
     sustainable: boolean;
 
     remainingCorpus: number;
+  exhaustionYear: number | null;
     estimatedGrowth: number;
     projections: SWPProjection[];
 }
@@ -43,6 +44,7 @@ export function calculateSWP(
     let totalWithdrawn = 0;
 
     const projections: SWPProjection[] = [];
+  let exhaustionYear: number | null = null;
 
     for (let year = 1; year <= Math.ceil(years); year++) {
         const openingCorpus = corpus;
@@ -62,6 +64,7 @@ export function calculateSWP(
         for (let month = 0; month < monthsInYear; month++) {
             if (corpus <= 0) {
                 corpus = 0;
+      exhaustionYear = year;
                 break;
             }
 
@@ -93,6 +96,7 @@ export function calculateSWP(
 
         if (corpus <= 0) {
             corpus = 0;
+      exhaustionYear = year;
             break;
         }
     }
@@ -123,6 +127,7 @@ export function calculateSWP(
         sustainable,
 
         remainingCorpus,
+    exhaustionYear,
         estimatedGrowth: wealthGain,
         projections,
     };

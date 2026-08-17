@@ -12,7 +12,7 @@ export default function Header() {
 
                 {/* Logo */}
                 <Link
-                    href="#home"
+                    href="/"
                     className="flex items-center gap-3"
                 >
                     <Image
@@ -38,26 +38,26 @@ export default function Header() {
                 {/* Desktop Navigation */}
                 <nav className="hidden items-center gap-8 font-medium text-slate-700 lg:flex">
 
-                    <Link href="#home" className="transition hover:text-green-700">
+                    <Link href="/" className="transition hover:text-green-700">
                         Home
                     </Link>
 
-                    <Link href="#about" className="transition hover:text-green-700">
+                    <Link href="/about" className="transition hover:text-green-700">
                         About
                     </Link>
 
-                    <Link href="#services" className="transition hover:text-green-700">
+                    <Link href="/services" className="transition hover:text-green-700">
                         Services
                     </Link>
 
                     <Link
-                        href="#investor-education"
+                        href="/investor-education"
                         className="transition hover:text-green-700"
                     >
                         Investor Education
                     </Link>
 
-                    <Link href="#contact" className="transition hover:text-green-700">
+                    <Link href="/contact" className="transition hover:text-green-700">
                         Contact
                     </Link>
 

@@ -34,7 +34,7 @@ export default function GoalPlanner() {
 
     return (
 
-        <section className="section bg-white">
+        <section className="section bg-white pt-24 md:pt-16">
 
             <div className="container-custom">
 

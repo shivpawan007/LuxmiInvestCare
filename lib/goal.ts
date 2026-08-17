@@ -21,8 +21,7 @@ export function calculateGoal(
         monthlyRate === 0
             ? futureValue / months
             : (futureValue * monthlyRate) /
-            ((Math.pow(1 + monthlyRate, months) - 1) *
-                (1 + monthlyRate));
+            (Math.pow(1 + monthlyRate, months) - 1);
 
     const lumpsumRequired =
         futureValue /

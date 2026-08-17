@@ -5,9 +5,6 @@ import { useMemo, useState } from "react";
 import { calculateLumpsum } from "@/lib/lumpsum";
 
 import LumpsumChart from "./LumpsumChart";
-import SIPPieChart from "./SIPPieChart";
-import SIPGrowthTable from "./SIPGrowthTable";
-import SIPBreakdown from "./SIPBreakdown";
 import CalculatorCTA from "./CalculatorCTA";
 import DownloadReport from "./DownloadReport";
 import CalculatorResultCard from "./CalculatorResultCard";
@@ -64,22 +61,15 @@ export default function LumpsumCalculator() {
                     </span>
 
                     <h1 className="section-title mt-6">
-
                         Plan Your Wealth With
-
                         <span className="block text-green-700">
-
                             One-Time Investment
-
                         </span>
-
                     </h1>
 
                     <p className="section-subtitle">
-
                         Estimate the future value of a one-time investment
                         using compound annual growth assumptions.
-
                     </p>
 
                 </div>
@@ -88,14 +78,12 @@ export default function LumpsumCalculator() {
 
                 <div className="grid gap-12 lg:grid-cols-2">
 
-                    {/* Left */}
+                    {/* Left - Investment Details */}
 
                     <div className="card p-8">
 
                         <h2 className="mb-8 text-2xl font-bold">
-
                             Investment Details
-
                         </h2>
 
                         {/* Investment */}
@@ -118,7 +106,6 @@ export default function LumpsumCalculator() {
                                 onChange={setInvestment}
                                 formatValue={formatCurrency}
                             />
-
 
                         </div>
 
@@ -144,8 +131,6 @@ export default function LumpsumCalculator() {
                                 formatValue={(value) => `${value}%`}
                             />
 
-
-
                         </div>
 
                         {/* Years */}
@@ -170,13 +155,11 @@ export default function LumpsumCalculator() {
                                 formatValue={(value) => `${value} Years`}
                             />
 
-
-
                         </div>
 
                     </div>
 
-                    {/* Right */}
+                    {/* Right - Results */}
 
                     <div className="space-y-6">
 
@@ -204,14 +187,10 @@ export default function LumpsumCalculator() {
 
                 </div>
 
-                {/* Charts */}
+                {/* Charts & Analysis */}
 
                 <LumpsumChart data={result.yearlyGrowth} />
 
-                <SIPPieChart
-                    invested={result.investment}
-                    returns={result.estimatedReturns}
-                />
                 <LumpsumBreakdown
                     investment={result.investment}
                     returns={result.estimatedReturns}
@@ -232,32 +211,31 @@ export default function LumpsumCalculator() {
                     years={years}
                 />
 
-                <SIPBreakdown
-                    monthlyInvestment={0}
-                    annualReturn={annualReturn}
-                    years={years}
-                    investedAmount={result.investment}
-                    estimatedReturns={result.estimatedReturns}
-                    maturityValue={result.maturityValue}
-                />
+                {/* Reports / Sharing / History */}
 
-                <div className="mt-10 flex justify-center">
+                <div className="mt-10 flex flex-wrap justify-center gap-4">
 
                     <DownloadReport
-                        monthlyInvestment={result.investment}
+                        calculatorType="lumpsum"
+                        investment={result.investment}
                         annualReturn={annualReturn}
                         years={years}
                         investedAmount={result.investment}
                         estimatedReturns={result.estimatedReturns}
                         maturityValue={result.maturityValue}
+                        yearlyGrowth={result.yearlyGrowth}
+                        reportTitle="Lumpsum Projection Report"
+                        fileName="Luxmi-InvestCare-Lumpsum-Projection-Report.pdf"
                     />
 
                     <CalculatorShare
                         title="Lumpsum Projection"
                         summary={`Investment: ₹${investment.toLocaleString("en-IN")}
-                    Expected Return: ${annualReturn}%
-                    Duration: ${years} Years
-                    Estimated Corpus: ₹${Math.round(result.maturityValue).toLocaleString("en-IN")}`}
+Expected Return: ${annualReturn}%
+Duration: ${years} Years
+Estimated Corpus: ₹${Math.round(
+                            result.maturityValue
+                        ).toLocaleString("en-IN")}`}
                     />
 
                     <CalculatorHistory
@@ -266,6 +244,8 @@ export default function LumpsumCalculator() {
                     />
 
                 </div>
+
+                {/* CTA */}
 
                 <CalculatorCTA />
 
