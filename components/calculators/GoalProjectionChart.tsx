@@ -180,12 +180,25 @@ export default function GoalProjectionChart({
           <span className="font-semibold text-slate-900">
             Educational illustration:
           </span>{" "}
-          The figures are estimates based on the assumptions entered in this
-          calculator. Actual investment outcomes may differ because mutual
-          fund investments are subject to market risks.
+          The figures shown are estimates based on the assumptions entered,
+          including inflation and an assumed investment return. Actual costs,
+          investment returns and financial requirements may differ. Mutual fund
+          investments are subject to market risks. Please consider your
+          investment objectives and risk profile before investing.
         </p>
       </div>
+      <div className="mt-8 rounded-2xl border border-green-200 bg-green-50 p-6">
+        <h3 className="text-lg font-bold text-green-800">
+          Planning Note
+        </h3>
 
+        <p className="mt-3 leading-7 text-slate-700">
+          Starting early can provide more time for compounding and may reduce
+          the monthly investment required to work toward a future financial
+          goal. Review your goal periodically as your income, expenses,
+          inflation expectations and investment assumptions change.
+        </p>
+      </div>
     </div>
   );
 }

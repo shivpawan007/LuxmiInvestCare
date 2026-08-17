@@ -73,14 +73,25 @@ export default function RangeControl({
     : `${prefix}${value.toLocaleString("en-IN")}${suffix}`;
 
   return (
-    <div className="w-full">
-      <div className="flex items-center gap-2">
+    <div className="w-full min-w-0">
+      {/* Number control */}
+      <div className="flex w-full min-w-0 items-center gap-2">
         <button
           type="button"
           onClick={decrease}
           disabled={value <= min}
           aria-label="Decrease value"
-          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-slate-300 bg-white text-xl font-bold text-slate-700 transition hover:border-emerald-500 hover:bg-emerald-50 disabled:cursor-not-allowed disabled:opacity-40"
+          className="
+            flex h-10 w-10 shrink-0
+            items-center justify-center
+            rounded-lg border border-slate-300
+            bg-white text-xl font-bold text-slate-700
+            transition
+            hover:border-emerald-500
+            hover:bg-emerald-50
+            disabled:cursor-not-allowed
+            disabled:opacity-40
+          "
         >
           −
         </button>
@@ -89,47 +100,78 @@ export default function RangeControl({
           type="number"
           value={value}
           min={min}
-          step={step}
+          step={safeStep}
           onChange={handleNumberChange}
           aria-label="Enter value"
-          className="h-10 min-w-0 flex-1 rounded-lg border border-slate-300 bg-white px-3 text-center text-lg font-bold text-slate-900 outline-none transition focus:border-emerald-600 focus:ring-2 focus:ring-emerald-100"
+          className="
+            h-10 min-w-0 w-full flex-1
+            rounded-lg border border-slate-300
+            bg-white px-2 sm:px-3
+            text-center text-base sm:text-lg
+            font-bold text-slate-900
+            outline-none transition
+            focus:border-emerald-600
+            focus:ring-2 focus:ring-emerald-100
+          "
         />
 
         <button
           type="button"
           onClick={increase}
           aria-label="Increase value"
-          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-emerald-300 bg-emerald-50 text-xl font-bold text-emerald-700 transition hover:border-emerald-600 hover:bg-emerald-100"
+          className="
+            flex h-10 w-10 shrink-0
+            items-center justify-center
+            rounded-lg border border-emerald-300
+            bg-emerald-50
+            text-xl font-bold text-emerald-700
+            transition
+            hover:border-emerald-600
+            hover:bg-emerald-100
+          "
         >
           +
         </button>
       </div>
 
-      <input
-        type="range"
-        min={min}
-        max={dynamicMax}
-        step={step}
-        value={Math.min(value, dynamicMax)}
-        onChange={(event) => onChange(Number(event.target.value))}
-        className="mt-3 w-full accent-emerald-600"
-      />
+      {/* Range slider */}
+      <div className="mt-3 w-full min-w-0">
+        <input
+          type="range"
+          min={min}
+          max={dynamicMax}
+          step={safeStep}
+          value={Math.min(value, dynamicMax)}
+          onChange={(event) => onChange(Number(event.target.value))}
+          aria-label="Adjust value"
+          className="
+            block
+            h-2
+            w-full
+            min-w-0
+            cursor-pointer
+            accent-emerald-600
+          "
+        />
+      </div>
 
-      <div className="mt-1 flex justify-between text-xs text-slate-500">
-        <span>
+      {/* Min / Max labels */}
+      <div className="mt-2 flex w-full min-w-0 items-center justify-between gap-3 text-xs text-slate-500">
+        <span className="min-w-0 truncate">
           {prefix}
           {min.toLocaleString("en-IN")}
           {suffix}
         </span>
 
-        <span>
+        <span className="min-w-0 truncate text-right">
           {prefix}
           {dynamicMax.toLocaleString("en-IN")}
           {suffix}
         </span>
       </div>
 
-      <div className="mt-2 text-xl font-bold text-emerald-700">
+      {/* Current value */}
+      <div className="mt-3 text-lg font-bold text-emerald-700">
         {displayValue}
       </div>
     </div>
