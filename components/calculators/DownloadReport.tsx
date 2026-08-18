@@ -1053,8 +1053,7 @@ function addYearTable(
 }
 
 function addDisclaimer(pdf: jsPDF) {
-  const pageWidth =
-    pdf.internal.pageSize.getWidth();
+  const pageWidth = pdf.internal.pageSize.getWidth();
 
   const items = [
     "This calculator is provided for investor education and illustration purposes only.",
@@ -1066,112 +1065,127 @@ function addDisclaimer(pdf: jsPDF) {
     "This calculator output should not by itself be construed as personalised investment advice.",
   ];
 
-  let y = 74;
+  /*
+   * Page 5 disclaimer content starts below the section
+   * title + subtitle to avoid overlap.
+   */
+  let y = 91;
 
-  items.forEach(
-    (item, index) => {
-      const lines =
-        pdf.splitTextToSize(
-          item,
-          pageWidth - 50,
-        );
+  const numberX = 20;
+  const textX = 30;
+  const textWidth = pageWidth - 50;
 
-      setFont(pdf, true);
+  items.forEach((item, index) => {
+    const lines = pdf.splitTextToSize(
+      item,
+      textWidth,
+    );
 
-      pdf.setFontSize(8);
+    /*
+     * Number
+     */
+    setFont(pdf, true);
+    pdf.setFontSize(8.5);
+    pdf.setTextColor(...C.darkGreen);
 
-      pdf.setTextColor(
-        ...C.darkGreen,
-      );
+    pdf.text(
+      `${index + 1}.`,
+      numberX,
+      y,
+    );
 
-      pdf.text(
-        `${index + 1}.`,
-        20,
-        y,
-      );
+    /*
+     * Disclaimer text
+     */
+    setFont(pdf);
+    pdf.setFontSize(8.5);
+    pdf.setTextColor(...C.text);
 
-      setFont(pdf);
+    pdf.text(
+      lines,
+      textX,
+      y,
+      {
+        lineHeightFactor: 1.45,
+      },
+    );
 
-      pdf.setFontSize(8);
+    /*
+     * Dynamic spacing based on wrapped lines.
+     */
+    const lineHeight = 4.8;
+    const itemHeight = Math.max(
+      11,
+      lines.length * lineHeight + 4,
+    );
 
-      pdf.setTextColor(
-        ...C.text,
-      );
+    y += itemHeight;
+  });
 
-      pdf.text(
-        lines,
-        29,
-        y,
-        {
-          lineHeightFactor: 1.35,
-        },
-      );
+  /*
+   * Contact / brand information box
+   */
+  const boxY = y + 5;
+  const boxX = 18;
+  const boxWidth = pageWidth - 36;
+  const boxHeight = 30;
 
-      y += Math.max(
-        10,
-        lines.length *
-        4.2 +
-        4,
-      );
-    },
-  );
-
-  pdf.setFillColor(
-    ...C.light,
-  );
-
-  pdf.setDrawColor(
-    ...C.border,
-  );
+  pdf.setFillColor(...C.light);
+  pdf.setDrawColor(...C.border);
+  pdf.setLineWidth(0.4);
 
   pdf.roundedRect(
-    18,
-    y + 4,
-    pageWidth - 36,
-    28,
+    boxX,
+    boxY,
+    boxWidth,
+    boxHeight,
     3,
     3,
     "FD",
   );
 
+  /*
+   * Brand name
+   */
   setFont(pdf, true);
-
-  pdf.setFontSize(8);
-
-  pdf.setTextColor(
-    ...C.darkGreen,
-  );
+  pdf.setFontSize(8.5);
+  pdf.setTextColor(...C.darkGreen);
 
   pdf.text(
     BRAND.name,
-    25,
-    y + 14,
+    boxX + 7,
+    boxY + 8,
   );
 
+  /*
+   * Distributor status
+   */
   setFont(pdf);
-
-  pdf.setFontSize(7.2);
-
-  pdf.setTextColor(
-    ...C.muted,
-  );
+  pdf.setFontSize(7);
+  pdf.setTextColor(...C.muted);
 
   pdf.text(
     BRAND.subtitle,
-    25,
-    y + 20,
+    boxX + 7,
+    boxY + 14,
   );
 
+  /*
+   * Website + email
+   */
   pdf.text(
     `${BRAND.website} | ${BRAND.email}`,
-    25,
-    y + 26,
+    boxX + 7,
+    boxY + 20,
   );
 
+  /*
+   * WhatsApp + ARN
+   */
   pdf.text(
     `WhatsApp: ${BRAND.whatsapp} | ${BRAND.arn}`,
-    25,
-    y + 32,
+    boxX + 7,
+    boxY + 26,
   );
 }
 
@@ -1812,7 +1826,7 @@ export default function DownloadReport({
           "6",
           "Investor Education Disclaimer",
           "Important information regarding this illustrative calculator",
-          69,
+          66,
         );
 
         addDisclaimer(pdf);
