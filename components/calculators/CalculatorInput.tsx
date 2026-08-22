@@ -10,10 +10,31 @@ interface CalculatorInputProps {
   max: number;
   step: number;
   onChange: (value: number) => void;
+
   prefix?: string;
   suffix?: string;
   formatValue?: (value: number) => string;
   className?: string;
+
+  /**
+   * When enabled, the control can expand its slider range
+   * when the user presses + or enters a value above the
+   * current slider maximum.
+   */
+  allowDynamicRange?: boolean;
+
+  /**
+   * Amount by which the slider maximum expands.
+   */
+  expansionStep?: number;
+
+  /**
+   * Optional absolute safety ceiling.
+   * Example:
+   * corpus: ₹100 Cr
+   * withdrawal: ₹10 Lakh
+   */
+  maxCap?: number;
 }
 
 export default function CalculatorInput({
@@ -27,73 +48,236 @@ export default function CalculatorInput({
   suffix = "",
   formatValue,
   className = "",
+  allowDynamicRange = false,
+  expansionStep = 0,
+  maxCap,
 }: CalculatorInputProps) {
-  const [inputValue, setInputValue] = useState(String(value));
+  const [inputValue, setInputValue] =
+    useState(String(value));
+
+  const [dynamicMax, setDynamicMax] =
+    useState(max);
 
   useEffect(() => {
     setInputValue(String(value));
-  }, [value]);
 
-  const clamp = (nextValue: number) =>
-    Math.min(max, Math.max(min, nextValue));
+    setDynamicMax((currentMax) => {
+      const minimumRequired =
+        Math.max(max, value);
 
-  const updateValue = (nextValue: number) => {
-    const safeValue = clamp(nextValue);
+      if (!allowDynamicRange) {
+        return max;
+      }
+
+      return Math.max(
+        currentMax,
+        minimumRequired,
+      );
+    });
+  }, [value, max, allowDynamicRange]);
+
+  const effectiveExpansionStep =
+    expansionStep > 0
+      ? expansionStep
+      : Math.max(step, max - min);
+
+  const getNextExpandedMax = (
+    requiredValue: number,
+  ) => {
+    let nextMax = dynamicMax;
+
+    if (requiredValue <= nextMax) {
+      return nextMax;
+    }
+
+    while (nextMax < requiredValue) {
+      nextMax += effectiveExpansionStep;
+
+      if (
+        typeof maxCap === "number" &&
+        nextMax >= maxCap
+      ) {
+        nextMax = maxCap;
+        break;
+      }
+    }
+
+    return nextMax;
+  };
+
+  const ensureRangeForValue = (
+    nextValue: number,
+  ) => {
+    if (
+      !allowDynamicRange ||
+      nextValue <= dynamicMax
+    ) {
+      return dynamicMax;
+    }
+
+    const nextMax =
+      getNextExpandedMax(nextValue);
+
+    setDynamicMax(nextMax);
+
+    return nextMax;
+  };
+
+  const clamp = (nextValue: number) => {
+    const numericValue =
+      Number.isFinite(nextValue)
+        ? nextValue
+        : value;
+
+    const maximum =
+      allowDynamicRange
+        ? Math.min(
+          dynamicMax,
+          maxCap ?? Number.POSITIVE_INFINITY,
+        )
+        : max;
+
+    return Math.min(
+      maximum,
+      Math.max(min, numericValue),
+    );
+  };
+
+  const updateValue = (
+    nextValue: number,
+  ) => {
+    const numericValue =
+      Number.isFinite(nextValue)
+        ? nextValue
+        : value;
+
+    ensureRangeForValue(
+      numericValue,
+    );
+
+    const safeValue =
+      clamp(numericValue);
+
     onChange(safeValue);
     setInputValue(String(safeValue));
   };
 
   const decrease = () => {
-    updateValue(value - step);
+    updateValue(
+      value - step,
+    );
   };
 
   const increase = () => {
-    updateValue(value + step);
+    const nextValue =
+      value + step;
+
+    if (
+      allowDynamicRange &&
+      nextValue > dynamicMax
+    ) {
+      const expandedMax =
+        getNextExpandedMax(
+          nextValue,
+        );
+
+      setDynamicMax(
+        expandedMax,
+      );
+    }
+
+    updateValue(
+      nextValue,
+    );
   };
 
   const handleInputChange = (
-    event: React.ChangeEvent<HTMLInputElement>
+    event: React.ChangeEvent<HTMLInputElement>,
   ) => {
-    const rawValue = event.target.value;
+    const rawValue =
+      event.target.value;
 
     setInputValue(rawValue);
 
-    if (rawValue === "") return;
-
-    const numericValue = Number(rawValue);
-
-    if (!Number.isNaN(numericValue)) {
-      onChange(clamp(numericValue));
-    }
-  };
-
-  const handleBlur = () => {
-    const numericValue = Number(inputValue);
-
-    if (inputValue === "" || Number.isNaN(numericValue)) {
-      setInputValue(String(value));
+    if (rawValue === "") {
       return;
     }
 
-    updateValue(numericValue);
+    const numericValue =
+      Number(rawValue);
+
+    if (
+      Number.isNaN(numericValue)
+    ) {
+      return;
+    }
+
+    if (
+      allowDynamicRange &&
+      numericValue > dynamicMax
+    ) {
+      ensureRangeForValue(
+        numericValue,
+      );
+    }
+
+    onChange(
+      clamp(numericValue),
+    );
   };
 
-  const displayValue = formatValue
-    ? formatValue(value)
-    : `${prefix}${value}${suffix}`;
+  const handleBlur = () => {
+    const numericValue =
+      Number(inputValue);
+
+    if (
+      inputValue === "" ||
+      Number.isNaN(numericValue)
+    ) {
+      setInputValue(
+        String(value),
+      );
+      return;
+    }
+
+    updateValue(
+      numericValue,
+    );
+  };
+
+  const displayValue =
+    formatValue
+      ? formatValue(value)
+      : `${prefix}${value}${suffix}`;
+
+  const displayMax =
+    allowDynamicRange
+      ? dynamicMax
+      : max;
+
+  const atMinimum =
+    value <= min;
+
+  const atMaximum =
+    typeof maxCap === "number"
+      ? value >= maxCap
+      : !allowDynamicRange &&
+      value >= max;
 
   return (
-    <div className={`space-y-3 ${className}`}>
+    <div
+      className={`space-y-3 ${className}`}
+    >
       <div className="flex items-center justify-between gap-3">
         <label className="text-sm font-semibold text-slate-700">
           {label}
         </label>
 
-        <div className="flex items-center rounded-xl border border-slate-300 bg-white overflow-hidden">
+        <div className="flex items-center overflow-hidden rounded-xl border border-slate-300 bg-white">
           <button
             type="button"
             onClick={decrease}
-            disabled={value <= min}
+            disabled={atMinimum}
             aria-label={`Decrease ${label}`}
             className="flex h-10 w-10 items-center justify-center text-slate-600 transition hover:bg-emerald-50 hover:text-emerald-700 disabled:cursor-not-allowed disabled:opacity-40"
           >
@@ -111,14 +295,26 @@ export default function CalculatorInput({
               type="number"
               value={inputValue}
               min={min}
-              max={max}
+              max={
+                allowDynamicRange
+                  ? maxCap ?? undefined
+                  : max
+              }
               step={step}
-              onChange={handleInputChange}
-              onBlur={handleBlur}
+              onChange={
+                handleInputChange
+              }
+              onBlur={
+                handleBlur
+              }
               aria-label={label}
-              className={`h-10 w-28 border-x border-slate-300 bg-white px-3 text-center text-sm font-semibold text-slate-900 outline-none focus:border-emerald-600 ${
-                prefix ? "pl-6" : ""
-              } ${suffix ? "pr-8" : ""}`}
+              className={`h-10 w-32 border-x border-slate-300 bg-white px-3 text-center text-sm font-semibold text-slate-900 outline-none focus:border-emerald-600 ${prefix
+                ? "pl-7"
+                : ""
+                } ${suffix
+                  ? "pr-8"
+                  : ""
+                }`}
             />
 
             {suffix && (
@@ -131,7 +327,7 @@ export default function CalculatorInput({
           <button
             type="button"
             onClick={increase}
-            disabled={value >= max}
+            disabled={atMaximum}
             aria-label={`Increase ${label}`}
             className="flex h-10 w-10 items-center justify-center text-slate-600 transition hover:bg-emerald-50 hover:text-emerald-700 disabled:cursor-not-allowed disabled:opacity-40"
           >
@@ -143,10 +339,19 @@ export default function CalculatorInput({
       <input
         type="range"
         min={min}
-        max={max}
+        max={displayMax}
         step={step}
-        value={value}
-        onChange={(event) => updateValue(Number(event.target.value))}
+        value={Math.min(
+          value,
+          displayMax,
+        )}
+        onChange={(event) =>
+          updateValue(
+            Number(
+              event.target.value,
+            ),
+          )
+        }
         aria-label={`${label} slider`}
         className="h-2 w-full cursor-pointer accent-emerald-600"
       />
@@ -154,7 +359,11 @@ export default function CalculatorInput({
       <div className="flex items-center justify-between text-xs text-slate-500">
         <span>
           {prefix}
-          {formatValue ? formatValue(min) : min.toLocaleString("en-IN")}
+          {formatValue
+            ? formatValue(min)
+            : min.toLocaleString(
+              "en-IN",
+            )}
           {suffix}
         </span>
 
@@ -164,7 +373,13 @@ export default function CalculatorInput({
 
         <span>
           {prefix}
-          {formatValue ? formatValue(max) : max.toLocaleString("en-IN")}
+          {formatValue
+            ? formatValue(
+              displayMax,
+            )
+            : displayMax.toLocaleString(
+              "en-IN",
+            )}
           {suffix}
         </span>
       </div>

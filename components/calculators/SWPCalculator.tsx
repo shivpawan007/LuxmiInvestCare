@@ -1,7 +1,14 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { Share2 } from "lucide-react";
+
 import { calculateSWP } from "@/lib/swp";
+
+import CalculatorInput from "./CalculatorInput";
+import DownloadReport from "./DownloadReport";
+import ReportShareDialog from "./sharing/ReportShareDialog";
+import ConnectWithLuxmi from "./sharing/ConnectWithLuxmi";
 
 function formatINR(value: number): string {
   return new Intl.NumberFormat("en-IN", {
@@ -12,10 +19,20 @@ function formatINR(value: number): string {
 }
 
 export default function SWPCalculator() {
-  const [initialCorpus, setInitialCorpus] = useState(1000000);
-  const [monthlyWithdrawal, setMonthlyWithdrawal] = useState(25000);
-  const [annualReturn, setAnnualReturn] = useState(10);
-  const [years, setYears] = useState(20);
+  const [initialCorpus, setInitialCorpus] =
+    useState(1000000);
+
+  const [monthlyWithdrawal, setMonthlyWithdrawal] =
+    useState(25000);
+
+  const [annualReturn, setAnnualReturn] =
+    useState(10);
+
+  const [years, setYears] =
+    useState(20);
+
+  const [shareOpen, setShareOpen] =
+    useState(false);
 
   const result = useMemo(
     () =>
@@ -23,24 +40,36 @@ export default function SWPCalculator() {
         initialCorpus,
         monthlyWithdrawal,
         annualReturn,
-        years
+        years,
       ),
-    [initialCorpus, monthlyWithdrawal, annualReturn, years]
+    [
+      initialCorpus,
+      monthlyWithdrawal,
+      annualReturn,
+      years,
+    ],
   );
 
+  /*
+   * Maximum projected corpus used only for the
+   * visual bars in the year-wise projection section.
+   */
   const maxCorpus =
     result.projections.length > 0
       ? Math.max(
-          ...result.projections.map(
-            (projection) => projection.estimatedValue
-          ),
-          initialCorpus
-        )
+        ...result.projections.map(
+          (projection) =>
+            projection.closingCorpus,
+        ),
+        initialCorpus,
+      )
       : initialCorpus;
 
   return (
     <main className="bg-white">
-      {/* HERO */}
+      {/* =====================================================
+          HERO
+      ====================================================== */}
       <section className="bg-gradient-to-b from-emerald-50 via-white to-white">
         <div className="container-custom py-12 md:py-16">
           <div className="mx-auto max-w-3xl text-center">
@@ -56,18 +85,24 @@ export default function SWPCalculator() {
             </h1>
 
             <p className="section-subtitle mx-auto mt-4 max-w-2xl">
-              Estimate how regular withdrawals may affect your investment
-              corpus over time using illustrative return assumptions.
+              Estimate how regular withdrawals may affect
+              your investment corpus over time using
+              illustrative return assumptions.
             </p>
           </div>
         </div>
       </section>
 
-      {/* CALCULATOR */}
+      {/* =====================================================
+          CALCULATOR
+      ====================================================== */}
       <section className="bg-white pb-16">
         <div className="container-custom">
           <div className="grid gap-8 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)]">
-            {/* INPUTS */}
+
+            {/* =================================================
+                INPUTS
+            ================================================== */}
             <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm md:p-8">
               <div className="mb-8">
                 <p className="text-sm font-semibold uppercase tracking-widest text-emerald-700">
@@ -78,182 +113,154 @@ export default function SWPCalculator() {
                   Plan Your SWP
                 </h2>
 
-                <p className="mt-2 text-sm text-slate-600">
-                  Adjust the assumptions below to see an illustrative
-                  withdrawal projection.
+                <p className="mt-2 text-sm leading-6 text-slate-600">
+                  Adjust the assumptions below to see an
+                  illustrative withdrawal projection.
                 </p>
               </div>
 
-              {/* Corpus */}
+              {/* =================================================
+                  INITIAL CORPUS
+              ================================================== */}
               <div className="mb-8">
-                <label className="mb-3 block text-sm font-semibold text-slate-800">
-                  Initial Investment / Corpus
-                </label>
-
-                <input
-                  type="range"
+                <CalculatorInput
+                  label="Initial Investment / Corpus"
+                  value={initialCorpus}
                   min={100000}
                   max={10000000}
                   step={50000}
-                  value={initialCorpus}
-                  onChange={(event) =>
-                    setInitialCorpus(Number(event.target.value))
-                  }
-                  className="w-full accent-emerald-700"
+                  maxCap={100000000}
+                  expansionStep={1000000}
+                  allowDynamicRange
+                  prefix="₹"
+                  onChange={setInitialCorpus}
+                  formatValue={formatINR}
                 />
-
-                <div className="mt-3 flex items-center justify-between">
-                  <span className="text-xs text-slate-500">
-                    ₹1 Lakh
-                  </span>
-
-                  <span className="text-lg font-bold text-emerald-700">
-                    {formatINR(initialCorpus)}
-                  </span>
-
-                  <span className="text-xs text-slate-500">
-                    ₹1 Crore
-                  </span>
-                </div>
               </div>
 
-              {/* Withdrawal */}
+              {/* =================================================
+                  MONTHLY WITHDRAWAL
+              ================================================== */}
               <div className="mb-8">
-                <label className="mb-3 block text-sm font-semibold text-slate-800">
-                  Monthly Withdrawal
-                </label>
-
-                <input
-                  type="range"
+                <CalculatorInput
+                  label="Monthly Withdrawal"
+                  value={monthlyWithdrawal}
                   min={1000}
                   max={200000}
                   step={1000}
-                  value={monthlyWithdrawal}
-                  onChange={(event) =>
-                    setMonthlyWithdrawal(Number(event.target.value))
-                  }
-                  className="w-full accent-emerald-700"
+                  maxCap={1000000}
+                  expansionStep={50000}
+                  allowDynamicRange
+                  prefix="₹"
+                  onChange={setMonthlyWithdrawal}
+                  formatValue={formatINR}
                 />
-
-                <div className="mt-3 flex items-center justify-between">
-                  <span className="text-xs text-slate-500">
-                    ₹1,000
-                  </span>
-
-                  <span className="text-lg font-bold text-emerald-700">
-                    {formatINR(monthlyWithdrawal)}
-                  </span>
-
-                  <span className="text-xs text-slate-500">
-                    ₹2 Lakh
-                  </span>
-                </div>
               </div>
 
-              {/* Return */}
+              {/* =================================================
+                  EXPECTED RETURN
+              ================================================== */}
               <div className="mb-8">
-                <label className="mb-3 block text-sm font-semibold text-slate-800">
-                  Expected Annual Return
-                </label>
-
-                <input
-                  type="range"
+                <CalculatorInput
+                  label="Expected Annual Return"
+                  value={annualReturn}
                   min={1}
                   max={20}
                   step={0.5}
-                  value={annualReturn}
-                  onChange={(event) =>
-                    setAnnualReturn(Number(event.target.value))
+                  maxCap={30}
+                  expansionStep={2.5}
+                  allowDynamicRange
+                  suffix="%"
+                  onChange={setAnnualReturn}
+                  formatValue={(value) =>
+                    `${value}%`
                   }
-                  className="w-full accent-emerald-700"
                 />
-
-                <div className="mt-3 flex items-center justify-between">
-                  <span className="text-xs text-slate-500">1%</span>
-
-                  <span className="text-lg font-bold text-emerald-700">
-                    {annualReturn}%
-                  </span>
-
-                  <span className="text-xs text-slate-500">20%</span>
-                </div>
               </div>
 
-              {/* Years */}
+              {/* =================================================
+                  WITHDRAWAL PERIOD
+              ================================================== */}
               <div>
-                <label className="mb-3 block text-sm font-semibold text-slate-800">
-                  Withdrawal Period
-                </label>
-
-                <input
-                  type="range"
+                <CalculatorInput
+                  label="Withdrawal Period"
+                  value={years}
                   min={1}
                   max={40}
                   step={1}
-                  value={years}
-                  onChange={(event) =>
-                    setYears(Number(event.target.value))
+                  maxCap={60}
+                  expansionStep={10}
+                  allowDynamicRange
+                  suffix=" Years"
+                  onChange={setYears}
+                  formatValue={(value) =>
+                    `${value} ${value === 1
+                      ? "Year"
+                      : "Years"
+                    }`
                   }
-                  className="w-full accent-emerald-700"
                 />
-
-                <div className="mt-3 flex items-center justify-between">
-                  <span className="text-xs text-slate-500">
-                    1 Year
-                  </span>
-
-                  <span className="text-lg font-bold text-emerald-700">
-                    {years} Years
-                  </span>
-
-                  <span className="text-xs text-slate-500">
-                    40 Years
-                  </span>
-                </div>
               </div>
             </div>
 
-            {/* RESULTS */}
+            {/* =================================================
+                RESULTS
+            ================================================== */}
             <div>
+
+              {/* =================================================
+                  SUMMARY CARDS
+              ================================================== */}
               <div className="grid gap-4 sm:grid-cols-3">
+
+                {/* Remaining Corpus */}
                 <div className="rounded-2xl border border-emerald-100 bg-white p-5 shadow-sm">
                   <p className="text-sm text-slate-500">
                     Remaining Corpus
                   </p>
 
                   <p className="mt-2 text-2xl font-bold text-emerald-700">
-                    {formatINR(result.estimatedValue)}
+                    {formatINR(
+                      result.remainingCorpus,
+                    )}
                   </p>
                 </div>
 
+                {/* Total Withdrawn */}
                 <div className="rounded-2xl border border-amber-100 bg-white p-5 shadow-sm">
                   <p className="text-sm text-slate-500">
                     Total Withdrawn
                   </p>
 
                   <p className="mt-2 text-2xl font-bold text-slate-900">
-                    {formatINR(result.totalWithdrawn)}
+                    {formatINR(
+                      result.totalWithdrawn,
+                    )}
                   </p>
                 </div>
 
+                {/* Net Wealth Gain */}
                 <div className="rounded-2xl border border-emerald-100 bg-white p-5 shadow-sm">
                   <p className="text-sm text-slate-500">
                     Net Wealth Gain
                   </p>
 
                   <p className="mt-2 text-2xl font-bold text-emerald-700">
-                    {formatINR(result.wealthGain)}
+                    {formatINR(
+                      result.wealthGain,
+                    )}
                   </p>
                 </div>
               </div>
 
-              {/* Status */}
+              {/* =================================================
+                  STATUS
+              ================================================== */}
               <div
-                className={`mt-5 rounded-2xl p-6 text-white shadow-sm ${
-                  result.sustainable
-                    ? "bg-emerald-950"
-                    : "bg-slate-800"
-                }`}
+                className={`mt-5 rounded-2xl p-6 text-white shadow-sm ${result.sustainable
+                  ? "bg-emerald-950"
+                  : "bg-slate-800"
+                  }`}
               >
                 <p className="text-sm font-semibold uppercase tracking-wide text-emerald-200">
                   SWP Projection
@@ -266,117 +273,228 @@ export default function SWPCalculator() {
                 </h2>
 
                 <p className="mt-3 text-sm leading-6 text-emerald-50/80">
-                  This is an illustrative projection based on the
-                  assumptions entered above. Actual investment returns
-                  can vary.
+                  This is an illustrative projection based
+                  on the assumptions entered above. Actual
+                  investment returns can vary.
                 </p>
+
+                {!result.sustainable &&
+                  result.exhaustionYear && (
+                    <p className="mt-3 text-sm font-semibold text-amber-200">
+                      Illustrative exhaustion year:{" "}
+                      {result.exhaustionYear}
+                    </p>
+                  )}
               </div>
 
-              {/* Yearly Projection */}
+              {/* =================================================
+                  YEAR-WISE PROJECTION
+              ================================================== */}
               <div className="mt-5 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm md:p-8">
                 <h2 className="text-2xl font-bold text-slate-900">
                   Estimated Corpus Over Time
                 </h2>
 
-                <p className="mt-2 text-sm text-slate-600">
-                  Illustrative year-wise projection after withdrawals.
+                <p className="mt-2 text-sm leading-6 text-slate-600">
+                  Illustrative year-wise projection after
+                  withdrawals.
                 </p>
 
                 <div className="mt-7 space-y-4">
-                  {result.projections.map((projection) => {
-                    const percentage =
-                      maxCorpus > 0
-                        ? (projection.estimatedValue / maxCorpus) * 100
-                        : 0;
+                  {result.projections.map(
+                    (projection) => {
+                      const percentage =
+                        maxCorpus > 0
+                          ? (projection.closingCorpus /
+                            maxCorpus) *
+                          100
+                          : 0;
 
-                    return (
-                      <div key={projection.year}>
-                        <div className="mb-2 flex items-center justify-between gap-4 text-sm">
-                          <span className="font-semibold text-slate-600">
-                            Year {projection.year}
-                          </span>
+                      return (
+                        <div
+                          key={
+                            projection.year
+                          }
+                        >
+                          <div className="mb-2 flex items-center justify-between gap-4 text-sm">
+                            <span className="font-semibold text-slate-600">
+                              Year{" "}
+                              {
+                                projection.year
+                              }
+                            </span>
 
-                          <span className="font-bold text-slate-900">
-                            {formatINR(
-                              projection.estimatedValue
-                            )}
-                          </span>
+                            <span className="font-bold text-slate-900">
+                              {formatINR(
+                                projection.closingCorpus,
+                              )}
+                            </span>
+                          </div>
+
+                          <div className="h-3 overflow-hidden rounded-full bg-slate-100">
+                            <div
+                              className="h-full rounded-full bg-gradient-to-r from-emerald-700 to-emerald-400 transition-all duration-300"
+                              style={{
+                                width: `${Math.max(
+                                  percentage,
+                                  projection.closingCorpus >
+                                    0
+                                    ? 2
+                                    : 0,
+                                )}%`,
+                              }}
+                            />
+                          </div>
+
+                          <div className="mt-1 flex flex-wrap items-center justify-between gap-2 text-xs text-slate-500">
+                            <span>
+                              Opening:{" "}
+                              {formatINR(
+                                projection.openingCorpus,
+                              )}
+                            </span>
+
+                            <span>
+                              Growth:{" "}
+                              {formatINR(
+                                projection.growth,
+                              )}
+                            </span>
+
+                            <span>
+                              Withdrawn:{" "}
+                              {formatINR(
+                                projection.annualWithdrawal,
+                              )}
+                            </span>
+                          </div>
                         </div>
-
-                        <div className="h-3 overflow-hidden rounded-full bg-slate-100">
-                          <div
-                            className="h-full rounded-full bg-gradient-to-r from-emerald-700 to-emerald-400 transition-all duration-300"
-                            style={{
-                              width: `${Math.max(
-                                percentage,
-                                projection.estimatedValue > 0
-                                  ? 2
-                                  : 0
-                              )}%`,
-                            }}
-                          />
-                        </div>
-
-                        <div className="mt-1 text-xs text-slate-500">
-                          Withdrawn this year:{" "}
-                          {formatINR(
-                            projection.annualWithdrawal
-                          )}
-                        </div>
-                      </div>
-                    );
-                  })}
+                      );
+                    },
+                  )}
                 </div>
               </div>
             </div>
           </div>
 
-          {/* EDUCATIONAL NOTE */}
-          <div className="mt-10 rounded-2xl border border-slate-200 bg-slate-50 p-6 md:p-8">
-            <h2 className="text-xl font-bold text-slate-900">
-              Understanding SWP
-            </h2>
+          {/* =====================================================
+              REPORT ACTIONS
+          ====================================================== */}
+          <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
 
-            <p className="mt-3 max-w-4xl text-sm leading-7 text-slate-600">
-              A Systematic Withdrawal Plan allows an investor to withdraw
-              a predetermined amount from an investment at regular
-              intervals. The remaining corpus continues to be exposed to
-              market-linked returns, subject to the underlying investment
-              and market conditions.
-            </p>
+            <DownloadReport
+              calculatorType="swp"
+              investment={initialCorpus}
+              annualReturn={annualReturn}
+              years={years}
+              investedAmount={
+                initialCorpus
+              }
+              estimatedReturns={
+                result.estimatedGrowth
+              }
+              maturityValue={
+                result.remainingCorpus
+              }
+              yearlyGrowth={
+                result.projections
+              }
+              swpData={{
+                initialCorpus:
+                  result.initialInvestment,
 
-            <p className="mt-4 text-xs leading-6 text-slate-500">
-              The calculations shown are illustrative estimates based on
-              the assumptions entered. Mutual fund investments are subject
-              to market risks. Actual returns may differ from the
-              assumptions used in this calculator. This calculator is for
-              educational purposes only and should not be considered
-              investment advice.
-            </p>
+                monthlyWithdrawal:
+                  result.monthlyWithdrawal,
+
+                totalWithdrawn:
+                  result.totalWithdrawn,
+
+                remainingCorpus:
+                  result.remainingCorpus,
+
+                estimatedGrowth:
+                  result.estimatedGrowth,
+
+                sustainable:
+                  result.sustainable,
+
+                exhaustionYear:
+                  result.exhaustionYear,
+              }}
+              reportTitle="SWP Projection Report"
+              fileName="Luxmi-InvestCare-SWP-Projection-Report.pdf"
+            />
+
+            <button
+              type="button"
+              onClick={() =>
+                setShareOpen(true)
+              }
+              className="flex items-center gap-2 rounded-lg border border-green-700 bg-white px-4 py-2 text-sm font-semibold text-green-700 shadow-sm transition hover:bg-green-50"
+            >
+              <Share2 className="h-5 w-5" />
+              Share Report
+            </button>
           </div>
 
-          {/* CTA */}
-          <div className="mt-8 rounded-2xl bg-gradient-to-r from-emerald-950 via-emerald-900 to-emerald-800 p-6 text-white shadow-lg md:p-8">
-            <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-              <div>
-                <h2 className="text-xl font-bold">
-                  Planning a regular income strategy?
-                </h2>
+          {/* =====================================================
+              SHARE REPORT DIALOG
+          ====================================================== */}
+          <ReportShareDialog
+            open={shareOpen}
+            onClose={() =>
+              setShareOpen(false)
+            }
+            calculatorType="swp"
+            reportTitle="SWP Projection Report"
+            investment={initialCorpus}
+            years={years}
+            annualReturn={annualReturn}
+            estimatedReturns={
+              result.estimatedGrowth
+            }
+            maturityValue={
+              result.remainingCorpus
+            }
+          />
 
-                <p className="mt-2 max-w-2xl text-sm text-emerald-100/80">
-                  Use this calculator as an educational starting point
-                  and consider your goals, risk profile and investment
-                  horizon before investing.
-                </p>
-              </div>
+          {/* =====================================================
+              CONNECT WITH LUXMI
+          ====================================================== */}
+          <ConnectWithLuxmi
+            calculatorType="swp"
+            reportTitle="SWP Projection Report"
+            investment={initialCorpus}
+            years={years}
+            annualReturn={annualReturn}
+            estimatedReturns={
+              result.estimatedGrowth
+            }
+            maturityValue={
+              result.remainingCorpus
+            }
+          />
 
-              <a
-                href="/contact"
-                className="inline-flex shrink-0 items-center justify-center rounded-xl bg-amber-400 px-5 py-3 font-semibold text-emerald-950 transition hover:bg-amber-300"
-              >
-                Talk to Luxmi InvestCare
-              </a>
-            </div>
+          {/* =====================================================
+              INVESTOR EDUCATION DISCLAIMER
+          ====================================================== */}
+          <div className="mt-12 rounded-2xl border border-slate-200 bg-slate-50 p-6 md:p-8">
+            <h3 className="mb-3 text-lg font-bold text-slate-900">
+              Investor Education Disclaimer
+            </h3>
+
+            <p className="text-sm leading-7 text-slate-600">
+              The SWP Calculator provides an
+              illustrative estimate based on the
+              assumptions entered by the user and
+              an assumed rate of return. Actual
+              investment outcomes may differ
+              depending on market performance.
+              Mutual Fund investments are subject
+              to market risks. Please read all
+              scheme-related documents carefully
+              before investing.
+            </p>
           </div>
         </div>
       </section>

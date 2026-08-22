@@ -5,9 +5,10 @@ import jsPDF from "jspdf";
 
 import type { SIPProjection } from "@/lib/sip";
 import type { LumpsumProjection } from "@/lib/lumpsum";
+import type { SWPProjection } from "@/lib/swp";
 
 interface DownloadReportProps {
-  calculatorType: "sip" | "lumpsum";
+  calculatorType: "sip" | "lumpsum" | "swp";
 
   investment: number;
   annualReturn: number;
@@ -17,7 +18,9 @@ interface DownloadReportProps {
   estimatedReturns: number;
   maturityValue: number;
 
-  yearlyGrowth?: SIPProjection[] | LumpsumProjection[];
+  yearlyGrowth?: | SIPProjection[] | LumpsumProjection[] | SWPProjection[];
+
+  swpData?: { initialCorpus: number; monthlyWithdrawal: number; totalWithdrawn: number; remainingCorpus: number; estimatedGrowth: number; sustainable: boolean; exhaustionYear: number | null; };
 
   reportTitle?: string;
   fileName?: string;
@@ -74,8 +77,31 @@ function formatLakh(value: number): string {
   return `₹${lakh.toFixed(2)} L`;
 }
 
+function formatSWPChartAxis(value: number): string {
+  if (!Number.isFinite(value) || value <= 0) {
+    return "₹0";
+  }
+
+  const crore = value / 10000000;
+
+  if (crore >= 1) {
+    const display = Number(crore.toFixed(1));
+
+    return `₹${display.toLocaleString("en-IN")} Cr`;
+  }
+
+  const lakh = value / 100000;
+  const display = Number(lakh.toFixed(1));
+
+  return `₹${display.toLocaleString("en-IN")} L`;
+}
+
 function normalizeRows(
-  rows: SIPProjection[] | LumpsumProjection[] | undefined,
+  rows:
+    | SIPProjection[]
+    | LumpsumProjection[]
+    | SWPProjection[]
+    | undefined,
 ): ProjectionRow[] {
   if (!rows?.length) {
     return [];
@@ -85,16 +111,24 @@ function normalizeRows(
     const item = row as unknown as Record<string, unknown>;
 
     const invested = Number(
-      item.invested ?? item.investment ?? 0,
+      item.invested ??
+      item.investment ??
+      item.openingCorpus ??
+      0,
     );
 
     const value = Number(
-      item.value ?? item.maturityValue ?? 0,
+      item.value ??
+      item.maturityValue ??
+      item.closingCorpus ??
+      item.estimatedValue ??
+      0,
     );
 
     const estimatedReturns = Number(
       item.estimatedReturns ??
       item.returns ??
+      item.growth ??
       value - invested,
     );
 
@@ -1189,6 +1223,104 @@ function addDisclaimer(pdf: jsPDF) {
   );
 }
 
+function addSWPDisclaimer(pdf: jsPDF) {
+  const pageWidth = pdf.internal.pageSize.getWidth();
+
+  const items = [
+    "This SWP calculator is provided for investor education and illustration purposes only.",
+    "The projection is based on the assumptions entered by the user, including the assumed annual rate of return and withdrawal amount.",
+    "Actual investment outcomes may vary depending on market conditions, scheme performance, costs, taxes and other factors.",
+    "Mutual Fund investments are subject to market risks. Read all scheme related documents carefully before investing.",
+    "The projected values shown in this report are illustrative and are not guaranteed returns.",
+    "The calculator does not account for all possible market conditions, changes in withdrawal requirements or taxation implications.",
+    "This calculator output should not by itself be construed as personalised investment advice.",
+  ];
+
+  let y = 82;
+
+  items.forEach((item, index) => {
+    setFont(pdf, true);
+    pdf.setFontSize(8);
+    pdf.setTextColor(...C.darkGreen);
+
+    pdf.text(
+      `${index + 1}.`,
+      20,
+      y,
+    );
+
+    const lines = pdf.splitTextToSize(
+      item,
+      pageWidth - 54,
+    );
+
+    setFont(pdf);
+    pdf.setFontSize(8);
+    pdf.setTextColor(...C.text);
+
+    pdf.text(
+      lines,
+      29,
+      y,
+      {
+        lineHeightFactor: 1.35,
+      },
+    );
+
+    y += Math.max(
+      10,
+      lines.length * 4.3 + 5,
+    );
+  });
+
+  const boxY = Math.min(y + 5, 218);
+
+  pdf.setFillColor(...C.light);
+  pdf.setDrawColor(...C.border);
+
+  pdf.roundedRect(
+    18,
+    boxY,
+    pageWidth - 36,
+    40,
+    3,
+    3,
+    "FD",
+  );
+
+  setFont(pdf, true);
+  pdf.setFontSize(9);
+  pdf.setTextColor(...C.darkGreen);
+
+  pdf.text(
+    BRAND.name,
+    25,
+    boxY + 10,
+  );
+
+  setFont(pdf);
+  pdf.setFontSize(7.5);
+  pdf.setTextColor(...C.muted);
+
+  pdf.text(
+    BRAND.subtitle,
+    25,
+    boxY + 17,
+  );
+
+  pdf.text(
+    `${BRAND.website} | ${BRAND.email}`,
+    25,
+    boxY + 24,
+  );
+
+  pdf.text(
+    `WhatsApp: ${BRAND.whatsapp} | ${BRAND.arn}`,
+    25,
+    boxY + 31,
+  );
+}
+
 export default function DownloadReport({
   calculatorType,
   investment,
@@ -1198,6 +1330,7 @@ export default function DownloadReport({
   estimatedReturns,
   maturityValue,
   yearlyGrowth,
+  swpData,
   reportTitle = "Investment Projection Report",
   fileName = "Luxmi-InvestCare-Investment-Report.pdf",
 }: DownloadReportProps) {
@@ -1242,6 +1375,1020 @@ export default function DownloadReport({
           await loadImage(
             "/images/logo.png",
           );
+
+        /*
+* ============================================================
+* DEDICATED SWP PDF REPORT
+* ============================================================
+*
+* SWP requires a different report structure from SIP/Lumpsum.
+* Do not use the generic investment-growth / maturity-value
+* layout for SWP.
+*/
+
+        if (
+          calculatorType === "swp" &&
+          swpData
+        ) {
+          const swpRows = (
+            yearlyGrowth as SWPProjection[] | undefined
+          ) ?? [];
+
+          const initialCorpus =
+            Math.max(
+              0,
+              swpData.initialCorpus,
+            );
+
+          const monthlyWithdrawal =
+            Math.max(
+              0,
+              swpData.monthlyWithdrawal,
+            );
+
+          const totalWithdrawn =
+            Math.max(
+              0,
+              swpData.totalWithdrawn,
+            );
+
+          const remainingCorpus =
+            Math.max(
+              0,
+              swpData.remainingCorpus,
+            );
+
+          const estimatedGrowth =
+            swpData.estimatedGrowth;
+
+          const isSustainable =
+            swpData.sustainable;
+
+          const exhaustionYear =
+            swpData.exhaustionYear;
+
+          const annualWithdrawal =
+            monthlyWithdrawal * 12;
+
+          /*
+           * PAGE 1
+           * SWP SUMMARY
+           */
+
+          addPageHeader(
+            pdf,
+            reportTitle || "SWP Projection Report",
+            logo,
+          );
+
+          addSectionTitle(
+            pdf,
+            "1",
+            "SWP Summary",
+            "Illustrative systematic withdrawal projection",
+            69,
+          );
+
+          const swpCardW = 54.7;
+          const swpCardH = 31;
+          const swpGap = 5;
+
+          addCard(
+            pdf,
+            18,
+            84,
+            swpCardW,
+            swpCardH,
+            "Initial Corpus",
+            formatCurrency(initialCorpus),
+          );
+
+          addCard(
+            pdf,
+            18 + swpCardW + swpGap,
+            84,
+            swpCardW,
+            swpCardH,
+            "Monthly Withdrawal",
+            formatCurrency(monthlyWithdrawal),
+            C.teal,
+          );
+
+          addCard(
+            pdf,
+            18 + (swpCardW + swpGap) * 2,
+            84,
+            swpCardW,
+            swpCardH,
+            "Expected Return",
+            `${annualReturn}%`,
+            C.gold,
+          );
+
+          addCard(
+            pdf,
+            18,
+            121,
+            swpCardW,
+            swpCardH,
+            "Withdrawal Period",
+            `${years} ${years === 1 ? "Year" : "Years"}`,
+          );
+
+          addCard(
+            pdf,
+            18 + swpCardW + swpGap,
+            121,
+            swpCardW,
+            swpCardH,
+            "Total Withdrawn",
+            formatCurrency(totalWithdrawn),
+            C.gold,
+          );
+
+          addCard(
+            pdf,
+            18 + (swpCardW + swpGap) * 2,
+            121,
+            swpCardW,
+            swpCardH,
+            "Remaining Corpus",
+            formatCurrency(remainingCorpus),
+            C.teal,
+          );
+
+          /*
+           * Status panel
+           */
+
+          const statusFill: readonly [number, number, number] =
+            isSustainable
+              ? [236, 249, 243]
+              : [255, 246, 235];
+
+          const statusBorder: readonly [number, number, number] =
+            isSustainable
+              ? [205, 231, 218]
+              : [238, 215, 180];
+
+          const statusTextColor: readonly [number, number, number] =
+            isSustainable
+              ? C.darkGreen
+              : C.gold;
+
+          pdf.setFillColor(...statusFill);
+
+          pdf.setDrawColor(...statusBorder);
+
+          pdf.roundedRect(
+            18,
+            163,
+            174,
+            39,
+            4,
+            4,
+            "FD",
+          );
+
+          setFont(pdf, true);
+          pdf.setFontSize(9);
+          pdf.setTextColor(...statusTextColor);
+          pdf.text(
+            isSustainable
+              ? "SWP STATUS: CORPUS REMAINS"
+              : "SWP STATUS: CORPUS EXHAUSTED",
+            25,
+            174,
+          );
+
+          setFont(pdf);
+          pdf.setFontSize(7.7);
+          pdf.setTextColor(...C.text);
+
+          const statusText = isSustainable
+            ? `Illustrative remaining corpus after ${years} ${years === 1 ? "year" : "years"
+            }: ${formatCurrency(remainingCorpus)}.`
+            : exhaustionYear
+              ? `Under the entered assumptions, the illustrative corpus is projected to be exhausted during Year ${exhaustionYear}, before the selected ${years}-year withdrawal period ends.`
+              : `Under the entered assumptions, the illustrative corpus may be exhausted before the selected ${years}-year withdrawal period ends.`;
+          pdf.text(
+            pdf.splitTextToSize(
+              statusText,
+              158,
+            ),
+            25,
+            184,
+            {
+              lineHeightFactor: 1.35,
+            },
+          );
+
+          setFont(pdf, true);
+          pdf.setFontSize(8.2);
+          pdf.setTextColor(...C.darkGreen);
+
+          pdf.text(
+            "Annual withdrawal at the current rate",
+            25,
+            196,
+          );
+
+          setFont(pdf);
+          pdf.setTextColor(...C.text);
+
+          pdf.text(
+            formatCurrency(annualWithdrawal),
+            25,
+            201,
+          );
+
+          addPageFooter(pdf);
+
+          /*
+           * PAGE 2
+           * SWP CORPUS TREND
+           */
+
+          pdf.addPage();
+
+          addPageHeader(
+            pdf,
+            reportTitle || "SWP Projection Report",
+            logo,
+          );
+
+          addSectionTitle(
+            pdf,
+            "2",
+            "SWP Corpus Trend",
+            "Illustrative year-wise movement of the remaining corpus",
+            69,
+          );
+
+          const chartX = 20;
+          const chartY = 88;
+          const chartW = 170;
+          const chartH = 90;
+
+          pdf.setFillColor(...C.white);
+          pdf.setDrawColor(...C.border);
+
+          pdf.roundedRect(
+            chartX,
+            chartY,
+            chartW,
+            chartH,
+            4,
+            4,
+            "FD",
+          );
+
+          const chartRows = swpRows
+            .filter(
+              (row) =>
+                Number.isFinite(row.year) &&
+                Number.isFinite(row.closingCorpus),
+            )
+            .slice(0, 40);
+
+          const maxCorpus = Math.max(
+            initialCorpus,
+            ...chartRows.map(
+              (row) =>
+                Math.max(
+                  0,
+                  row.closingCorpus,
+                ),
+            ),
+            1,
+          );
+
+          const plotLeft = chartX + 14;
+          const plotRight = chartX + chartW - 9;
+          const plotTop = chartY + 12;
+          const plotBottom = chartY + chartH - 16;
+
+          /*
+           * Grid lines
+           */
+
+          pdf.setLineWidth(0.25);
+          pdf.setDrawColor(...C.border);
+
+          for (let i = 0; i <= 4; i++) {
+            const gy =
+              plotBottom -
+              ((plotBottom - plotTop) * i) / 4;
+
+            pdf.line(
+              plotLeft,
+              gy,
+              plotRight,
+              gy,
+            );
+
+            setFont(pdf);
+            pdf.setFontSize(6.5);
+            pdf.setTextColor(...C.muted);
+
+            const labelValue =
+              (maxCorpus * i) / 4;
+
+            pdf.text(
+              formatSWPChartAxis(labelValue),
+              plotLeft - 3,
+              gy + 2,
+              {
+                align: "right",
+              },
+            );
+          }
+
+          /*
+           * Corpus line
+           */
+
+          if (chartRows.length > 0) {
+            pdf.setDrawColor(...C.green);
+            pdf.setLineWidth(1.4);
+
+            chartRows.forEach(
+              (row, index) => {
+                if (index === 0) {
+                  return;
+                }
+
+                const previous =
+                  chartRows[index - 1];
+
+                const x1 =
+                  plotLeft +
+                  ((index - 1) /
+                    Math.max(
+                      chartRows.length - 1,
+                      1,
+                    )) *
+                  (plotRight - plotLeft);
+
+                const x2 =
+                  plotLeft +
+                  (index /
+                    Math.max(
+                      chartRows.length - 1,
+                      1,
+                    )) *
+                  (plotRight - plotLeft);
+
+                const y1 =
+                  plotBottom -
+                  (Math.max(
+                    0,
+                    previous.closingCorpus,
+                  ) /
+                    maxCorpus) *
+                  (plotBottom - plotTop);
+
+                const y2 =
+                  plotBottom -
+                  (Math.max(
+                    0,
+                    row.closingCorpus,
+                  ) /
+                    maxCorpus) *
+                  (plotBottom - plotTop);
+
+                pdf.line(
+                  x1,
+                  y1,
+                  x2,
+                  y2,
+                );
+              },
+            );
+
+            chartRows.forEach(
+              (row, index) => {
+                const x =
+                  plotLeft +
+                  (index /
+                    Math.max(
+                      chartRows.length - 1,
+                      1,
+                    )) *
+                  (plotRight - plotLeft);
+
+                const y =
+                  plotBottom -
+                  (Math.max(
+                    0,
+                    row.closingCorpus,
+                  ) /
+                    maxCorpus) *
+                  (plotBottom - plotTop);
+
+                pdf.setFillColor(...C.green);
+
+                pdf.circle(
+                  x,
+                  y,
+                  1.5,
+                  "F",
+                );
+              },
+            );
+
+            setFont(pdf);
+            pdf.setFontSize(6.5);
+            pdf.setTextColor(...C.muted);
+
+            chartRows.forEach(
+              (row, index) => {
+                const showLabel =
+                  chartRows.length <= 12 ||
+                  index === 0 ||
+                  index === chartRows.length - 1 ||
+                  index % 5 === 0;
+
+                if (!showLabel) {
+                  return;
+                }
+
+                const x =
+                  plotLeft +
+                  (index /
+                    Math.max(
+                      chartRows.length - 1,
+                      1,
+                    )) *
+                  (plotRight - plotLeft);
+
+                pdf.text(
+                  `Y${row.year}`,
+                  x,
+                  plotBottom + 9,
+                  {
+                    align: "center",
+                  },
+                );
+              },
+            );
+          }
+
+          /*
+ * Chart legend
+ */
+
+          pdf.setFillColor(...C.green);
+
+          pdf.circle(
+            chartX + 8,
+            chartY + 8,
+            1.6,
+            "F",
+          );
+
+          setFont(pdf);
+
+          pdf.setFontSize(7);
+
+          pdf.setTextColor(...C.text);
+
+          pdf.text(
+            "Closing Corpus",
+            chartX + 13,
+            chartY + 10,
+          );
+
+          /*
+           * Summary cards
+           */
+
+          addCard(
+            pdf,
+            18,
+            190,
+            54.7,
+            31,
+            "Initial Corpus",
+            formatCurrency(initialCorpus),
+          );
+
+          addCard(
+            pdf,
+            77.65,
+            190,
+            54.7,
+            31,
+            "Total Withdrawn",
+            formatCurrency(totalWithdrawn),
+            C.gold,
+          );
+
+          addCard(
+            pdf,
+            137.3,
+            190,
+            54.7,
+            31,
+            "Remaining Corpus",
+            formatCurrency(remainingCorpus),
+            C.teal,
+          );
+
+          addPageFooter(pdf);
+
+          /*
+           * PAGE 3
+           * YEAR-WISE SWP ANALYSIS
+           */
+
+          pdf.addPage();
+
+          addPageHeader(
+            pdf,
+            reportTitle || "SWP Projection Report",
+            logo,
+          );
+
+          addSectionTitle(
+            pdf,
+            "3",
+            "Year-wise SWP Analysis",
+            "Illustrative opening corpus, growth, withdrawal and closing corpus",
+            69,
+          );
+
+          const tableX = 18;
+          const tableY = 84;
+          const tableW = 174;
+
+          const columns = [
+            {
+              label: "Year",
+              width: 18,
+            },
+            {
+              label: "Opening Corpus",
+              width: 42,
+            },
+            {
+              label: "Growth",
+              width: 32,
+            },
+            {
+              label: "Withdrawal",
+              width: 38,
+            },
+            {
+              label: "Closing Corpus",
+              width: 44,
+            },
+          ];
+
+          pdf.setFillColor(...C.darkGreen);
+          pdf.roundedRect(
+            tableX,
+            tableY,
+            tableW,
+            13,
+            2,
+            2,
+            "F",
+          );
+
+          let tx = tableX;
+
+          columns.forEach(
+            (column, index) => {
+              setFont(pdf, true);
+              pdf.setFontSize(7);
+              pdf.setTextColor(...C.white);
+
+              pdf.text(
+                column.label,
+                tx + column.width / 2,
+                tableY + 8,
+                {
+                  align: "center",
+                },
+              );
+
+              tx += column.width;
+            },
+          );
+
+          const tableRows =
+            swpRows.slice(0, 10);
+
+          tableRows.forEach(
+            (row, index) => {
+              const ry =
+                tableY + 13 + index * 9;
+
+              if (index % 2 === 0) {
+                pdf.setFillColor(
+                  ...C.light,
+                );
+
+                pdf.rect(
+                  tableX,
+                  ry,
+                  tableW,
+                  9,
+                  "F",
+                );
+              }
+
+              const values = [
+                `Y${row.year}`,
+                formatCurrency(
+                  row.openingCorpus,
+                ),
+                formatCurrency(
+                  row.growth,
+                ),
+                formatCurrency(
+                  row.annualWithdrawal,
+                ),
+                formatCurrency(
+                  row.closingCorpus,
+                ),
+              ];
+
+              let px = tableX;
+
+              values.forEach(
+                (value, valueIndex) => {
+                  const column =
+                    columns[valueIndex];
+
+                  setFont(
+                    pdf,
+                    valueIndex === 4,
+                  );
+
+                  pdf.setFontSize(7);
+
+                  const cellTextColor: readonly [number, number, number] =
+                    valueIndex === 4
+                      ? C.darkGreen
+                      : C.text;
+
+                  pdf.setTextColor(...cellTextColor);
+
+                  pdf.text(
+                    value,
+                    px +
+                    column.width -
+                    3,
+                    ry + 5.8,
+                    {
+                      align: "right",
+                    },
+                  );
+
+                  px += column.width;
+                },
+              );
+            },
+          );
+
+          const analysisY =
+            tableY +
+            13 +
+            tableRows.length * 9 +
+            10;
+
+          pdf.setFillColor(...C.light);
+          pdf.setDrawColor(...C.border);
+
+          pdf.roundedRect(
+            18,
+            analysisY,
+            174,
+            32,
+            3,
+            3,
+            "FD",
+          );
+
+          setFont(pdf, true);
+          pdf.setFontSize(8.5);
+          pdf.setTextColor(...C.darkGreen);
+
+          pdf.text(
+            "SWP Cash flow Summary",
+            25,
+            analysisY + 10,
+          );
+
+          setFont(pdf);
+          pdf.setFontSize(7.5);
+          pdf.setTextColor(...C.text);
+
+          pdf.text(
+            `Net Wealth Gain (Illustrative): ${formatCurrency(
+              estimatedGrowth,
+            )}`,
+            25,
+            analysisY + 18,
+          );
+
+          pdf.text(
+            `Total withdrawn: ${formatCurrency(
+              totalWithdrawn,
+            )}`,
+            25,
+            analysisY + 24,
+          );
+
+          pdf.text(
+            `Remaining corpus: ${formatCurrency(
+              remainingCorpus,
+            )}`,
+            110,
+            analysisY + 24,
+          );
+
+          addPageFooter(pdf);
+
+          /*
+           * PAGE 4
+           * SWP OUTCOME + LEAD GENERATION
+           */
+
+          pdf.addPage();
+
+          addPageHeader(
+            pdf,
+            reportTitle || "SWP Projection Report",
+            logo,
+          );
+
+          addSectionTitle(
+            pdf,
+            "4",
+            "SWP Outcome Analysis",
+            "Understanding the projected withdrawal outcome",
+            69,
+          );
+
+          const outcomeCards = [
+            [
+              "Initial Corpus",
+              formatCurrency(initialCorpus),
+            ],
+            [
+              "Net Wealth Gain (Illustrative)",
+              formatCurrency(estimatedGrowth),
+            ],
+            [
+              "Total Withdrawn",
+              formatCurrency(totalWithdrawn),
+            ],
+            [
+              "Remaining Corpus",
+              formatCurrency(remainingCorpus),
+            ],
+          ];
+
+          let outcomeY = 78;
+
+          outcomeCards.forEach(
+            ([label, value], index) => {
+              const bx =
+                index % 2 === 0
+                  ? 18
+                  : 105;
+
+              if (
+                index > 0 &&
+                index % 2 === 0
+              ) {
+                outcomeY += 33;
+              }
+
+              pdf.setFillColor(...C.light);
+              pdf.setDrawColor(...C.border);
+
+              pdf.roundedRect(
+                bx,
+                outcomeY,
+                82,
+                29,
+                3,
+                3,
+                "FD",
+              );
+
+              setFont(pdf);
+              pdf.setFontSize(7.5);
+              pdf.setTextColor(...C.muted);
+
+              pdf.text(
+                label,
+                bx + 7,
+                outcomeY + 10,
+              );
+
+              setFont(pdf, true);
+              pdf.setFontSize(10);
+              pdf.setTextColor(...C.darkGreen);
+
+              pdf.text(
+                value,
+                bx + 7,
+                outcomeY + 21,
+              );
+            },
+          );
+
+          const outcomeBoxY =
+            outcomeY + 36;
+
+          const outcomeFill: readonly [number, number, number] =
+            isSustainable
+              ? [236, 249, 243]
+              : [255, 246, 235];
+
+          const outcomeBorder: readonly [number, number, number] =
+            isSustainable
+              ? [205, 231, 218]
+              : [238, 215, 180];
+
+          const outcomeTextColor: readonly [number, number, number] =
+            isSustainable
+              ? C.darkGreen
+              : C.gold;
+
+          pdf.setFillColor(...outcomeFill);
+
+          pdf.setDrawColor(...outcomeBorder);
+
+          pdf.roundedRect(
+            18,
+            outcomeBoxY,
+            174,
+            43,
+            4,
+            4,
+            "FD",
+          );
+
+          setFont(pdf, true);
+          pdf.setFontSize(9);
+
+          pdf.setTextColor(...outcomeTextColor);
+
+          pdf.text(
+            isSustainable
+              ? "Projected corpus remains at the end of the selected period"
+              : "Projected corpus may be exhausted",
+            25,
+            outcomeBoxY + 11,
+          );
+
+          setFont(pdf);
+          pdf.setFontSize(7.7);
+          pdf.setTextColor(...C.text);
+
+          const outcomeText =
+            isSustainable
+              ? `Based on the entered assumptions, the illustrative projection shows a remaining corpus of ${formatCurrency(
+                remainingCorpus,
+              )} after ${years} ${years === 1
+                ? "year"
+                : "years"
+              }.`
+              : exhaustionYear
+                ? `Based on the entered assumptions, the illustrative corpus is projected to be exhausted during Year ${exhaustionYear}, before the selected ${years}-year withdrawal period ends.`
+                : `Based on the entered assumptions, the illustrative corpus may be exhausted before the selected ${years}-year withdrawal period ends.`;
+          pdf.text(
+            pdf.splitTextToSize(
+              outcomeText,
+              158,
+            ),
+            25,
+            outcomeBoxY + 21,
+            {
+              lineHeightFactor: 1.35,
+            },
+          );
+
+          /*
+           * Lead generation
+           */
+
+          const leadY =
+            outcomeBoxY + 51;
+
+          pdf.setFillColor(
+            236,
+            249,
+            243,
+          );
+
+          pdf.setDrawColor(
+            205,
+            231,
+            218,
+          );
+
+          pdf.roundedRect(
+            18,
+            leadY,
+            174,
+            48,
+            4,
+            4,
+            "FD",
+          );
+
+          setFont(pdf, true);
+          pdf.setFontSize(9.5);
+          pdf.setTextColor(...C.darkGreen);
+
+          pdf.text(
+            "Discuss Your SWP Requirements",
+            25,
+            leadY + 11,
+          );
+
+          setFont(pdf);
+          pdf.setFontSize(7.5);
+          pdf.setTextColor(...C.text);
+
+          pdf.text(
+            pdf.splitTextToSize(
+              "For investor education and assistance in understanding the illustration, connect with Luxmi InvestCare.",
+              158,
+            ),
+            25,
+            leadY + 20,
+            {
+              lineHeightFactor: 1.35,
+            },
+          );
+
+          setFont(pdf, true);
+          pdf.setFontSize(8);
+          pdf.setTextColor(...C.darkGreen);
+
+          pdf.text(
+            `WhatsApp: ${BRAND.whatsapp}`,
+            25,
+            leadY + 34,
+          );
+
+          pdf.text(
+            BRAND.email,
+            95,
+            leadY + 34,
+          );
+
+          pdf.text(
+            BRAND.website,
+            25,
+            leadY + 43,
+          );
+
+          pdf.text(
+            BRAND.arn,
+            95,
+            leadY + 43,
+          );
+
+          addPageFooter(pdf);
+
+          /*
+           * PAGE 5
+           * INVESTOR EDUCATION
+           */
+
+          pdf.addPage();
+
+          addPageHeader(
+            pdf,
+            reportTitle || "SWP Projection Report",
+            logo,
+          );
+
+          addSectionTitle(
+            pdf,
+            "5",
+            "Investor Education Disclaimer",
+            "Important information regarding this illustrative SWP calculator",
+            69,
+          );
+
+          addSWPDisclaimer(pdf);
+
+          addPageFooter(pdf);
+
+          pdf.save(fileName);
+
+          return;
+        }
 
         const rows =
           normalizeRows(
@@ -1422,6 +2569,192 @@ export default function DownloadReport({
          * Investment Growth
          * Projected Corpus Composition
          */
+
+        function addSWPComposition(
+          pdf: jsPDF,
+          totalWithdrawn: number,
+          remainingCorpus: number,
+          x: number,
+          y: number,
+          w: number,
+          h: number,
+        ) {
+          const total =
+            Math.max(
+              totalWithdrawn +
+              remainingCorpus,
+              1,
+            );
+
+          const withdrawnPct =
+            (Math.max(totalWithdrawn, 0) / total) *
+            100;
+
+          const remainingPct =
+            (Math.max(remainingCorpus, 0) / total) *
+            100;
+
+          const centerX = x + 45;
+          const centerY = y + h / 2;
+
+          const outerR = 24;
+          const innerR = 15;
+
+          const drawArc = (
+            start: number,
+            end: number,
+            color: readonly [
+              number,
+              number,
+              number,
+            ],
+          ) => {
+            pdf.setDrawColor(...color);
+            pdf.setLineWidth(8);
+
+            const steps = 40;
+
+            let previousX =
+              centerX +
+              outerR *
+              Math.cos(start);
+
+            let previousY =
+              centerY +
+              outerR *
+              Math.sin(start);
+
+            for (let i = 1; i <= steps; i++) {
+              const angle =
+                start +
+                ((end - start) * i) /
+                steps;
+
+              const nextX =
+                centerX +
+                outerR *
+                Math.cos(angle);
+
+              const nextY =
+                centerY +
+                outerR *
+                Math.sin(angle);
+
+              pdf.line(
+                previousX,
+                previousY,
+                nextX,
+                nextY,
+              );
+
+              previousX = nextX;
+              previousY = nextY;
+            }
+          };
+
+          const start =
+            -Math.PI / 2;
+
+          const withdrawnEnd =
+            start +
+            (withdrawnPct / 100) *
+            Math.PI *
+            2;
+
+          drawArc(
+            start,
+            withdrawnEnd,
+            C.gold,
+          );
+
+          drawArc(
+            withdrawnEnd,
+            start + Math.PI * 2,
+            C.green,
+          );
+
+          // White center
+          pdf.setFillColor(...C.white);
+
+          pdf.circle(
+            centerX,
+            centerY,
+            innerR,
+            "F",
+          );
+
+          setFont(pdf, true);
+
+          pdf.setFontSize(8);
+
+          pdf.setTextColor(...C.darkGreen);
+
+          pdf.text(
+            "SWP",
+            centerX,
+            centerY + 2,
+            {
+              align: "center",
+            },
+          );
+
+          // Labels
+          const labelX = x + 90;
+
+          setFont(pdf);
+
+          pdf.setFontSize(7.8);
+
+          pdf.setTextColor(...C.text);
+
+          pdf.setFillColor(...C.gold);
+
+          pdf.circle(
+            labelX,
+            y + 20,
+            2,
+            "F",
+          );
+
+          pdf.text(
+            `Total Withdrawn: ${formatCurrency(totalWithdrawn)}`,
+            labelX + 7,
+            y + 22,
+          );
+
+          pdf.text(
+            `${withdrawnPct.toFixed(1)}%`,
+            x + w - 10,
+            y + 22,
+            {
+              align: "right",
+            },
+          );
+
+          pdf.setFillColor(...C.green);
+
+          pdf.circle(
+            labelX,
+            y + 37,
+            2,
+            "F",
+          );
+
+          pdf.text(
+            `Remaining Corpus: ${formatCurrency(remainingCorpus)}`,
+            labelX + 7,
+            y + 39,
+          );
+
+          pdf.text(
+            `${remainingPct.toFixed(1)}%`,
+            x + w - 10,
+            y + 39,
+            {
+              align: "right",
+            },
+          );
+        }
 
         pdf.addPage();
 
@@ -1828,6 +3161,192 @@ export default function DownloadReport({
           "Important information regarding this illustrative calculator",
           66,
         );
+        function addSWPTrendChart(
+          pdf: jsPDF,
+          projections: SWPProjection[],
+          x: number,
+          y: number,
+          w: number,
+          h: number,
+        ) {
+          if (!projections.length) return;
+
+          const chartX = x + 12;
+          const chartY = y + 12;
+          const chartW = w - 24;
+          const chartH = h - 28;
+
+          const values = projections.flatMap((p) => [
+            p.openingCorpus,
+            p.closingCorpus,
+          ]);
+
+          const maxValue = Math.max(...values, 1);
+          const minValue = Math.min(...values, 0);
+
+          const range = Math.max(maxValue - minValue, 1);
+
+          // Grid lines
+          pdf.setDrawColor(...C.border);
+          pdf.setLineWidth(0.25);
+
+          for (let i = 0; i <= 4; i++) {
+            const gy = chartY + (chartH / 4) * i;
+
+            pdf.line(
+              chartX,
+              gy,
+              chartX + chartW,
+              gy,
+            );
+
+            const value =
+              maxValue -
+              (range / 4) * i;
+
+            setFont(pdf);
+
+            pdf.setFontSize(6.5);
+
+            pdf.setTextColor(...C.muted);
+
+            pdf.text(
+              formatLakh(value),
+              chartX - 3,
+              gy + 2,
+              {
+                align: "right",
+              },
+            );
+          }
+
+          if (projections.length === 1) {
+            const px = chartX + chartW / 2;
+
+            const py =
+              chartY +
+              chartH -
+              ((projections[0].closingCorpus - minValue) / range) *
+              chartH;
+
+            pdf.setFillColor(...C.green);
+
+            pdf.circle(
+              px,
+              py,
+              2,
+              "F",
+            );
+
+            return;
+          }
+
+          const getX = (index: number) =>
+            chartX +
+            (index / (projections.length - 1)) *
+            chartW;
+
+          const getY = (value: number) =>
+            chartY +
+            chartH -
+            ((value - minValue) / range) *
+            chartH;
+
+          // Opening corpus line
+          pdf.setDrawColor(...C.teal);
+          pdf.setLineWidth(1.1);
+
+          for (let i = 1; i < projections.length; i++) {
+            pdf.line(
+              getX(i - 1),
+              getY(projections[i - 1].openingCorpus),
+              getX(i),
+              getY(projections[i].openingCorpus),
+            );
+          }
+
+          // Closing corpus line
+          pdf.setDrawColor(...C.green);
+          pdf.setLineWidth(1.5);
+
+          for (let i = 1; i < projections.length; i++) {
+            pdf.line(
+              getX(i - 1),
+              getY(projections[i - 1].closingCorpus),
+              getX(i),
+              getY(projections[i].closingCorpus),
+            );
+          }
+
+          // Closing corpus points
+          pdf.setFillColor(...C.green);
+
+          projections.forEach((projection, index) => {
+            pdf.circle(
+              getX(index),
+              getY(projection.closingCorpus),
+              1.5,
+              "F",
+            );
+          });
+
+          // X-axis labels
+          setFont(pdf);
+
+          pdf.setFontSize(6.5);
+
+          pdf.setTextColor(...C.muted);
+
+          projections.forEach(
+            (projection, index) => {
+              pdf.text(
+                `Y${projection.year}`,
+                getX(index),
+                chartY + chartH + 9,
+                {
+                  align: "center",
+                },
+              );
+            },
+          );
+
+          // Legend
+          pdf.setFillColor(...C.teal);
+
+          pdf.circle(
+            chartX,
+            y + h - 7,
+            1.8,
+            "F",
+          );
+
+          setFont(pdf);
+
+          pdf.setFontSize(7);
+
+          pdf.setTextColor(...C.text);
+
+          pdf.text(
+            "Opening Corpus",
+            chartX + 5,
+            y + h - 5,
+          );
+
+          pdf.setFillColor(...C.green);
+
+          pdf.circle(
+            chartX + 55,
+            y + h - 7,
+            1.8,
+            "F",
+          );
+
+          pdf.text(
+            "Closing Corpus",
+            chartX + 60,
+            y + h - 5,
+          );
+        }
 
         addDisclaimer(pdf);
 
