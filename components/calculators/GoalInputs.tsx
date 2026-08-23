@@ -1,16 +1,33 @@
 "use client";
 
-import { IndianRupee, CalendarDays, Percent } from "lucide-react";
+import {
+  IndianRupee,
+  CalendarDays,
+  Percent,
+} from "lucide-react";
+
+import CalculatorInput from "./CalculatorInput";
 
 interface GoalInputsProps {
   targetAmount: number;
   setTargetAmount: (value: number) => void;
+
   years: number;
   setYears: (value: number) => void;
+
   expectedReturn: number;
   setExpectedReturn: (value: number) => void;
+
   inflation: number;
   setInflation: (value: number) => void;
+}
+
+function formatNumber(
+  value: number,
+): string {
+  return Math.round(value).toLocaleString(
+    "en-IN",
+  );
 }
 
 export default function GoalInputs({
@@ -30,94 +47,103 @@ export default function GoalInputs({
       </h2>
 
       <div className="grid gap-8 md:grid-cols-2">
-
         {/* Target Amount */}
         <div>
-          <label className="mb-3 flex items-center gap-2 font-semibold text-slate-900">
+          <div className="mb-3 flex items-center gap-2 font-semibold text-slate-900">
             <IndianRupee className="h-5 w-5 text-green-700" />
-            Target Amount
-          </label>
+            <span>Target Amount</span>
+          </div>
 
-          <input
-            type="range"
+          <CalculatorInput
+            label="Target Amount"
+            value={targetAmount}
             min={100000}
             max={50000000}
             step={100000}
-            value={targetAmount}
-            onChange={(e) => setTargetAmount(Number(e.target.value))}
-            className="w-full accent-green-700"
+            maxCap={100000000}
+            expansionStep={5000000}
+            allowDynamicRange
+            prefix="₹"
+            onChange={setTargetAmount}
+            formatValue={formatNumber}
           />
-
-          <p className="mt-2 text-xl font-bold text-green-700">
-            ₹{targetAmount.toLocaleString("en-IN")}
-          </p>
         </div>
 
         {/* Years */}
         <div>
-          <label className="mb-3 flex items-center gap-2 font-semibold text-slate-900">
+          <div className="mb-3 flex items-center gap-2 font-semibold text-slate-900">
             <CalendarDays className="h-5 w-5 text-green-700" />
-            Years to Goal
-          </label>
+            <span>Years to Goal</span>
+          </div>
 
-          <input
-            type="range"
+          <CalculatorInput
+            label="Years to Goal"
+            value={years}
             min={1}
             max={40}
-            value={years}
-            onChange={(e) => setYears(Number(e.target.value))}
-            className="w-full accent-green-700"
+            step={1}
+            maxCap={60}
+            expansionStep={10}
+            allowDynamicRange
+            suffix={
+              years === 1
+                ? " Year"
+                : " Years"
+            }
+            onChange={setYears}
+            formatValue={(value) =>
+              String(value)
+            }
           />
-
-          <p className="mt-2 text-xl font-bold text-green-700">
-            {years} Years
-          </p>
         </div>
 
         {/* Expected Return */}
         <div>
-          <label className="mb-3 flex items-center gap-2 font-semibold text-slate-900">
+          <div className="mb-3 flex items-center gap-2 font-semibold text-slate-900">
             <Percent className="h-5 w-5 text-green-700" />
-            Expected Return
-          </label>
+            <span>Expected Return</span>
+          </div>
 
-          <input
-            type="range"
+          <CalculatorInput
+            label="Expected Return"
+            value={expectedReturn}
             min={5}
             max={20}
             step={0.5}
-            value={expectedReturn}
-            onChange={(e) => setExpectedReturn(Number(e.target.value))}
-            className="w-full accent-green-700"
+            maxCap={30}
+            expansionStep={2.5}
+            allowDynamicRange
+            suffix="%"
+            onChange={setExpectedReturn}
+            formatValue={(value) =>
+              String(value)
+            }
           />
-
-          <p className="mt-2 text-xl font-bold text-green-700">
-            {expectedReturn}%
-          </p>
         </div>
 
         {/* Inflation */}
         <div>
-          <label className="mb-3 flex items-center gap-2 font-semibold text-slate-900">
+          <div className="mb-3 flex items-center gap-2 font-semibold text-slate-900">
             <Percent className="h-5 w-5 text-green-700" />
-            Inflation Rate
-          </label>
+            <span>Inflation Rate</span>
+          </div>
 
-          <input
-            type="range"
+          <CalculatorInput
+            label="Inflation Rate"
+            value={inflation}
             min={2}
             max={10}
             step={0.5}
-            value={inflation}
-            onChange={(e) => setInflation(Number(e.target.value))}
-            className="w-full accent-green-700"
+            maxCap={15}
+            expansionStep={2.5}
+            allowDynamicRange
+            suffix="%"
+            onChange={setInflation}
+            formatValue={(value) =>
+              String(value)
+            }
           />
-
-          <p className="mt-2 text-xl font-bold text-green-700">
-            {inflation}%
-          </p>
         </div>
-
       </div>
     </div>
   );

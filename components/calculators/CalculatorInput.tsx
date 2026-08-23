@@ -19,29 +19,37 @@ interface CalculatorInputProps {
   suffix?: string;
 
   /**
-   * Format the numeric value only.
+   * Formats the numeric value only.
    *
-   * Example:
-   * formatValue={(value) =>
-   *   Math.round(value).toLocaleString("en-IN")
-   * }
-   *
-   * Do NOT add ₹, %, Years, etc. here.
-   * Use prefix/suffix for those.
+   * Examples:
+   * 48,00,000
+   * 12
+   * 5.5
    */
-  formatValue?: (value: number) => string;
+  formatValue?: (
+    value: number,
+  ) => string;
 
   className?: string;
 
   /**
-   * Allows + button / numeric input to extend
-   * the slider range beyond the initial max.
+   * Hides the visual label inside CalculatorInput
+   * while preserving the accessible label.
+   *
+   * Useful when the parent component already renders
+   * an icon + visible label.
+   */
+  hideLabel?: boolean;
+
+  /**
+   * Allows + / numeric input to extend the slider
+   * beyond the initial maximum.
    */
   allowDynamicRange?: boolean;
 
   /**
-   * Amount by which the range grows when the
-   * current maximum is exceeded.
+   * Amount by which the slider maximum expands
+   * when the user moves beyond the current maximum.
    */
   expansionStep?: number;
 
@@ -62,6 +70,7 @@ export default function CalculatorInput({
   suffix = "",
   formatValue,
   className = "",
+  hideLabel = false,
   allowDynamicRange = false,
   expansionStep = 0,
   maxCap,
@@ -69,35 +78,25 @@ export default function CalculatorInput({
   const [inputValue, setInputValue] =
     useState(String(value));
 
+  const [isFocused, setIsFocused] =
+    useState(false);
+
   const [dynamicMax, setDynamicMax] =
     useState(max);
 
-  useEffect(() => {
-    setInputValue(String(value));
+  /*
+   * ----------------------------------------------------------
+   * FORMATTING
+   * ----------------------------------------------------------
+   */
 
-    if (!allowDynamicRange) {
-      setDynamicMax(max);
-      return;
-    }
-
-    setDynamicMax((currentMax) =>
-      Math.max(
-        currentMax,
-        max,
-        value,
-      ),
-    );
-  }, [
-    value,
-    max,
-    allowDynamicRange,
-  ]);
-
-  const numericDisplay = (
+  const formatNumericValue = (
     numericValue: number,
   ): string => {
     if (formatValue) {
-      return formatValue(numericValue);
+      return formatValue(
+        numericValue,
+      );
     }
 
     return Math.round(
@@ -105,10 +104,65 @@ export default function CalculatorInput({
     ).toLocaleString("en-IN");
   };
 
+  /*
+   * ----------------------------------------------------------
+   * STATE SYNCHRONISATION
+   * ----------------------------------------------------------
+   */
+
+  useEffect(() => {
+    if (!isFocused) {
+      setInputValue(
+        formatNumericValue(value),
+      );
+    } else {
+      setInputValue(
+        String(value),
+      );
+    }
+
+    if (!allowDynamicRange) {
+      setDynamicMax(max);
+      return;
+    }
+
+    setDynamicMax(
+      (currentMax) =>
+        Math.max(
+          currentMax,
+          max,
+          value,
+        ),
+    );
+  }, [
+    value,
+    max,
+    allowDynamicRange,
+    isFocused,
+  ]);
+
+  /*
+   * ----------------------------------------------------------
+   * RANGE MANAGEMENT
+   * ----------------------------------------------------------
+   */
+
   const growthStep =
     expansionStep > 0
       ? expansionStep
-      : Math.max(step, max - min);
+      : Math.max(
+        step,
+        max - min,
+      );
+
+  const effectiveMax =
+    allowDynamicRange
+      ? Math.min(
+        dynamicMax,
+        maxCap ??
+        Number.POSITIVE_INFINITY,
+      )
+      : max;
 
   const expandRangeIfNeeded = (
     targetValue: number,
@@ -120,13 +174,17 @@ export default function CalculatorInput({
       return;
     }
 
-    let nextMax = dynamicMax;
+    let nextMax =
+      dynamicMax;
 
-    while (nextMax < targetValue) {
+    while (
+      nextMax < targetValue
+    ) {
       nextMax += growthStep;
 
       if (
-        typeof maxCap === "number" &&
+        typeof maxCap ===
+        "number" &&
         nextMax >= maxCap
       ) {
         nextMax = maxCap;
@@ -134,17 +192,14 @@ export default function CalculatorInput({
       }
     }
 
-    setDynamicMax(nextMax);
-  };
-
-  const effectiveMax =
-    allowDynamicRange
-      ? Math.min(
-        dynamicMax,
+    setDynamicMax(
+      Math.min(
+        nextMax,
         maxCap ??
         Number.POSITIVE_INFINITY,
-      )
-      : max;
+      ),
+    );
+  };
 
   const clampValue = (
     targetValue: number,
@@ -157,6 +212,12 @@ export default function CalculatorInput({
       ),
     );
   };
+
+  /*
+   * ----------------------------------------------------------
+   * VALUE UPDATE
+   * ----------------------------------------------------------
+   */
 
   const updateValue = (
     targetValue: number,
@@ -173,11 +234,6 @@ export default function CalculatorInput({
       targetValue,
     );
 
-    /*
-     * If the target exceeds the current
-     * maximum, use the value directly.
-     * The range has already been expanded.
-     */
     const nextValue =
       allowDynamicRange &&
         targetValue > dynamicMax
@@ -190,11 +246,32 @@ export default function CalculatorInput({
           targetValue,
         );
 
-    onChange(nextValue);
-    setInputValue(
-      String(nextValue),
+    onChange(
+      nextValue,
     );
+
+    /*
+     * Display the formatted value while
+     * the field is not being actively edited.
+     */
+    if (!isFocused) {
+      setInputValue(
+        formatNumericValue(
+          nextValue,
+        ),
+      );
+    } else {
+      setInputValue(
+        String(nextValue),
+      );
+    }
   };
+
+  /*
+   * ----------------------------------------------------------
+   * +/- BUTTONS
+   * ----------------------------------------------------------
+   */
 
   const decrease = () => {
     updateValue(
@@ -208,20 +285,56 @@ export default function CalculatorInput({
     );
   };
 
+  /*
+   * ----------------------------------------------------------
+   * NUMBER FIELD
+   * ----------------------------------------------------------
+   */
+
+  const handleNumberFocus = () => {
+    setIsFocused(true);
+
+    /*
+     * Remove display formatting while editing.
+     * Example:
+     * 48,00,000 → 4800000
+     */
+    setInputValue(
+      String(value),
+    );
+  };
+
   const handleNumberChange = (
     event: ChangeEvent<HTMLInputElement>,
   ) => {
     const rawValue =
       event.target.value;
 
-    setInputValue(rawValue);
+    /*
+     * Keep only digits and one decimal point.
+     */
+    const cleanedValue =
+      rawValue
+        .replace(/,/g, "")
+        .replace(
+          /[^0-9.]/g,
+          "",
+        );
 
-    if (rawValue === "") {
+    setInputValue(
+      cleanedValue,
+    );
+
+    if (
+      cleanedValue === ""
+    ) {
       return;
     }
 
     const parsedValue =
-      Number(rawValue);
+      Number(
+        cleanedValue,
+      );
 
     if (
       !Number.isFinite(
@@ -255,17 +368,13 @@ export default function CalculatorInput({
   };
 
   const handleBlur = () => {
-    if (
-      inputValue.trim() === ""
-    ) {
-      setInputValue(
-        String(value),
-      );
-      return;
-    }
+    setIsFocused(false);
 
     const parsedValue =
-      Number(inputValue);
+      Number(
+        inputValue
+          .replace(/,/g, ""),
+      );
 
     if (
       !Number.isFinite(
@@ -273,7 +382,9 @@ export default function CalculatorInput({
       )
     ) {
       setInputValue(
-        String(value),
+        formatNumericValue(
+          value,
+        ),
       );
       return;
     }
@@ -281,37 +392,84 @@ export default function CalculatorInput({
     updateValue(
       parsedValue,
     );
+
+    setInputValue(
+      formatNumericValue(
+        Math.max(
+          min,
+          clampValue(
+            parsedValue,
+          ),
+        ),
+      ),
+    );
   };
+
+  /*
+   * ----------------------------------------------------------
+   * SLIDER
+   * ----------------------------------------------------------
+   */
 
   const handleSliderChange = (
     event: ChangeEvent<HTMLInputElement>,
   ) => {
     updateValue(
-      Number(event.target.value),
+      Number(
+        event.target.value,
+      ),
     );
   };
+
+  /*
+   * ----------------------------------------------------------
+   * BUTTON STATES
+   * ----------------------------------------------------------
+   */
 
   const minimumReached =
     value <= min;
 
   const maximumReached =
-    typeof maxCap === "number"
+    typeof maxCap ===
+      "number"
       ? value >= maxCap
       : !allowDynamicRange &&
       value >= max;
+
+  /*
+   * ----------------------------------------------------------
+   * RENDER
+   * ----------------------------------------------------------
+   */
 
   return (
     <div
       className={`space-y-3 ${className}`}
     >
-      {/* Label + +/- control */}
+      {/* =====================================================
+          LABEL + +/- CONTROL
+      ====================================================== */}
       <div className="flex items-center justify-between gap-4">
-        <label className="text-sm font-semibold text-slate-700">
+
+        <label
+          className={
+            hideLabel
+              ? "sr-only"
+              : "text-sm font-semibold text-slate-700"
+          }
+        >
           {label}
         </label>
 
-        <div className="flex items-center overflow-hidden rounded-xl border border-slate-300 bg-white">
-          {/* Minus */}
+        <div
+          className={`flex items-center overflow-hidden rounded-xl border border-slate-300 bg-white ${hideLabel
+            ? "ml-auto"
+            : ""
+            }`}
+        >
+
+          {/* MINUS */}
           <button
             type="button"
             onClick={decrease}
@@ -324,17 +482,27 @@ export default function CalculatorInput({
             <Minus className="h-4 w-4" />
           </button>
 
-          {/* Numeric value */}
+          {/* VALUE FIELD */}
           <div className="relative flex h-10 items-center">
+
             {prefix && (
-              <span className="pointer-events-none absolute left-2 text-sm font-semibold text-emerald-700">
+              <span
+                className="pointer-events-none absolute left-2 text-sm font-semibold text-emerald-700"
+              >
                 {prefix}
               </span>
             )}
 
             <input
-              type="number"
-              value={inputValue}
+              type="text"
+              inputMode={
+                step % 1 === 0
+                  ? "numeric"
+                  : "decimal"
+              }
+              value={
+                inputValue
+              }
               min={min}
               max={
                 allowDynamicRange
@@ -342,17 +510,21 @@ export default function CalculatorInput({
                   undefined
                   : max
               }
-              step={step}
+              aria-label={
+                label
+              }
+              onFocus={
+                handleNumberFocus
+              }
               onChange={
                 handleNumberChange
               }
               onBlur={
                 handleBlur
               }
-              aria-label={label}
               className={`h-full w-32 border-x border-slate-300 bg-white px-3 text-center text-sm font-semibold text-slate-900 outline-none focus:border-emerald-600 ${prefix
-                  ? "pl-7"
-                  : ""
+                ? "pl-7"
+                : ""
                 } ${suffix
                   ? "pr-10"
                   : ""
@@ -360,13 +532,15 @@ export default function CalculatorInput({
             />
 
             {suffix && (
-              <span className="pointer-events-none absolute right-2 text-sm font-semibold text-slate-500">
+              <span
+                className="pointer-events-none absolute right-2 text-sm font-semibold text-slate-500"
+              >
                 {suffix}
               </span>
             )}
           </div>
 
-          {/* Plus */}
+          {/* PLUS */}
           <button
             type="button"
             onClick={increase}
@@ -381,7 +555,9 @@ export default function CalculatorInput({
         </div>
       </div>
 
-      {/* Slider */}
+      {/* =====================================================
+          SLIDER
+      ====================================================== */}
       <input
         type="range"
         min={min}
@@ -398,23 +574,30 @@ export default function CalculatorInput({
         className="h-2 w-full cursor-pointer accent-emerald-600"
       />
 
-      {/* Range labels */}
+      {/* =====================================================
+          RANGE LABELS
+      ====================================================== */}
       <div className="flex items-center justify-between text-xs text-slate-400">
+
         <span>
           {prefix}
-          {numericDisplay(min)}
+          {formatNumericValue(
+            min,
+          )}
           {suffix}
         </span>
 
         <span className="font-semibold text-emerald-700">
           {prefix}
-          {numericDisplay(value)}
+          {formatNumericValue(
+            value,
+          )}
           {suffix}
         </span>
 
         <span>
           {prefix}
-          {numericDisplay(
+          {formatNumericValue(
             effectiveMax,
           )}
           {suffix}

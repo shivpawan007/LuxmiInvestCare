@@ -15,12 +15,25 @@ interface StepUpSIPProjection {
   estimatedValue: number;
 }
 
+interface GoalPlannerReportData {
+  goal: string;
+  targetAmount: number;
+  years: number;
+  expectedReturn: number;
+  inflation: number;
+  futureValue: number;
+  monthlySIP: number;
+  lumpsumRequired: number;
+}
+
 interface DownloadReportProps {
   calculatorType:
   | "sip"
   | "lumpsum"
   | "swp"
-  | "step-up-sip";
+  | "step-up-sip"
+  | "goal-planner";
+
 
   investment: number;
   annualReturn: number;
@@ -34,14 +47,7 @@ interface DownloadReportProps {
   | SIPProjection[]
   | LumpsumProjection[]
   | SWPProjection[]
-  | StepUpSIPProjection[]
-  | Array<{
-    year: number;
-    monthlySIP: number;
-    annualInvestment: number;
-    totalInvested: number;
-    estimatedValue: number;
-  }>;
+  | StepUpSIPProjection[];
 
   swpData?: { initialCorpus: number; monthlyWithdrawal: number; totalWithdrawn: number; remainingCorpus: number; estimatedGrowth: number; sustainable: boolean; exhaustionYear: number | null; };
 
@@ -62,6 +68,8 @@ interface DownloadReportProps {
       estimatedValue: number;
     }>;
   };
+
+  goalData?: GoalPlannerReportData;
 
   reportTitle?: string;
   fileName?: string;
@@ -1441,6 +1449,7 @@ export default function DownloadReport({
   yearlyGrowth,
   swpData,
   stepUpData,
+  goalData,
   reportTitle = "Investment Projection Report",
   fileName = "Luxmi-InvestCare-Investment-Report.pdf",
 }: DownloadReportProps) {
@@ -1487,49 +1496,41 @@ export default function DownloadReport({
           );
 
         /*
-* ============================================================
-* DEDICATED SWP PDF REPORT
-* ============================================================
-*
-* SWP requires a different report structure from SIP/Lumpsum.
-* Do not use the generic investment-growth / maturity-value
-* layout for SWP.
-*/
-
+         * ============================================================
+         * DEDICATED SWP PDF REPORT
+         * ============================================================
+         *
+         * SWP uses a dedicated report structure.
+         * SIP/Lumpsum terminology is intentionally not reused here.
+         */
         if (
           calculatorType === "swp" &&
           swpData
         ) {
-          const swpRows = (
-            yearlyGrowth as SWPProjection[] | undefined
-          ) ?? [];
+          const swpRows =
+            (yearlyGrowth as SWPProjection[] | undefined) ?? [];
 
-          const initialCorpus =
-            Math.max(
-              0,
-              swpData.initialCorpus,
-            );
+          const initialCorpus = Math.max(
+            0,
+            swpData.initialCorpus,
+          );
 
-          const monthlyWithdrawal =
-            Math.max(
-              0,
-              swpData.monthlyWithdrawal,
-            );
+          const monthlyWithdrawal = Math.max(
+            0,
+            swpData.monthlyWithdrawal,
+          );
 
-          const totalWithdrawn =
-            Math.max(
-              0,
-              swpData.totalWithdrawn,
-            );
+          const totalWithdrawn = Math.max(
+            0,
+            swpData.totalWithdrawn,
+          );
 
-          const remainingCorpus =
-            Math.max(
-              0,
-              swpData.remainingCorpus,
-            );
+          const remainingCorpus = Math.max(
+            0,
+            swpData.remainingCorpus,
+          );
 
-          const estimatedGrowth =
-            swpData.estimatedGrowth;
+          const netWealthGain = swpData.estimatedGrowth;
 
           const isSustainable =
             swpData.sustainable;
@@ -1540,14 +1541,16 @@ export default function DownloadReport({
           const annualWithdrawal =
             monthlyWithdrawal * 12;
 
-          /*
-           * PAGE 1
-           * SWP SUMMARY
-           */
+          const reportName =
+            reportTitle ||
+            "SWP Projection Report";
 
+          /*
+           * PAGE 1 — SWP SUMMARY
+           */
           addPageHeader(
             pdf,
-            reportTitle || "SWP Projection Report",
+            reportName,
             logo,
           );
 
@@ -1559,26 +1562,26 @@ export default function DownloadReport({
             69,
           );
 
-          const swpCardW = 54.7;
-          const swpCardH = 31;
-          const swpGap = 5;
+          const cardW = 54.7;
+          const cardH = 31;
+          const gap = 5;
 
           addCard(
             pdf,
             18,
             84,
-            swpCardW,
-            swpCardH,
+            cardW,
+            cardH,
             "Initial Corpus",
             formatCurrency(initialCorpus),
           );
 
           addCard(
             pdf,
-            18 + swpCardW + swpGap,
+            18 + cardW + gap,
             84,
-            swpCardW,
-            swpCardH,
+            cardW,
+            cardH,
             "Monthly Withdrawal",
             formatCurrency(monthlyWithdrawal),
             C.teal,
@@ -1586,10 +1589,10 @@ export default function DownloadReport({
 
           addCard(
             pdf,
-            18 + (swpCardW + swpGap) * 2,
+            18 + (cardW + gap) * 2,
             84,
-            swpCardW,
-            swpCardH,
+            cardW,
+            cardH,
             "Expected Return",
             `${annualReturn}%`,
             C.gold,
@@ -1599,18 +1602,21 @@ export default function DownloadReport({
             pdf,
             18,
             121,
-            swpCardW,
-            swpCardH,
+            cardW,
+            cardH,
             "Withdrawal Period",
-            `${years} ${years === 1 ? "Year" : "Years"}`,
+            `${years} ${years === 1
+              ? "Year"
+              : "Years"
+            }`,
           );
 
           addCard(
             pdf,
-            18 + swpCardW + swpGap,
+            18 + cardW + gap,
             121,
-            swpCardW,
-            swpCardH,
+            cardW,
+            cardH,
             "Total Withdrawn",
             formatCurrency(totalWithdrawn),
             C.gold,
@@ -1618,37 +1624,45 @@ export default function DownloadReport({
 
           addCard(
             pdf,
-            18 + (swpCardW + swpGap) * 2,
+            18 + (cardW + gap) * 2,
             121,
-            swpCardW,
-            swpCardH,
+            cardW,
+            cardH,
             "Remaining Corpus",
             formatCurrency(remainingCorpus),
             C.teal,
           );
 
-          /*
-           * Status panel
-           */
-
-          const statusFill: readonly [number, number, number] =
-            isSustainable
+          const statusFill: readonly [
+            number,
+            number,
+            number,
+          ] = isSustainable
               ? [236, 249, 243]
               : [255, 246, 235];
 
-          const statusBorder: readonly [number, number, number] =
-            isSustainable
+          const statusBorder: readonly [
+            number,
+            number,
+            number,
+          ] = isSustainable
               ? [205, 231, 218]
               : [238, 215, 180];
 
-          const statusTextColor: readonly [number, number, number] =
-            isSustainable
+          const statusTextColor: readonly [
+            number,
+            number,
+            number,
+          ] = isSustainable
               ? C.darkGreen
               : C.gold;
 
-          pdf.setFillColor(...statusFill);
-
-          pdf.setDrawColor(...statusBorder);
+          pdf.setFillColor(
+            ...statusFill,
+          );
+          pdf.setDrawColor(
+            ...statusBorder,
+          );
 
           pdf.roundedRect(
             18,
@@ -1662,7 +1676,10 @@ export default function DownloadReport({
 
           setFont(pdf, true);
           pdf.setFontSize(9);
-          pdf.setTextColor(...statusTextColor);
+          pdf.setTextColor(
+            ...statusTextColor,
+          );
+
           pdf.text(
             isSustainable
               ? "SWP STATUS: CORPUS REMAINS"
@@ -1675,12 +1692,18 @@ export default function DownloadReport({
           pdf.setFontSize(7.7);
           pdf.setTextColor(...C.text);
 
-          const statusText = isSustainable
-            ? `Illustrative remaining corpus after ${years} ${years === 1 ? "year" : "years"
-            }: ${formatCurrency(remainingCorpus)}.`
-            : exhaustionYear
-              ? `Under the entered assumptions, the illustrative corpus is projected to be exhausted during Year ${exhaustionYear}, before the selected ${years}-year withdrawal period ends.`
-              : `Under the entered assumptions, the illustrative corpus may be exhausted before the selected ${years}-year withdrawal period ends.`;
+          const statusText =
+            isSustainable
+              ? `Illustrative remaining corpus after ${years} ${years === 1
+                ? "year"
+                : "years"
+              }: ${formatCurrency(
+                remainingCorpus,
+              )}.`
+              : exhaustionYear
+                ? `Under the entered assumptions, the illustrative corpus is projected to be exhausted during Year ${exhaustionYear}, before the selected ${years}-year withdrawal period ends.`
+                : `Under the entered assumptions, the illustrative corpus may be exhausted before the selected ${years}-year withdrawal period ends.`;
+
           pdf.text(
             pdf.splitTextToSize(
               statusText,
@@ -1694,7 +1717,7 @@ export default function DownloadReport({
           );
 
           setFont(pdf, true);
-          pdf.setFontSize(8.2);
+          pdf.setFontSize(8);
           pdf.setTextColor(...C.darkGreen);
 
           pdf.text(
@@ -1703,11 +1726,14 @@ export default function DownloadReport({
             196,
           );
 
-          setFont(pdf);
+          setFont(pdf, true);
+          pdf.setFontSize(9.5);
           pdf.setTextColor(...C.text);
 
           pdf.text(
-            formatCurrency(annualWithdrawal),
+            formatCurrency(
+              annualWithdrawal,
+            ),
             25,
             201,
           );
@@ -1715,15 +1741,13 @@ export default function DownloadReport({
           addPageFooter(pdf);
 
           /*
-           * PAGE 2
-           * SWP CORPUS TREND
+           * PAGE 2 — SWP CORPUS TREND
            */
-
           pdf.addPage();
 
           addPageHeader(
             pdf,
-            reportTitle || "SWP Projection Report",
+            reportName,
             logo,
           );
 
@@ -1753,13 +1777,21 @@ export default function DownloadReport({
             "FD",
           );
 
-          const chartRows = swpRows
-            .filter(
-              (row) =>
-                Number.isFinite(row.year) &&
-                Number.isFinite(row.closingCorpus),
-            )
-            .slice(0, 40);
+          const chartRows =
+            swpRows
+              .filter(
+                (row) =>
+                  Number.isFinite(
+                    row.year,
+                  ) &&
+                  Number.isFinite(
+                    row.openingCorpus,
+                  ) &&
+                  Number.isFinite(
+                    row.closingCorpus,
+                  ),
+              )
+              .slice(0, 40);
 
           const maxCorpus = Math.max(
             initialCorpus,
@@ -1767,28 +1799,44 @@ export default function DownloadReport({
               (row) =>
                 Math.max(
                   0,
+                  row.openingCorpus,
                   row.closingCorpus,
                 ),
             ),
             1,
           );
 
-          const plotLeft = chartX + 14;
-          const plotRight = chartX + chartW - 9;
-          const plotTop = chartY + 12;
-          const plotBottom = chartY + chartH - 16;
+          const plotLeft =
+            chartX + 20;
+          const plotRight =
+            chartX + chartW - 9;
+          const plotTop =
+            chartY + 14;
+          const plotBottom =
+            chartY + chartH - 18;
 
-          /*
-           * Grid lines
-           */
+          const pointCount =
+            Math.max(
+              chartRows.length - 1,
+              1,
+            );
 
-          pdf.setLineWidth(0.25);
-          pdf.setDrawColor(...C.border);
-
-          for (let i = 0; i <= 4; i++) {
+          for (
+            let i = 0;
+            i <= 4;
+            i++
+          ) {
             const gy =
               plotBottom -
-              ((plotBottom - plotTop) * i) / 4;
+              ((plotBottom -
+                plotTop) *
+                i) /
+              4;
+
+            pdf.setDrawColor(
+              ...C.border,
+            );
+            pdf.setLineWidth(0.25);
 
             pdf.line(
               plotLeft,
@@ -1797,15 +1845,19 @@ export default function DownloadReport({
               gy,
             );
 
-            setFont(pdf);
-            pdf.setFontSize(6.5);
-            pdf.setTextColor(...C.muted);
-
-            const labelValue =
+            const axisValue =
               (maxCorpus * i) / 4;
 
+            setFont(pdf);
+            pdf.setFontSize(6.5);
+            pdf.setTextColor(
+              ...C.muted,
+            );
+
             pdf.text(
-              formatSWPChartAxis(labelValue),
+              formatSWPChartAxis(
+                axisValue,
+              ),
               plotLeft - 3,
               gy + 2,
               {
@@ -1814,141 +1866,183 @@ export default function DownloadReport({
             );
           }
 
-          /*
-           * Corpus line
-           */
+          const chartPoint = (
+            index: number,
+            value: number,
+          ) => {
+            const px =
+              plotLeft +
+              (chartRows.length === 1
+                ? (plotRight -
+                  plotLeft) /
+                2
+                : (index /
+                  pointCount) *
+                (plotRight -
+                  plotLeft));
 
-          if (chartRows.length > 0) {
-            pdf.setDrawColor(...C.green);
-            pdf.setLineWidth(1.4);
+            const py =
+              plotBottom -
+              (Math.max(
+                0,
+                value,
+              ) /
+                maxCorpus) *
+              (plotBottom -
+                plotTop);
 
-            chartRows.forEach(
-              (row, index) => {
-                if (index === 0) {
-                  return;
-                }
+            return [px, py] as const;
+          };
 
-                const previous =
-                  chartRows[index - 1];
-
-                const x1 =
-                  plotLeft +
-                  ((index - 1) /
-                    Math.max(
-                      chartRows.length - 1,
-                      1,
-                    )) *
-                  (plotRight - plotLeft);
-
-                const x2 =
-                  plotLeft +
-                  (index /
-                    Math.max(
-                      chartRows.length - 1,
-                      1,
-                    )) *
-                  (plotRight - plotLeft);
-
-                const y1 =
-                  plotBottom -
-                  (Math.max(
-                    0,
-                    previous.closingCorpus,
-                  ) /
-                    maxCorpus) *
-                  (plotBottom - plotTop);
-
-                const y2 =
-                  plotBottom -
-                  (Math.max(
-                    0,
-                    row.closingCorpus,
-                  ) /
-                    maxCorpus) *
-                  (plotBottom - plotTop);
-
-                pdf.line(
-                  x1,
-                  y1,
-                  x2,
-                  y2,
-                );
-              },
+          if (
+            chartRows.length > 1
+          ) {
+            pdf.setDrawColor(
+              ...C.teal,
             );
+            pdf.setLineWidth(1.1);
 
-            chartRows.forEach(
-              (row, index) => {
-                const x =
-                  plotLeft +
-                  (index /
-                    Math.max(
-                      chartRows.length - 1,
-                      1,
-                    )) *
-                  (plotRight - plotLeft);
+            for (
+              let i = 1;
+              i < chartRows.length;
+              i++
+            ) {
+              const previous =
+                chartRows[i - 1];
+              const current =
+                chartRows[i];
 
-                const y =
-                  plotBottom -
-                  (Math.max(
-                    0,
-                    row.closingCorpus,
-                  ) /
-                    maxCorpus) *
-                  (plotBottom - plotTop);
-
-                pdf.setFillColor(...C.green);
-
-                pdf.circle(
-                  x,
-                  y,
-                  1.5,
-                  "F",
+              const a =
+                chartPoint(
+                  i - 1,
+                  previous.openingCorpus,
                 );
-              },
-            );
-
-            setFont(pdf);
-            pdf.setFontSize(6.5);
-            pdf.setTextColor(...C.muted);
-
-            chartRows.forEach(
-              (row, index) => {
-                const showLabel =
-                  chartRows.length <= 12 ||
-                  index === 0 ||
-                  index === chartRows.length - 1 ||
-                  index % 5 === 0;
-
-                if (!showLabel) {
-                  return;
-                }
-
-                const x =
-                  plotLeft +
-                  (index /
-                    Math.max(
-                      chartRows.length - 1,
-                      1,
-                    )) *
-                  (plotRight - plotLeft);
-
-                pdf.text(
-                  `Y${row.year}`,
-                  x,
-                  plotBottom + 9,
-                  {
-                    align: "center",
-                  },
+              const b =
+                chartPoint(
+                  i,
+                  current.openingCorpus,
                 );
-              },
+
+              pdf.line(
+                a[0],
+                a[1],
+                b[0],
+                b[1],
+              );
+            }
+
+            pdf.setDrawColor(
+              ...C.green,
             );
+            pdf.setLineWidth(1.6);
+
+            for (
+              let i = 1;
+              i < chartRows.length;
+              i++
+            ) {
+              const previous =
+                chartRows[i - 1];
+              const current =
+                chartRows[i];
+
+              const a =
+                chartPoint(
+                  i - 1,
+                  previous.closingCorpus,
+                );
+              const b =
+                chartPoint(
+                  i,
+                  current.closingCorpus,
+                );
+
+              pdf.line(
+                a[0],
+                a[1],
+                b[0],
+                b[1],
+              );
+            }
           }
 
-          /*
- * Chart legend
- */
+          chartRows.forEach(
+            (row, index) => {
+              const opening =
+                chartPoint(
+                  index,
+                  row.openingCorpus,
+                );
+              const closing =
+                chartPoint(
+                  index,
+                  row.closingCorpus,
+                );
 
-          pdf.setFillColor(...C.green);
+              pdf.setFillColor(
+                ...C.teal,
+              );
+              pdf.circle(
+                opening[0],
+                opening[1],
+                1.15,
+                "F",
+              );
+
+              pdf.setFillColor(
+                ...C.green,
+              );
+              pdf.circle(
+                closing[0],
+                closing[1],
+                1.4,
+                "F",
+              );
+            },
+          );
+
+          setFont(pdf);
+          pdf.setFontSize(6.5);
+          pdf.setTextColor(
+            ...C.muted,
+          );
+
+          chartRows.forEach(
+            (row, index) => {
+              const showLabel =
+                chartRows.length <= 12 ||
+                index === 0 ||
+                index ===
+                chartRows.length - 1 ||
+                index % 5 === 0;
+
+              if (!showLabel) {
+                return;
+              }
+
+              const point =
+                chartPoint(
+                  index,
+                  0,
+                );
+
+              pdf.text(
+                `Y${row.year}`,
+                point[0],
+                plotBottom + 9,
+                {
+                  align: "center",
+                },
+              );
+            },
+          );
+
+          /*
+           * Chart legend
+           */
+          pdf.setFillColor(
+            ...C.teal,
+          );
 
           pdf.circle(
             chartX + 8,
@@ -1958,21 +2052,35 @@ export default function DownloadReport({
           );
 
           setFont(pdf);
-
           pdf.setFontSize(7);
-
           pdf.setTextColor(...C.text);
 
           pdf.text(
-            "Closing Corpus",
+            "Opening Corpus",
             chartX + 13,
+            chartY + 10,
+          );
+
+          pdf.setFillColor(
+            ...C.green,
+          );
+
+          pdf.circle(
+            chartX + 71,
+            chartY + 8,
+            1.6,
+            "F",
+          );
+
+          pdf.text(
+            "Closing Corpus",
+            chartX + 76,
             chartY + 10,
           );
 
           /*
            * Summary cards
            */
-
           addCard(
             pdf,
             18,
@@ -1980,7 +2088,9 @@ export default function DownloadReport({
             54.7,
             31,
             "Initial Corpus",
-            formatCurrency(initialCorpus),
+            formatCurrency(
+              initialCorpus,
+            ),
           );
 
           addCard(
@@ -1990,7 +2100,9 @@ export default function DownloadReport({
             54.7,
             31,
             "Total Withdrawn",
-            formatCurrency(totalWithdrawn),
+            formatCurrency(
+              totalWithdrawn,
+            ),
             C.gold,
           );
 
@@ -2001,22 +2113,22 @@ export default function DownloadReport({
             54.7,
             31,
             "Remaining Corpus",
-            formatCurrency(remainingCorpus),
+            formatCurrency(
+              remainingCorpus,
+            ),
             C.teal,
           );
 
           addPageFooter(pdf);
 
           /*
-           * PAGE 3
-           * YEAR-WISE SWP ANALYSIS
+           * PAGE 3 — YEAR-WISE SWP ANALYSIS
            */
-
           pdf.addPage();
 
           addPageHeader(
             pdf,
-            reportTitle || "SWP Projection Report",
+            reportName,
             logo,
           );
 
@@ -2055,7 +2167,13 @@ export default function DownloadReport({
             },
           ];
 
-          pdf.setFillColor(...C.darkGreen);
+          const tableRows =
+            swpRows.slice(0, 10);
+
+          pdf.setFillColor(
+            ...C.darkGreen,
+          );
+
           pdf.roundedRect(
             tableX,
             tableY,
@@ -2072,11 +2190,15 @@ export default function DownloadReport({
             (column, index) => {
               setFont(pdf, true);
               pdf.setFontSize(7);
-              pdf.setTextColor(...C.white);
+              pdf.setTextColor(
+                ...C.white,
+              );
 
               pdf.text(
                 column.label,
-                tx + column.width / 2,
+                tx +
+                column.width /
+                2,
                 tableY + 8,
                 {
                   align: "center",
@@ -2087,15 +2209,16 @@ export default function DownloadReport({
             },
           );
 
-          const tableRows =
-            swpRows.slice(0, 10);
-
           tableRows.forEach(
             (row, index) => {
               const ry =
-                tableY + 13 + index * 9;
+                tableY +
+                13 +
+                index * 9;
 
-              if (index % 2 === 0) {
+              if (
+                index % 2 === 0
+              ) {
                 pdf.setFillColor(
                   ...C.light,
                 );
@@ -2128,23 +2251,37 @@ export default function DownloadReport({
               let px = tableX;
 
               values.forEach(
-                (value, valueIndex) => {
+                (
+                  value,
+                  valueIndex,
+                ) => {
                   const column =
-                    columns[valueIndex];
+                    columns[
+                    valueIndex
+                    ];
 
-                  setFont(
-                    pdf,
-                    valueIndex === 4,
-                  );
-
-                  pdf.setFontSize(7);
-
-                  const cellTextColor: readonly [number, number, number] =
+                  const cellColor:
+                    readonly [
+                      number,
+                      number,
+                      number,
+                    ] =
                     valueIndex === 4
                       ? C.darkGreen
                       : C.text;
 
-                  pdf.setTextColor(...cellTextColor);
+                  setFont(
+                    pdf,
+                    valueIndex ===
+                    4,
+                  );
+
+                  pdf.setFontSize(
+                    7,
+                  );
+                  pdf.setTextColor(
+                    ...cellColor,
+                  );
 
                   pdf.text(
                     value,
@@ -2157,329 +2294,526 @@ export default function DownloadReport({
                     },
                   );
 
-                  px += column.width;
+                  px +=
+                    column.width;
                 },
               );
             },
           );
 
-          const analysisY =
-            tableY +
-            13 +
-            tableRows.length * 9 +
-            10;
-
-          pdf.setFillColor(...C.light);
-          pdf.setDrawColor(...C.border);
-
-          pdf.roundedRect(
-            18,
-            analysisY,
-            174,
-            32,
-            3,
-            3,
-            "FD",
-          );
-
-          setFont(pdf, true);
-          pdf.setFontSize(8.5);
-          pdf.setTextColor(...C.darkGreen);
-
-          pdf.text(
-            "SWP Cash flow Summary",
-            25,
-            analysisY + 10,
-          );
-
           setFont(pdf);
-          pdf.setFontSize(7.5);
-          pdf.setTextColor(...C.text);
-
-          pdf.text(
-            `Net Wealth Gain (Illustrative): ${formatCurrency(
-              estimatedGrowth,
-            )}`,
-            25,
-            analysisY + 18,
+          pdf.setFontSize(7);
+          pdf.setTextColor(
+            ...C.muted,
           );
 
           pdf.text(
-            `Total withdrawn: ${formatCurrency(
-              totalWithdrawn,
-            )}`,
-            25,
-            analysisY + 24,
+            `Showing Years 1–${Math.min(
+              10,
+              swpRows.length,
+            )}.`,
+            18,
+            196,
           );
 
           pdf.text(
-            `Remaining corpus: ${formatCurrency(
-              remainingCorpus,
-            )}`,
-            110,
-            analysisY + 24,
+            "Values are illustrative and rounded to the nearest rupee.",
+            18,
+            201,
           );
 
           addPageFooter(pdf);
 
           /*
-           * PAGE 4
-           * SWP OUTCOME + LEAD GENERATION
+           * PAGE 4 — DYNAMIC CONTINUATION + OUTCOME
            */
-
           pdf.addPage();
 
           addPageHeader(
             pdf,
-            reportTitle || "SWP Projection Report",
+            reportName,
             logo,
           );
+
+          const continuationRows =
+            swpRows.slice(10, 20);
+
+          const hasContinuation =
+            continuationRows.length > 0;
 
           addSectionTitle(
             pdf,
             "4",
-            "SWP Outcome Analysis",
-            "Understanding the projected withdrawal outcome",
+            hasContinuation
+              ? "SWP Analysis — Continued"
+              : "SWP Outcome Analysis",
+            hasContinuation
+              ? "Illustrative projection for the remaining selected years"
+              : "Summary of the projected withdrawal outcome",
             69,
           );
 
-          const outcomeCards = [
-            [
-              "Initial Corpus",
-              formatCurrency(initialCorpus),
-            ],
-            [
-              "Net Wealth Gain (Illustrative)",
-              formatCurrency(estimatedGrowth),
-            ],
-            [
-              "Total Withdrawn",
-              formatCurrency(totalWithdrawn),
-            ],
-            [
-              "Remaining Corpus",
-              formatCurrency(remainingCorpus),
-            ],
-          ];
+          if (hasContinuation) {
+            const contX = 18;
+            const contY = 84;
+            const contW = 174;
+            const headerH = 12;
+            const rowH = 8;
 
-          let outcomeY = 78;
+            pdf.setFillColor(
+              ...C.darkGreen,
+            );
 
-          outcomeCards.forEach(
-            ([label, value], index) => {
+            pdf.roundedRect(
+              contX,
+              contY,
+              contW,
+              headerH,
+              2,
+              2,
+              "F",
+            );
+
+            let cx = contX;
+
+            columns.forEach(
+              (column) => {
+                setFont(
+                  pdf,
+                  true,
+                );
+
+                pdf.setFontSize(
+                  7,
+                );
+
+                pdf.setTextColor(
+                  ...C.white,
+                );
+
+                pdf.text(
+                  column.label,
+                  cx +
+                  column.width /
+                  2,
+                  contY + 7.5,
+                  {
+                    align:
+                      "center",
+                  },
+                );
+
+                cx +=
+                  column.width;
+              },
+            );
+
+            continuationRows.forEach(
+              (row, index) => {
+                const ry =
+                  contY +
+                  headerH +
+                  index * rowH;
+
+                if (
+                  index % 2 ===
+                  0
+                ) {
+                  pdf.setFillColor(
+                    ...C.light,
+                  );
+
+                  pdf.rect(
+                    contX,
+                    ry,
+                    contW,
+                    rowH,
+                    "F",
+                  );
+                }
+
+                const values = [
+                  `Y${row.year}`,
+                  formatCurrency(
+                    row.openingCorpus,
+                  ),
+                  formatCurrency(
+                    row.growth,
+                  ),
+                  formatCurrency(
+                    row.annualWithdrawal,
+                  ),
+                  formatCurrency(
+                    row.closingCorpus,
+                  ),
+                ];
+
+                let cellX =
+                  contX;
+
+                values.forEach(
+                  (
+                    value,
+                    valueIndex,
+                  ) => {
+                    const column =
+                      columns[
+                      valueIndex
+                      ];
+
+                    const cellColor:
+                      readonly [
+                        number,
+                        number,
+                        number,
+                      ] =
+                      valueIndex ===
+                        4
+                        ? C.darkGreen
+                        : C.text;
+
+                    setFont(
+                      pdf,
+                      valueIndex ===
+                      4,
+                    );
+
+                    pdf.setFontSize(
+                      7,
+                    );
+                    pdf.setTextColor(
+                      ...cellColor,
+                    );
+
+                    pdf.text(
+                      value,
+                      cellX +
+                      column.width -
+                      3,
+                      ry + 5.2,
+                      {
+                        align:
+                          "right",
+                      },
+                    );
+
+                    cellX +=
+                      column.width;
+                  },
+                );
+              },
+            );
+          }
+
+          /*
+           * Outcome summary
+           */
+          const summaryY =
+            hasContinuation
+              ? 184
+              : 92;
+
+          const summaryCards: Array<{
+            label: string;
+            value: string;
+            accent: readonly [number, number, number];
+          }> = [
+              {
+                label: "Initial Corpus",
+                value: formatCurrency(
+                  initialCorpus,
+                ),
+                accent: C.green,
+              },
+              {
+                label: "Total Withdrawn",
+                value: formatCurrency(
+                  totalWithdrawn,
+                ),
+                accent: C.gold,
+              },
+              {
+                label: "Remaining Corpus",
+                value: formatCurrency(
+                  remainingCorpus,
+                ),
+                accent: C.teal,
+              },
+            ];
+          summaryCards.forEach(
+            (
+              item,
+              index,
+            ) => {
               const bx =
-                index % 2 === 0
-                  ? 18
-                  : 105;
+                18 +
+                index * 59.65;
 
-              if (
-                index > 0 &&
-                index % 2 === 0
-              ) {
-                outcomeY += 33;
-              }
-
-              pdf.setFillColor(...C.light);
-              pdf.setDrawColor(...C.border);
+              pdf.setFillColor(
+                ...C.light,
+              );
+              pdf.setDrawColor(
+                ...C.border,
+              );
 
               pdf.roundedRect(
                 bx,
-                outcomeY,
-                82,
-                29,
+                summaryY,
+                54.7,
+                24,
                 3,
                 3,
                 "FD",
               );
 
               setFont(pdf);
-              pdf.setFontSize(7.5);
-              pdf.setTextColor(...C.muted);
-
-              pdf.text(
-                label,
-                bx + 7,
-                outcomeY + 10,
+              pdf.setFontSize(
+                7,
+              );
+              pdf.setTextColor(
+                ...C.muted,
               );
 
-              setFont(pdf, true);
-              pdf.setFontSize(10);
-              pdf.setTextColor(...C.darkGreen);
+              pdf.text(
+                item.label,
+                bx + 6,
+                summaryY + 8,
+              );
+
+              setFont(
+                pdf,
+                true,
+              );
+              pdf.setFontSize(
+                9,
+              );
+              pdf.setTextColor(
+                ...item.accent,
+              );
 
               pdf.text(
-                value,
-                bx + 7,
-                outcomeY + 21,
+                item.value,
+                bx + 6,
+                summaryY + 17,
               );
             },
           );
 
-          const outcomeBoxY =
-            outcomeY + 36;
+          const outcomeY =
+            hasContinuation
+              ? 216
+              : 128;
 
-          const outcomeFill: readonly [number, number, number] =
-            isSustainable
+          const outcomeFill:
+            readonly [
+              number,
+              number,
+              number,
+            ] = isSustainable
               ? [236, 249, 243]
               : [255, 246, 235];
 
-          const outcomeBorder: readonly [number, number, number] =
-            isSustainable
+          const outcomeBorder:
+            readonly [
+              number,
+              number,
+              number,
+            ] = isSustainable
               ? [205, 231, 218]
               : [238, 215, 180];
 
-          const outcomeTextColor: readonly [number, number, number] =
-            isSustainable
+          const outcomeTextColor:
+            readonly [
+              number,
+              number,
+              number,
+            ] = isSustainable
               ? C.darkGreen
               : C.gold;
 
-          pdf.setFillColor(...outcomeFill);
-
-          pdf.setDrawColor(...outcomeBorder);
+          pdf.setFillColor(
+            ...outcomeFill,
+          );
+          pdf.setDrawColor(
+            ...outcomeBorder,
+          );
 
           pdf.roundedRect(
             18,
-            outcomeBoxY,
+            outcomeY,
             174,
-            43,
+            40,
             4,
             4,
             "FD",
           );
 
-          setFont(pdf, true);
-          pdf.setFontSize(9);
-
-          pdf.setTextColor(...outcomeTextColor);
+          setFont(
+            pdf,
+            true,
+          );
+          pdf.setFontSize(
+            8.5,
+          );
+          pdf.setTextColor(
+            ...outcomeTextColor,
+          );
 
           pdf.text(
             isSustainable
               ? "Projected corpus remains at the end of the selected period"
-              : "Projected corpus may be exhausted",
+              : "Projected corpus may be exhausted during the selected period",
             25,
-            outcomeBoxY + 11,
+            outcomeY + 10,
           );
 
           setFont(pdf);
-          pdf.setFontSize(7.7);
-          pdf.setTextColor(...C.text);
+          pdf.setFontSize(7.2);
+          pdf.setTextColor(
+            ...C.text,
+          );
 
           const outcomeText =
             isSustainable
-              ? `Based on the entered assumptions, the illustrative projection shows a remaining corpus of ${formatCurrency(
-                remainingCorpus,
-              )} after ${years} ${years === 1
+              ? `Remaining illustrative corpus after ${years} ${years === 1
                 ? "year"
                 : "years"
-              }.`
+              }: ${formatCurrency(
+                remainingCorpus,
+              )}.`
               : exhaustionYear
-                ? `Based on the entered assumptions, the illustrative corpus is projected to be exhausted during Year ${exhaustionYear}, before the selected ${years}-year withdrawal period ends.`
-                : `Based on the entered assumptions, the illustrative corpus may be exhausted before the selected ${years}-year withdrawal period ends.`;
+                ? `Under the entered assumptions, the illustrative corpus reaches zero during Year ${exhaustionYear}.`
+                : "Under the entered assumptions, the illustrative corpus may reach zero during the selected withdrawal period.";
+
           pdf.text(
             pdf.splitTextToSize(
               outcomeText,
               158,
             ),
             25,
-            outcomeBoxY + 21,
+            outcomeY + 19,
             {
-              lineHeightFactor: 1.35,
+              lineHeightFactor: 1.3,
             },
           );
 
-          /*
-           * Lead generation
-           */
-
-          const leadY =
-            outcomeBoxY + 51;
-
-          pdf.setFillColor(
-            236,
-            249,
-            243,
+          setFont(pdf, true);
+          pdf.setFontSize(7.2);
+          pdf.setTextColor(
+            ...C.darkGreen,
           );
 
-          pdf.setDrawColor(
-            205,
-            231,
-            218,
+          pdf.text(
+            "Net Wealth Gain (Illustrative)",
+            25,
+            outcomeY + 31,
+          );
+
+          setFont(pdf);
+          pdf.setFontSize(7.2);
+          pdf.setTextColor(
+            ...C.text,
+          );
+
+          pdf.text(
+            formatCurrency(
+              netWealthGain,
+            ),
+            112,
+            outcomeY + 31,
+          );
+
+          /*
+           * Compact lead-generation strip
+           */
+          const leadY =
+            outcomeY + 45;
+
+          pdf.setFillColor(
+            ...C.darkGreen,
           );
 
           pdf.roundedRect(
             18,
             leadY,
             174,
-            48,
+            hasContinuation
+              ? 22
+              : 36,
             4,
             4,
-            "FD",
+            "F",
           );
 
-          setFont(pdf, true);
-          pdf.setFontSize(9.5);
-          pdf.setTextColor(...C.darkGreen);
+          setFont(
+            pdf,
+            true,
+          );
+          pdf.setFontSize(
+            8.5,
+          );
+          pdf.setTextColor(
+            ...C.white,
+          );
 
           pdf.text(
-            "Discuss Your SWP Requirements",
+            "Connect with Luxmi InvestCare",
             25,
-            leadY + 11,
+            leadY + 9,
           );
 
           setFont(pdf);
-          pdf.setFontSize(7.5);
-          pdf.setTextColor(...C.text);
-
-          pdf.text(
-            pdf.splitTextToSize(
-              "For investor education and assistance in understanding the illustration, connect with Luxmi InvestCare.",
-              158,
-            ),
-            25,
-            leadY + 20,
-            {
-              lineHeightFactor: 1.35,
-            },
+          pdf.setFontSize(
+            6.8,
+          );
+          pdf.setTextColor(
+            230,
+            250,
+            240,
           );
 
-          setFont(pdf, true);
-          pdf.setFontSize(8);
-          pdf.setTextColor(...C.darkGreen);
+          pdf.text(
+            "For investor education and information about available investment products.",
+            25,
+            leadY + 16,
+          );
 
           pdf.text(
             `WhatsApp: ${BRAND.whatsapp}`,
             25,
-            leadY + 34,
+            leadY + 25,
           );
 
           pdf.text(
             BRAND.email,
             95,
-            leadY + 34,
+            leadY + 25,
           );
 
-          pdf.text(
-            BRAND.website,
-            25,
-            leadY + 43,
-          );
+          if (!hasContinuation) {
+            pdf.text(
+              BRAND.website,
+              25,
+              leadY + 32,
+            );
 
-          pdf.text(
-            BRAND.arn,
-            95,
-            leadY + 43,
-          );
+            pdf.text(
+              BRAND.arn,
+              95,
+              leadY + 32,
+            );
+          }
 
           addPageFooter(pdf);
 
           /*
-           * PAGE 5
-           * INVESTOR EDUCATION
+           * PAGE 5 — INVESTOR EDUCATION
            */
-
           pdf.addPage();
 
           addPageHeader(
             pdf,
-            reportTitle || "SWP Projection Report",
+            reportName,
             logo,
           );
 
@@ -2493,12 +2827,17 @@ export default function DownloadReport({
 
           addSWPDisclaimer(pdf);
 
-          addPageFooter(pdf);
-
+          /*
+           * The SWP disclaimer includes its own
+           * single branded contact box, so no
+           * duplicate standard footer is added.
+           */
           pdf.save(fileName);
 
           return;
         }
+
+
         /*
          * ============================================================
          * DEDICATED STEP-UP SIP PDF REPORT
@@ -3928,6 +4267,1228 @@ export default function DownloadReport({
           );
 
         /*
+         * ============================================================
+         * DEDICATED GOAL PLANNER PDF REPORT
+         * ============================================================
+         */
+        if (
+          calculatorType === "goal-planner" &&
+          goalData
+        ) {
+          const {
+            goal,
+            targetAmount,
+            years,
+            expectedReturn,
+            inflation,
+            futureValue,
+            monthlySIP,
+            lumpsumRequired,
+          } = goalData;
+
+          const goalLabels: Record<
+            string,
+            string
+          > = {
+            house: "House Purchase",
+            car: "Vehicle Purchase",
+            education: "Education",
+            "child-education": "Child Education",
+            retirement: "Retirement",
+            wedding: "Wedding",
+            travel: "Travel",
+            custom: "Personal Goal",
+          };
+
+          const goalLabel =
+            goalLabels[goal] ||
+            goal
+              .replace(/[-_]/g, " ")
+              .replace(
+                /\b\w/g,
+                (char) =>
+                  char.toUpperCase(),
+              );
+
+          const inflationIncrease =
+            Math.max(
+              0,
+              futureValue -
+              targetAmount,
+            );
+
+          const inflationMultiple =
+            targetAmount > 0
+              ? futureValue /
+              targetAmount
+              : 0;
+
+          /*
+           * PAGE 1
+           * GOAL PLANNER SUMMARY
+           */
+
+          addPageHeader(
+            pdf,
+            reportTitle ||
+            "Goal Planning Illustration",
+            logo,
+          );
+
+          addSectionTitle(
+            pdf,
+            "1",
+            "Goal Planning Summary",
+            "Illustrative goal cost and investment requirements",
+            69,
+          );
+
+          const goalCardW = 54.7;
+          const goalCardH = 31;
+          const goalGap = 5;
+
+          addCard(
+            pdf,
+            18,
+            84,
+            goalCardW,
+            goalCardH,
+            "Selected Goal",
+            goalLabel,
+          );
+
+          addCard(
+            pdf,
+            18 +
+            goalCardW +
+            goalGap,
+            84,
+            goalCardW,
+            goalCardH,
+            "Current Goal Value",
+            formatCurrency(
+              targetAmount,
+            ),
+          );
+
+          addCard(
+            pdf,
+            18 +
+            (goalCardW +
+              goalGap) *
+            2,
+            84,
+            goalCardW,
+            goalCardH,
+            "Years to Goal",
+            `${years} ${years === 1
+              ? "Year"
+              : "Years"
+            }`,
+          );
+
+          addCard(
+            pdf,
+            18,
+            121,
+            goalCardW,
+            goalCardH,
+            "Expected Return",
+            `${expectedReturn}%`,
+            C.teal,
+          );
+
+          addCard(
+            pdf,
+            18 +
+            goalCardW +
+            goalGap,
+            121,
+            goalCardW,
+            goalCardH,
+            "Inflation Rate",
+            `${inflation}%`,
+            C.gold,
+          );
+
+          addCard(
+            pdf,
+            18 +
+            (goalCardW +
+              goalGap) *
+            2,
+            121,
+            goalCardW,
+            goalCardH,
+            "Future Goal Value",
+            formatCurrency(
+              futureValue,
+            ),
+            C.darkGreen,
+          );
+
+          /*
+           * Requirement summary
+           */
+
+          pdf.setFillColor(
+            ...C.light,
+          );
+
+          pdf.setDrawColor(
+            ...C.border,
+          );
+
+          pdf.roundedRect(
+            18,
+            162,
+            174,
+            52,
+            4,
+            4,
+            "FD",
+          );
+
+          setFont(
+            pdf,
+            true,
+          );
+
+          pdf.setFontSize(9);
+          pdf.setTextColor(
+            ...C.darkGreen,
+          );
+
+          pdf.text(
+            "Illustrative Investment Requirement",
+            25,
+            174,
+          );
+
+          setFont(pdf);
+
+          pdf.setFontSize(7.7);
+          pdf.setTextColor(
+            ...C.text,
+          );
+
+          pdf.text(
+            "Monthly SIP",
+            25,
+            188,
+          );
+
+          pdf.text(
+            "One-Time Investment",
+            110,
+            188,
+          );
+
+          setFont(
+            pdf,
+            true,
+          );
+
+          pdf.setFontSize(10);
+          pdf.setTextColor(
+            ...C.darkGreen,
+          );
+
+          pdf.text(
+            formatCurrency(
+              monthlySIP,
+            ),
+            25,
+            199,
+          );
+
+          pdf.text(
+            formatCurrency(
+              lumpsumRequired,
+            ),
+            110,
+            199,
+          );
+
+          addPageFooter(pdf);
+
+          /*
+           * PAGE 2
+           * INFLATION IMPACT
+           */
+
+          pdf.addPage();
+
+          addPageHeader(
+            pdf,
+            reportTitle ||
+            "Goal Planning Illustration",
+            logo,
+          );
+
+          addSectionTitle(
+            pdf,
+            "2",
+            "Inflation Impact on the Goal",
+            "Illustrative comparison of today's goal value with its estimated future cost",
+            69,
+          );
+
+          const inflationBoxY = 88;
+
+          const maxGoal =
+            Math.max(
+              targetAmount,
+              futureValue,
+              1,
+            );
+
+          const todayWidth =
+            (targetAmount /
+              maxGoal) *
+            145;
+
+          const futureWidth =
+            (futureValue /
+              maxGoal) *
+            145;
+
+          /*
+           * TODAY
+           */
+
+          pdf.setFillColor(
+            ...C.light,
+          );
+          pdf.setDrawColor(
+            ...C.border,
+          );
+
+          pdf.roundedRect(
+            24,
+            inflationBoxY,
+            162,
+            38,
+            4,
+            4,
+            "FD",
+          );
+
+          setFont(
+            pdf,
+            true,
+          );
+          pdf.setFontSize(8.5);
+          pdf.setTextColor(
+            ...C.darkGreen,
+          );
+
+          pdf.text(
+            "Goal Value Today",
+            31,
+            inflationBoxY +
+            11,
+          );
+
+          setFont(
+            pdf,
+            true,
+          );
+          pdf.setFontSize(10);
+
+          pdf.text(
+            formatCurrency(
+              targetAmount,
+            ),
+            31,
+            inflationBoxY +
+            23,
+          );
+
+          pdf.setFillColor(
+            ...C.greyLine,
+          );
+
+          pdf.roundedRect(
+            31,
+            inflationBoxY +
+            28,
+            145,
+            5,
+            2,
+            2,
+            "F",
+          );
+
+          pdf.setFillColor(
+            ...C.teal,
+          );
+
+          pdf.roundedRect(
+            31,
+            inflationBoxY +
+            28,
+            todayWidth,
+            5,
+            2,
+            2,
+            "F",
+          );
+
+          /*
+           * FUTURE
+           */
+
+          const futureY =
+            inflationBoxY +
+            49;
+
+          pdf.setFillColor(
+            ...C.light,
+          );
+          pdf.setDrawColor(
+            ...C.border,
+          );
+
+          pdf.roundedRect(
+            24,
+            futureY,
+            162,
+            38,
+            4,
+            4,
+            "FD",
+          );
+
+          setFont(
+            pdf,
+            true,
+          );
+          pdf.setFontSize(8.5);
+          pdf.setTextColor(
+            ...C.darkGreen,
+          );
+
+          pdf.text(
+            `Estimated Goal Value in ${years} Years`,
+            31,
+            futureY + 11,
+          );
+
+          setFont(
+            pdf,
+            true,
+          );
+          pdf.setFontSize(10);
+
+          pdf.text(
+            formatCurrency(
+              futureValue,
+            ),
+            31,
+            futureY + 23,
+          );
+
+          pdf.setFillColor(
+            ...C.greyLine,
+          );
+
+          pdf.roundedRect(
+            31,
+            futureY + 28,
+            145,
+            5,
+            2,
+            2,
+            "F",
+          );
+
+          pdf.setFillColor(
+            ...C.gold,
+          );
+
+          pdf.roundedRect(
+            31,
+            futureY + 28,
+            futureWidth,
+            5,
+            2,
+            2,
+            "F",
+          );
+
+          /*
+           * TAKEAWAY
+           */
+
+          const inflationNoteY =
+            futureY + 52;
+
+          pdf.setFillColor(
+            255,
+            249,
+            235,
+          );
+          pdf.setDrawColor(
+            236,
+            215,
+            157,
+          );
+
+          pdf.roundedRect(
+            18,
+            inflationNoteY,
+            174,
+            64,
+            4,
+            4,
+            "FD",
+          );
+
+          setFont(
+            pdf,
+            true,
+          );
+          pdf.setFontSize(9);
+          pdf.setTextColor(
+            ...C.darkGreen,
+          );
+
+          pdf.text(
+            "What this means",
+            25,
+            inflationNoteY +
+            11,
+          );
+
+          setFont(pdf);
+          pdf.setFontSize(7.7);
+          pdf.setTextColor(
+            ...C.text,
+          );
+
+          const inflationText =
+            `At the selected ${inflation}% inflation assumption, the goal's estimated future cost is ${formatCurrency(
+              futureValue,
+            )}, compared with ${formatCurrency(
+              targetAmount,
+            )} today.`;
+
+          pdf.text(
+            pdf.splitTextToSize(
+              inflationText,
+              158,
+            ),
+            25,
+            inflationNoteY +
+            22,
+            {
+              lineHeightFactor:
+                1.35,
+            },
+          );
+
+          setFont(
+            pdf,
+            true,
+          );
+          pdf.setFontSize(7.7);
+          pdf.setTextColor(
+            ...C.darkGreen,
+          );
+
+          const inflationInsightText =
+            `Illustrative increase in goal cost: ${formatCurrency(
+              inflationIncrease,
+            )}. The estimated future goal value is approximately ${inflationMultiple.toFixed(
+              1,
+            )}× today's goal value.`;
+
+          pdf.text(
+            pdf.splitTextToSize(
+              inflationInsightText,
+              158,
+            ),
+            25,
+            inflationNoteY +
+            42,
+            {
+              lineHeightFactor:
+                1.35,
+            },
+          );
+
+          addPageFooter(pdf);
+
+          /*
+           * PAGE 3
+           * INVESTMENT REQUIREMENT
+           */
+
+          pdf.addPage();
+
+          addPageHeader(
+            pdf,
+            reportTitle ||
+            "Goal Planning Illustration",
+            logo,
+          );
+
+          addSectionTitle(
+            pdf,
+            "3",
+            "Illustrative Investment Requirement",
+            "Two alternative illustrations for working toward the estimated future goal value",
+            69,
+          );
+
+          /*
+           * SIP CARD
+           */
+
+          pdf.setFillColor(
+            236,
+            249,
+            243,
+          );
+          pdf.setDrawColor(
+            205,
+            231,
+            218,
+          );
+
+          pdf.roundedRect(
+            18,
+            87,
+            174,
+            50,
+            4,
+            4,
+            "FD",
+          );
+
+          setFont(
+            pdf,
+            true,
+          );
+          pdf.setFontSize(9.5);
+          pdf.setTextColor(
+            ...C.darkGreen,
+          );
+
+          pdf.text(
+            "Illustrative Monthly SIP",
+            25,
+            99,
+          );
+
+          setFont(
+            pdf,
+            true,
+          );
+          pdf.setFontSize(16);
+
+          pdf.text(
+            formatCurrency(
+              monthlySIP,
+            ),
+            25,
+            116,
+          );
+
+          setFont(pdf);
+          pdf.setFontSize(7.5);
+          pdf.setTextColor(
+            ...C.text,
+          );
+
+          pdf.text(
+            `Illustration for a ${years}-year period at an assumed ${expectedReturn}% return.`,
+            25,
+            128,
+          );
+
+          /*
+           * LUMPSUM CARD
+           */
+
+          pdf.setFillColor(
+            255,
+            248,
+            233,
+          );
+          pdf.setDrawColor(
+            238,
+            215,
+            180,
+          );
+
+          pdf.roundedRect(
+            18,
+            146,
+            174,
+            50,
+            4,
+            4,
+            "FD",
+          );
+
+          setFont(
+            pdf,
+            true,
+          );
+          pdf.setFontSize(9.5);
+          pdf.setTextColor(
+            ...C.darkGreen,
+          );
+
+          pdf.text(
+            "Illustrative One-Time Investment",
+            25,
+            158,
+          );
+
+          setFont(
+            pdf,
+            true,
+          );
+          pdf.setFontSize(16);
+
+          pdf.text(
+            formatCurrency(
+              lumpsumRequired,
+            ),
+            25,
+            175,
+          );
+
+          setFont(pdf);
+          pdf.setFontSize(7.5);
+          pdf.setTextColor(
+            ...C.text,
+          );
+
+          pdf.text(
+            `Illustration using the same ${expectedReturn}% return assumption over ${years} years.`,
+            25,
+            187,
+          );
+
+          /*
+           * ALTERNATIVE ILLUSTRATIONS PANEL
+           */
+
+          const compareY = 207;
+
+          pdf.setFillColor(
+            ...C.light,
+          );
+          pdf.setDrawColor(
+            ...C.border,
+          );
+
+          pdf.roundedRect(
+            18,
+            compareY,
+            174,
+            62,
+            4,
+            4,
+            "FD",
+          );
+
+          setFont(
+            pdf,
+            true,
+          );
+          pdf.setFontSize(9);
+
+          pdf.setTextColor(
+            ...C.darkGreen,
+          );
+
+          pdf.text(
+            "Two alternative illustrations",
+            25,
+            compareY + 12,
+          );
+
+          setFont(pdf);
+          pdf.setFontSize(7.2);
+          pdf.setTextColor(
+            ...C.text,
+          );
+
+          pdf.text(
+            "Monthly SIP",
+            25,
+            compareY + 23,
+          );
+
+          pdf.text(
+            "One-Time Investment",
+            110,
+            compareY + 23,
+          );
+
+          setFont(
+            pdf,
+            true,
+          );
+          pdf.setFontSize(9.2);
+          pdf.setTextColor(
+            ...C.darkGreen,
+          );
+
+          pdf.text(
+            formatCurrency(
+              monthlySIP,
+            ),
+            25,
+            compareY + 34,
+          );
+
+          pdf.text(
+            formatCurrency(
+              lumpsumRequired,
+            ),
+            110,
+            compareY + 34,
+          );
+
+          /*
+           * Presentation bars are deliberately
+           * equal-width category visuals and are
+           * NOT scaled to compare amounts.
+           */
+
+          pdf.setFillColor(
+            ...C.border,
+          );
+
+          pdf.roundedRect(
+            25,
+            compareY + 41,
+            65,
+            5,
+            2,
+            2,
+            "F",
+          );
+
+          pdf.setFillColor(
+            ...C.green,
+          );
+
+          pdf.roundedRect(
+            25,
+            compareY + 41,
+            65,
+            5,
+            2,
+            2,
+            "F",
+          );
+
+          pdf.setFillColor(
+            ...C.border,
+          );
+
+          pdf.roundedRect(
+            110,
+            compareY + 41,
+            65,
+            5,
+            2,
+            2,
+            "F",
+          );
+
+          pdf.setFillColor(
+            ...C.gold,
+          );
+
+          pdf.roundedRect(
+            110,
+            compareY + 41,
+            65,
+            5,
+            2,
+            2,
+            "F",
+          );
+
+          setFont(pdf);
+          pdf.setFontSize(6.8);
+          pdf.setTextColor(
+            ...C.muted,
+          );
+
+          pdf.text(
+            "Alternative illustration",
+            25,
+            compareY + 54,
+          );
+
+          pdf.text(
+            "Alternative illustration",
+            110,
+            compareY + 54,
+          );
+
+          addPageFooter(pdf);
+
+          /*
+           * PAGE 4
+           * GOAL PLANNING INSIGHT + LEAD GENERATION
+           */
+
+          pdf.addPage();
+
+          addPageHeader(
+            pdf,
+            reportTitle ||
+            "Goal Planning Illustration",
+            logo,
+          );
+
+          addSectionTitle(
+            pdf,
+            "4",
+            "Goal Planning Insight",
+            "Key assumptions and investor education",
+            69,
+          );
+
+          const insightY = 86;
+
+          pdf.setFillColor(
+            236,
+            249,
+            243,
+          );
+          pdf.setDrawColor(
+            205,
+            231,
+            218,
+          );
+
+          pdf.roundedRect(
+            18,
+            insightY,
+            174,
+            62,
+            4,
+            4,
+            "FD",
+          );
+
+          setFont(
+            pdf,
+            true,
+          );
+          pdf.setFontSize(9.5);
+          pdf.setTextColor(
+            ...C.darkGreen,
+          );
+
+          pdf.text(
+            "Selected Goal",
+            25,
+            insightY + 12,
+          );
+
+          setFont(
+            pdf,
+            true,
+          );
+          pdf.setFontSize(11);
+
+          pdf.text(
+            goalLabel,
+            25,
+            insightY + 25,
+          );
+
+          setFont(pdf);
+          pdf.setFontSize(7.7);
+          pdf.setTextColor(
+            ...C.text,
+          );
+
+          pdf.text(
+            `Current value: ${formatCurrency(
+              targetAmount,
+            )}`,
+            25,
+            insightY + 37,
+          );
+
+          pdf.text(
+            `Estimated future value: ${formatCurrency(
+              futureValue,
+            )}`,
+            25,
+            insightY + 48,
+          );
+
+          /*
+           * LEAD GENERATION
+           */
+
+          const leadY =
+            insightY + 72;
+
+          pdf.setFillColor(
+            ...C.darkGreen,
+          );
+
+          pdf.roundedRect(
+            18,
+            leadY,
+            174,
+            61,
+            4,
+            4,
+            "F",
+          );
+
+          setFont(
+            pdf,
+            true,
+          );
+          pdf.setFontSize(10);
+          pdf.setTextColor(
+            ...C.white,
+          );
+
+          pdf.text(
+            "Want to Understand This Illustration?",
+            25,
+            leadY + 12,
+          );
+
+          setFont(pdf);
+          pdf.setFontSize(7.5);
+          pdf.setTextColor(
+            230,
+            250,
+            240,
+          );
+
+          pdf.text(
+            pdf.splitTextToSize(
+              "For investor education and information about available investment products, connect with Luxmi InvestCare.",
+              158,
+            ),
+            25,
+            leadY + 23,
+            {
+              lineHeightFactor:
+                1.35,
+            },
+          );
+
+          setFont(
+            pdf,
+            true,
+          );
+          pdf.setFontSize(8);
+          pdf.setTextColor(
+            255,
+            205,
+            70,
+          );
+
+          pdf.text(
+            `WhatsApp: ${BRAND.whatsapp}`,
+            25,
+            leadY + 42,
+          );
+
+          pdf.text(
+            BRAND.email,
+            100,
+            leadY + 42,
+          );
+
+          pdf.text(
+            BRAND.website,
+            25,
+            leadY + 52,
+          );
+
+          pdf.text(
+            BRAND.arn,
+            100,
+            leadY + 52,
+          );
+
+          addPageFooter(pdf);
+
+          /*
+           * PAGE 5
+           * INVESTOR EDUCATION DISCLAIMER
+           */
+
+          pdf.addPage();
+
+          addPageHeader(
+            pdf,
+            reportTitle ||
+            "Goal Planning Illustration",
+            logo,
+          );
+
+          addSectionTitle(
+            pdf,
+            "5",
+            "Investor Education Disclaimer",
+            "Important information regarding this illustrative goal calculator",
+            69,
+          );
+
+          const goalDisclaimerItems = [
+            "This Goal Planner is provided for investor education and illustration purposes only.",
+            "The illustration is based on the assumptions entered by the user, including target amount, time period, inflation and assumed investment return.",
+            "Actual goal costs, investment returns and future investment requirements may differ from the illustration.",
+            "Mutual Fund investments are subject to market risks. Read all scheme related documents carefully before investing.",
+            "Past performance does not guarantee future returns.",
+            "Illustrative values shown in this report are not guaranteed returns or a promise of future performance.",
+            "This calculator is an educational tool and should not be treated as a recommendation to invest in any particular scheme.",
+          ];
+
+          let disclaimerY = 79;
+
+          goalDisclaimerItems.forEach(
+            (
+              item,
+              index,
+            ) => {
+              const disclaimerLines =
+                pdf.splitTextToSize(
+                  item,
+                  158,
+                );
+
+              setFont(
+                pdf,
+                true,
+              );
+              pdf.setFontSize(8.5);
+              pdf.setTextColor(
+                ...C.darkGreen,
+              );
+
+              pdf.text(
+                `${index + 1}.`,
+                20,
+                disclaimerY,
+              );
+
+              setFont(pdf);
+              pdf.setFontSize(8.5);
+              pdf.setTextColor(
+                ...C.text,
+              );
+
+              pdf.text(
+                disclaimerLines,
+                30,
+                disclaimerY,
+                {
+                  lineHeightFactor:
+                    1.4,
+                },
+              );
+
+              disclaimerY +=
+                Math.max(
+                  12,
+                  disclaimerLines.length *
+                  4.8 +
+                  5,
+                );
+            },
+          );
+
+          /*
+           * Contact / brand box
+           */
+
+          const disclaimerBoxY =
+            Math.min(
+              disclaimerY + 4,
+              214,
+            );
+
+          pdf.setFillColor(
+            ...C.light,
+          );
+          pdf.setDrawColor(
+            ...C.border,
+          );
+
+          pdf.roundedRect(
+            18,
+            disclaimerBoxY,
+            174,
+            35,
+            3,
+            3,
+            "FD",
+          );
+
+          setFont(
+            pdf,
+            true,
+          );
+          pdf.setFontSize(8.5);
+          pdf.setTextColor(
+            ...C.darkGreen,
+          );
+
+          pdf.text(
+            BRAND.name,
+            25,
+            disclaimerBoxY +
+            9,
+          );
+
+          setFont(pdf);
+          pdf.setFontSize(7);
+          pdf.setTextColor(
+            ...C.muted,
+          );
+
+          pdf.text(
+            BRAND.subtitle,
+            25,
+            disclaimerBoxY +
+            16,
+          );
+
+          pdf.text(
+            `${BRAND.website} | ${BRAND.email}`,
+            25,
+            disclaimerBoxY +
+            23,
+          );
+
+          pdf.text(
+            `WhatsApp: ${BRAND.whatsapp} | ${BRAND.arn}`,
+            25,
+            disclaimerBoxY +
+            30,
+          );
+
+          addPageFooter(pdf);
+
+          pdf.save(fileName);
+
+          return;
+        }
+        /*
          * PAGE 1
          * Investment Details
          */
@@ -4101,192 +5662,6 @@ export default function DownloadReport({
          * Investment Growth
          * Projected Corpus Composition
          */
-
-        function addSWPComposition(
-          pdf: jsPDF,
-          totalWithdrawn: number,
-          remainingCorpus: number,
-          x: number,
-          y: number,
-          w: number,
-          h: number,
-        ) {
-          const total =
-            Math.max(
-              totalWithdrawn +
-              remainingCorpus,
-              1,
-            );
-
-          const withdrawnPct =
-            (Math.max(totalWithdrawn, 0) / total) *
-            100;
-
-          const remainingPct =
-            (Math.max(remainingCorpus, 0) / total) *
-            100;
-
-          const centerX = x + 45;
-          const centerY = y + h / 2;
-
-          const outerR = 24;
-          const innerR = 15;
-
-          const drawArc = (
-            start: number,
-            end: number,
-            color: readonly [
-              number,
-              number,
-              number,
-            ],
-          ) => {
-            pdf.setDrawColor(...color);
-            pdf.setLineWidth(8);
-
-            const steps = 40;
-
-            let previousX =
-              centerX +
-              outerR *
-              Math.cos(start);
-
-            let previousY =
-              centerY +
-              outerR *
-              Math.sin(start);
-
-            for (let i = 1; i <= steps; i++) {
-              const angle =
-                start +
-                ((end - start) * i) /
-                steps;
-
-              const nextX =
-                centerX +
-                outerR *
-                Math.cos(angle);
-
-              const nextY =
-                centerY +
-                outerR *
-                Math.sin(angle);
-
-              pdf.line(
-                previousX,
-                previousY,
-                nextX,
-                nextY,
-              );
-
-              previousX = nextX;
-              previousY = nextY;
-            }
-          };
-
-          const start =
-            -Math.PI / 2;
-
-          const withdrawnEnd =
-            start +
-            (withdrawnPct / 100) *
-            Math.PI *
-            2;
-
-          drawArc(
-            start,
-            withdrawnEnd,
-            C.gold,
-          );
-
-          drawArc(
-            withdrawnEnd,
-            start + Math.PI * 2,
-            C.green,
-          );
-
-          // White center
-          pdf.setFillColor(...C.white);
-
-          pdf.circle(
-            centerX,
-            centerY,
-            innerR,
-            "F",
-          );
-
-          setFont(pdf, true);
-
-          pdf.setFontSize(8);
-
-          pdf.setTextColor(...C.darkGreen);
-
-          pdf.text(
-            "SWP",
-            centerX,
-            centerY + 2,
-            {
-              align: "center",
-            },
-          );
-
-          // Labels
-          const labelX = x + 90;
-
-          setFont(pdf);
-
-          pdf.setFontSize(7.8);
-
-          pdf.setTextColor(...C.text);
-
-          pdf.setFillColor(...C.gold);
-
-          pdf.circle(
-            labelX,
-            y + 20,
-            2,
-            "F",
-          );
-
-          pdf.text(
-            `Total Withdrawn: ${formatCurrency(totalWithdrawn)}`,
-            labelX + 7,
-            y + 22,
-          );
-
-          pdf.text(
-            `${withdrawnPct.toFixed(1)}%`,
-            x + w - 10,
-            y + 22,
-            {
-              align: "right",
-            },
-          );
-
-          pdf.setFillColor(...C.green);
-
-          pdf.circle(
-            labelX,
-            y + 37,
-            2,
-            "F",
-          );
-
-          pdf.text(
-            `Remaining Corpus: ${formatCurrency(remainingCorpus)}`,
-            labelX + 7,
-            y + 39,
-          );
-
-          pdf.text(
-            `${remainingPct.toFixed(1)}%`,
-            x + w - 10,
-            y + 39,
-            {
-              align: "right",
-            },
-          );
-        }
 
         pdf.addPage();
 
@@ -4693,193 +6068,6 @@ export default function DownloadReport({
           "Important information regarding this illustrative calculator",
           66,
         );
-        function addSWPTrendChart(
-          pdf: jsPDF,
-          projections: SWPProjection[],
-          x: number,
-          y: number,
-          w: number,
-          h: number,
-        ) {
-          if (!projections.length) return;
-
-          const chartX = x + 12;
-          const chartY = y + 12;
-          const chartW = w - 24;
-          const chartH = h - 28;
-
-          const values = projections.flatMap((p) => [
-            p.openingCorpus,
-            p.closingCorpus,
-          ]);
-
-          const maxValue = Math.max(...values, 1);
-          const minValue = Math.min(...values, 0);
-
-          const range = Math.max(maxValue - minValue, 1);
-
-          // Grid lines
-          pdf.setDrawColor(...C.border);
-          pdf.setLineWidth(0.25);
-
-          for (let i = 0; i <= 4; i++) {
-            const gy = chartY + (chartH / 4) * i;
-
-            pdf.line(
-              chartX,
-              gy,
-              chartX + chartW,
-              gy,
-            );
-
-            const value =
-              maxValue -
-              (range / 4) * i;
-
-            setFont(pdf);
-
-            pdf.setFontSize(6.5);
-
-            pdf.setTextColor(...C.muted);
-
-            pdf.text(
-              formatLakh(value),
-              chartX - 3,
-              gy + 2,
-              {
-                align: "right",
-              },
-            );
-          }
-
-          if (projections.length === 1) {
-            const px = chartX + chartW / 2;
-
-            const py =
-              chartY +
-              chartH -
-              ((projections[0].closingCorpus - minValue) / range) *
-              chartH;
-
-            pdf.setFillColor(...C.green);
-
-            pdf.circle(
-              px,
-              py,
-              2,
-              "F",
-            );
-
-            return;
-          }
-
-          const getX = (index: number) =>
-            chartX +
-            (index / (projections.length - 1)) *
-            chartW;
-
-          const getY = (value: number) =>
-            chartY +
-            chartH -
-            ((value - minValue) / range) *
-            chartH;
-
-          // Opening corpus line
-          pdf.setDrawColor(...C.teal);
-          pdf.setLineWidth(1.1);
-
-          for (let i = 1; i < projections.length; i++) {
-            pdf.line(
-              getX(i - 1),
-              getY(projections[i - 1].openingCorpus),
-              getX(i),
-              getY(projections[i].openingCorpus),
-            );
-          }
-
-          // Closing corpus line
-          pdf.setDrawColor(...C.green);
-          pdf.setLineWidth(1.5);
-
-          for (let i = 1; i < projections.length; i++) {
-            pdf.line(
-              getX(i - 1),
-              getY(projections[i - 1].closingCorpus),
-              getX(i),
-              getY(projections[i].closingCorpus),
-            );
-          }
-
-          // Closing corpus points
-          pdf.setFillColor(...C.green);
-
-          projections.forEach((projection, index) => {
-            pdf.circle(
-              getX(index),
-              getY(projection.closingCorpus),
-              1.5,
-              "F",
-            );
-          });
-
-          // X-axis labels
-          setFont(pdf);
-
-          pdf.setFontSize(6.5);
-
-          pdf.setTextColor(...C.muted);
-
-          projections.forEach(
-            (projection, index) => {
-              pdf.text(
-                `Y${projection.year}`,
-                getX(index),
-                chartY + chartH + 9,
-                {
-                  align: "center",
-                },
-              );
-            },
-          );
-
-          // Legend
-          pdf.setFillColor(...C.teal);
-
-          pdf.circle(
-            chartX,
-            y + h - 7,
-            1.8,
-            "F",
-          );
-
-          setFont(pdf);
-
-          pdf.setFontSize(7);
-
-          pdf.setTextColor(...C.text);
-
-          pdf.text(
-            "Opening Corpus",
-            chartX + 5,
-            y + h - 5,
-          );
-
-          pdf.setFillColor(...C.green);
-
-          pdf.circle(
-            chartX + 55,
-            y + h - 7,
-            1.8,
-            "F",
-          );
-
-          pdf.text(
-            "Closing Corpus",
-            chartX + 60,
-            y + h - 5,
-          );
-        }
-
         addDisclaimer(pdf);
 
         addPageFooter(pdf);
