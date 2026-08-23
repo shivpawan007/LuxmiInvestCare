@@ -7,8 +7,20 @@ import type { SIPProjection } from "@/lib/sip";
 import type { LumpsumProjection } from "@/lib/lumpsum";
 import type { SWPProjection } from "@/lib/swp";
 
+interface StepUpSIPProjection {
+  year: number;
+  monthlySIP: number;
+  annualInvestment: number;
+  totalInvested: number;
+  estimatedValue: number;
+}
+
 interface DownloadReportProps {
-  calculatorType: "sip" | "lumpsum" | "swp";
+  calculatorType:
+  | "sip"
+  | "lumpsum"
+  | "swp"
+  | "step-up-sip";
 
   investment: number;
   annualReturn: number;
@@ -18,9 +30,38 @@ interface DownloadReportProps {
   estimatedReturns: number;
   maturityValue: number;
 
-  yearlyGrowth?: | SIPProjection[] | LumpsumProjection[] | SWPProjection[];
+  yearlyGrowth?:
+  | SIPProjection[]
+  | LumpsumProjection[]
+  | SWPProjection[]
+  | StepUpSIPProjection[]
+  | Array<{
+    year: number;
+    monthlySIP: number;
+    annualInvestment: number;
+    totalInvested: number;
+    estimatedValue: number;
+  }>;
 
   swpData?: { initialCorpus: number; monthlyWithdrawal: number; totalWithdrawn: number; remainingCorpus: number; estimatedGrowth: number; sustainable: boolean; exhaustionYear: number | null; };
+
+  stepUpData?: {
+    startingMonthlySIP: number;
+    annualStepUp: number;
+    annualReturn: number;
+    years: number;
+    totalInvested: number;
+    estimatedValue: number;
+    wealthGain: number;
+    finalMonthlySIP: number;
+    projections: Array<{
+      year: number;
+      monthlySIP: number;
+      annualInvestment: number;
+      totalInvested: number;
+      estimatedValue: number;
+    }>;
+  };
 
   reportTitle?: string;
   fileName?: string;
@@ -77,6 +118,64 @@ function formatLakh(value: number): string {
   return `₹${lakh.toFixed(2)} L`;
 }
 
+function formatStepUpChartAxis(
+  value: number,
+): string {
+  if (
+    !Number.isFinite(value) ||
+    value <= 0
+  ) {
+    return "₹0";
+  }
+
+  const crore =
+    value / 10000000;
+
+  if (crore >= 1) {
+    const display =
+      Number(
+        crore.toFixed(1),
+      );
+
+    return `₹${display.toLocaleString(
+      "en-IN",
+    )} Cr`;
+  }
+
+  const lakh =
+    value / 100000;
+
+  const display =
+    Number(
+      lakh.toFixed(1),
+    );
+
+  return `₹${display.toLocaleString(
+    "en-IN",
+  )} L`;
+}
+
+function formatStepUpCompact(
+  value: number,
+): string {
+  if (
+    !Number.isFinite(value) ||
+    value <= 0
+  ) {
+    return "₹0";
+  }
+
+  if (value >= 10000000) {
+    return `₹${(
+      value / 10000000
+    ).toFixed(1)} Cr`;
+  }
+
+  return `₹${(
+    value / 100000
+  ).toFixed(1)} L`;
+}
+
 function formatSWPChartAxis(value: number): string {
   if (!Number.isFinite(value) || value <= 0) {
     return "₹0";
@@ -101,6 +200,7 @@ function normalizeRows(
     | SIPProjection[]
     | LumpsumProjection[]
     | SWPProjection[]
+    | StepUpSIPProjection[]
     | undefined,
 ): ProjectionRow[] {
   if (!rows?.length) {
@@ -108,12 +208,17 @@ function normalizeRows(
   }
 
   return rows.map((row) => {
-    const item = row as unknown as Record<string, unknown>;
+    const item =
+      row as unknown as Record<
+        string,
+        unknown
+      >;
 
     const invested = Number(
       item.invested ??
       item.investment ??
       item.openingCorpus ??
+      item.totalInvested ??
       0,
     );
 
@@ -129,11 +234,15 @@ function normalizeRows(
       item.estimatedReturns ??
       item.returns ??
       item.growth ??
-      value - invested,
+      (
+        value - invested
+      ),
     );
 
     return {
-      year: Number(item.year ?? 0),
+      year: Number(
+        item.year ?? 0,
+      ),
       invested,
       value,
       estimatedReturns,
@@ -1331,6 +1440,7 @@ export default function DownloadReport({
   maturityValue,
   yearlyGrowth,
   swpData,
+  stepUpData,
   reportTitle = "Investment Projection Report",
   fileName = "Luxmi-InvestCare-Investment-Report.pdf",
 }: DownloadReportProps) {
@@ -2389,7 +2499,1429 @@ export default function DownloadReport({
 
           return;
         }
+        /*
+         * ============================================================
+         * DEDICATED STEP-UP SIP PDF REPORT
+         * ============================================================
+         *
+         * Step-Up SIP must not use the generic SIP/Lumpsum
+         * investment-details / installments layout.
+         */
+        if (
+          calculatorType === "step-up-sip" &&
+          stepUpData
+        ) {
+          const stepRows =
+            stepUpData.projections ?? [];
 
+          const startingSIP =
+            Math.max(
+              0,
+              stepUpData.startingMonthlySIP,
+            );
+
+          const annualStepUp =
+            Math.max(
+              0,
+              stepUpData.annualStepUp,
+            );
+
+          const stepReturn =
+            stepUpData.annualReturn;
+
+          const stepYears =
+            Math.max(
+              0,
+              stepUpData.years,
+            );
+
+          const totalInvested =
+            Math.max(
+              0,
+              stepUpData.totalInvested,
+            );
+
+          const projectedValue =
+            Math.max(
+              0,
+              stepUpData.estimatedValue,
+            );
+
+          const illustrativeGain =
+            Math.max(
+              0,
+              stepUpData.wealthGain,
+            );
+
+          const finalMonthlySIP =
+            Math.max(
+              0,
+              stepUpData.finalMonthlySIP,
+            );
+
+          /*
+           * ----------------------------------------------------------
+           * PAGE 1
+           * STEP-UP SIP SUMMARY
+           * ----------------------------------------------------------
+           */
+
+          addPageHeader(
+            pdf,
+            reportTitle ||
+            "Step-Up SIP Projection Report",
+            logo,
+          );
+
+          addSectionTitle(
+            pdf,
+            "1",
+            "Step-Up SIP Summary",
+            "Key assumptions and illustrative projected outcomes",
+            69,
+          );
+
+          const stepCardW = 54.7;
+          const stepCardH = 31;
+          const stepGap = 5;
+
+          /*
+           * INPUT CARDS
+           */
+
+          addCard(
+            pdf,
+            18,
+            84,
+            stepCardW,
+            stepCardH,
+            "Starting Monthly SIP",
+            formatCurrency(
+              startingSIP,
+            ),
+          );
+
+          addCard(
+            pdf,
+            18 +
+            stepCardW +
+            stepGap,
+            84,
+            stepCardW,
+            stepCardH,
+            "Annual Step-Up",
+            `${annualStepUp}%`,
+            C.gold,
+          );
+
+          addCard(
+            pdf,
+            18 +
+            (stepCardW + stepGap) * 2,
+            84,
+            stepCardW,
+            stepCardH,
+            "Expected Return",
+            `${stepReturn}%`,
+            C.teal,
+          );
+
+          addCard(
+            pdf,
+            18,
+            121,
+            stepCardW,
+            stepCardH,
+            "Investment Period",
+            `${stepYears} ${stepYears === 1
+              ? "Year"
+              : "Years"
+            }`,
+          );
+
+          addCard(
+            pdf,
+            18 +
+            stepCardW +
+            stepGap,
+            121,
+            stepCardW,
+            stepCardH,
+            "Total Invested",
+            formatCurrency(
+              totalInvested,
+            ),
+            C.gold,
+          );
+
+          addCard(
+            pdf,
+            18 +
+            (stepCardW + stepGap) * 2,
+            121,
+            stepCardW,
+            stepCardH,
+            "Projected Value",
+            formatCurrency(
+              projectedValue,
+            ),
+            C.teal,
+          );
+
+          /*
+           * FINAL SIP PANEL
+           */
+
+          pdf.setFillColor(
+            ...C.light,
+          );
+
+          pdf.setDrawColor(
+            ...C.border,
+          );
+
+          pdf.roundedRect(
+            18,
+            161,
+            174,
+            38,
+            4,
+            4,
+            "FD",
+          );
+
+          setFont(
+            pdf,
+            true,
+          );
+
+          pdf.setFontSize(9);
+
+          pdf.setTextColor(
+            ...C.darkGreen,
+          );
+
+          pdf.text(
+            "Step-Up Contribution Impact",
+            25,
+            172,
+          );
+
+          setFont(pdf);
+
+          pdf.setFontSize(7.8);
+
+          pdf.setTextColor(
+            ...C.text,
+          );
+
+          pdf.text(
+            `Final monthly SIP in Year ${stepYears}:`,
+            25,
+            182,
+          );
+
+          setFont(
+            pdf,
+            true,
+          );
+
+          pdf.setFontSize(10);
+
+          pdf.setTextColor(
+            ...C.darkGreen,
+          );
+
+          pdf.text(
+            formatCurrency(
+              finalMonthlySIP,
+            ),
+            25,
+            191,
+          );
+
+          setFont(pdf);
+
+          pdf.setFontSize(7.5);
+
+          pdf.setTextColor(
+            ...C.muted,
+          );
+
+          pdf.text(
+            `Illustrative gain: ${formatCurrency(
+              illustrativeGain,
+            )}`,
+            108,
+            191,
+          );
+
+          addPageFooter(pdf);
+
+          /*
+      * ----------------------------------------------------------
+      * PAGE 2
+      * STEP-UP SIP INVESTMENT VS PROJECTED VALUE
+      * ----------------------------------------------------------
+      */
+
+          pdf.addPage();
+
+          addPageHeader(
+            pdf,
+            reportTitle ||
+            "Step-Up SIP Projection Report",
+            logo,
+          );
+
+          addSectionTitle(
+            pdf,
+            "2",
+            "Step-Up SIP: Investment vs Projected Value",
+            "Cumulative investment compared with the illustrative projected value",
+            69,
+          );
+
+          const chartRows =
+            stepRows
+              .filter(
+                (row) =>
+                  Number.isFinite(row.year) &&
+                  Number.isFinite(row.totalInvested) &&
+                  Number.isFinite(row.estimatedValue),
+              )
+              .slice(0, 60);
+
+          const chartX = 20;
+          const chartY = 86;
+          const chartW = 170;
+          const chartH = 84;
+
+          pdf.setFillColor(...C.white);
+          pdf.setDrawColor(...C.border);
+
+          pdf.roundedRect(
+            chartX,
+            chartY,
+            chartW,
+            chartH,
+            4,
+            4,
+            "FD",
+          );
+
+          const maxChartValue =
+            Math.max(
+              totalInvested,
+              projectedValue,
+              ...chartRows.map((row) =>
+                Math.max(
+                  row.totalInvested,
+                  row.estimatedValue,
+                ),
+              ),
+              1,
+            );
+
+          const plotLeft = chartX + 20;
+          const plotRight =
+            chartX + chartW - 9;
+          const plotTop = chartY + 12;
+          const plotBottom =
+            chartY + chartH - 18;
+
+          const pointCount = Math.max(
+            chartRows.length - 1,
+            1,
+          );
+
+          /*
+           * Grid + axis
+           */
+          pdf.setLineWidth(0.25);
+          pdf.setDrawColor(...C.border);
+
+          for (let i = 0; i <= 4; i++) {
+            const gy =
+              plotBottom -
+              ((plotBottom - plotTop) * i) /
+              4;
+
+            pdf.line(
+              plotLeft,
+              gy,
+              plotRight,
+              gy,
+            );
+
+            const axisValue =
+              (maxChartValue * i) / 4;
+
+            setFont(pdf);
+
+            pdf.setFontSize(6.5);
+            pdf.setTextColor(...C.muted);
+
+            pdf.text(
+              formatStepUpChartAxis(
+                axisValue,
+              ),
+              plotLeft - 3,
+              gy + 2,
+              {
+                align: "right",
+              },
+            );
+          }
+
+          /*
+           * Plot two series
+           */
+          if (chartRows.length > 0) {
+            const point = (
+              index: number,
+              value: number,
+            ) => {
+              const px =
+                plotLeft +
+                (chartRows.length === 1
+                  ? (plotRight - plotLeft) / 2
+                  : (index / pointCount) *
+                  (plotRight - plotLeft));
+
+              const py =
+                plotBottom -
+                (value / maxChartValue) *
+                (plotBottom - plotTop);
+
+              return [px, py] as const;
+            };
+
+            /*
+             * Total Invested
+             */
+            pdf.setDrawColor(
+              ...C.greyLine,
+            );
+            pdf.setLineWidth(1.25);
+
+            for (
+              let i = 1;
+              i < chartRows.length;
+              i++
+            ) {
+              const a = point(
+                i - 1,
+                chartRows[i - 1].totalInvested,
+              );
+
+              const b = point(
+                i,
+                chartRows[i].totalInvested,
+              );
+
+              pdf.line(
+                a[0],
+                a[1],
+                b[0],
+                b[1],
+              );
+            }
+
+            /*
+             * Projected Value
+             */
+            pdf.setDrawColor(...C.green);
+            pdf.setLineWidth(1.6);
+
+            for (
+              let i = 1;
+              i < chartRows.length;
+              i++
+            ) {
+              const a = point(
+                i - 1,
+                chartRows[i - 1].estimatedValue,
+              );
+
+              const b = point(
+                i,
+                chartRows[i].estimatedValue,
+              );
+
+              pdf.line(
+                a[0],
+                a[1],
+                b[0],
+                b[1],
+              );
+            }
+
+            /*
+             * Selected X-axis labels
+             */
+            const labelIndexes =
+              new Set<number>([
+                0,
+                Math.min(
+                  chartRows.length - 1,
+                  4,
+                ),
+                Math.min(
+                  chartRows.length - 1,
+                  9,
+                ),
+                Math.min(
+                  chartRows.length - 1,
+                  14,
+                ),
+                chartRows.length - 1,
+              ]);
+
+            setFont(pdf);
+            pdf.setFontSize(6.5);
+            pdf.setTextColor(...C.muted);
+
+            labelIndexes.forEach(
+              (index) => {
+                const p = point(
+                  index,
+                  0,
+                );
+
+                pdf.text(
+                  `Y${chartRows[index].year}`,
+                  p[0],
+                  plotBottom + 8,
+                  {
+                    align: "center",
+                  },
+                );
+              },
+            );
+          }
+
+          /*
+           * Legend inside chart card
+           */
+          const legendY =
+            chartY + chartH - 6;
+
+          pdf.setFillColor(
+            ...C.greyLine,
+          );
+
+          pdf.circle(
+            chartX + 11,
+            legendY,
+            1.7,
+            "F",
+          );
+
+          setFont(pdf);
+          pdf.setFontSize(7);
+          pdf.setTextColor(...C.text);
+
+          pdf.text(
+            "Total Invested",
+            chartX + 16,
+            legendY + 2,
+          );
+
+          pdf.setFillColor(
+            ...C.green,
+          );
+
+          pdf.circle(
+            chartX + 68,
+            legendY,
+            1.7,
+            "F",
+          );
+
+          pdf.text(
+            "Projected Value",
+            chartX + 73,
+            legendY + 2,
+          );
+
+          /*
+           * Year-end summary
+           */
+          const summaryY =
+            chartY + chartH + 8;
+
+          pdf.setFillColor(
+            ...C.light,
+          );
+
+          pdf.setDrawColor(
+            ...C.border,
+          );
+
+          pdf.roundedRect(
+            18,
+            summaryY,
+            174,
+            29,
+            3,
+            3,
+            "FD",
+          );
+
+          setFont(pdf, true);
+          pdf.setFontSize(8);
+          pdf.setTextColor(...C.darkGreen);
+
+          pdf.text(
+            `Total Invested at Year ${stepYears}`,
+            25,
+            summaryY + 10,
+          );
+
+          pdf.text(
+            `Projected Value at Year ${stepYears}`,
+            112,
+            summaryY + 10,
+          );
+
+          setFont(pdf, true);
+          pdf.setFontSize(9.5);
+
+          pdf.setTextColor(
+            ...C.text,
+          );
+
+          pdf.text(
+            formatCurrency(totalInvested),
+            25,
+            summaryY + 20,
+          );
+
+          pdf.setTextColor(
+            ...C.darkGreen,
+          );
+
+          pdf.text(
+            formatCurrency(projectedValue),
+            112,
+            summaryY + 20,
+          );
+
+          /*
+           * ----------------------------------------------------------
+           * PROJECTED VALUE: INVESTMENT VS ILLUSTRATIVE GAIN
+           * ----------------------------------------------------------
+           */
+
+          addSectionTitle(
+            pdf,
+            "3",
+            "Projected Value: Investment vs Illustrative Gain",
+            "How the projected value is composed under the selected assumptions",
+            176,
+          );
+
+          const compositionY = 194;
+
+          pdf.setFillColor(...C.white);
+          pdf.setDrawColor(...C.border);
+
+          pdf.roundedRect(
+            18,
+            compositionY,
+            174,
+            58,
+            4,
+            4,
+            "FD",
+          );
+
+          const investmentShare =
+            projectedValue > 0
+              ? Math.min(
+                1,
+                Math.max(
+                  0,
+                  totalInvested /
+                  projectedValue,
+                ),
+              )
+              : 0;
+
+          const gainShare =
+            projectedValue > 0
+              ? Math.min(
+                1,
+                Math.max(
+                  0,
+                  illustrativeGain /
+                  projectedValue,
+                ),
+              )
+              : 0;
+
+          /*
+           * Main projected value
+           */
+          setFont(pdf, true);
+          pdf.setFontSize(11);
+          pdf.setTextColor(...C.darkGreen);
+
+          pdf.text(
+            "Projected Value",
+            25,
+            compositionY + 11,
+          );
+
+          setFont(pdf, true);
+          pdf.setFontSize(13);
+
+          pdf.text(
+            formatCurrency(
+              projectedValue,
+            ),
+            25,
+            compositionY + 23,
+          );
+
+          /*
+           * Stacked composition bar
+           */
+          const barX = 25;
+          const barY =
+            compositionY + 29;
+          const barW = 158;
+          const barH = 9;
+
+          pdf.setFillColor(
+            ...C.greyLine,
+          );
+
+          pdf.roundedRect(
+            barX,
+            barY,
+            barW,
+            barH,
+            2,
+            2,
+            "F",
+          );
+
+          if (investmentShare > 0) {
+            pdf.setFillColor(
+              ...C.greyLine,
+            );
+
+            pdf.roundedRect(
+              barX,
+              barY,
+              barW * investmentShare,
+              barH,
+              2,
+              2,
+              "F",
+            );
+          }
+
+          if (gainShare > 0) {
+            pdf.setFillColor(
+              ...C.green,
+            );
+
+            const gainX =
+              barX +
+              barW * investmentShare;
+
+            const gainW =
+              barW * gainShare;
+
+            pdf.roundedRect(
+              gainX,
+              barY,
+              gainW,
+              barH,
+              2,
+              2,
+              "F",
+            );
+          }
+
+          /*
+           * Percentage labels
+           */
+          setFont(pdf, true);
+          pdf.setFontSize(7.2);
+
+          pdf.setTextColor(...C.text);
+
+          pdf.text(
+            `Investment ${(
+              investmentShare * 100
+            ).toFixed(1)}%`,
+            barX,
+            barY + 16,
+          );
+
+          pdf.setTextColor(
+            ...C.darkGreen,
+          );
+
+          pdf.text(
+            `Illustrative Gain ${(
+              gainShare * 100
+            ).toFixed(1)}%`,
+            barX + barW,
+            barY + 16,
+            {
+              align: "right",
+            },
+          );
+
+          /*
+           * Exact values
+           */
+          setFont(pdf);
+          pdf.setFontSize(7.4);
+          pdf.setTextColor(...C.text);
+
+          pdf.text(
+            `Total Invested: ${formatCurrency(
+              totalInvested,
+            )}`,
+            25,
+            compositionY + 51,
+          );
+
+          pdf.setTextColor(
+            ...C.darkGreen,
+          );
+
+          pdf.text(
+            `Illustrative Gain: ${formatCurrency(
+              illustrativeGain,
+            )}`,
+            112,
+            compositionY + 51,
+          );
+
+          addPageFooter(pdf);
+          /*
+           * ----------------------------------------------------------
+           * PAGE 3
+           * YEAR-WISE STEP-UP SIP PROJECTION
+           * ----------------------------------------------------------
+           */
+
+          pdf.addPage();
+
+          addPageHeader(
+            pdf,
+            reportTitle ||
+            "Step-Up SIP Projection Report",
+            logo,
+          );
+
+          addSectionTitle(
+            pdf,
+            "3",
+            "Year-wise Step-Up SIP Projection",
+            "Illustrative contribution and projected value by year",
+            69,
+          );
+
+          const tableX = 18;
+          const tableY = 84;
+          const tableW = 174;
+
+          const tableHeaderH =
+            11;
+
+          const tableRowH =
+            8.5;
+
+          const columns = [
+            {
+              label: "Year",
+              width: 18,
+            },
+            {
+              label: "Monthly SIP",
+              width: 33,
+            },
+            {
+              label: "Annual Investment",
+              width: 40,
+            },
+            {
+              label: "Total Invested",
+              width: 40,
+            },
+            {
+              label: "Projected Value",
+              width: 43,
+            },
+          ];
+
+          /*
+           * Header
+           */
+
+          pdf.setFillColor(
+            ...C.darkGreen,
+          );
+
+          pdf.roundedRect(
+            tableX,
+            tableY,
+            tableW,
+            tableHeaderH,
+            2,
+            2,
+            "F",
+          );
+
+          let columnX =
+            tableX;
+
+          columns.forEach(
+            (column) => {
+              setFont(
+                pdf,
+                true,
+              );
+
+              pdf.setFontSize(
+                6.5,
+              );
+
+              pdf.setTextColor(
+                ...C.white,
+              );
+
+              pdf.text(
+                column.label,
+                columnX +
+                column.width -
+                2.5,
+                tableY + 7,
+                {
+                  align: "right",
+                },
+              );
+
+              columnX +=
+                column.width;
+            },
+          );
+
+          /*
+           * Rows
+           *
+           * A4 page comfortably holds the 20-year Step-Up
+           * table at this row height.
+           */
+
+          stepRows
+            .slice(0, 20)
+            .forEach(
+              (row, index) => {
+                const rowY =
+                  tableY +
+                  tableHeaderH +
+                  index *
+                  tableRowH;
+
+                if (
+                  index % 2 === 0
+                ) {
+                  pdf.setFillColor(
+                    ...C.light,
+                  );
+
+                  pdf.rect(
+                    tableX,
+                    rowY,
+                    tableW,
+                    tableRowH,
+                    "F",
+                  );
+                }
+
+                const values = [
+                  `Y${row.year}`,
+                  formatCurrency(
+                    row.monthlySIP,
+                  ),
+                  formatCurrency(
+                    row.annualInvestment,
+                  ),
+                  formatCurrency(
+                    row.totalInvested,
+                  ),
+                  formatCurrency(
+                    row.estimatedValue,
+                  ),
+                ];
+
+                let currentX =
+                  tableX;
+
+                values.forEach(
+                  (
+                    value,
+                    index,
+                  ) => {
+                    const column =
+                      columns[index];
+
+                    setFont(
+                      pdf,
+                      index === 4,
+                    );
+
+                    pdf.setFontSize(
+                      6.6,
+                    );
+
+                    const valueColor: readonly [
+                      number,
+                      number,
+                      number,
+                    ] =
+                      index === 4
+                        ? C.darkGreen
+                        : C.text;
+
+                    pdf.setTextColor(
+                      ...valueColor,
+                    );
+
+                    pdf.text(
+                      value,
+                      currentX +
+                      column.width -
+                      2.5,
+                      rowY + 5.6,
+                      {
+                        align:
+                          "right",
+                      },
+                    );
+
+                    currentX +=
+                      column.width;
+                  },
+                );
+              },
+            );
+
+          /*
+           * Table note
+           */
+
+          setFont(pdf);
+
+          pdf.setFontSize(
+            7,
+          );
+
+          pdf.setTextColor(
+            ...C.muted,
+          );
+
+          pdf.text(
+            "Values are illustrative and rounded to the nearest rupee.",
+            18,
+            tableY +
+            tableHeaderH +
+            stepRows.slice(
+              0,
+              20,
+            ).length *
+            tableRowH +
+            9,
+          );
+
+          addPageFooter(pdf);
+
+          /*
+           * ----------------------------------------------------------
+           * PAGE 4
+           * STEP-UP IMPACT + LEAD GENERATION
+           * ----------------------------------------------------------
+           */
+
+          pdf.addPage();
+
+          addPageHeader(
+            pdf,
+            reportTitle ||
+            "Step-Up SIP Projection Report",
+            logo,
+          );
+
+          addSectionTitle(
+            pdf,
+            "4",
+            "Step-Up Impact Analysis",
+            "Understanding how the annual step-up changes the contribution pattern",
+            69,
+          );
+
+          const impactCards = [
+            [
+              "Starting Monthly SIP",
+              formatCurrency(
+                startingSIP,
+              ),
+            ],
+            [
+              "Annual Step-Up",
+              `${annualStepUp}%`,
+            ],
+            [
+              "Final Monthly SIP",
+              formatCurrency(
+                finalMonthlySIP,
+              ),
+            ],
+            [
+              "Total Invested",
+              formatCurrency(
+                totalInvested,
+              ),
+            ],
+            [
+              "Illustrative Gain",
+              formatCurrency(
+                illustrativeGain,
+              ),
+            ],
+            [
+              "Projected Value",
+              formatCurrency(
+                projectedValue,
+              ),
+            ],
+          ];
+
+          const impactCardW =
+            54.7;
+
+          const impactCardH =
+            30;
+
+          const impactGap = 5;
+
+          let impactY = 84;
+
+          impactCards.forEach(
+            (
+              [label, value],
+              index,
+            ) => {
+              const column =
+                index % 3;
+
+              const row =
+                Math.floor(
+                  index / 3,
+                );
+
+              if (
+                column === 0 &&
+                row > 0
+              ) {
+                impactY +=
+                  impactCardH +
+                  7;
+              }
+
+              const impactX =
+                18 +
+                column *
+                (impactCardW +
+                  impactGap);
+
+              pdf.setFillColor(
+                ...C.light,
+              );
+
+              pdf.setDrawColor(
+                ...C.border,
+              );
+
+              pdf.roundedRect(
+                impactX,
+                impactY,
+                impactCardW,
+                impactCardH,
+                3,
+                3,
+                "FD",
+              );
+
+              setFont(pdf);
+
+              pdf.setFontSize(
+                7,
+              );
+
+              pdf.setTextColor(
+                ...C.muted,
+              );
+
+              pdf.text(
+                label,
+                impactX + 6,
+                impactY + 10,
+              );
+
+              setFont(
+                pdf,
+                true,
+              );
+
+              pdf.setFontSize(
+                8.8,
+              );
+
+              pdf.setTextColor(
+                ...C.darkGreen,
+              );
+
+              pdf.text(
+                value,
+                impactX + 6,
+                impactY + 21,
+              );
+            },
+          );
+
+          /*
+           * Explanation panel
+           */
+
+          const impactPanelY =
+            impactY +
+            impactCardH +
+            14;
+
+          pdf.setFillColor(
+            236,
+            249,
+            243,
+          );
+
+          pdf.setDrawColor(
+            205,
+            231,
+            218,
+          );
+
+          pdf.roundedRect(
+            18,
+            impactPanelY,
+            174,
+            42,
+            4,
+            4,
+            "FD",
+          );
+
+          setFont(
+            pdf,
+            true,
+          );
+
+          pdf.setFontSize(
+            9,
+          );
+
+          pdf.setTextColor(
+            ...C.darkGreen,
+          );
+
+          pdf.text(
+            "How the Step-Up works",
+            25,
+            impactPanelY + 11,
+          );
+
+          setFont(pdf);
+
+          pdf.setFontSize(
+            7.7,
+          );
+
+          pdf.setTextColor(
+            ...C.text,
+          );
+
+          const impactText =
+            `The monthly SIP begins at ${formatCurrency(
+              startingSIP,
+            )} and increases by ${annualStepUp}% each year. Under the selected assumptions, the monthly contribution reaches approximately ${formatCurrency(
+              finalMonthlySIP,
+            )} in the final investment year.`;
+
+          pdf.text(
+            pdf.splitTextToSize(
+              impactText,
+              158,
+            ),
+            25,
+            impactPanelY + 21,
+            {
+              lineHeightFactor:
+                1.35,
+            },
+          );
+
+          /*
+           * LEAD GENERATION
+           */
+
+          const leadY =
+            impactPanelY +
+            51;
+
+          pdf.setFillColor(
+            0,
+            102,
+            58,
+          );
+
+          pdf.roundedRect(
+            18,
+            leadY,
+            174,
+            55,
+            4,
+            4,
+            "F",
+          );
+
+          setFont(
+            pdf,
+            true,
+          );
+
+          pdf.setFontSize(
+            10,
+          );
+
+          pdf.setTextColor(
+            ...C.white,
+          );
+
+          pdf.text(
+            "Discuss Your Step-Up SIP Requirements",
+            25,
+            leadY + 12,
+          );
+
+          setFont(pdf);
+
+          pdf.setFontSize(
+            7.5,
+          );
+
+          pdf.setTextColor(
+            230,
+            250,
+            240,
+          );
+
+          pdf.text(
+            pdf.splitTextToSize(
+              "For investor education and assistance in understanding this illustration, connect with Luxmi InvestCare.",
+              158,
+            ),
+            25,
+            leadY + 22,
+            {
+              lineHeightFactor:
+                1.35,
+            },
+          );
+
+          setFont(
+            pdf,
+            true,
+          );
+
+          pdf.setFontSize(
+            8,
+          );
+
+          pdf.setTextColor(
+            255,
+            205,
+            70,
+          );
+
+          pdf.text(
+            `WhatsApp: ${BRAND.whatsapp}`,
+            25,
+            leadY + 39,
+          );
+
+          pdf.text(
+            BRAND.email,
+            100,
+            leadY + 39,
+          );
+
+          pdf.text(
+            BRAND.website,
+            25,
+            leadY + 48,
+          );
+
+          pdf.text(
+            BRAND.arn,
+            100,
+            leadY + 48,
+          );
+
+          addPageFooter(pdf);
+
+          /*
+           * ----------------------------------------------------------
+           * PAGE 5
+           * INVESTOR EDUCATION DISCLAIMER
+           * ----------------------------------------------------------
+           */
+
+          pdf.addPage();
+
+          addPageHeader(
+            pdf,
+            reportTitle ||
+            "Step-Up SIP Projection Report",
+            logo,
+          );
+
+          addSectionTitle(
+            pdf,
+            "5",
+            "Investor Education Disclaimer",
+            "Important information regarding this illustrative Step-Up SIP calculator",
+            69,
+          );
+
+          addDisclaimer(
+            pdf,
+          );
+
+          addPageFooter(pdf);
+
+          pdf.save(fileName);
+
+          return;
+        }
         const rows =
           normalizeRows(
             yearlyGrowth,
