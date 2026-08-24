@@ -7,17 +7,27 @@ import {
   Percent,
 } from "lucide-react";
 
+import CalculatorInput from "./CalculatorInput";
+
 interface Props {
   currentAge: number;
   setCurrentAge: (value: number) => void;
+
   educationStartAge: number;
   setEducationStartAge: (value: number) => void;
+
   currentEducationCost: number;
   setCurrentEducationCost: (value: number) => void;
+
   expectedReturn: number;
   setExpectedReturn: (value: number) => void;
+
   educationInflation: number;
   setEducationInflation: (value: number) => void;
+}
+
+function formatINR(value: number): string {
+  return Math.round(value).toLocaleString("en-IN");
 }
 
 export default function ChildEducationInputs({
@@ -32,132 +42,255 @@ export default function ChildEducationInputs({
   educationInflation,
   setEducationInflation,
 }: Props) {
-  const yearsToGoal = Math.max(1, educationStartAge - currentAge);
+  const minimumEducationStartAge =
+    Math.max(
+      1,
+      currentAge + 1,
+    );
+
+  const yearsToGoal =
+    Math.max(
+      1,
+      educationStartAge -
+      currentAge,
+    );
+
+  function handleCurrentAgeChange(
+    nextAge: number,
+  ) {
+    const safeAge = Math.min(
+      17,
+      Math.max(0, nextAge),
+    );
+
+    setCurrentAge(
+      safeAge,
+    );
+
+    /*
+     * Education start age must always be
+     * at least one year above the child's
+     * current age.
+     */
+    if (
+      educationStartAge <=
+      safeAge
+    ) {
+      setEducationStartAge(
+        Math.min(
+          30,
+          safeAge + 1,
+        ),
+      );
+    }
+  }
+
+  function handleEducationStartAgeChange(
+    nextAge: number,
+  ) {
+    const safeAge = Math.min(
+      30,
+      Math.max(
+        minimumEducationStartAge,
+        nextAge,
+      ),
+    );
+
+    setEducationStartAge(
+      safeAge,
+    );
+  }
 
   return (
     <div className="rounded-3xl border border-slate-200 bg-white p-8 shadow-lg">
+
       <h2 className="mb-8 text-2xl font-bold text-slate-900">
         Education Goal Details
       </h2>
 
       <div className="grid gap-8 md:grid-cols-2">
-        <div>
-          <label className="mb-3 flex items-center gap-2 font-semibold text-slate-900">
-            <CalendarDays className="h-5 w-5 text-green-700" />
-            Child's Current Age
-          </label>
 
-          <input
-            type="range"
+        {/* ==================================================
+            CURRENT AGE
+        ================================================== */}
+        <div>
+          <div className="mb-3 flex items-center gap-2 font-semibold text-slate-900">
+            <CalendarDays className="h-5 w-5 text-green-700" />
+            <span>
+              Child's Current Age
+            </span>
+          </div>
+
+          <CalculatorInput
+            label="Child's Current Age"
+            value={currentAge}
             min={0}
             max={17}
-            value={currentAge}
-            onChange={(e) => {
-              const value = Number(e.target.value);
-              setCurrentAge(value);
-
-              if (educationStartAge <= value) {
-                setEducationStartAge(Math.min(30, value + 1));
-              }
-            }}
-            className="w-full accent-green-700"
+            step={1}
+            maxCap={17}
+            allowDynamicRange={false}
+            suffix={
+              currentAge === 1
+                ? " Year"
+                : " Years"
+            }
+            onChange={
+              handleCurrentAgeChange
+            }
+            formatValue={(value) =>
+              String(
+                value,
+              )
+            }
+            hideLabel
           />
-
-          <p className="mt-2 text-xl font-bold text-green-700">
-            {currentAge} Years
-          </p>
         </div>
 
+        {/* ==================================================
+            EDUCATION START AGE
+        ================================================== */}
         <div>
-          <label className="mb-3 flex items-center gap-2 font-semibold text-slate-900">
+          <div className="mb-3 flex items-center gap-2 font-semibold text-slate-900">
             <GraduationCap className="h-5 w-5 text-green-700" />
-            Education Start Age
-          </label>
+            <span>
+              Education Start Age
+            </span>
+          </div>
 
-          <input
-            type="range"
-            min={Math.max(1, currentAge + 1)}
+          <CalculatorInput
+            label="Education Start Age"
+            value={
+              educationStartAge
+            }
+            min={
+              minimumEducationStartAge
+            }
             max={30}
-            value={educationStartAge}
-            onChange={(e) => setEducationStartAge(Number(e.target.value))}
-            className="w-full accent-green-700"
+            step={1}
+            maxCap={30}
+            allowDynamicRange={false}
+            suffix=" Years"
+            onChange={
+              handleEducationStartAgeChange
+            }
+            formatValue={(value) =>
+              String(
+                value,
+              )
+            }
+            hideLabel
           />
 
-          <p className="mt-2 text-xl font-bold text-green-700">
-            Age {educationStartAge}
-          </p>
-
-          <p className="mt-1 text-sm text-slate-500">
-            {yearsToGoal} years available for planning
+          <p className="mt-2 text-sm text-slate-500">
+            {yearsToGoal}{" "}
+            {yearsToGoal === 1
+              ? "year"
+              : "years"}{" "}
+            available for planning
           </p>
         </div>
 
+        {/* ==================================================
+            CURRENT EDUCATION COST
+        ================================================== */}
         <div>
-          <label className="mb-3 flex items-center gap-2 font-semibold text-slate-900">
+          <div className="mb-3 flex items-center gap-2 font-semibold text-slate-900">
             <IndianRupee className="h-5 w-5 text-green-700" />
-            Current Education Cost
-          </label>
+            <span>
+              Current Education Cost
+            </span>
+          </div>
 
-          <input
-            type="range"
+          <CalculatorInput
+            label="Current Education Cost"
+            value={
+              currentEducationCost
+            }
             min={100000}
             max={10000000}
             step={100000}
-            value={currentEducationCost}
-            onChange={(e) =>
-              setCurrentEducationCost(Number(e.target.value))
+            maxCap={100000000}
+            expansionStep={5000000}
+            allowDynamicRange
+            prefix="₹"
+            onChange={
+              setCurrentEducationCost
             }
-            className="w-full accent-green-700"
+            formatValue={formatINR}
+            hideLabel
           />
-
-          <p className="mt-2 text-xl font-bold text-green-700">
-            ₹{currentEducationCost.toLocaleString("en-IN")}
-          </p>
         </div>
 
+        {/* ==================================================
+            EXPECTED RETURN
+        ================================================== */}
         <div>
-          <label className="mb-3 flex items-center gap-2 font-semibold text-slate-900">
+          <div className="mb-3 flex items-center gap-2 font-semibold text-slate-900">
             <Percent className="h-5 w-5 text-green-700" />
-            Expected Investment Return
-          </label>
+            <span>
+              Expected Investment Return
+            </span>
+          </div>
 
-          <input
-            type="range"
+          <CalculatorInput
+            label="Expected Investment Return"
+            value={
+              expectedReturn
+            }
             min={5}
             max={20}
             step={0.5}
-            value={expectedReturn}
-            onChange={(e) => setExpectedReturn(Number(e.target.value))}
-            className="w-full accent-green-700"
+            maxCap={30}
+            expansionStep={2.5}
+            allowDynamicRange
+            suffix="%"
+            onChange={
+              setExpectedReturn
+            }
+            formatValue={(value) =>
+              String(
+                value,
+              )
+            }
+            hideLabel
           />
-
-          <p className="mt-2 text-xl font-bold text-green-700">
-            {expectedReturn}%
-          </p>
         </div>
 
+        {/* ==================================================
+            EDUCATION INFLATION
+        ================================================== */}
         <div className="md:col-span-2">
-          <label className="mb-3 flex items-center gap-2 font-semibold text-slate-900">
+          <div className="mb-3 flex items-center gap-2 font-semibold text-slate-900">
             <Percent className="h-5 w-5 text-green-700" />
-            Education Inflation
-          </label>
+            <span>
+              Education Inflation
+            </span>
+          </div>
 
-          <input
-            type="range"
+          <CalculatorInput
+            label="Education Inflation"
+            value={
+              educationInflation
+            }
             min={2}
             max={12}
             step={0.5}
-            value={educationInflation}
-            onChange={(e) =>
-              setEducationInflation(Number(e.target.value))
+            maxCap={15}
+            expansionStep={2.5}
+            allowDynamicRange
+            suffix="%"
+            onChange={
+              setEducationInflation
             }
-            className="w-full accent-green-700"
+            formatValue={(value) =>
+              String(
+                value,
+              )
+            }
+            hideLabel
           />
-
-          <p className="mt-2 text-xl font-bold text-green-700">
-            {educationInflation}%
-          </p>
         </div>
+
       </div>
     </div>
   );
