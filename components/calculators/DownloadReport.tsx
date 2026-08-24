@@ -1213,7 +1213,7 @@ function addDisclaimer(pdf: jsPDF) {
     "Mutual Fund investments are subject to market risks. Read all scheme related documents carefully before investing.",
     "Past performance does not guarantee future returns.",
     "The projected values shown in this report are not guaranteed returns and should not be interpreted as a promise of future performance.",
-    "This calculator output should not by itself be construed as personalised investment advice.",
+    "This calculator is an educational illustration and should not be treated as a recommendation to invest in any particular scheme.",
   ];
 
   /*
@@ -1350,7 +1350,7 @@ function addSWPDisclaimer(pdf: jsPDF) {
     "Mutual Fund investments are subject to market risks. Read all scheme related documents carefully before investing.",
     "The projected values shown in this report are illustrative and are not guaranteed returns.",
     "The calculator does not account for all possible market conditions, changes in withdrawal requirements or taxation implications.",
-    "This calculator output should not by itself be construed as personalised investment advice.",
+    "This calculator is an educational illustration and should not be treated as a recommendation to invest in any particular scheme.",
   ];
 
   let y = 82;
@@ -5973,7 +5973,7 @@ export default function DownloadReport({
             ),
           ],
           [
-            "Return on Investment",
+            "Estimated Gain vs Contributions",
             `${roi.toFixed(1)}%`,
           ],
         ];
