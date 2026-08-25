@@ -32,6 +32,10 @@ const CONTACT = {
     website: "https://www.luxmiInvestCare.com",
 };
 
+function formatINR(value: number): string {
+    return `₹${Math.round(value).toLocaleString("en-IN")}`;
+}
+
 export default function ConnectWithLuxmi({
     calculatorType,
     reportTitle,
@@ -41,21 +45,21 @@ export default function ConnectWithLuxmi({
     estimatedReturns,
     maturityValue,
 }: ConnectWithLuxmiProps) {
-
     function record(
-        action: "whatsapp" | "call" | "email" | "website"
+        action:
+            | "whatsapp"
+            | "call"
+            | "email"
+            | "website",
     ) {
         recordReportShare({
             calculatorType,
             reportTitle,
-
             investment,
             years,
             annualReturn,
-
             estimatedReturns,
             maturityValue,
-
             action,
         });
     }
@@ -66,28 +70,31 @@ export default function ConnectWithLuxmi({
         const message = encodeURIComponent(
             `Hello Luxmi InvestCare,
 
-I would like to discuss my ${reportTitle}.
+I would like information related to this investor education illustration.
 
-Investment: ₹${Math.round(investment).toLocaleString("en-IN")}
+Report: ${reportTitle}
+
+Investment: ${formatINR(investment)}
 Investment Period: ${years} Years
-Expected Return: ${annualReturn}%
-Estimated Returns: ₹${Math.round(estimatedReturns).toLocaleString("en-IN")}
-Estimated Maturity Value: ₹${Math.round(maturityValue).toLocaleString("en-IN")}
+Expected Return Assumption: ${annualReturn}%
+Illustrative Returns: ${formatINR(estimatedReturns)}
+Illustrative Projected Value: ${formatINR(maturityValue)}
 
-Please guide me regarding my investment plan.`
+Please share investor education and information related to this illustration.`,
         );
 
         window.open(
             `https://wa.me/${CONTACT.whatsapp}?text=${message}`,
             "_blank",
-            "noopener,noreferrer"
+            "noopener,noreferrer",
         );
     }
 
     function openCall() {
         record("call");
 
-        window.location.href = CONTACT.phone;
+        window.location.href =
+            CONTACT.phone;
     }
 
     function openEmail() {
@@ -95,20 +102,20 @@ Please guide me regarding my investment plan.`
 
         window.location.href =
             `${CONTACT.email}?subject=${encodeURIComponent(
-                `${reportTitle} - Investment Enquiry`
+                `${reportTitle} - Investor Education Enquiry`,
             )}&body=${encodeURIComponent(
                 `Hello Luxmi InvestCare,
 
-I would like to discuss my investment projection.
+I would like information related to this investor education illustration.
 
 Report: ${reportTitle}
-Investment: ₹${Math.round(investment).toLocaleString("en-IN")}
+Investment: ${formatINR(investment)}
 Investment Period: ${years} Years
-Expected Return: ${annualReturn}%
-Estimated Returns: ₹${Math.round(estimatedReturns).toLocaleString("en-IN")}
-Estimated Maturity Value: ₹${Math.round(maturityValue).toLocaleString("en-IN")}
+Expected Return Assumption: ${annualReturn}%
+Illustrative Returns: ${formatINR(estimatedReturns)}
+Illustrative Projected Value: ${formatINR(maturityValue)}
 
-Please guide me regarding my investment plan.`
+Please share investor education and information related to this illustration.`,
             )}`;
     }
 
@@ -118,7 +125,7 @@ Please guide me regarding my investment plan.`
         window.open(
             CONTACT.website,
             "_blank",
-            "noopener,noreferrer"
+            "noopener,noreferrer",
         );
     }
 
@@ -128,7 +135,7 @@ Please guide me regarding my investment plan.`
             <div className="text-center">
 
                 <p className="text-sm font-semibold uppercase tracking-wide text-green-700">
-                    Need Help With Your Investment Plan?
+                    Need Help Understanding This Illustration?
                 </p>
 
                 <h3 className="mt-2 text-2xl font-bold text-slate-900">
@@ -136,8 +143,8 @@ Please guide me regarding my investment plan.`
                 </h3>
 
                 <p className="mx-auto mt-2 max-w-2xl text-sm leading-6 text-slate-600">
-                    Discuss your investment goals, understand your options and get
-                    investor education support.
+                    Get investor education and information about
+                    investment products related to this illustration.
                 </p>
 
             </div>

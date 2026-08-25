@@ -8,6 +8,7 @@ interface LeadCaptureFormProps {
         mobile: string;
         email: string;
     }) => void;
+
     onCancel?: () => void;
 }
 
@@ -15,43 +16,88 @@ export default function LeadCaptureForm({
     onSubmit,
     onCancel,
 }: LeadCaptureFormProps) {
-    const [customerName, setCustomerName] = useState("");
-    const [mobile, setMobile] = useState("");
-    const [email, setEmail] = useState("");
+    const [
+        customerName,
+        setCustomerName,
+    ] = useState("");
 
-    const [error, setError] = useState("");
+    const [
+        mobile,
+        setMobile,
+    ] = useState("");
 
-    function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    const [
+        email,
+        setEmail,
+    ] = useState("");
+
+    const [
+        error,
+        setError,
+    ] = useState("");
+
+    function handleSubmit(
+        event: React.FormEvent<HTMLFormElement>,
+    ) {
         event.preventDefault();
 
-        const cleanMobile = mobile.replace(/\D/g, "");
+        const cleanMobile =
+            mobile.replace(
+                /\D/g,
+                "",
+            );
 
         if (!customerName.trim()) {
-            setError("Please enter your name.");
+            setError(
+                "Please enter your name.",
+            );
             return;
         }
 
-        if (cleanMobile.length !== 10) {
-            setError("Please enter a valid 10-digit mobile number.");
+        if (
+            cleanMobile.length !==
+            10
+        ) {
+            setError(
+                "Please enter a valid 10-digit mobile number.",
+            );
             return;
         }
 
-        if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-            setError("Please enter a valid email address.");
+        if (
+            email &&
+            !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(
+                email,
+            )
+        ) {
+            setError(
+                "Please enter a valid email address.",
+            );
             return;
         }
 
         setError("");
 
         onSubmit({
-            customerName: customerName.trim(),
-            mobile: cleanMobile,
-            email: email.trim(),
+            customerName:
+                customerName.trim(),
+
+            mobile:
+                cleanMobile,
+
+            email:
+                email.trim(),
         });
     }
 
     return (
-        <form onSubmit={handleSubmit} className="space-y-5">
+        <form
+            onSubmit={
+                handleSubmit
+            }
+            className="space-y-5"
+        >
+
             <div>
                 <label className="mb-2 block text-sm font-semibold text-slate-800">
                     Name
@@ -59,8 +105,16 @@ export default function LeadCaptureForm({
 
                 <input
                     type="text"
-                    value={customerName}
-                    onChange={(event) => setCustomerName(event.target.value)}
+                    value={
+                        customerName
+                    }
+                    onChange={(
+                        event,
+                    ) =>
+                        setCustomerName(
+                            event.target.value,
+                        )
+                    }
                     placeholder="Enter your name"
                     className="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm outline-none transition focus:border-green-600 focus:ring-2 focus:ring-green-100"
                     autoComplete="name"
@@ -69,14 +123,29 @@ export default function LeadCaptureForm({
 
             <div>
                 <label className="mb-2 block text-sm font-semibold text-slate-800">
-                    Mobile Number <span className="text-red-600">*</span>
+                    Mobile Number{" "}
+                    <span className="text-red-600">
+                        *
+                    </span>
                 </label>
 
                 <input
                     type="tel"
                     value={mobile}
-                    onChange={(event) =>
-                        setMobile(event.target.value.replace(/\D/g, "").slice(0, 10))
+                    onChange={(
+                        event,
+                    ) =>
+                        setMobile(
+                            event.target.value
+                                .replace(
+                                    /\D/g,
+                                    "",
+                                )
+                                .slice(
+                                    0,
+                                    10,
+                                ),
+                        )
                     }
                     placeholder="10-digit mobile number"
                     className="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm outline-none transition focus:border-green-600 focus:ring-2 focus:ring-green-100"
@@ -94,7 +163,13 @@ export default function LeadCaptureForm({
                 <input
                     type="email"
                     value={email}
-                    onChange={(event) => setEmail(event.target.value)}
+                    onChange={(
+                        event,
+                    ) =>
+                        setEmail(
+                            event.target.value,
+                        )
+                    }
                     placeholder="you@example.com"
                     className="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm outline-none transition focus:border-green-600 focus:ring-2 focus:ring-green-100"
                     autoComplete="email"
@@ -108,10 +183,13 @@ export default function LeadCaptureForm({
             )}
 
             <div className="flex flex-col gap-3 sm:flex-row sm:justify-end">
+
                 {onCancel && (
                     <button
                         type="button"
-                        onClick={onCancel}
+                        onClick={
+                            onCancel
+                        }
                         className="rounded-xl border border-slate-300 px-5 py-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-50"
                     >
                         Cancel
@@ -124,12 +202,14 @@ export default function LeadCaptureForm({
                 >
                     Continue
                 </button>
+
             </div>
 
             <p className="text-xs leading-5 text-slate-500">
-                Your details help Luxmi InvestCare respond to your investment
-                education and planning enquiry.
+                Your details help Luxmi InvestCare respond to your
+                investor education and information enquiry.
             </p>
+
         </form>
     );
 }
