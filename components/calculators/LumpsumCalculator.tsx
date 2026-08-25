@@ -27,7 +27,7 @@ import LumpsumBreakdown from "./LumpsumBreakdown";
 import LumpsumInsights from "./LumpsumInsights";
 import CalculatorShare from "./CalculatorShare";
 import CalculatorHistory from "./CalculatorHistory";
-import RangeControl from "./RangeControl";
+import CalculatorInput from "./CalculatorInput";
 
 function formatCurrency(
     value: number,
@@ -94,8 +94,8 @@ export default function LumpsumCalculator() {
             <div className="container-custom">
 
                 {/* ==================================================
-            HERO
-        ================================================== */}
+                    HERO
+                ================================================== */}
                 <div className="mx-auto mb-16 max-w-3xl text-center">
 
                     <span className="inline-flex rounded-full bg-green-100 px-5 py-2 text-sm font-semibold text-green-700">
@@ -114,16 +114,17 @@ export default function LumpsumCalculator() {
                         investment using compound growth
                         assumptions.
                     </p>
+
                 </div>
 
                 {/* ==================================================
-            MAIN
-        ================================================== */}
+                    MAIN
+                ================================================== */}
                 <div className="grid gap-12 lg:grid-cols-2">
 
                     {/* ==================================================
-              LEFT — INPUTS
-          ================================================== */}
+                        LEFT — INPUTS
+                    ================================================== */}
                     <div className="card p-8">
 
                         <h2 className="mb-8 text-2xl font-bold">
@@ -133,12 +134,16 @@ export default function LumpsumCalculator() {
                         {/* INVESTMENT AMOUNT */}
                         <div className="mb-8">
 
-                            <label className="mb-3 flex items-center gap-2 font-semibold">
+                            <div className="mb-3 flex items-center gap-2">
                                 <IndianRupee className="h-5 w-5 text-green-700" />
-                                Investment Amount
-                            </label>
 
-                            <RangeControl
+                                <label className="font-semibold">
+                                    Investment Amount
+                                </label>
+                            </div>
+
+                            <CalculatorInput
+                                label="Investment Amount"
                                 value={
                                     investment
                                 }
@@ -155,18 +160,24 @@ export default function LumpsumCalculator() {
                                 formatValue={
                                     formatINRNumber
                                 }
+                                hideLabel
                             />
+
                         </div>
 
                         {/* EXPECTED RETURN */}
                         <div className="mb-8">
 
-                            <label className="mb-3 flex items-center gap-2 font-semibold">
+                            <div className="mb-3 flex items-center gap-2">
                                 <Percent className="h-5 w-5 text-green-700" />
-                                Expected Annual Return
-                            </label>
 
-                            <RangeControl
+                                <label className="font-semibold">
+                                    Expected Annual Return
+                                </label>
+                            </div>
+
+                            <CalculatorInput
+                                label="Expected Annual Return"
                                 value={
                                     annualReturn
                                 }
@@ -187,18 +198,24 @@ export default function LumpsumCalculator() {
                                         value,
                                     )
                                 }
+                                hideLabel
                             />
+
                         </div>
 
                         {/* INVESTMENT PERIOD */}
                         <div>
 
-                            <label className="mb-3 flex items-center gap-2 font-semibold">
+                            <div className="mb-3 flex items-center gap-2">
                                 <CalendarDays className="h-5 w-5 text-green-700" />
-                                Investment Period
-                            </label>
 
-                            <RangeControl
+                                <label className="font-semibold">
+                                    Investment Period
+                                </label>
+                            </div>
+
+                            <CalculatorInput
+                                label="Investment Period"
                                 value={
                                     years
                                 }
@@ -212,7 +229,8 @@ export default function LumpsumCalculator() {
                                     setYears
                                 }
                                 suffix={
-                                    years === 1
+                                    years ===
+                                        1
                                         ? " Year"
                                         : " Years"
                                 }
@@ -223,13 +241,16 @@ export default function LumpsumCalculator() {
                                         value,
                                     )
                                 }
+                                hideLabel
                             />
+
                         </div>
+
                     </div>
 
                     {/* ==================================================
-              RIGHT — RESULTS
-          ================================================== */}
+                        RIGHT — RESULTS
+                    ================================================== */}
                     <div className="space-y-6">
 
                         <CalculatorResultCard
@@ -269,12 +290,14 @@ export default function LumpsumCalculator() {
                                 />
                             }
                         />
+
                     </div>
+
                 </div>
 
                 {/* ==================================================
-            CHART
-        ================================================== */}
+                    CHART
+                ================================================== */}
                 <LumpsumChart
                     data={
                         result.yearlyGrowth
@@ -282,8 +305,8 @@ export default function LumpsumCalculator() {
                 />
 
                 {/* ==================================================
-            BREAKDOWN
-        ================================================== */}
+                    BREAKDOWN
+                ================================================== */}
                 <LumpsumBreakdown
                     investment={
                         result.investment
@@ -297,8 +320,8 @@ export default function LumpsumCalculator() {
                 />
 
                 {/* ==================================================
-            INSIGHTS
-        ================================================== */}
+                    INSIGHTS
+                ================================================== */}
                 <LumpsumInsights
                     investment={
                         result.investment
@@ -312,12 +335,14 @@ export default function LumpsumCalculator() {
                     annualReturn={
                         annualReturn
                     }
-                    years={years}
+                    years={
+                        years
+                    }
                 />
 
                 {/* ==================================================
-            YEAR-WISE TABLE
-        ================================================== */}
+                    YEAR-WISE TABLE
+                ================================================== */}
                 <LumpsumGrowthTable
                     investment={
                         investment
@@ -325,12 +350,14 @@ export default function LumpsumCalculator() {
                     annualReturn={
                         annualReturn
                     }
-                    years={years}
+                    years={
+                        years
+                    }
                 />
 
                 {/* ==================================================
-            REPORT / SHARE / HISTORY
-        ================================================== */}
+                    REPORT / SHARE / HISTORY
+                ================================================== */}
                 <div className="mt-10 flex flex-wrap justify-center gap-4">
 
                     <DownloadReport
@@ -341,7 +368,9 @@ export default function LumpsumCalculator() {
                         annualReturn={
                             annualReturn
                         }
-                        years={years}
+                        years={
+                            years
+                        }
                         investedAmount={
                             result.investment
                         }
@@ -378,11 +407,12 @@ Estimated Corpus: ₹${Math.round(
                             result.maturityValue,
                         )}
                     />
+
                 </div>
 
                 {/* ==================================================
-            CTA
-        ================================================== */}
+                    CTA
+                ================================================== */}
                 <CalculatorCTA />
 
             </div>

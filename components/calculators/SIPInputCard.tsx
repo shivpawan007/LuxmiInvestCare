@@ -1,6 +1,6 @@
 "use client";
 
-import RangeControl from "./RangeControl";
+import CalculatorInput from "./CalculatorInput";
 
 interface SIPInputCardProps {
     title: string;
@@ -31,7 +31,8 @@ export default function SIPInputCard({
                 {title}
             </h3>
 
-            <RangeControl
+            <CalculatorInput
+                label={title}
                 value={value}
                 min={min}
                 max={max}
@@ -40,6 +41,9 @@ export default function SIPInputCard({
                 prefix={prefix}
                 suffix={suffix}
                 formatValue={formatValue}
+                hideLabel
+                allowDynamicRange
+                expansionStep={step}
             />
         </div>
     );
