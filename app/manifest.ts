@@ -5,14 +5,12 @@ export default function manifest(): MetadataRoute.Manifest {
         name: "Luxmi InvestCare",
         short_name: "Luxmi",
         description:
-            "AMFI Registered Mutual Fund Distributor helping investors pursue long-term financial goals.",
+            "Investor education, mutual fund and SIP information, insurance information and interactive investment calculators.",
 
         start_url: "/",
-
         display: "standalone",
 
         background_color: "#ffffff",
-
         theme_color: "#047857",
 
         icons: [
