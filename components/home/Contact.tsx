@@ -18,7 +18,6 @@ export default function Contact() {
             <div className="container-custom">
 
                 {/* Section Heading */}
-
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -26,30 +25,28 @@ export default function Contact() {
                     viewport={{ once: true }}
                     className="mx-auto mb-20 max-w-3xl text-center"
                 >
-
-                    <span className="inline-flex items-center rounded-full border border-green-200 bg-green-50 px-5 py-2 text-sm font-semibold text-green-700 shadow-sm">
+                    <span className="inline-flex items-center rounded-full border border-green-200 bg-green-50 px-5 py-2 text-sm font-semibold text-green-700">
                         CONTACT US
                     </span>
 
                     <h2 className="section-title mt-8">
-                        Let's Start Your
+                        Let's Continue Your
                         <span className="block text-green-700">
-                            Investment Journey
+                            Investor Education Journey
                         </span>
                     </h2>
 
                     <p className="section-subtitle mx-auto">
-                        Whether you're beginning your investment journey or planning
-                        for long-term financial goals, we're here to help through
-                        education, transparency and disciplined financial guidance.
+                        Whether you are exploring your first investment
+                        or learning about long-term investing, connect
+                        with us for investor education, transparency and
+                        product information.
                     </p>
-
                 </motion.div>
 
                 <div className="grid gap-12 lg:grid-cols-2">
 
                     {/* Contact Form */}
-
                     <motion.div
                         initial={{ opacity: 0, x: -40 }}
                         whileInView={{ opacity: 1, x: 0 }}
@@ -57,15 +54,19 @@ export default function Contact() {
                         viewport={{ once: true }}
                         className="card p-8"
                     >
-
                         <h3 className="mb-8 text-3xl font-bold text-slate-900">
                             Send Us a Message
                         </h3>
 
-                        <form className="space-y-6">
-
+                        <form
+                            onSubmit={(event) => {
+                                event.preventDefault();
+                                window.location.href =
+                                    "/contact";
+                            }}
+                            className="space-y-6"
+                        >
                             <div>
-
                                 <label className="mb-2 block font-medium text-slate-700">
                                     Full Name
                                 </label>
@@ -75,11 +76,9 @@ export default function Contact() {
                                     placeholder="Enter your full name"
                                     className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-green-600"
                                 />
-
                             </div>
 
                             <div>
-
                                 <label className="mb-2 block font-medium text-slate-700">
                                     Mobile Number
                                 </label>
@@ -89,11 +88,9 @@ export default function Contact() {
                                     placeholder="Enter your mobile number"
                                     className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-green-600"
                                 />
-
                             </div>
 
                             <div>
-
                                 <label className="mb-2 block font-medium text-slate-700">
                                     Email Address
                                 </label>
@@ -103,38 +100,30 @@ export default function Contact() {
                                     placeholder="Enter your email"
                                     className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-green-600"
                                 />
-
                             </div>
 
                             <div>
-
                                 <label className="mb-2 block font-medium text-slate-700">
                                     Message
                                 </label>
 
                                 <textarea
                                     rows={5}
-                                    placeholder="Tell us how we can help you..."
+                                    placeholder="Tell us what information you are looking for..."
                                     className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-green-600"
                                 />
-
                             </div>
-
-                            {/* Submit Button */}
 
                             <button
                                 type="submit"
                                 className="btn-primary w-full"
                             >
-                                Send Message
+                                Continue to Contact Page
                             </button>
-
                         </form>
-
                     </motion.div>
 
                     {/* Contact Information */}
-
                     <motion.div
                         initial={{ opacity: 0, x: 40 }}
                         whileInView={{ opacity: 1, x: 0 }}
@@ -144,7 +133,6 @@ export default function Contact() {
                     >
 
                         {/* Office Card */}
-
                         <div className="card p-8">
 
                             <h3 className="mb-8 text-3xl font-bold text-slate-900">
@@ -153,12 +141,13 @@ export default function Contact() {
 
                             <div className="space-y-6">
 
-                                <div className="flex items-start gap-4">
-
+                                <a
+                                    href="tel:+919650060044"
+                                    className="flex items-start gap-4"
+                                >
                                     <Phone className="mt-1 h-6 w-6 text-green-700" />
 
                                     <div>
-
                                         <h4 className="font-semibold text-slate-900">
                                             Phone
                                         </h4>
@@ -166,17 +155,16 @@ export default function Contact() {
                                         <p className="text-slate-600">
                                             +91 9650060044
                                         </p>
-
                                     </div>
+                                </a>
 
-                                </div>
-
-                                <div className="flex items-start gap-4">
-
+                                <a
+                                    href="mailto:info@luxmiinvestcare.com"
+                                    className="flex items-start gap-4"
+                                >
                                     <Mail className="mt-1 h-6 w-6 text-green-700" />
 
                                     <div>
-
                                         <h4 className="font-semibold text-slate-900">
                                             Email
                                         </h4>
@@ -184,17 +172,13 @@ export default function Contact() {
                                         <p className="text-slate-600">
                                             info@luxmiinvestcare.com
                                         </p>
-
                                     </div>
-
-                                </div>
+                                </a>
 
                                 <div className="flex items-start gap-4">
-
                                     <MapPin className="mt-1 h-6 w-6 text-green-700" />
 
                                     <div>
-
                                         <h4 className="font-semibold text-slate-900">
                                             Office Address
                                         </h4>
@@ -208,17 +192,13 @@ export default function Contact() {
                                             <br />
                                             Faridabad – 121005
                                         </p>
-
                                     </div>
-
                                 </div>
 
                                 <div className="flex items-start gap-4">
-
                                     <Clock className="mt-1 h-6 w-6 text-green-700" />
 
                                     <div>
-
                                         <h4 className="font-semibold text-slate-900">
                                             Business Hours
                                         </h4>
@@ -228,17 +208,13 @@ export default function Contact() {
                                             <br />
                                             9:30 AM – 6:30 PM
                                         </p>
-
                                     </div>
-
                                 </div>
 
                             </div>
-
                         </div>
 
                         {/* WhatsApp CTA */}
-
                         <div className="card bg-gradient-to-r from-green-700 to-emerald-600 p-8 text-white">
 
                             <div className="flex items-center gap-4">
@@ -246,16 +222,15 @@ export default function Contact() {
                                 <MessageCircle className="h-10 w-10" />
 
                                 <div>
-
                                     <h3 className="text-2xl font-bold">
                                         Chat on WhatsApp
                                     </h3>
 
                                     <p className="mt-2 text-green-50">
-                                        Connect with us for investor education and financial
-                                        guidance.
+                                        Connect with us for investor education,
+                                        product information and general
+                                        investment-related enquiries.
                                     </p>
-
                                 </div>
 
                             </div>
@@ -272,11 +247,8 @@ export default function Contact() {
                         </div>
 
                         {/* Google Map Placeholder */}
-
                         <div className="card overflow-hidden">
-
                             <div className="flex h-72 items-center justify-center bg-slate-100">
-
                                 <div className="text-center">
 
                                     <MapPin className="mx-auto mb-4 h-12 w-12 text-green-700" />
@@ -291,9 +263,7 @@ export default function Contact() {
                                     </p>
 
                                 </div>
-
                             </div>
-
                         </div>
 
                     </motion.div>

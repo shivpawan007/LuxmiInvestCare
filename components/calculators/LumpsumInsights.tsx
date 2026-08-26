@@ -23,25 +23,28 @@ export default function LumpsumInsights({
     annualReturn,
     years,
 }: LumpsumInsightsProps) {
-    const wealthPercent = ((returns / investment) * 100).toFixed(0);
+    const growthPercent =
+        investment > 0
+            ? ((returns / investment) * 100).toFixed(0)
+            : "0";
 
     return (
         <section className="mt-16">
-
-            <div className="rounded-3xl bg-gradient-to-br from-green-50 to-white border border-green-100 p-10">
+            <div className="rounded-3xl border border-green-100 bg-gradient-to-br from-green-50 to-white p-10">
 
                 <h2 className="text-3xl font-bold text-slate-900">
                     Investment Insights
                 </h2>
 
-                <p className="mt-3 text-slate-600 leading-8">
-                    Based on your selected investment amount and expected annual return,
-                    here is an illustration of your potential wealth creation.
+                <p className="mt-3 leading-8 text-slate-600">
+                    Based on your selected investment amount and expected
+                    annual return, here is an illustrative projection of
+                    potential growth.
                 </p>
 
                 <div className="mt-10 grid gap-6 md:grid-cols-2">
 
-                    <div className="rounded-2xl bg-white p-6 shadow-sm border">
+                    <div className="rounded-2xl border bg-white p-6 shadow-sm">
                         <h3 className="font-semibold text-green-700">
                             Initial Investment
                         </h3>
@@ -51,9 +54,9 @@ export default function LumpsumInsights({
                         </p>
                     </div>
 
-                    <div className="rounded-2xl bg-white p-6 shadow-sm border">
+                    <div className="rounded-2xl border bg-white p-6 shadow-sm">
                         <h3 className="font-semibold text-green-700">
-                            Estimated Corpus
+                            Estimated Maturity Value
                         </h3>
 
                         <p className="mt-3 text-3xl font-bold">
@@ -61,9 +64,9 @@ export default function LumpsumInsights({
                         </p>
                     </div>
 
-                    <div className="rounded-2xl bg-white p-6 shadow-sm border">
+                    <div className="rounded-2xl border bg-white p-6 shadow-sm">
                         <h3 className="font-semibold text-green-700">
-                            Wealth Created
+                            Estimated Returns
                         </h3>
 
                         <p className="mt-3 text-3xl font-bold text-green-700">
@@ -71,13 +74,13 @@ export default function LumpsumInsights({
                         </p>
                     </div>
 
-                    <div className="rounded-2xl bg-white p-6 shadow-sm border">
+                    <div className="rounded-2xl border bg-white p-6 shadow-sm">
                         <h3 className="font-semibold text-green-700">
-                            Overall Growth
+                            Illustrative Growth
                         </h3>
 
                         <p className="mt-3 text-3xl font-bold text-green-700">
-                            {wealthPercent}%
+                            {growthPercent}%
                         </p>
                     </div>
 
@@ -91,21 +94,25 @@ export default function LumpsumInsights({
 
                     <p className="mt-4 leading-8 text-green-50">
                         A one-time investment of{" "}
-                        <strong>{formatCurrency(investment)}</strong>{" "}
+                        <strong>
+                            {formatCurrency(investment)}
+                        </strong>{" "}
                         growing at an assumed annual return of{" "}
                         <strong>{annualReturn}%</strong>{" "}
                         for{" "}
                         <strong>{years} years</strong>{" "}
                         may grow to approximately{" "}
-                        <strong>{formatCurrency(maturity)}</strong>.
-                        This illustration is for educational purposes only and actual
-                        returns may vary depending on market performance.
+                        <strong>
+                            {formatCurrency(maturity)}
+                        </strong>.
+                        This illustration is for educational purposes only
+                        and actual returns may vary depending on market
+                        performance.
                     </p>
 
                 </div>
 
             </div>
-
         </section>
     );
 }

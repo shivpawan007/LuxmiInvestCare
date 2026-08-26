@@ -12,8 +12,6 @@ import ScrollToTop from "@/components/common/ScrollToTop";
 
 
 export default function Home() {
-  console.log("HOME PAGE LOADED");
-
   return (
     <>
 
