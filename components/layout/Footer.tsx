@@ -16,19 +16,20 @@ import {
 } from "react-icons/fa";
 
 const quickLinks = [
-    { label: "Home", href: "/#home" },
+    { label: "Home", href: "/" },
     { label: "About", href: "/#about" },
-    { label: "Services", href: "/#services" },
-    { label: "Investor Education", href: "/#investor-education" },
-    { label: "Contact", href: "/#contact" },
+    { label: "Services", href: "/services" },
+    { label: "Investor Education", href: "/investor-education" },
+    { label: "Contact", href: "/contact" },
 ];
 
 const services = [
     "Mutual Funds",
-    "SIP Planning",
-    "Goal-Based Investing",
-    "Portfolio Review",
+    "SIP Investments",
+    "Life Insurance",
+    "Health Insurance",
     "Investor Education",
+    "Investor Support",
 ];
 
 export default function Footer() {
@@ -40,9 +41,7 @@ export default function Footer() {
                 <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
 
                     {/* Company */}
-
                     <div>
-
                         <Image
                             src="/images/Logo.png"
                             alt="Luxmi InvestCare"
@@ -53,96 +52,78 @@ export default function Footer() {
                         />
 
                         <p className="leading-8 text-slate-300">
-                            Helping investors pursue long-term financial goals through
-                            investor education, disciplined investing and transparent
-                            financial guidance.
+                            Helping investors understand investment products
+                            through investor education, transparent information
+                            and disciplined investing.
                         </p>
-
                     </div>
 
                     {/* Quick Links */}
-
                     <div>
-
                         <h3 className="mb-6 text-xl font-bold">
                             Quick Links
                         </h3>
 
                         <ul className="space-y-4">
-
                             {quickLinks.map((link) => (
-
                                 <li key={link.label}>
-
                                     <Link
                                         href={link.href}
                                         className="transition duration-300 hover:text-green-400"
                                     >
                                         {link.label}
                                     </Link>
-
                                 </li>
-
                             ))}
-
                         </ul>
-
                     </div>
 
                     {/* Services */}
-
                     <div>
-
                         <h3 className="mb-6 text-xl font-bold">
-                            Our Services
+                            Services
                         </h3>
 
                         <ul className="space-y-4 text-slate-300">
-
                             {services.map((service) => (
-
                                 <li key={service}>
                                     {service}
                                 </li>
-
                             ))}
-
                         </ul>
-
                     </div>
 
                     {/* Contact */}
-
                     <div>
-
                         <h3 className="mb-6 text-xl font-bold">
                             Contact Us
                         </h3>
 
                         <div className="space-y-5">
 
-                            <div className="flex items-start gap-3">
-
+                            <a
+                                href="tel:+919650060044"
+                                className="flex items-start gap-3 transition hover:text-green-400"
+                            >
                                 <Phone className="mt-1 h-5 w-5 text-green-400" />
 
                                 <span>
                                     +91 9650060044
                                 </span>
+                            </a>
 
-                            </div>
-
-                            <div className="flex items-start gap-3">
-
+                            <a
+                                href="mailto:info@luxmiinvestcare.com"
+                                className="flex items-start gap-3 transition hover:text-green-400"
+                            >
                                 <Mail className="mt-1 h-5 w-5 text-green-400" />
 
                                 <span className="break-all">
                                     info@luxmiinvestcare.com
                                 </span>
-
-                            </div>
+                            </a>
 
                             <div className="flex items-start gap-3">
-
                                 <MapPin className="mt-1 h-5 w-5 text-green-400" />
 
                                 <span>
@@ -154,13 +135,11 @@ export default function Footer() {
                                     <br />
                                     Faridabad – 121005
                                 </span>
-
                             </div>
 
                         </div>
 
                         {/* Social Icons */}
-
                         <div className="mt-8 flex gap-5">
 
                             <a
@@ -200,20 +179,19 @@ export default function Footer() {
                             </a>
 
                         </div>
-
                     </div>
 
                 </div>
 
                 {/* Divider */}
-
                 <div className="mt-16 border-t border-slate-800 pt-10">
 
                     <p className="text-center text-sm leading-7 text-slate-400">
                         Mutual Fund investments are subject to market risks.
-                        Please read all scheme-related documents carefully before
-                        investing. The information provided on this website is
-                        intended solely for investor education and awareness purposes.
+                        Please read all scheme-related documents carefully
+                        before investing. The information provided on this
+                        website is intended solely for investor education
+                        and general information purposes.
                     </p>
 
                     <p className="mt-5 text-center text-sm font-medium text-green-400">
@@ -221,7 +199,8 @@ export default function Footer() {
                     </p>
 
                     <p className="mt-3 text-center text-sm text-slate-500">
-                        © {new Date().getFullYear()} Luxmi InvestCare. All Rights Reserved.
+                        © {new Date().getFullYear()} Luxmi InvestCare.
+                        All Rights Reserved.
                     </p>
 
                     <p className="mt-2 text-center text-xs text-slate-600">
