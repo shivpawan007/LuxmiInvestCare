@@ -13,15 +13,15 @@ import {
 const features = [
     {
         icon: ShieldCheck,
-        title: "Trusted Guidance",
+        title: "Transparent Information",
         description:
-            "Investment guidance focused on transparency, investor awareness and long-term financial discipline.",
+            "Clear communication and investor education focused on understanding investment products, features and risks.",
     },
     {
         icon: Target,
-        title: "Goal-Based Planning",
+        title: "Investment Awareness",
         description:
-            "Investment planning aligned with your financial goals, time horizon and individual priorities.",
+            "Educational information to help investors understand investment objectives, time horizons and relevant considerations.",
     },
     {
         icon: GraduationCap,
@@ -33,19 +33,19 @@ const features = [
         icon: TrendingUp,
         title: "Disciplined Investing",
         description:
-            "Encouraging systematic investing habits that support long-term wealth creation objectives.",
+            "Encouraging regular and disciplined investing habits while keeping attention on the long term.",
     },
     {
         icon: Handshake,
-        title: "Transparent Approach",
+        title: "Clear Communication",
         description:
-            "Clear communication and an investor-first approach to help you make informed financial decisions.",
+            "An investor-focused approach that encourages informed decisions and careful review of available information.",
     },
     {
         icon: HeartHandshake,
-        title: "Personalized Support",
+        title: "Investor Support",
         description:
-            "Guidance tailored to your financial goals while respecting your risk profile and investment journey.",
+            "General support for understanding investment information, illustrations, documentation and investor processes.",
     },
 ];
 
@@ -58,7 +58,6 @@ export default function WhyChoose() {
             <div className="container-custom">
 
                 {/* Heading */}
-
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -66,28 +65,25 @@ export default function WhyChoose() {
                     viewport={{ once: true }}
                     className="mx-auto mb-20 max-w-3xl text-center"
                 >
-
                     <span className="inline-flex items-center rounded-full border border-green-200 bg-green-50 px-5 py-2 text-sm font-semibold text-green-700 shadow-sm">
                         WHY CHOOSE LUXMI INVESTCARE
                     </span>
 
                     <h2 className="section-title mt-8">
-                        Helping You Invest With
+                        Understand Investing With
                         <span className="block text-green-700">
-                            Confidence & Discipline
+                            Confidence & Clarity
                         </span>
                     </h2>
 
                     <p className="section-subtitle mx-auto">
-                        Our focus is to simplify investing through education,
-                        transparency and disciplined financial planning,
-                        empowering investors to pursue their long-term goals.
+                        Our focus is investor education, transparency,
+                        product information and disciplined investing,
+                        helping investors make informed decisions.
                     </p>
-
                 </motion.div>
 
                 {/* Feature Cards */}
-
                 <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
 
                     {features.map((feature, index) => {
@@ -106,9 +102,7 @@ export default function WhyChoose() {
                                 className="card p-8"
                             >
                                 <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-green-100">
-
                                     <Icon className="h-8 w-8 text-green-700" />
-
                                 </div>
 
                                 <h3 className="mb-4 text-2xl font-bold text-slate-900">
@@ -118,14 +112,13 @@ export default function WhyChoose() {
                                 <p className="leading-7 text-slate-600">
                                     {feature.description}
                                 </p>
-
                             </motion.div>
                         );
                     })}
+
                 </div>
 
                 {/* Our Commitment */}
-
                 <motion.div
                     initial={{ opacity: 0, y: 40 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -133,13 +126,11 @@ export default function WhyChoose() {
                     viewport={{ once: true }}
                     className="mt-24"
                 >
-
                     <div className="card bg-gradient-to-r from-green-700 to-emerald-600 p-12 text-white">
 
                         <div className="grid items-center gap-10 lg:grid-cols-2">
 
                             <div>
-
                                 <span className="rounded-full bg-white/20 px-4 py-2 text-sm font-semibold">
                                     OUR COMMITMENT
                                 </span>
@@ -150,25 +141,22 @@ export default function WhyChoose() {
                                         Education & Transparency
                                     </span>
                                 </h3>
-
                             </div>
 
                             <div>
-
                                 <p className="text-lg leading-8 text-green-50">
-                                    Every investor's journey is unique. Our commitment is to
-                                    encourage informed decision-making through investor
-                                    education, disciplined investing, and goal-oriented
-                                    financial planning while maintaining transparency at every
-                                    step.
+                                    Every investor's circumstances are unique.
+                                    Our commitment is to encourage informed
+                                    decision-making through investor education,
+                                    transparent information and disciplined
+                                    investing while keeping investment risks
+                                    clearly understood.
                                 </p>
-
                             </div>
 
                         </div>
 
                     </div>
-
                 </motion.div>
 
             </div>
