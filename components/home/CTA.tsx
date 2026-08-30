@@ -1,7 +1,7 @@
 "use client";
 
+import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/Button";
 import { motion } from "framer-motion";
 
 export default function CTA() {
@@ -12,7 +12,7 @@ export default function CTA() {
                 <motion.h2
                     initial={{ opacity: 0, y: 25 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: .6 }}
+                    transition={{ duration: 0.6 }}
                     viewport={{ once: true }}
                     className="text-4xl font-bold lg:text-5xl"
                 >
@@ -26,21 +26,22 @@ export default function CTA() {
 
                 <div className="mt-10 flex flex-wrap justify-center gap-4">
 
-                    <Button
-                        size="lg"
-                        className="bg-white text-green-700 hover:bg-green-100"
+                    {/* Contact Us */}
+                    <Link
+                        href="/contact"
+                        className="inline-flex h-11 items-center justify-center rounded-md bg-white px-6 text-sm font-medium text-green-700 shadow-sm transition-colors hover:bg-green-100"
                     >
                         Contact Us
                         <ArrowRight className="ml-2 h-5 w-5" />
-                    </Button>
+                    </Link>
 
-                    <Button
-                        size="lg"
-                        variant="outline"
-                        className="border-white text-white hover:bg-white hover:text-green-700"
+                    {/* Investor Education */}
+                    <Link
+                        href="/investor-education"
+                        className="inline-flex h-11 items-center justify-center rounded-md border border-white bg-transparent px-6 text-sm font-medium text-white transition-colors hover:bg-white hover:text-green-700"
                     >
                         Investor Education
-                    </Button>
+                    </Link>
 
                 </div>
 

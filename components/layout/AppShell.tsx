@@ -4,7 +4,6 @@ import { usePathname } from "next/navigation";
 
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import AdminHeader from "@/components/admin/AdminHeader";
 
 export default function AppShell({
     children,
@@ -16,29 +15,18 @@ export default function AppShell({
     const isAdminRoute =
         pathname?.startsWith("/admin") ?? false;
 
-    const isAdminLogin =
-        pathname === "/admin/login";
-
-    if (isAdminLogin) {
-        return (
-            <main className="min-h-screen">
-                {children}
-            </main>
-        );
-    }
-
+    /*
+     * The /admin route tree owns its own layout.
+     * AppShell must not render an AdminHeader here,
+     * otherwise the header would be duplicated.
+     */
     if (isAdminRoute) {
-        return (
-            <>
-                <AdminHeader />
-
-                <main className="min-h-screen bg-slate-50">
-                    {children}
-                </main>
-            </>
-        );
+        return <>{children}</>;
     }
 
+    /*
+     * Public website shell.
+     */
     return (
         <>
             <Header />

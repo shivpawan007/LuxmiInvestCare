@@ -2,31 +2,17 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 
 import { Button } from "@/components/ui/Button";
 import MobileMenu from "./MobileMenu";
-import AdminUserMenu from "./AdminUserMenu";
 
 export default function Header() {
-    const pathname =
-        usePathname();
-
-    const isAdminRoute =
-        pathname?.startsWith(
-            "/admin",
-        ) ?? false;
-
     return (
         <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/95 shadow-sm backdrop-blur">
             <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6">
                 {/* Logo */}
                 <Link
-                    href={
-                        isAdminRoute
-                            ? "/admin/dashboard"
-                            : "#home"
-                    }
+                    href="#home"
                     className="flex min-w-0 items-center gap-3"
                 >
                     <Image
@@ -49,60 +35,53 @@ export default function Header() {
                     </div>
                 </Link>
 
-                {isAdminRoute ? (
-                    /* ADMIN NAVIGATION */
-                    <AdminUserMenu />
-                ) : (
-                    <>
-                        {/* Public desktop navigation */}
-                        <nav className="hidden items-center gap-8 font-medium text-slate-700 lg:flex">
-                            <Link
-                                href="#home"
-                                className="transition hover:text-green-700"
-                            >
-                                Home
-                            </Link>
+                {/* Public desktop navigation */}
+                <nav className="hidden items-center gap-8 font-medium text-slate-700 lg:flex">
+                    <Link
+                        href="#home"
+                        className="transition hover:text-green-700"
+                    >
+                        Home
+                    </Link>
 
-                            <Link
-                                href="#about"
-                                className="transition hover:text-green-700"
-                            >
-                                About
-                            </Link>
+                    <Link
+                        href="#about"
+                        className="transition hover:text-green-700"
+                    >
+                        About
+                    </Link>
 
-                            <Link
-                                href="#services"
-                                className="transition hover:text-green-700"
-                            >
-                                Services
-                            </Link>
+                    <Link
+                        href="#services"
+                        className="transition hover:text-green-700"
+                    >
+                        Services
+                    </Link>
 
-                            <Link
-                                href="#investor-education"
-                                className="transition hover:text-green-700"
-                            >
-                                Investor Education
-                            </Link>
+                    <Link
+                        href="#investor-education"
+                        className="transition hover:text-green-700"
+                    >
+                        Investor Education
+                    </Link>
 
-                            <Link
-                                href="#contact"
-                                className="transition hover:text-green-700"
-                            >
-                                Contact
-                            </Link>
-                        </nav>
+                    <Link
+                        href="#contact"
+                        className="transition hover:text-green-700"
+                    >
+                        Contact
+                    </Link>
+                </nav>
 
-                        {/* Public CTA */}
-                        <div className="hidden lg:block">
-                            <Button className="bg-green-700 hover:bg-green-800">
-                                Get Started
-                            </Button>
-                        </div>
+                {/* Public CTA */}
+                <div className="hidden lg:block">
+                    <Button className="bg-green-700 hover:bg-green-800">
+                        Get Started
+                    </Button>
+                </div>
 
-                        {/* Public mobile menu */}
-                        <MobileMenu />
-                    </>
-                )}
+                {/* Public mobile menu */}
+                <MobileMenu />
             </div>
         </header>
     );
