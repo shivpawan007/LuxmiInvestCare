@@ -5,7 +5,7 @@ declare global {
     var __luxmiDbPool: mysql.Pool | undefined;
 }
 
-function createPool() {
+function createPool(): mysql.Pool {
     const {
         DB_HOST,
         DB_PORT,
@@ -34,6 +34,28 @@ function createPool() {
     });
 }
 
-export const db =
-    global.__luxmiDbPool ||
-    (global.__luxmiDbPool = createPool());
+function getPool(): mysql.Pool {
+    return (
+        global.__luxmiDbPool ||
+        (global.__luxmiDbPool = createPool())
+    );
+}
+
+/**
+ * Lazy database pool.
+ *
+ * Importing this module does not require database environment variables.
+ * The pool is created only when a database method is actually used.
+ */
+export const db = new Proxy({} as mysql.Pool, {
+    get(_target, property) {
+        const pool = getPool();
+        const value = Reflect.get(pool, property, pool);
+
+        if (typeof value === "function") {
+            return value.bind(pool);
+        }
+
+        return value;
+    },
+});
