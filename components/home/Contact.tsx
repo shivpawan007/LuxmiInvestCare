@@ -61,8 +61,7 @@ export default function Contact() {
                         <form
                             onSubmit={(event) => {
                                 event.preventDefault();
-                                window.location.href =
-                                    "/contact";
+                                window.location.href = "/contact";
                             }}
                             className="space-y-6"
                         >
@@ -246,24 +245,57 @@ export default function Contact() {
 
                         </div>
 
-                        {/* Google Map Placeholder */}
+                        {/* Google Map */}
                         <div className="card overflow-hidden">
-                            <div className="flex h-72 items-center justify-center bg-slate-100">
-                                <div className="text-center">
 
-                                    <MapPin className="mx-auto mb-4 h-12 w-12 text-green-700" />
+                            <div className="border-b border-slate-200 bg-white px-6 py-5">
+                                <div className="flex items-center gap-3">
+                                    <MapPin className="h-6 w-6 text-green-700" />
 
-                                    <h3 className="text-xl font-bold text-slate-900">
-                                        Google Map
-                                    </h3>
+                                    <div>
+                                        <h3 className="text-xl font-bold text-slate-900">
+                                            Our Location
+                                        </h3>
 
-                                    <p className="mt-2 text-slate-600">
-                                        Interactive map will be integrated
-                                        during deployment.
-                                    </p>
-
+                                        <p className="text-sm text-slate-600">
+                                            1063, D-Block, Street-6, Sanjay Enclave,
+                                            Faridabad – 121005
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
+
+                            {/* Static map preview - interaction disabled */}
+                            <div className="relative h-80 w-full">
+                                <iframe
+                                    title="Luxmi InvestCare office location"
+                                    src="https://www.google.com/maps?q=28.358861,77.277222&z=17&output=embed"
+                                    className="h-full w-full border-0 pointer-events-none"
+                                    loading="lazy"
+                                    referrerPolicy="no-referrer-when-downgrade"
+                                    tabIndex={-1}
+                                    aria-hidden="true"
+                                />
+
+                                {/* Blocks mouse interaction with the embedded map */}
+                                <div
+                                    className="absolute inset-0 z-10"
+                                    aria-hidden="true"
+                                />
+                            </div>
+
+                            <div className="border-t border-slate-200 bg-white px-6 py-4">
+                                <a
+                                    href="https://www.google.com/maps?q=28.358861,77.277222"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center font-semibold text-green-700 transition hover:text-green-800"
+                                >
+                                    Open location in Google Maps
+                                    <span className="ml-2">→</span>
+                                </a>
+                            </div>
+
                         </div>
 
                     </motion.div>
