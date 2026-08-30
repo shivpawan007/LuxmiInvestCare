@@ -59,50 +59,80 @@ export default function ContactPage() {
         setError,
     ] = useState("");
 
-    function handleSubmit(
-        event: React.FormEvent<HTMLFormElement>,
+    async function handleSubmit(
+    event: React.FormEvent<HTMLFormElement>,
+) {
+    event.preventDefault();
+
+    const cleanMobile =
+        mobile.replace(/\D/g, "");
+
+    if (!name.trim()) {
+        setError(
+            "Please enter your name.",
+        );
+        return;
+    }
+
+    if (cleanMobile.length !== 10) {
+        setError(
+            "Please enter a valid 10-digit mobile number.",
+        );
+        return;
+    }
+
+    if (
+        email &&
+        !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(
+            email,
+        )
     ) {
-        event.preventDefault();
+        setError(
+            "Please enter a valid email address.",
+        );
+        return;
+    }
 
-        const cleanMobile =
-            mobile.replace(/\D/g, "");
+    if (!message.trim()) {
+        setError(
+            "Please enter your enquiry.",
+        );
+        return;
+    }
 
-        if (!name.trim()) {
+    setError("");
+
+    try {
+        const response = await fetch(
+            "/api/leads",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type":
+                        "application/json",
+                },
+                body: JSON.stringify({
+                    fullName: name.trim(),
+                    mobile: cleanMobile,
+                    email: email.trim(),
+                    enquiry: message.trim(),
+                    source: "website-contact",
+                    landingPage:
+                        window.location.pathname,
+                }),
+            },
+        );
+
+        const data =
+            await response.json();
+
+        if (!response.ok) {
             setError(
-                "Please enter your name.",
+                data.error ||
+                    "Unable to submit your enquiry. Please try again.",
             );
             return;
         }
-
-        if (
-            cleanMobile.length !== 10
-        ) {
-            setError(
-                "Please enter a valid 10-digit mobile number.",
-            );
-            return;
-        }
-
-        if (
-            email &&
-            !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(
-                email,
-            )
-        ) {
-            setError(
-                "Please enter a valid email address.",
-            );
-            return;
-        }
-
-        if (!message.trim()) {
-            setError(
-                "Please enter your enquiry.",
-            );
-            return;
-        }
-
-        setError("");
 
         const enquiry = `
 Hello Luxmi InvestCare,
@@ -124,7 +154,26 @@ ${message.trim()}
             "_blank",
             "noopener,noreferrer",
         );
+
+        setName("");
+        setMobile("");
+        setEmail("");
+        setMessage("");
+
+        alert(
+            "Thank you. Your enquiry has been submitted successfully.",
+        );
+    } catch (submitError) {
+        console.error(
+            "CONTACT_FORM_ERROR",
+            submitError,
+        );
+
+        setError(
+            "Unable to submit your enquiry. Please try again.",
+        );
     }
+}
 
     return (
         <main className="bg-white">
