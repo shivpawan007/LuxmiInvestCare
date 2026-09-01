@@ -43,7 +43,7 @@ export default function Footer() {
                     {/* Company */}
                     <div>
                         <Image
-                            src="/images/Logo.png"
+                            src="/images/logo.png"
                             alt="Luxmi InvestCare"
                             width={150}
                             height={60}
