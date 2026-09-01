@@ -16,7 +16,7 @@ export default function AdminHeader() {
                     className="flex min-w-0 items-center gap-3"
                 >
                     <Image
-                        src="/images/Logo.png"
+                        src="/images/logo.png"
                         alt="Luxmi InvestCare"
                         width={55}
                         height={55}
