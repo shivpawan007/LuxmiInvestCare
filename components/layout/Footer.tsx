@@ -45,11 +45,9 @@ export default function Footer() {
                         <Image
                             src="/images/logo.png"
                             alt="Luxmi InvestCare"
-                            width={150}
-                            height={60}
-                            priority
-                            unoptimized
-                            className="mb-6 h-auto w-auto"
+                            width={70}
+                            height={70}
+                            className="object-contain"
                         />
 
                         <p className="leading-8 text-slate-300">
