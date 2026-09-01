@@ -13,7 +13,7 @@ export default function Header() {
                     className="flex min-w-0 items-center gap-3"
                 >
                     <img
-                        src="/images/logo.png"
+                        src="/images/luxmi-logo.png"
                         alt="Luxmi InvestCare"
                         width={70}
                         height={70}
@@ -34,24 +34,15 @@ export default function Header() {
                 {/* Desktop Navigation */}
                 <nav className="hidden items-center gap-6 text-sm font-medium text-slate-700 md:flex">
 
-                    <Link
-                        href="/"
-                        className="hover:text-green-700"
-                    >
+                    <Link href="/" className="hover:text-green-700">
                         Home
                     </Link>
 
-                    <Link
-                        href="/about"
-                        className="hover:text-green-700"
-                    >
+                    <Link href="/about" className="hover:text-green-700">
                         About
                     </Link>
 
-                    <Link
-                        href="/services"
-                        className="hover:text-green-700"
-                    >
+                    <Link href="/services" className="hover:text-green-700">
                         Services
                     </Link>
 
@@ -69,10 +60,7 @@ export default function Header() {
                         Investor Education
                     </Link>
 
-                    <Link
-                        href="/contact"
-                        className="hover:text-green-700"
-                    >
+                    <Link href="/contact" className="hover:text-green-700">
                         Contact
                     </Link>
 

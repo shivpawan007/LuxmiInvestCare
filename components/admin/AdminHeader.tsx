@@ -9,13 +9,13 @@ export default function AdminHeader() {
         <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur shadow-sm">
             <div className="mx-auto flex min-h-20 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6">
 
-                {/* Admin Logo + Brand */}
+                {/* Logo + Brand */}
                 <Link
                     href="/admin/dashboard"
                     className="flex min-w-0 items-center gap-3"
                 >
                     <img
-                        src="/images/logo.png"
+                        src="/images/luxmi-logo.png"
                         alt="Luxmi InvestCare"
                         width={55}
                         height={55}
@@ -59,7 +59,6 @@ export default function AdminHeader() {
 
                 </nav>
 
-                {/* User Menu */}
                 <AdminUserMenu />
 
             </div>

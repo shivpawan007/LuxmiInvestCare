@@ -43,7 +43,7 @@ export default function Footer() {
                     <div>
 
                         <img
-                            src="/images/logo.png"
+                            src="/images/luxmi-logo.png"
                             alt="Luxmi InvestCare"
                             width={70}
                             height={70}
@@ -69,14 +69,12 @@ export default function Footer() {
 
                             {quickLinks.map((link) => (
                                 <li key={link.label}>
-
                                     <Link
                                         href={link.href}
                                         className="transition duration-300 hover:text-green-400"
                                     >
                                         {link.label}
                                     </Link>
-
                                 </li>
                             ))}
 
@@ -112,19 +110,14 @@ export default function Footer() {
 
                         <div className="space-y-5">
 
-                            {/* Phone */}
                             <a
                                 href="tel:+919650060044"
                                 className="flex items-start gap-3 transition hover:text-green-400"
                             >
                                 <Phone className="mt-1 h-5 w-5 text-green-400" />
-
-                                <span>
-                                    +91 9650060044
-                                </span>
+                                <span>+91 9650060044</span>
                             </a>
 
-                            {/* Email */}
                             <a
                                 href="mailto:info@luxmiinvestcare.com"
                                 className="flex items-start gap-3 transition hover:text-green-400"
@@ -136,7 +129,6 @@ export default function Footer() {
                                 </span>
                             </a>
 
-                            {/* Address */}
                             <div className="flex items-start gap-3">
 
                                 <MapPin className="mt-1 h-5 w-5 text-green-400" />
