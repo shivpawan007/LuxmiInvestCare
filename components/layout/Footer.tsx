@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import {
     MapPin,
@@ -42,12 +41,13 @@ export default function Footer() {
 
                     {/* Company */}
                     <div>
-                        <Image
+
+                        <img
                             src="/images/logo.png"
                             alt="Luxmi InvestCare"
                             width={70}
                             height={70}
-                            className="object-contain"
+                            className="h-[70px] w-[70px] object-contain"
                         />
 
                         <p className="leading-8 text-slate-300">
@@ -55,51 +55,64 @@ export default function Footer() {
                             through investor education, transparent information
                             and disciplined investing.
                         </p>
+
                     </div>
 
                     {/* Quick Links */}
                     <div>
+
                         <h3 className="mb-6 text-xl font-bold">
                             Quick Links
                         </h3>
 
                         <ul className="space-y-4">
+
                             {quickLinks.map((link) => (
                                 <li key={link.label}>
+
                                     <Link
                                         href={link.href}
                                         className="transition duration-300 hover:text-green-400"
                                     >
                                         {link.label}
                                     </Link>
+
                                 </li>
                             ))}
+
                         </ul>
+
                     </div>
 
                     {/* Services */}
                     <div>
+
                         <h3 className="mb-6 text-xl font-bold">
                             Services
                         </h3>
 
                         <ul className="space-y-4 text-slate-300">
+
                             {services.map((service) => (
                                 <li key={service}>
                                     {service}
                                 </li>
                             ))}
+
                         </ul>
+
                     </div>
 
                     {/* Contact */}
                     <div>
+
                         <h3 className="mb-6 text-xl font-bold">
                             Contact Us
                         </h3>
 
                         <div className="space-y-5">
 
+                            {/* Phone */}
                             <a
                                 href="tel:+919650060044"
                                 className="flex items-start gap-3 transition hover:text-green-400"
@@ -111,6 +124,7 @@ export default function Footer() {
                                 </span>
                             </a>
 
+                            {/* Email */}
                             <a
                                 href="mailto:info@luxmiinvestcare.com"
                                 className="flex items-start gap-3 transition hover:text-green-400"
@@ -122,7 +136,9 @@ export default function Footer() {
                                 </span>
                             </a>
 
+                            {/* Address */}
                             <div className="flex items-start gap-3">
+
                                 <MapPin className="mt-1 h-5 w-5 text-green-400" />
 
                                 <span>
@@ -134,6 +150,7 @@ export default function Footer() {
                                     <br />
                                     Faridabad – 121005
                                 </span>
+
                             </div>
 
                         </div>
@@ -178,6 +195,7 @@ export default function Footer() {
                             </a>
 
                         </div>
+
                     </div>
 
                 </div>

@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 
 import AdminUserMenu from "@/components/layout/AdminUserMenu";
 
@@ -9,18 +8,18 @@ export default function AdminHeader() {
     return (
         <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur shadow-sm">
             <div className="mx-auto flex min-h-20 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6">
+
+                {/* Admin Logo + Brand */}
                 <Link
                     href="/admin/dashboard"
                     className="flex min-w-0 items-center gap-3"
                 >
-                    <Image
+                    <img
                         src="/images/logo.png"
                         alt="Luxmi InvestCare"
                         width={55}
                         height={55}
-                        priority
-                        unoptimized
-                        className="object-contain"
+                        className="h-[55px] w-[55px] object-contain"
                     />
 
                     <div className="min-w-0">
@@ -34,7 +33,9 @@ export default function AdminHeader() {
                     </div>
                 </Link>
 
+                {/* Admin Navigation */}
                 <nav className="hidden items-center gap-5 text-sm font-medium text-slate-700 md:flex">
+
                     <Link
                         href="/admin/dashboard"
                         className="hover:text-green-700"
@@ -55,9 +56,12 @@ export default function AdminHeader() {
                     >
                         Users
                     </Link>
+
                 </nav>
 
+                {/* User Menu */}
                 <AdminUserMenu />
+
             </div>
         </header>
     );

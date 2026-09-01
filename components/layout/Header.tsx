@@ -1,13 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import AdminUserMenu from "@/components/layout/AdminUserMenu";
 
 export default function Header() {
     return (
         <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur shadow-sm">
             <div className="mx-auto flex min-h-20 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6">
 
+                {/* Logo + Brand */}
                 <Link
                     href="/"
                     className="flex min-w-0 items-center gap-3"
@@ -31,7 +31,9 @@ export default function Header() {
                     </div>
                 </Link>
 
+                {/* Desktop Navigation */}
                 <nav className="hidden items-center gap-6 text-sm font-medium text-slate-700 md:flex">
+
                     <Link
                         href="/"
                         className="hover:text-green-700"
@@ -80,8 +82,10 @@ export default function Header() {
                     >
                         Get Started
                     </Link>
+
                 </nav>
 
+                {/* Mobile Menu Button */}
                 <button
                     type="button"
                     className="rounded-md border border-slate-300 px-3 py-2 text-xl md:hidden"
