@@ -21,6 +21,7 @@ export default function Header() {
                         width={70}
                         height={70}
                         priority
+                        unoptimized
                         className="h-14 w-14 object-contain sm:h-[70px] sm:w-[70px]"
                     />
 

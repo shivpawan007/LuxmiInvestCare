@@ -1,6 +1,8 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
+
 import AdminUserMenu from "@/components/layout/AdminUserMenu";
 
 export default function AdminHeader() {
@@ -11,11 +13,13 @@ export default function AdminHeader() {
                     href="/admin/dashboard"
                     className="flex min-w-0 items-center gap-3"
                 >
-                    <img
+                    <Image
                         src="/images/logo.png"
                         alt="Luxmi InvestCare"
                         width={55}
                         height={55}
+                        priority
+                        unoptimized
                         className="object-contain"
                     />
 

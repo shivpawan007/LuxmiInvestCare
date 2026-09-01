@@ -48,6 +48,7 @@ export default function Footer() {
                             width={150}
                             height={60}
                             priority
+                            unoptimized
                             className="mb-6 h-auto w-auto"
                         />
 
