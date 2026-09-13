@@ -127,6 +127,7 @@ export default function Footer() {
                                 <span className="break-all">
                                     info@luxmiinvestcare.com
                                 </span>
+
                             </a>
 
                             <div className="flex items-start gap-3">
@@ -148,13 +149,14 @@ export default function Footer() {
                         </div>
 
                         {/* Social Icons */}
-                        <div className="mt-8 flex gap-5">
+                        <div className="mt-8 flex gap-5" aria-label="Official Luxmi InvestCare social profiles">
 
                             <a
                                 href="https://www.facebook.com/luxmiinvestcare"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                aria-label="Facebook"
+                                aria-label="Luxmi InvestCare Official Facebook Page"
+                                title="Luxmi InvestCare Official Facebook Page"
                             >
                                 <FaFacebook className="text-2xl transition duration-300 hover:scale-110 hover:text-green-400" />
                             </a>
@@ -163,7 +165,8 @@ export default function Footer() {
                                 href="https://www.instagram.com/luxmiinvestcare"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                aria-label="Instagram"
+                                aria-label="Luxmi InvestCare Official Instagram Profile"
+                                title="Luxmi InvestCare Official Instagram Profile"
                             >
                                 <FaInstagram className="text-2xl transition duration-300 hover:scale-110 hover:text-green-400" />
                             </a>
@@ -172,7 +175,8 @@ export default function Footer() {
                                 href="https://www.linkedin.com/in/luxmiinvestcare"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                aria-label="LinkedIn"
+                                aria-label="Luxmi InvestCare Official LinkedIn Profile"
+                                title="Luxmi InvestCare Official LinkedIn Profile"
                             >
                                 <FaLinkedin className="text-2xl transition duration-300 hover:scale-110 hover:text-green-400" />
                             </a>
@@ -181,7 +185,8 @@ export default function Footer() {
                                 href="https://www.youtube.com/@luxmiinvestcare"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                aria-label="YouTube"
+                                aria-label="Luxmi InvestCare Official YouTube Channel"
+                                title="Luxmi InvestCare Official YouTube Channel"
                             >
                                 <FaYoutube className="text-2xl transition duration-300 hover:scale-110 hover:text-green-400" />
                             </a>
