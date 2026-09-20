@@ -15,17 +15,16 @@ export default function CalculatorHero() {
 
                     <div className="inline-flex items-center gap-2 rounded-full border border-green-300/30 bg-white/10 px-5 py-2 text-sm font-semibold backdrop-blur">
                         <Calculator className="h-5 w-5 text-green-300" />
-                        Financial Planning Tools
+                        Investment Education Tools
                     </div>
 
                     <h1 className="mt-8 text-5xl font-extrabold leading-tight lg:text-6xl">
-                        Financial Calculators
+                        Investment Calculators
                     </h1>
 
                     <p className="mx-auto mt-8 max-w-3xl text-lg leading-8 text-green-100 lg:text-xl">
                         Explore educational financial calculators designed to help
-                        you understand investment concepts, estimate future values,
-                        and plan for long-term financial goals.
+                        you understand investment concepts, estimate illustrative future values and explore long-term investing assumptions.
                     </p>
 
                     <div className="mt-12 flex flex-wrap justify-center gap-8 text-sm sm:text-base">
@@ -37,7 +36,7 @@ export default function CalculatorHero() {
 
                         <div className="flex items-center gap-3">
                             <TrendingUp className="h-6 w-6 text-green-300" />
-                            <span>Goal Planning</span>
+                            <span>Investment Illustrations</span>
                         </div>
 
                         <div className="flex items-center gap-3">
