@@ -62,8 +62,8 @@ export default function About() {
                         <div className="image-card">
 
                             <img
-                                src="/images/luxmi-compliance-about.svg"
-                                alt="Luxmi InvestCare investor awareness and product information"
+                                src="/images/luxmi-investor-education-office.webp"
+                                alt="Luxmi InvestCare investor education office with branded workspace and risk-awareness messaging"
                                 width={700}
                                 height={650}
                                 className="w-full object-cover"
