@@ -63,6 +63,10 @@ export default function About() {
 
                             <img
                                 src="/images/luxmi-investor-education-office.webp"
+                                onError={(event) => {
+                                    event.currentTarget.onerror = null;
+                                    event.currentTarget.src = "/images/luxmi-compliance-about.svg"";
+                                }}
                                 alt="Luxmi InvestCare investor education office with branded workspace and risk-awareness messaging"
                                 width={700}
                                 height={650}
