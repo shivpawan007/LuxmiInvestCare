@@ -2229,7 +2229,7 @@ export default function DownloadReport({
           pdf.setTextColor(...C.text);
 
           pdf.text(
-            `Net Wealth Gain (Illustrative): ${formatCurrency(
+            `Illustrative Growth: ${formatCurrency(
               estimatedGrowth,
             )}`,
             25,
@@ -2281,7 +2281,7 @@ export default function DownloadReport({
               formatCurrency(initialCorpus),
             ],
             [
-              "Net Wealth Gain (Illustrative)",
+              "Illustrative Growth",
               formatCurrency(estimatedGrowth),
             ],
             [
