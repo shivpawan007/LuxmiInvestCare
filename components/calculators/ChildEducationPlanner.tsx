@@ -86,21 +86,18 @@ export default function ChildEducationPlanner() {
         <div className="mx-auto mb-14 max-w-3xl text-center">
 
           <span className="inline-flex rounded-full bg-green-100 px-5 py-2 text-sm font-semibold text-green-700">
-            CHILD EDUCATION PLANNER
+            CHILD EDUCATION COST CALCULATOR
           </span>
 
           <h1 className="section-title mt-6">
-            Estimate Your Child's
+            Explore Your Child's
             <span className="block text-green-700">
               Future Education Cost
             </span>
           </h1>
 
           <p className="section-subtitle">
-            Estimate the future cost of education
-            and explore illustrative monthly SIP
-            or one-time investment requirements
-            based on the assumptions entered.
+            Explore the illustrative future cost of education and the investment amount required under the assumptions entered.
           </p>
 
         </div>
@@ -206,8 +203,8 @@ export default function ChildEducationPlanner() {
               lumpsumRequired:
                 result.lumpsumRequired,
             }}
-            reportTitle="Child Education Planning Illustration"
-            fileName="Luxmi-InvestCare-Child-Education-Planning-Illustration.pdf"
+            reportTitle="Child Education Cost Illustration"
+            fileName="Luxmi-InvestCare-Child-Education-Cost-Illustration.pdf"
           />
 
           <ReportShareDialog
@@ -218,7 +215,7 @@ export default function ChildEducationPlanner() {
               setShareOpen(false)
             }
             calculatorType="child-education"
-            reportTitle="Child Education Planning Illustration"
+            reportTitle="Child Education Cost Illustration"
             investment={
               currentEducationCost
             }
@@ -253,7 +250,7 @@ export default function ChildEducationPlanner() {
 
           <ConnectWithLuxmi
             calculatorType="child-education"
-            reportTitle="Child Education Planning Illustration"
+            reportTitle="Child Education Cost Illustration"
             investment={
               currentEducationCost
             }
@@ -283,7 +280,7 @@ export default function ChildEducationPlanner() {
         <div className="mt-12 rounded-3xl border border-green-200 bg-green-50 p-8">
 
           <h2 className="text-xl font-bold text-green-800">
-            Planning Note
+            Illustration Note
           </h2>
 
           <p className="mt-3 leading-7 text-slate-700">
