@@ -99,14 +99,14 @@ interface DownloadReportProps {
 
 const BRAND = {
   name: "Luxmi InvestCare",
-  subtitle: "AMFI Registered Mutual Fund Distributor",
+  subtitle: "AMFI-registered Mutual Fund Distributor | ARN: 365140",
   website: "www.luxmiInvestCare.com",
   email: "info@luxmiinvestcare.com",
   whatsapp: "9650060044",
   facebook: "facebook.com/luxmiinvestcare",
   instagram: "instagram.com/luxmiinvestcare",
   youtube: "youtube.com/@Luxmiinvestcare",
-  arn: "ARN-365140",
+  arn: "ARN: 365140",
 };
 
 const C = {
@@ -1232,7 +1232,7 @@ function addDisclaimer(pdf: jsPDF) {
     "This calculator is provided for investor education and illustration purposes only.",
     "The projections shown are based on the assumptions entered by the user and an assumed rate of return.",
     "Actual investment returns may vary depending on market conditions, scheme performance, costs, taxes and other factors.",
-    "Mutual Fund investments are subject to market risks. Read all scheme related documents carefully before investing.",
+    "Mutual Fund investments are subject to market risks, read all scheme related documents carefully.",
     "Past performance does not guarantee future returns.",
     "The projected values shown in this report are not guaranteed returns and should not be interpreted as a promise of future performance.",
     "This calculator output should not by itself be construed as personalised investment advice.",
@@ -1369,7 +1369,7 @@ function addSWPDisclaimer(pdf: jsPDF) {
     "This SWP calculator is provided for investor education and illustration purposes only.",
     "The projection is based on the assumptions entered by the user, including the assumed annual rate of return and withdrawal amount.",
     "Actual investment outcomes may vary depending on market conditions, scheme performance, costs, taxes and other factors.",
-    "Mutual Fund investments are subject to market risks. Read all scheme related documents carefully before investing.",
+    "Mutual Fund investments are subject to market risks, read all scheme related documents carefully.",
     "The projected values shown in this report are illustrative and are not guaranteed returns.",
     "The calculator does not account for all possible market conditions, changes in withdrawal requirements or taxation implications.",
     "This calculator output should not by itself be construed as personalised investment advice.",
@@ -3987,7 +3987,7 @@ export default function DownloadReport({
             retirement: "Retirement",
             wedding: "Wedding",
             travel: "Travel",
-            custom: "Personal Goal",
+            custom: "Personal Objective",
           };
 
           const goalLabel =
@@ -4006,15 +4006,15 @@ export default function DownloadReport({
           addPageHeader(
             pdf,
             reportTitle ||
-            "Goal Planning Illustration",
+            "Investment Objective Illustration",
             logo,
           );
 
           addSectionTitle(
             pdf,
             "1",
-            "Goal Planning Summary",
-            "Illustrative goal cost and investment requirements",
+            "Investment Objective Summary",
+            "Illustrative investment objective value and investment requirements",
             69,
           );
 
@@ -4028,7 +4028,7 @@ export default function DownloadReport({
             84,
             cardW,
             cardH,
-            "Selected Goal",
+            "Selected Investment Objective",
             goalLabel,
           );
 
@@ -4038,7 +4038,7 @@ export default function DownloadReport({
             84,
             cardW,
             cardH,
-            "Current Goal Value",
+            "Current Objective Value",
             formatCurrency(
               targetAmount,
             ),
@@ -4051,7 +4051,7 @@ export default function DownloadReport({
             84,
             cardW,
             cardH,
-            "Years to Goal",
+            "Investment Horizon",
             `${years} ${years === 1
               ? "Year"
               : "Years"
@@ -4087,7 +4087,7 @@ export default function DownloadReport({
             121,
             cardW,
             cardH,
-            "Future Goal Value",
+            "Illustrative Future Value",
             formatCurrency(
               futureValue,
             ),
@@ -4190,15 +4190,15 @@ export default function DownloadReport({
           addPageHeader(
             pdf,
             reportTitle ||
-            "Goal Planning Illustration",
+            "Investment Objective Illustration",
             logo,
           );
 
           addSectionTitle(
             pdf,
             "2",
-            "Inflation Impact on the Goal",
-            "Illustrative comparison of today's goal value with its estimated future cost",
+            "Inflation Impact on the Investment Objective",
+            "Illustrative comparison of the current value with its estimated future value",
             69,
           );
 
@@ -4254,7 +4254,7 @@ export default function DownloadReport({
           );
 
           pdf.text(
-            "Goal Value Today",
+            "Current Value",
             31,
             inflationBoxY + 11,
           );
@@ -4340,7 +4340,7 @@ export default function DownloadReport({
           );
 
           pdf.text(
-            `Estimated Goal Value in ${years} Years`,
+            `Estimated Future Value in ${years} Years`,
             31,
             futureY + 11,
           );
@@ -4457,15 +4457,15 @@ export default function DownloadReport({
           );
 
           const inflationInsight = [
-            `At the selected ${inflation}% inflation assumption, the goal's estimated future cost is ${formatCurrency(
+            `At the selected ${inflation}% inflation assumption, the investment objective's estimated future value is ${formatCurrency(
               futureValue,
             )}, compared with ${formatCurrency(
               targetAmount,
             )} today.`,
-            `Illustrative increase in goal cost: ${formatCurrency(
+            `Illustrative increase in estimated value: ${formatCurrency(
               inflationIncrease,
             )}.`,
-            `The estimated future goal value is approximately ${inflationMultiple.toFixed(
+            `The estimated future value is approximately ${inflationMultiple.toFixed(
               1,
             )}× today's goal value.`,
           ].join(" ");
@@ -4494,7 +4494,7 @@ export default function DownloadReport({
           addPageHeader(
             pdf,
             reportTitle ||
-            "Goal Planning Illustration",
+            "Investment Objective Illustration",
             logo,
           );
 
@@ -4502,7 +4502,7 @@ export default function DownloadReport({
             pdf,
             "3",
             "Illustrative Investment Requirement",
-            "Two illustrative ways to work toward the estimated future goal value",
+            "Two illustrative ways to understand the estimated future value",
             69,
           );
 
@@ -4726,14 +4726,14 @@ export default function DownloadReport({
           addPageHeader(
             pdf,
             reportTitle ||
-            "Goal Planning Illustration",
+            "Investment Objective Illustration",
             logo,
           );
 
           addSectionTitle(
             pdf,
             "4",
-            "Goal Planning Insight",
+            "Investment Objective Insight",
             "Key assumptions and investor education",
             69,
           );
@@ -4774,7 +4774,7 @@ export default function DownloadReport({
           );
 
           pdf.text(
-            "Selected Goal",
+            "Selected Investment Objective",
             25,
             insightY + 12,
           );
@@ -4850,7 +4850,7 @@ export default function DownloadReport({
           );
 
           pdf.text(
-            "Discuss Your Goal Planning Illustration",
+            "Discuss Your Investment Objective Illustration",
             25,
             leadY + 12,
           );
@@ -4927,7 +4927,7 @@ export default function DownloadReport({
           addPageHeader(
             pdf,
             reportTitle ||
-            "Goal Planning Illustration",
+            "Investment Objective Illustration",
             logo,
           );
 
@@ -4935,7 +4935,7 @@ export default function DownloadReport({
             pdf,
             "5",
             "Investor Education Disclaimer",
-            "Important information regarding this illustrative goal calculator",
+            "Important information regarding this illustrative investment calculator",
             69,
           );
 
@@ -4995,15 +4995,15 @@ export default function DownloadReport({
           /* PAGE 1 */
           addPageHeader(
             pdf,
-            reportTitle || "Child Education Planning Illustration",
+            reportTitle || "Child Education Cost Illustration",
             logo,
           );
 
           addSectionTitle(
             pdf,
             "1",
-            "Education Planning Summary",
-            "Key assumptions and illustrative education funding requirements",
+            "Education Cost Illustration Summary",
+            "Key assumptions and illustrative education funding",
             69,
           );
 
@@ -5013,7 +5013,7 @@ export default function DownloadReport({
 
           addCard(pdf, 18, 84, cardW, cardH, "Child's Current Age", `${currentAge} ${currentAge === 1 ? "Year" : "Years"}`);
           addCard(pdf, 18 + cardW + gap, 84, cardW, cardH, "Education Start Age", `${educationStartAge} Years`, C.teal);
-          addCard(pdf, 18 + (cardW + gap) * 2, 84, cardW, cardH, "Years to Goal", `${yearsToGoal} ${yearsToGoal === 1 ? "Year" : "Years"}`, C.gold);
+          addCard(pdf, 18 + (cardW + gap) * 2, 84, cardW, cardH, "Investment Horizon", `${yearsToGoal} ${yearsToGoal === 1 ? "Year" : "Years"}`, C.gold);
           addCard(pdf, 18, 120, cardW, cardH, "Current Education Cost", formatCurrency(currentEducationCost));
           addCard(pdf, 18 + cardW + gap, 120, cardW, cardH, "Expected Return", `${expectedReturn}%`, C.teal);
           addCard(pdf, 18 + (cardW + gap) * 2, 120, cardW, cardH, "Education Inflation", `${educationInflation}%`, C.gold);
@@ -5047,14 +5047,14 @@ export default function DownloadReport({
           pdf.addPage();
           addPageHeader(
             pdf,
-            reportTitle || "Child Education Planning Illustration",
+            reportTitle || "Child Education Cost Illustration",
             logo,
           );
           addSectionTitle(
             pdf,
             "2",
-            "Education Cost Growth",
-            "Illustrative effect of education inflation over the planning period",
+            "Education Cost Illustration",
+            "Illustrative effect of education inflation over the selected period",
             69,
           );
 
@@ -5256,7 +5256,7 @@ export default function DownloadReport({
           pdf.addPage();
           addPageHeader(
             pdf,
-            reportTitle || "Child Education Planning Illustration",
+            reportTitle || "Child Education Cost Illustration",
             logo,
           );
           addSectionTitle(
@@ -5339,13 +5339,13 @@ export default function DownloadReport({
           pdf.addPage();
           addPageHeader(
             pdf,
-            reportTitle || "Child Education Planning Illustration",
+            reportTitle || "Child Education Cost Illustration",
             logo,
           );
           addSectionTitle(
             pdf,
             "4",
-            "Funding Requirement & Planning Insight",
+            "Funding Requirement & Education Insight",
             "Illustrative funding alternatives and investor education",
             69,
           );
@@ -5360,13 +5360,13 @@ export default function DownloadReport({
           setFont(pdf, true);
           pdf.setFontSize(8.8);
           pdf.setTextColor(...C.darkGreen);
-          pdf.text("Planning Snapshot", 25, 145);
+          pdf.text("Illustration Snapshot", 25, 145);
 
           setFont(pdf);
           pdf.setFontSize(7.5);
           pdf.setTextColor(...C.text);
           pdf.text(`Education begins at age ${educationStartAge}.`, 25, 157);
-          pdf.text(`${yearsToGoal} ${yearsToGoal === 1 ? "year" : "years"} are available for planning.`, 25, 166);
+          pdf.text(`${yearsToGoal} ${yearsToGoal === 1 ? "year" : "years"} are available in the selected investment horizon.`, 25, 166);
           pdf.text(`Future education cost: ${formatCurrency(futureEducationCost)}.`, 105, 157);
           pdf.text(`Inflation assumption: ${educationInflation}%.`, 105, 166);
 
@@ -5406,14 +5406,14 @@ export default function DownloadReport({
           pdf.addPage();
           addPageHeader(
             pdf,
-            reportTitle || "Child Education Planning Illustration",
+            reportTitle || "Child Education Cost Illustration",
             logo,
           );
           addSectionTitle(
             pdf,
             "5",
             "Investor Education Disclaimer",
-            "Important information regarding this illustrative education planner",
+            "Important information regarding this illustrative education cost calculator",
             69,
           );
 
@@ -5421,7 +5421,7 @@ export default function DownloadReport({
             "This calculator is provided for investor education and illustration purposes only.",
             "The projections shown are based on the assumptions entered by the user, including education cost, time period, inflation and assumed investment return.",
             "Actual education costs, investment returns and future funding requirements may differ from the illustration.",
-            "Mutual Fund investments are subject to market risks. Read all scheme related documents carefully before investing.",
+            "Mutual Fund investments are subject to market risks, read all scheme related documents carefully.",
             "Past performance does not guarantee future returns.",
             "The projected values shown in this report are not guaranteed returns and should not be interpreted as a promise of future performance.",
             "This calculator is an educational illustration and should not be treated as a recommendation to invest in any particular scheme.",
