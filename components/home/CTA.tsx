@@ -16,12 +16,11 @@ export default function CTA() {
                     viewport={{ once: true }}
                     className="text-4xl font-bold lg:text-5xl"
                 >
-                    Start Your Investment Journey Today
+                    Explore Mutual Fund Investing Through Investor Education
                 </motion.h2>
 
                 <p className="mx-auto mt-6 max-w-3xl text-lg text-green-100">
-                    We help investors pursue long-term financial goals through
-                    disciplined investing and investor education.
+                    Explore mutual fund investing concepts through disciplined investing and investor education.
                 </p>
 
                 <div className="mt-10 flex flex-wrap justify-center gap-4">
