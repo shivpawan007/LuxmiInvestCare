@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
 import { ArrowRight, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 
@@ -99,12 +98,11 @@ export default function Hero() {
                     >
                         <div className="image-card w-full max-w-xl">
 
-                            <Image
-                                src="/images/office.jpg"
-                                alt="Luxmi InvestCare"
+                            <img
+                                src="/images/luxmi-compliance-hero.svg"
+                                alt="Luxmi InvestCare investor education and mutual fund distribution"
                                 width={750}
                                 height={520}
-                                priority
                                 className="w-full object-cover"
                             />
 
