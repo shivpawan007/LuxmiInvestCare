@@ -40,9 +40,7 @@ export default function CalculatorsPage() {
 
                         <p className="section-subtitle">
                             Use these educational calculators to explore
-                            illustrative investment values, inflation effects,
-                            withdrawal scenarios and long-term planning
-                            assumptions.
+                            illustrative investment values, inflation effects, withdrawal scenarios and long-term investing assumptions.
                         </p>
 
                     </div>
@@ -93,8 +91,8 @@ export default function CalculatorsPage() {
                         />
 
                         <CalculatorCard
-                            title="Goal Planner"
-                            description="Estimate the future cost of a selected financial goal and explore illustrative SIP or one-time investment requirements."
+                            title="Investment Objective Calculator"
+                            description="Explore how inflation, investment period and assumed investment returns may affect an illustrative future value or investment requirement."
                             href="/calculators/goal-planner"
                             icon={
                                 <Target className="h-8 w-8" />
@@ -103,8 +101,8 @@ export default function CalculatorsPage() {
                         />
 
                         <CalculatorCard
-                            title="Child Education Planner"
-                            description="Estimate the illustrative future cost of education and explore monthly SIP or one-time investment requirements."
+                            title="Child Education Cost Calculator"
+                            description="Explore an illustrative future education cost and the investment amount required under the assumptions entered."
                             href="/calculators/education"
                             icon={
                                 <GraduationCap className="h-8 w-8" />
