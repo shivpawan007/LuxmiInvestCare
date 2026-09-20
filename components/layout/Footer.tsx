@@ -25,8 +25,8 @@ const quickLinks = [
 const services = [
     "Mutual Funds",
     "SIP Investments",
-    "Life Insurance",
-    "Health Insurance",
+    "Insurance Information",
+    "Health Insurance Information",
     "Investor Education",
     "Investor Support",
 ];
@@ -201,15 +201,12 @@ export default function Footer() {
                 <div className="mt-16 border-t border-slate-800 pt-10">
 
                     <p className="text-center text-sm leading-7 text-slate-400">
-                        Mutual Fund investments are subject to market risks.
-                        Please read all scheme-related documents carefully
-                        before investing. The information provided on this
-                        website is intended solely for investor education
-                        and general information purposes.
+                        Mutual Fund investments are subject to market risks, read all scheme related documents carefully.
+                        The information provided on this website is intended for investor education and general information purposes.
                     </p>
 
                     <p className="mt-5 text-center text-sm font-medium text-green-400">
-                        AMFI Registered Mutual Fund Distributor | ARN-365140
+                        AMFI-registered Mutual Fund Distributor | ARN: 365140
                     </p>
 
                     <p className="mt-3 text-center text-sm text-slate-500">
@@ -218,7 +215,7 @@ export default function Footer() {
                     </p>
 
                     <p className="mt-2 text-center text-xs text-slate-600">
-                        Designed for Investor Education & Financial Awareness.
+                        Investor Education & Investment Awareness.
                     </p>
 
                 </div>
