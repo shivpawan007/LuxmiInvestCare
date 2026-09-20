@@ -46,10 +46,7 @@ export default function About() {
                     </h2>
 
                     <p className="section-subtitle mx-auto">
-                        Luxmi InvestCare focuses on investor education,
-                        investment product information and disciplined
-                        investing to help individuals and families make
-                        informed decisions.
+                        Luxmi InvestCare focuses on investor education, investment product information and disciplined investing to help investors understand mutual fund concepts and risks.
                     </p>
                 </motion.div>
 
@@ -213,10 +210,7 @@ export default function About() {
                         </h3>
 
                         <p className="leading-8 text-slate-600">
-                            To empower individuals and families with financial
-                            knowledge and disciplined investing practices that
-                            help them understand investment products and pursue
-                            long-term financial well-being.
+                            To promote investor awareness by making investment concepts, product information and risk considerations easier to understand.
                         </p>
                     </motion.div>
 
@@ -235,10 +229,7 @@ export default function About() {
                         </h3>
 
                         <p className="leading-8 text-slate-600">
-                            To simplify investing through investor education,
-                            transparency, product information and awareness
-                            of investment risks while encouraging disciplined
-                            financial habits.
+                            To provide investor education, understandable investment information and risk awareness while encouraging disciplined investing habits.
                         </p>
                     </motion.div>
 
