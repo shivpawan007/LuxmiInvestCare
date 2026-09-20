@@ -142,6 +142,10 @@ export default function AboutPage() {
 
                             <img
                                 src="/images/luxmi-investor-education-office.webp"
+                                onError={(event) => {
+                                    event.currentTarget.onerror = null;
+                                    event.currentTarget.src = "/images/luxmi-compliance-about.svg"";
+                                }}
                                 alt="Luxmi InvestCare investor education office with AMFI registration and investor awareness messaging"
                                 className="h-full min-h-[420px] w-full object-cover"
                             />
