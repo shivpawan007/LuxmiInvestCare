@@ -208,7 +208,7 @@ ${message.trim()}
                         <p className="mx-auto mt-8 max-w-3xl text-lg leading-8 text-green-100 lg:text-xl">
                             Share your enquiry with us and receive investor
                             education and information related to your
-                            investment illustration or financial requirement.
+                            investment illustration or investment-related enquiry.
                         </p>
 
                         <div className="mt-10 flex flex-wrap justify-center gap-4 text-sm sm:text-base">
