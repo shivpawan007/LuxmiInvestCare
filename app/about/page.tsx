@@ -141,8 +141,8 @@ export default function AboutPage() {
                         <div className="overflow-hidden rounded-3xl border border-slate-200 bg-slate-50 shadow-sm">
 
                             <img
-                                src="/images/about.jpg"
-                                alt="Luxmi InvestCare"
+                                src="/images/luxmi-investor-education-office.webp"
+                                alt="Luxmi InvestCare investor education office with AMFI registration and investor awareness messaging"
                                 className="h-full min-h-[420px] w-full object-cover"
                             />
 
