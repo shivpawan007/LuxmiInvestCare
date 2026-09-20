@@ -286,11 +286,11 @@ export default function AboutPage() {
                                 </h2>
 
                                 <p className="mt-3 text-lg font-semibold text-green-700">
-                                    AMFI Registered Mutual Fund Distributor
+                                    AMFI-registered Mutual Fund Distributor
                                 </p>
 
                                 <p className="mt-2 text-slate-600">
-                                    ARN-365140
+                                    ARN: 365140
                                 </p>
 
                             </div>
@@ -298,10 +298,7 @@ export default function AboutPage() {
                             <div className="rounded-2xl bg-slate-50 p-6">
 
                                 <p className="leading-8 text-slate-600">
-                                    Mutual Fund investments are subject to
-                                    market risks. Please read all
-                                    scheme-related documents carefully before
-                                    investing.
+                                    Mutual Fund investments are subject to market risks, read all scheme related documents carefully.
                                 </p>
 
                             </div>
