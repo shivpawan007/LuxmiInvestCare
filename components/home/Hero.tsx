@@ -100,6 +100,10 @@ export default function Hero() {
 
                             <img
                                 src="/images/luxmi-investor-education-office.webp"
+                                onError={(event) => {
+                                    event.currentTarget.onerror = null;
+                                    event.currentTarget.src = "/images/luxmi-compliance-hero.svg"";
+                                }}
                                 alt="Luxmi InvestCare investor education office with branded workspace and investor awareness messaging"
                                 width={750}
                                 height={520}
