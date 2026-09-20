@@ -30,7 +30,7 @@ const CONTACT = {
         "Monday – Saturday",
         "9:30 AM – 6:30 PM",
     ],
-    arn: "ARN-365140",
+    arn: "ARN: 365140",
 };
 
 export default function ContactPage() {
