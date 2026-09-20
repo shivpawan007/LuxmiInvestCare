@@ -71,7 +71,7 @@ export default function InvestorEducation() {
                     <h2 className="section-title mt-8">
                         Invest First In
                         <span className="block text-green-700">
-                            Financial Knowledge
+                            Investment Knowledge
                         </span>
                     </h2>
 
