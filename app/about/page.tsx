@@ -114,8 +114,7 @@ export default function AboutPage() {
                             <p className="mt-6 text-lg leading-8 text-slate-600">
                                 Luxmi InvestCare is focused on helping
                                 investors understand investment concepts,
-                                mutual funds, SIPs, insurance products and
-                                the risks associated with investing.
+                                mutual funds, SIPs, investment products and the risks associated with investing.
                             </p>
 
                             <p className="mt-5 leading-8 text-slate-600">
