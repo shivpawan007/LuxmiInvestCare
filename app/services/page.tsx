@@ -26,13 +26,13 @@ const services = [
     },
     {
         icon: ShieldCheck,
-        title: "Life Insurance",
+        title: "Insurance Information",
         description:
             "Information about life insurance products and the role of insurance in protecting family financial needs.",
     },
     {
         icon: HeartPulse,
-        title: "Health Insurance",
+        title: "Health Insurance Information",
         description:
             "Information about health insurance products, coverage considerations and the importance of understanding policy terms and conditions.",
     },
@@ -82,9 +82,7 @@ export default function ServicesPage() {
                         </h1>
 
                         <p className="mx-auto mt-8 max-w-3xl text-lg leading-8 text-green-100 lg:text-xl">
-                            Explore mutual funds, SIP investments, insurance and
-                            investor education resources designed to help you
-                            understand financial products and investing concepts.
+                            Explore mutual funds, SIP investments, insurance information and investor education resources designed to help you understand investment products and investing concepts.
                         </p>
 
                     </div>
