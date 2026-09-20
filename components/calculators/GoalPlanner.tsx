@@ -70,22 +70,18 @@ export default function GoalPlanner() {
                     <div className="mx-auto mb-14 max-w-3xl text-center">
 
                         <span className="inline-flex rounded-full bg-green-100 px-5 py-2 text-sm font-semibold text-green-700">
-                            GOAL PLANNER
+                            INVESTMENT OBJECTIVE CALCULATOR
                         </span>
 
                         <h1 className="section-title mt-6">
-                            Estimate the Future Cost
+                            Explore the Future Value
                             <span className="block text-green-700">
-                                of Your Goal
+                                of an Investment Objective
                             </span>
                         </h1>
 
                         <p className="section-subtitle">
-                            Estimate how inflation may affect the
-                            future cost of a goal and explore
-                            illustrative SIP or one-time investment
-                            requirements based on the assumptions
-                            entered.
+                            Explore how inflation, investment period and assumed investment returns may affect an illustrative future value and investment requirement based on the assumptions entered.
                         </p>
                     </div>
 
@@ -195,8 +191,8 @@ export default function GoalPlanner() {
                                 lumpsumRequired:
                                     result.lumpsumRequired,
                             }}
-                            reportTitle="Goal Planning Illustration"
-                            fileName="Luxmi-InvestCare-Goal-Planning-Illustration.pdf"
+                            reportTitle="Investment Objective Illustration"
+                            fileName="Luxmi-InvestCare-Investment-Objective-Illustration.pdf"
                         />
 
                         <button
@@ -220,7 +216,7 @@ export default function GoalPlanner() {
                             setShareOpen(false)
                         }
                         calculatorType="goal-planner"
-                        reportTitle="Goal Planning Illustration"
+                        reportTitle="Investment Objective Illustration"
                         investment={
                             targetAmount
                         }
@@ -241,7 +237,7 @@ export default function GoalPlanner() {
           ================================================== */}
                     <ConnectWithLuxmi
                         calculatorType="goal-planner"
-                        reportTitle="Goal Planning Illustration"
+                        reportTitle="Investment Objective Illustration"
                         investment={
                             targetAmount
                         }
@@ -263,7 +259,7 @@ export default function GoalPlanner() {
                     <div className="mt-10 rounded-2xl border border-amber-200 bg-amber-50 p-6">
 
                         <h2 className="font-bold text-slate-900">
-                            Learn something new every day
+                            Investment Illustration Note
                         </h2>
 
                         <p className="mt-2 text-sm leading-6 text-slate-700">
@@ -294,7 +290,7 @@ export default function GoalPlanner() {
 
                             <div>
                                 <h2 className="text-xl font-bold">
-                                    Need help understanding this illustration?
+                                    Need help understanding this investment illustration?
                                 </h2>
 
                                 <p className="mt-1 text-sm text-emerald-50/80">
