@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
 import {
     CheckCircle2,
     Target,
@@ -62,13 +61,12 @@ export default function About() {
                     >
                         <div className="image-card">
 
-                            <Image
-                                src="/images/about.jpg"
-                                alt="About Luxmi InvestCare"
+                            <img
+                                src="/images/luxmi-compliance-about.svg"
+                                alt="Luxmi InvestCare investor awareness and product information"
                                 width={700}
                                 height={650}
                                 className="w-full object-cover"
-                                priority
                             />
 
                         </div>
