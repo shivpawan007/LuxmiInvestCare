@@ -33,7 +33,7 @@ const faqs = [
     {
         question: "Why is investing according to an objective useful?",
         answer:
-            "Defining a clear financial objective can help investors understand the amount of time available, the importance of regular investing and the risks associated with different investment choices.",
+            "Defining a clear investment objective can help investors understand the time horizon, the importance of regular investing and the risks associated with different investment choices.",
     },
 ];
 
