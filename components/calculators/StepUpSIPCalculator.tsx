@@ -262,7 +262,7 @@ export default function StepUpSIPCalculator() {
               ================================================== */}
               <div className="mb-8">
                 <CalculatorInput
-                  label="Expected Annual Return"
+                  label="Assumed Annual Return (Illustrative)"
                   value={annualReturn}
                   min={1}
                   max={20}
