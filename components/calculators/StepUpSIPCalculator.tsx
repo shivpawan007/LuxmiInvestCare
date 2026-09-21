@@ -651,11 +651,7 @@ export default function StepUpSIPCalculator() {
             <p className="mt-3 text-xs leading-5 text-slate-600">
               The calculations shown are illustrative
               estimates based on the assumptions entered.
-              Mutual fund investments are subject to
-              market risks. Past performance does not
-              indicate future performance. Actual returns
-              may differ from the assumptions used in this
-              calculator.
+              Mutual Fund investments are subject to market risks, read all scheme related documents carefully. Past performance does not indicate future performance. Actual returns may differ from the assumptions used in this calculator.
             </p>
 
           </div>
