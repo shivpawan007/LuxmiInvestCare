@@ -99,7 +99,7 @@ export default function Hero() {
                         <div className="image-card w-full max-w-xl">
 
                             <img
-                                src="/images/luxmi-investor-education-office.webp"
+                                src="/images/luxmi-compliance-hero.svg"
                                 alt="Luxmi InvestCare investor education office with branded workspace and investor awareness messaging"
                                 width={750}
                                 height={520}
