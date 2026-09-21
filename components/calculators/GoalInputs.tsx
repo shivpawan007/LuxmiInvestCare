@@ -97,7 +97,7 @@ export default function GoalInputs({
           />
         </div>
 
-        {/* Expected Return */}
+        {/* Assumed Annual Return */}
         <div>
           <div className="mb-3 flex items-center gap-2 font-semibold text-slate-900">
             <Percent className="h-5 w-5 text-green-700" />
