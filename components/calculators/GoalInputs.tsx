@@ -43,7 +43,7 @@ export default function GoalInputs({
   return (
     <div className="rounded-3xl border border-slate-200 bg-white p-8 shadow-lg">
       <h2 className="mb-8 text-2xl font-bold text-slate-900">
-        Goal Details
+        Investment Objective Details
       </h2>
 
       <div className="grid gap-8 md:grid-cols-2">
@@ -73,11 +73,11 @@ export default function GoalInputs({
         <div>
           <div className="mb-3 flex items-center gap-2 font-semibold text-slate-900">
             <CalendarDays className="h-5 w-5 text-green-700" />
-            <span>Years to Goal</span>
+            <span>Investment Horizon</span>
           </div>
 
           <CalculatorInput
-            label="Years to Goal"
+            label="Investment Horizon"
             value={years}
             min={1}
             max={40}
@@ -101,11 +101,11 @@ export default function GoalInputs({
         <div>
           <div className="mb-3 flex items-center gap-2 font-semibold text-slate-900">
             <Percent className="h-5 w-5 text-green-700" />
-            <span>Expected Return</span>
+            <span>Assumed Annual Return (Illustrative)</span>
           </div>
 
           <CalculatorInput
-            label="Expected Return"
+            label="Assumed Annual Return (Illustrative)"
             value={expectedReturn}
             min={5}
             max={20}
