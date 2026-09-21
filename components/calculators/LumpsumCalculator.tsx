@@ -102,7 +102,7 @@ export default function LumpsumCalculator() {
                     </span>
 
                     <h1 className="section-title mt-6">
-                        Plan Your Wealth With
+                        Explore a Lumpsum Investment Illustration
                         <span className="block text-green-700">
                             One-Time Investment
                         </span>
@@ -165,12 +165,12 @@ export default function LumpsumCalculator() {
                                 <Percent className="h-5 w-5 text-green-700" />
 
                                 <span className="font-semibold">
-                                    Expected Annual Return
+                                    Assumed Annual Return (Illustrative)
                                 </span>
                             </div>
 
                             <CalculatorInput
-                                label="Expected Annual Return"
+                                label="Assumed Annual Return (Illustrative)"
                                 value={annualReturn}
                                 min={1}
                                 max={20}
