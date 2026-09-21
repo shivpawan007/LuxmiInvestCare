@@ -69,7 +69,7 @@ export default function SIPCalculator() {
                     <p className="section-subtitle">
                         Estimate the potential value of your Systematic
                         Investment Plan (SIP) based on your monthly
-                        investment, expected annual return and
+                        investment, assumed annual return and
                         investment period.
                     </p>
 
@@ -98,7 +98,7 @@ export default function SIPCalculator() {
                         />
 
                         <SIPInputCard
-                            title="Expected Annual Return"
+                            title="Assumed Annual Return (Illustrative)"
                             value={annualReturn}
                             suffix="%"
                             min={1}
@@ -133,7 +133,7 @@ export default function SIPCalculator() {
                         <SIPSummaryCard
                             title="Estimated Returns"
                             value={formatCurrency(result.estimatedReturns)}
-                            subtitle="Illustrative wealth generated based on expected annual returns."
+                            subtitle="Illustrative growth based on the assumed annual return."
                             icon={<TrendingUp size={22} />}
                             valueColor="text-green-700"
                         />
@@ -242,10 +242,8 @@ export default function SIPCalculator() {
                     <p className="text-sm leading-7 text-slate-600">
                         The SIP Calculator provides an illustrative estimate
                         based on the values entered by the user and assumed
-                        rates of return. Actual investment outcomes may differ
-                        depending on market performance. Mutual Fund investments
-                        are subject to market risks. Please read all
-                        scheme-related documents carefully before investing.
+                        assumed return. Actual investment outcomes may differ
+                        depending on market performance. Mutual Fund investments are subject to market risks, read all scheme related documents carefully.
                     </p>
 
                 </div>
