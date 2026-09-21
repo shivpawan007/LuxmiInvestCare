@@ -158,11 +158,11 @@ export default function SWPCalculator() {
               </div>
 
               {/* =================================================
-                  EXPECTED RETURN
+                  ASSUMED ANNUAL RETURN (ILLUSTRATIVE)
               ================================================== */}
               <div className="mb-8">
                 <CalculatorInput
-                  label="Expected Annual Return"
+                  label="Assumed Annual Return (Illustrative)"
                   value={annualReturn}
                   min={1}
                   max={20}
@@ -490,10 +490,7 @@ export default function SWPCalculator() {
               an assumed rate of return. Actual
               investment outcomes may differ
               depending on market performance.
-              Mutual Fund investments are subject
-              to market risks. Please read all
-              scheme-related documents carefully
-              before investing.
+              Mutual Fund investments are subject to market risks, read all scheme related documents carefully.
             </p>
           </div>
         </div>
