@@ -139,7 +139,7 @@ export default function SIPCalculator() {
                         />
 
                         <SIPSummaryCard
-                            title="Estimated Maturity Value"
+                            title="Illustrative Projected Value"
                             value={formatCurrency(result.maturityValue)}
                             subtitle="Projected corpus at the end of your selected investment period."
                             icon={<Landmark size={22} />}
