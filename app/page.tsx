@@ -2,6 +2,7 @@ import Hero from "@/components/home/Hero";
 import About from "@/components/home/About";
 import WhyChoose from "@/components/home/WhyChoose";
 import InvestorEducation from "@/components/home/InvestorEducation";
+import InvestorEducationApproach from "@/components/home/Testimonials";
 import Contact from "@/components/home/Contact";
 import Services from "@/components/home/Services";
 import CTA from "@/components/home/CTA";
