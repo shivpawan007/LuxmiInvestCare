@@ -56,7 +56,7 @@ export default function LumpsumInsights({
 
                     <div className="rounded-2xl border bg-white p-6 shadow-sm">
                         <h3 className="font-semibold text-green-700">
-                            Estimated Maturity Value
+                            Illustrative Projected Value
                         </h3>
 
                         <p className="mt-3 text-3xl font-bold">
