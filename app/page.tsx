@@ -1,4 +1,3 @@
-import Testimonials from "@/components/home/Testimonials";
 import Hero from "@/components/home/Hero";
 import About from "@/components/home/About";
 import WhyChoose from "@/components/home/WhyChoose";
@@ -22,7 +21,7 @@ export default function Home() {
         <InvestorEducation />
         <Services />
         <CTA />
-        <Testimonials />
+        <InvestorEducation />
         <FAQ />
         <Contact />
       </main>
