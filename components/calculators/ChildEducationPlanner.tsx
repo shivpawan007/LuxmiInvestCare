@@ -19,6 +19,7 @@ import ChildEducationResults from "./ChildEducationResults";
 import DownloadReport from "./DownloadReport";
 import ReportShareDialog from "./sharing/ReportShareDialog";
 import ConnectWithLuxmi from "./sharing/ConnectWithLuxmi";
+import MutualFundRiskWarning from "@/components/compliance/MutualFundRiskWarning";
 
 import {
   calculateEducationPlan,
@@ -291,6 +292,14 @@ export default function ChildEducationPlanner() {
             may differ.
           </p>
 
+        </div>
+
+        <div className="mt-10 rounded-2xl border border-slate-200 bg-slate-50 p-6">
+          <h3 className="mb-3 text-lg font-bold text-slate-900">Investor Education Disclaimer</h3>
+          <p className="mb-4 text-sm leading-7 text-slate-600">
+            This calculator provides an educational illustration based on the assumptions entered. Actual education costs and investment outcomes may differ.
+          </p>
+          <MutualFundRiskWarning />
         </div>
 
       </div>
