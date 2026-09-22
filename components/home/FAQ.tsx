@@ -199,10 +199,7 @@ export default function FAQ() {
                                 </a>
 
                                 <p className="max-w-sm text-right text-sm text-green-100 lg:text-base">
-                                    Mutual Fund investments are subject to
-                                    market risks. Please read all
-                                    scheme-related documents carefully before
-                                    investing.
+                                    Mutual Fund investments are subject to market risks, read all scheme related documents carefully.
                                 </p>
 
                             </div>
