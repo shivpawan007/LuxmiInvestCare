@@ -102,7 +102,7 @@ export default function CalculatorsPage() {
 
                         <CalculatorCard
                             title="Child Education Cost Calculator"
-                            description="Explore an illustrative future education cost and the investment amount required under the assumptions entered."
+                            description="Explore an illustrative future education cost and an illustrative investment amount under the assumptions entered."
                             href="/calculators/education"
                             icon={
                                 <GraduationCap className="h-8 w-8" />
