@@ -6099,7 +6099,7 @@ export default function DownloadReport({
             ),
           ],
           [
-            "Maturity Value",
+            "Illustrative Projected Value",
             formatCurrency(
               maturityValue,
             ),
