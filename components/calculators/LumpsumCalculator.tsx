@@ -251,7 +251,7 @@ export default function LumpsumCalculator() {
                         />
 
                         <CalculatorResultCard
-                            title="Maturity Value"
+                            title="Illustrative Projected Value"
                             value={formatCurrency(
                                 result.maturityValue,
                             )}
