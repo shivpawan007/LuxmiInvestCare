@@ -31,6 +31,7 @@ import CalculatorInput from "./CalculatorInput";
 
 import ReportShareDialog from "./sharing/ReportShareDialog";
 import ConnectWithLuxmi from "./sharing/ConnectWithLuxmi";
+import MutualFundRiskWarning from "@/components/compliance/MutualFundRiskWarning";
 
 export default function LumpsumCalculator() {
     const [
@@ -380,6 +381,14 @@ export default function LumpsumCalculator() {
                             result.maturityValue,
                         )}
                     />
+                </div>
+
+                <div className="mt-10 rounded-2xl border border-slate-200 bg-slate-50 p-6">
+                    <h3 className="mb-3 text-lg font-bold text-slate-900">Investor Education Disclaimer</h3>
+                    <p className="mb-4 text-sm leading-7 text-slate-600">
+                        This calculator is an educational illustration based on the assumptions entered by the user. Actual investment outcomes may differ.
+                    </p>
+                    <MutualFundRiskWarning />
                 </div>
 
                 {/* ==================================================
