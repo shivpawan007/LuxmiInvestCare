@@ -275,7 +275,7 @@ export default function ChildEducationPlanner() {
         </div>
 
         {/* ==================================================
-            PLANNING NOTE
+            ILLUSTRATION NOTE
         ================================================== */}
         <div className="mt-12 rounded-3xl border border-green-200 bg-green-50 p-8">
 
@@ -287,7 +287,7 @@ export default function ChildEducationPlanner() {
             The figures shown are illustrations
             based on the assumptions entered.
             Actual education costs, investment
-            returns and future funding requirements
+            returns and illustrative investment amounts
             may differ.
           </p>
 
