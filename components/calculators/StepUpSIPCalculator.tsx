@@ -700,10 +700,9 @@ export default function StepUpSIPCalculator() {
               estimates based on the assumptions entered
               by the user and an assumed rate of return.
               Actual investment outcomes may differ
-              depending on market performance. Mutual
-              Fund investments are subject to market
-              risks. Please read all scheme-related
-              documents carefully before investing.
+              depending on market performance.
+
+              Mutual Fund investments are subject to market risks, read all scheme related documents carefully.
             </p>
 
           </div>
