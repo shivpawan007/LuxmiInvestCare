@@ -70,7 +70,7 @@ export default function ReportShareDialog({
         `Assumed Annual Return (Illustrative): ${annualReturn}%\n` +
         `Investment Period: ${years} Years\n` +
         `Estimated Returns: ${formatCurrency(estimatedReturns)}\n` +
-        `Projected Maturity Value: ${formatCurrency(maturityValue)}\n\n` +
+        `Illustrative Projected Value: ${formatCurrency(maturityValue)}\n\n` +
         `View calculator: ${reportUrl}\n\n` +
         `Investor Education Disclaimer: This illustration is based on an assumed annual return and is not a guarantee of future performance. Mutual Fund investments are subject to market risks, read all scheme related documents carefully.`;
 
