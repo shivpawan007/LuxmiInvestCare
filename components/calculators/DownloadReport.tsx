@@ -1233,7 +1233,7 @@ function addDisclaimer(pdf: jsPDF) {
     "The projections shown are based on the assumptions entered by the user and an assumed rate of return.",
     "Actual investment returns may vary depending on market conditions, scheme performance, costs, taxes and other factors.",
     "Mutual Fund investments are subject to market risks, read all scheme related documents carefully.",
-    "Past performance does not guarantee future returns.",
+    "Past performance is not a guarantee of future returns.",
     "The projected values shown in this report are not guaranteed returns and should not be interpreted as a promise of future performance.",
     "This calculator output should not by itself be construed as personalised investment advice.",
   ];
@@ -1622,7 +1622,7 @@ export default function DownloadReport({
             84,
             swpCardW,
             swpCardH,
-            "Expected Return",
+            "Assumed Annual Return (Illustrative)",
             `${annualReturn}%`,
             C.gold,
           );
@@ -2653,7 +2653,7 @@ export default function DownloadReport({
             84,
             stepCardW,
             stepCardH,
-            "Expected Return",
+            "Assumed Annual Return (Illustrative)",
             `${stepReturn}%`,
             C.teal,
           );
@@ -4064,7 +4064,7 @@ export default function DownloadReport({
             121,
             cardW,
             cardH,
-            "Expected Return",
+            "Assumed Annual Return (Illustrative)",
             `${expectedReturn}%`,
             C.teal,
           );
@@ -5015,7 +5015,7 @@ export default function DownloadReport({
           addCard(pdf, 18 + cardW + gap, 84, cardW, cardH, "Education Start Age", `${educationStartAge} Years`, C.teal);
           addCard(pdf, 18 + (cardW + gap) * 2, 84, cardW, cardH, "Investment Horizon", `${yearsToGoal} ${yearsToGoal === 1 ? "Year" : "Years"}`, C.gold);
           addCard(pdf, 18, 120, cardW, cardH, "Current Education Cost", formatCurrency(currentEducationCost));
-          addCard(pdf, 18 + cardW + gap, 120, cardW, cardH, "Expected Return", `${expectedReturn}%`, C.teal);
+          addCard(pdf, 18 + cardW + gap, 120, cardW, cardH, "Assumed Annual Return (Illustrative)", `${expectedReturn}%`, C.teal);
           addCard(pdf, 18 + (cardW + gap) * 2, 120, cardW, cardH, "Education Inflation", `${educationInflation}%`, C.gold);
 
           pdf.setFillColor(...C.light);
@@ -5422,7 +5422,7 @@ export default function DownloadReport({
             "The projections shown are based on the assumptions entered by the user, including education cost, time period, inflation and assumed investment return.",
             "Actual education costs, investment returns and future funding requirements may differ from the illustration.",
             "Mutual Fund investments are subject to market risks, read all scheme related documents carefully.",
-            "Past performance does not guarantee future returns.",
+            "Past performance is not a guarantee of future returns.",
             "The projected values shown in this report are not guaranteed returns and should not be interpreted as a promise of future performance.",
             "This calculator is an educational illustration and should not be treated as a recommendation to invest in any particular scheme.",
           ];
@@ -5510,7 +5510,7 @@ export default function DownloadReport({
           84,
           cardW,
           cardH,
-          "Expected Return",
+          "Assumed Annual Return (Illustrative)",
           `${annualReturn}%`,
           C.gold,
         );
@@ -6083,7 +6083,7 @@ export default function DownloadReport({
             }`,
           ],
           [
-            "Expected Return",
+            "Assumed Annual Return (Illustrative)",
             `${annualReturn}%`,
           ],
           [

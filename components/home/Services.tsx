@@ -27,7 +27,7 @@ const services = [
         icon: ShieldCheck,
         title: "Insurance Information",
         description:
-            "Information about life insurance products and the role of insurance in protecting family financial needs.",
+            "Information about life insurance products and the role of insurance in protecting family protection needs.",
     },
     {
         icon: HeartPulse,
@@ -179,10 +179,7 @@ export default function Services() {
                                 </a>
 
                                 <p className="max-w-sm text-right text-sm text-green-100 lg:text-base">
-                                    Mutual Fund investments are subject to
-                                    market risks. Please read all
-                                    scheme-related documents carefully before
-                                    investing.
+                                    Mutual Fund investments are subject to market risks, read all scheme related documents carefully.
                                 </p>
 
                             </div>

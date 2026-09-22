@@ -97,7 +97,7 @@ export default function ChildEducationPlanner() {
           </h1>
 
           <p className="section-subtitle">
-            Explore the illustrative future cost of education and the investment amount required under the assumptions entered.
+            Explore the illustrative future cost of education and the investment amounts shown under the assumptions entered.
           </p>
 
         </div>

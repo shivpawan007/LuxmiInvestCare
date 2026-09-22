@@ -67,12 +67,12 @@ export default function ReportShareDialog({
         `Luxmi InvestCare\n` +
         `${reportTitle}\n\n` +
         `Investment: ${formatCurrency(investment)}\n` +
-        `Expected Annual Return: ${annualReturn}%\n` +
+        `Assumed Annual Return (Illustrative): ${annualReturn}%\n` +
         `Investment Period: ${years} Years\n` +
         `Estimated Returns: ${formatCurrency(estimatedReturns)}\n` +
         `Projected Maturity Value: ${formatCurrency(maturityValue)}\n\n` +
         `View calculator: ${reportUrl}\n\n` +
-        `Investor Education Disclaimer: This illustration is based on assumed returns and is not a guarantee of future performance. Mutual Fund investments are subject to market risks. Please read all scheme-related documents carefully before investing.`;
+        `Investor Education Disclaimer: This illustration is based on an assumed annual return and is not a guarantee of future performance. Mutual Fund investments are subject to market risks, read all scheme related documents carefully.`;
 
     function handleLeadSubmit(details: LeadDetails) {
         setLead(details);
@@ -298,7 +298,7 @@ export default function ReportShareDialog({
                                     </p>
 
                                     <p>
-                                        Expected Return:{" "}
+                                        Assumed Annual Return (Illustrative):{" "}
                                         <strong className="text-slate-900">
                                             {annualReturn}%
                                         </strong>

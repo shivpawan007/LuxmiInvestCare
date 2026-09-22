@@ -404,10 +404,7 @@ export default function InvestorEducationPage() {
               education and awareness purposes. Calculator
               illustrations are based on assumptions entered
               by the user and actual outcomes may differ.
-              Mutual Fund investments are subject to market risks, read all scheme related documents carefully. Past performance may
-              or may not be sustained in the future and should
-              not be used as the sole basis for investment
-              decisions.
+              Mutual Fund investments are subject to market risks, read all scheme related documents carefully. Actual outcomes may differ from illustrations and assumptions.
             </p>
 
           </div>

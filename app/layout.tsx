@@ -21,7 +21,7 @@ export const metadata: Metadata = {
         template: "%s | Luxmi InvestCare",
     },
     description:
-        "Luxmi InvestCare provides investor education, mutual fund and SIP information, insurance guidance, and financial awareness resources in Faridabad, Haryana.",
+        "Luxmi InvestCare provides investor education, mutual fund and SIP information, insurance information, and financial awareness resources in Faridabad, Haryana.",
     applicationName: "Luxmi InvestCare",
     authors: [{ name: "Luxmi InvestCare" }],
     creator: "Luxmi InvestCare",
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
         siteName: "Luxmi InvestCare",
         title: "Luxmi InvestCare | Investor Education & Financial Awareness",
         description:
-            "Investor education, mutual fund and SIP information, insurance guidance, and financial awareness resources from Luxmi InvestCare.",
+            "Investor education, mutual fund and SIP information, insurance information, and financial awareness resources from Luxmi InvestCare.",
         images: [
             {
                 url: "/images/luxmi-logo.png",
@@ -69,15 +69,14 @@ export const metadata: Metadata = {
 
 const organizationJsonLd = {
     "@context": "https://schema.org",
-    "@type": "FinancialService",
+    "@type": "Organization",
     "@id": `${siteUrl}/#organization`,
     name: "Luxmi InvestCare",
-    alternateName: "Luxmi InvestCare Financial Services",
     url: siteUrl,
     logo: `${siteUrl}/images/luxmi-logo.png`,
     image: `${siteUrl}/images/luxmi-logo.png`,
     description:
-        "Luxmi InvestCare provides investor education, mutual fund and SIP information, insurance guidance, and financial awareness resources.",
+        "Luxmi InvestCare provides investor education, mutual fund and SIP information, insurance information, and financial awareness resources.",
     telephone: "+919650060044",
     email: "info@luxmiinvestcare.com",
     address: {

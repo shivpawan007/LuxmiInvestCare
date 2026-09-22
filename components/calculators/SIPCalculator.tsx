@@ -59,10 +59,10 @@ export default function SIPCalculator() {
                     </span>
 
                     <h1 className="section-title mt-6">
-                        Plan Your Future With
+                        Explore a SIP Investment Illustration
 
                         <span className="block text-green-700">
-                            Disciplined Investing
+                            Through Assumed Growth
                         </span>
                     </h1>
 
@@ -240,10 +240,7 @@ export default function SIPCalculator() {
                     </h3>
 
                     <p className="text-sm leading-7 text-slate-600">
-                        The SIP Calculator provides an illustrative estimate
-                        based on the values entered by the user and assumed
-                        assumed return. Actual investment outcomes may differ
-                        depending on market performance. Mutual Fund investments are subject to market risks, read all scheme related documents carefully.
+                        The SIP Calculator provides an illustrative estimate based on the values entered by the user and an assumed annual return. Actual investment outcomes may differ depending on market performance.\n\nMutual Fund investments are subject to market risks, read all scheme related documents carefully.
                     </p>
 
                 </div>

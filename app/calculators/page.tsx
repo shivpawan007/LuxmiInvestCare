@@ -157,14 +157,9 @@ export default function CalculatorsPage() {
                                     </h2>
 
                                     <p className="mt-4 leading-8 text-slate-700">
-                                        These calculators are provided for investor
-                                        education and illustration purposes only.
-                                        Results are based on the assumptions entered
-                                        by the user and do not guarantee future
-                                        returns. Actual outcomes may differ.
-                                        Mutual Fund investments are subject to
-                                        market risks. Please read all scheme-related
-                                        documents carefully before investing.
+                                        These calculators are provided for investor education and illustration purposes only. Results are based on the assumptions entered by the user and actual outcomes may differ.
+
+                                        Mutual Fund investments are subject to market risks, read all scheme related documents carefully.
                                     </p>
                                 </div>
 

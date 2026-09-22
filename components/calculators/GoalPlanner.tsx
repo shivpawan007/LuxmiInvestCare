@@ -275,9 +275,7 @@ export default function GoalPlanner() {
                             illustrations based on the assumptions
                             entered. Actual costs, market returns and
                             investment requirements may differ.
-                            Mutual fund investments are subject to
-                            market risks. Please read all scheme-related
-                            documents carefully before investing.
+                            Mutual Fund investments are subject to market risks, read all scheme related documents carefully.
                         </p>
                     </div>
 
