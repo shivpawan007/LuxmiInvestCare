@@ -5550,7 +5550,7 @@ export default function DownloadReport({
           121,
           cardW,
           cardH,
-          "Maturity Value",
+          "Illustrative Projected Value",
           formatCurrency(
             maturityValue,
           ),
