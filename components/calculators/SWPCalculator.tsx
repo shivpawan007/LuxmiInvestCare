@@ -110,7 +110,7 @@ export default function SWPCalculator() {
                 </p>
 
                 <h2 className="mt-2 text-2xl font-bold text-slate-900">
-                  Plan Your SWP
+                  Explore SWP Assumptions
                 </h2>
 
                 <p className="mt-2 text-sm leading-6 text-slate-600">
