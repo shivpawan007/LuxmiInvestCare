@@ -10,11 +10,13 @@ interface LeadCaptureFormProps {
     }) => void;
 
     onCancel?: () => void;
+    privacyConsent: boolean;
 }
 
 export default function LeadCaptureForm({
     onSubmit,
     onCancel,
+    privacyConsent,
 }: LeadCaptureFormProps) {
     const [
         customerName,
@@ -72,6 +74,13 @@ export default function LeadCaptureForm({
         ) {
             setError(
                 "Please enter a valid email address.",
+            );
+            return;
+        }
+
+        if (!privacyConsent) {
+            setError(
+                "Please accept the Privacy Policy before continuing.",
             );
             return;
         }
@@ -206,8 +215,12 @@ export default function LeadCaptureForm({
             </div>
 
             <p className="text-xs leading-5 text-slate-500">
-                Your details help Luxmi InvestCare respond to your
-                investor education and information enquiry.
+                Your details are used only to enable the selected report-sharing
+                action and respond to your investor education and information
+                enquiry. See the{" "}
+                <a href="/privacy-policy" className="font-semibold text-green-700 underline">
+                    Privacy Policy
+                </a>.
             </p>
 
         </form>
