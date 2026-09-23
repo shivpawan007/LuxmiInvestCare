@@ -78,7 +78,7 @@ export default function SWPCalculator() {
             </span>
 
             <h1 className="section-title mt-5">
-              Plan Your Withdrawals with a{" "}
+              Explore Withdrawals with a{" "}
               <span className="text-emerald-700">
                 Systematic Withdrawal Plan
               </span>
@@ -110,7 +110,7 @@ export default function SWPCalculator() {
                 </p>
 
                 <h2 className="mt-2 text-2xl font-bold text-slate-900">
-                  Plan Your SWP
+                  Explore an SWP Illustration
                 </h2>
 
                 <p className="mt-2 text-sm leading-6 text-slate-600">
