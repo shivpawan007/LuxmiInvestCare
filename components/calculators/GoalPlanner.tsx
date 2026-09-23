@@ -276,8 +276,9 @@ export default function GoalPlanner() {
                             illustrations based on the assumptions
                             entered. Actual costs, market returns and
                             investment requirements may differ.
-                            <MutualFundRiskWarning className="mt-3 text-slate-600" />
                         </p>
+
+                        <MutualFundRiskWarning className="mt-3 text-slate-600" />
                     </div>
 
                     {/* ==================================================
