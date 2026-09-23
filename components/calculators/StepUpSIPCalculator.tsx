@@ -259,7 +259,7 @@ export default function StepUpSIPCalculator() {
               </div>
 
               {/* ==================================================
-                  EXPECTED ANNUAL RETURN
+                  ASSUMED ANNUAL RETURN (ILLUSTRATIVE)
               ================================================== */}
               <div className="mb-8">
                 <CalculatorInput
