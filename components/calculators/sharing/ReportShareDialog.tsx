@@ -71,7 +71,7 @@ export default function ReportShareDialog({
         `Assumed Annual Return (Illustrative): ${annualReturn}%\n` +
         `Investment Period: ${years} Years\n` +
         `Illustrative Returns: ${formatCurrency(estimatedReturns)}\n` +
-        `Illustrative Projected Value: ${formatCurrency(maturityValue)}\n\n` +
+        `Illustrative Illustrative Projected Value: ${formatCurrency(maturityValue)}\n\n` +
         `View calculator: ${reportUrl}\n\n` +
         `Investor Education Disclaimer: This illustration is based on assumptions entered by the user and is not a guarantee of future performance. Mutual Fund investments are subject to market risks, read all scheme related documents carefully.`;
 
@@ -148,9 +148,6 @@ export default function ReportShareDialog({
             recordReportShare({
                 calculatorType,
                 reportTitle,
-                customerName: lead.customerName,
-                mobile: lead.mobile,
-                email: lead.email,
                 investment,
                 years,
                 annualReturn,
@@ -322,7 +319,7 @@ export default function ReportShareDialog({
                                     </p>
 
                                     <p>
-                                        Expected Return:{" "}
+                                        Assumed Annual Return (Illustrative):{" "}
                                         <strong className="text-slate-900">
                                             {annualReturn}%
                                         </strong>
@@ -336,7 +333,7 @@ export default function ReportShareDialog({
                                     </p>
 
                                     <p>
-                                        Estimated Returns:{" "}
+                                        Illustrative Returns:{" "}
                                         <strong className="text-green-700">
                                             {formatCurrency(estimatedReturns)}
                                         </strong>
