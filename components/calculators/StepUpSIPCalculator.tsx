@@ -190,7 +190,7 @@ export default function StepUpSIPCalculator() {
                 </p>
 
                 <h2 className="mt-2 text-2xl font-bold text-slate-900">
-                  Plan Your Step-Up SIP
+                  Explore a Step-Up SIP Illustration
                 </h2>
 
                 <p className="mt-2 text-sm leading-6 text-slate-500">
