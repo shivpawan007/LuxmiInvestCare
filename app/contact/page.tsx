@@ -59,6 +59,11 @@ export default function ContactPage() {
         setError,
     ] = useState("");
 
+    const [
+        privacyConsent,
+        setPrivacyConsent,
+    ] = useState(false);
+
     async function handleSubmit(
     event: React.FormEvent<HTMLFormElement>,
 ) {
@@ -100,6 +105,13 @@ export default function ContactPage() {
         return;
     }
 
+    if (!privacyConsent) {
+        setError(
+            "Please accept the Privacy Policy before submitting your enquiry.",
+        );
+        return;
+    }
+
     setError("");
 
     try {
@@ -116,6 +128,7 @@ export default function ContactPage() {
                     mobile: cleanMobile,
                     email: email.trim(),
                     enquiry: message.trim(),
+                    privacyConsent,
                     source: "website-contact",
                     landingPage:
                         window.location.pathname,
@@ -366,6 +379,32 @@ ${message.trim()}
                                     </div>
                                 )}
 
+                                <label className="flex items-start gap-3 rounded-xl border border-slate-200 bg-slate-50 p-4 text-xs leading-5 text-slate-600">
+                                    <input
+                                        type="checkbox"
+                                        checked={privacyConsent}
+                                        onChange={(event) =>
+                                            setPrivacyConsent(event.target.checked)
+                                        }
+                                        className="mt-1 h-4 w-4 rounded border-slate-300 text-green-700 focus:ring-green-600"
+                                    />
+                                    <span>
+                                        I agree that Luxmi InvestCare may process
+                                        the information submitted here to respond
+                                        to my enquiry, as described in the{" "}
+                                        <a
+                                            href="/privacy-policy"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="font-semibold text-green-700 underline"
+                                        >
+                                            Privacy Policy
+                                        </a>.
+                                        When I continue on WhatsApp, the enquiry
+                                        details will also be shared with WhatsApp.
+                                    </span>
+                                </label>
+
                                 <button
                                     type="submit"
                                     className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-green-700 px-6 py-3.5 text-sm font-semibold text-white shadow-sm transition hover:bg-green-800"
@@ -377,6 +416,11 @@ ${message.trim()}
                                 <p className="text-xs leading-5 text-slate-500">
                                     Your details are used to respond to your
                                     investor education and information enquiry.
+                                    You can read the full{" "}
+                                    <a href="/privacy-policy" className="font-semibold text-green-700 underline">
+                                        Privacy Policy
+                                    </a>{" "}
+                                    before submitting.
                                 </p>
 
                             </form>
