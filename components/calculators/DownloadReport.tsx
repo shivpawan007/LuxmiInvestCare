@@ -101,7 +101,7 @@ interface DownloadReportProps {
 const BRAND = {
   name: "Luxmi InvestCare",
   subtitle: "AMFI-registered Mutual Fund Distributor | ARN: 365140",
-  website: "www.luxmiInvestCare.com",
+  website: "luxmiinvestcare.com",
   email: "info@luxmiinvestcare.com",
   whatsapp: "9650060044",
   facebook: "facebook.com/luxmiinvestcare",
