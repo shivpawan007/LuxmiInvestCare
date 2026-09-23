@@ -29,7 +29,7 @@ const CONTACT = {
     whatsappDisplay: "9650060044",
     phone: "tel:+919650060044",
     email: "mailto:info@luxmiinvestcare.com",
-    website: "https://www.luxmiInvestCare.com",
+    website: "https://luxmiinvestcare.com",
 };
 
 function formatINR(value: number): string {
@@ -195,7 +195,7 @@ Please share investor education and information related to this illustration.`,
 
             <p className="mt-5 text-center text-xs text-slate-500">
                 WhatsApp: {CONTACT.whatsappDisplay} ·{" "}
-                info@luxmiinvestcare.com · www.luxmiInvestCare.com
+                info@luxmiinvestcare.com · luxmiinvestcare.com
             </p>
 
         </section>
