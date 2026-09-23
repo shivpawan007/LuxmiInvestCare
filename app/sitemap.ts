@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 
 const BASE_URL =
-    "https://www.luxmiinvestcare.com";
+    "https://luxmiinvestcare.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
     return [
