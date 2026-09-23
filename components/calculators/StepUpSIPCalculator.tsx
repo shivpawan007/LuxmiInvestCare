@@ -693,15 +693,12 @@ export default function StepUpSIPCalculator() {
             </h3>
 
             <p className="text-sm leading-7 text-slate-600">
-              This calculator provides illustrative
-              estimates based on the assumptions entered
-              by the user and an assumed rate of return.
-              Actual investment outcomes may differ
-              depending on market performance. Mutual
-              Fund investments are subject to market
-              risks. Please read all scheme-related
-              documents carefully before investing.
+              This calculator provides illustrative estimates
+              based on the assumptions entered by the user.
+              Actual investment outcomes may differ.
             </p>
+
+            <MutualFundRiskWarning className="mt-3 text-slate-600" />
 
           </div>
         </div>
