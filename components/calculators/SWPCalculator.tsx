@@ -1,5 +1,6 @@
 "use client";
 
+import MutualFundRiskWarning from "@/components/compliance/MutualFundRiskWarning";
 import { useMemo, useState } from "react";
 import { Share2 } from "lucide-react";
 
@@ -490,7 +491,7 @@ export default function SWPCalculator() {
               an assumed rate of return. Actual
               investment outcomes may differ
               depending on market performance.
-              Mutual Fund investments are subject to market risks, read all scheme related documents carefully.
+              
             </p>
           </div>
         </div>
