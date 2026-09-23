@@ -59,7 +59,7 @@ export default function ReportShareDialog({
     const reportUrl =
         typeof window !== "undefined"
             ? window.location.href
-            : "https://www.luxmiinvestcare.com";
+            : "https://luxmiinvestcare.com";
 
     const formatCurrency = (value: number) =>
         `₹${Math.round(value).toLocaleString("en-IN")}`;
