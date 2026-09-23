@@ -16,6 +16,7 @@ import ReportShareDialog from "./sharing/ReportShareDialog";
 import ConnectWithLuxmi from "./sharing/ConnectWithLuxmi";
 
 import { calculateGoal } from "@/lib/goal";
+import MutualFundRiskWarning from "@/components/compliance/MutualFundRiskWarning";
 
 export default function GoalPlanner() {
     const [goal, setGoal] =
@@ -275,9 +276,7 @@ export default function GoalPlanner() {
                             illustrations based on the assumptions
                             entered. Actual costs, market returns and
                             investment requirements may differ.
-                            Mutual fund investments are subject to
-                            market risks. Please read all scheme-related
-                            documents carefully before investing.
+                            <MutualFundRiskWarning className="mt-3 text-slate-600" />
                         </p>
                     </div>
 
