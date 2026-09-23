@@ -1,5 +1,6 @@
 "use client";
 
+import MutualFundRiskWarning from "@/components/compliance/MutualFundRiskWarning";
 import { useMemo, useState } from "react";
 import { Share2 } from "lucide-react";
 
@@ -648,11 +649,7 @@ export default function StepUpSIPCalculator() {
               capacity.
             </p>
 
-            <p className="mt-3 text-xs leading-5 text-slate-600">
-              The calculations shown are illustrative
-              estimates based on the assumptions entered.
-              Mutual Fund investments are subject to market risks, read all scheme related documents carefully. Past performance does not indicate future performance. Actual returns may differ from the assumptions used in this calculator.
-            </p>
+            <MutualFundRiskWarning className="mt-3 text-slate-600" />
 
           </div>
 
