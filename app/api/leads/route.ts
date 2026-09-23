@@ -19,6 +19,7 @@ const leadSchema = z.object({
         .optional()
         .or(z.literal("")),
     enquiry: z.string().trim().min(2).max(5000),
+    privacyConsent: z.literal(true),
     source: z.string().trim().max(80).optional(),
     landingPage: z.string().trim().max(500).optional(),
 });
@@ -76,6 +77,23 @@ const [result] = await db.execute<ResultSetHeader>(
                 (?, 'LEAD_CREATED', 'Lead submitted from website')
             `,
             [leadId],
+        );
+
+        await db.execute(
+            `
+            INSERT INTO consents
+                (
+                    lead_id,
+                    purpose,
+                    notice_version,
+                    consent_status,
+                    source,
+                    given_at
+                )
+            VALUES
+                (?, 'ENQUIRY_RESPONSE', 'Privacy Notice v1.0 | 23 September 2026', 'GRANTED', ?, NOW())
+            `,
+            [leadId, data.source || "website"],
         );
 
         return NextResponse.json({
