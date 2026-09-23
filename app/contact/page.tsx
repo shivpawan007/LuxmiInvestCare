@@ -19,7 +19,7 @@ const CONTACT = {
     whatsapp: "https://wa.me/919650060044",
     email: "info@luxmiinvestcare.com",
     emailLink: "mailto:info@luxmiinvestcare.com",
-    website: "https://www.luxmiInvestCare.com",
+    website: "https://luxmiinvestcare.com",
     address: [
         "1063, D-Block,",
         "Street-6,",
@@ -580,7 +580,7 @@ ${message.trim()}
                                         </p>
 
                                         <h2 className="mt-2 text-xl font-bold text-slate-900">
-                                            AMFI Registered Mutual Fund Distributor
+                                            AMFI-registered Mutual Fund Distributor
                                         </h2>
 
                                         <p className="mt-2 text-sm text-slate-600">
