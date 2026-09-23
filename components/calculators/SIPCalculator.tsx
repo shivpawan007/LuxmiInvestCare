@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 
 import { calculateSIP } from "@/lib/sip";
+import MutualFundRiskWarning from "@/components/compliance/MutualFundRiskWarning";
 
 import SIPPieChart from "./SIPPieChart";
 import SIPSummaryCard from "./SIPSummaryCard";
@@ -239,12 +240,7 @@ export default function SIPCalculator() {
                         Investor Education Disclaimer
                     </h3>
 
-                    <p className="text-sm leading-7 text-slate-600">
-                        The SIP Calculator provides an illustrative estimate
-                        based on the values entered by the user and assumed
-                        assumed return. Actual investment outcomes may differ
-                        depending on market performance. Mutual Fund investments are subject to market risks, read all scheme related documents carefully.
-                    </p>
+                    <MutualFundRiskWarning className="mt-3 text-slate-600" />
 
                 </div>
 
