@@ -59,10 +59,10 @@ export default function SIPCalculator() {
                     </span>
 
                     <h1 className="section-title mt-6">
-                        Plan Your Future With
+                        Explore a SIP Investment Illustration
 
                         <span className="block text-green-700">
-                            Disciplined Investing
+                            Assumption-Based Projection
                         </span>
                     </h1>
 
