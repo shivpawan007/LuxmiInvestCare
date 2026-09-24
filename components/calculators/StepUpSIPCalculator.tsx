@@ -315,7 +315,7 @@ export default function StepUpSIPCalculator() {
 
                 <div className="rounded-2xl border border-emerald-100 bg-white p-5 shadow-sm">
                   <p className="text-sm font-medium text-slate-500">
-                    Projected Value
+                    Illustrative Projected Value
                   </p>
 
                   <p className="mt-2 text-2xl font-bold text-emerald-800">
@@ -477,7 +477,7 @@ export default function StepUpSIPCalculator() {
                         </th>
 
                         <th className="px-5 py-4">
-                          Projected Value
+                          Illustrative Projected Value
                         </th>
                       </tr>
                     </thead>
