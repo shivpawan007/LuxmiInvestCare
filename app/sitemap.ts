@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 
 const BASE_URL =
-    "https://www.luxmiinvestcare.com";
+    "https://luxmiinvestcare.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
     return [
@@ -24,6 +24,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
             url: `${BASE_URL}/contact`,
             changeFrequency: "monthly",
             priority: 0.8,
+        },
+        {
+            url: `${BASE_URL}/privacy-policy`,
+            changeFrequency: "yearly",
+            priority: 0.6,
+        },
+        {
+            url: `${BASE_URL}/regulatory-disclosures`,
+            changeFrequency: "yearly",
+            priority: 0.7,
         },
         {
             url: `${BASE_URL}/investor-education`,

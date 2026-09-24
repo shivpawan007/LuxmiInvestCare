@@ -1,5 +1,7 @@
 "use client";
 
+import MutualFundRiskWarning from "@/components/compliance/MutualFundRiskWarning";
+
 import {
     Landmark,
     PiggyBank,
@@ -257,10 +259,11 @@ export default function ServicesPage() {
                             investor education and general information purposes
                             only. Product information and calculator illustrations
                             are based on assumptions and may not reflect actual
-                            future outcomes. Mutual Fund investments are subject
-                            to market risks. Please read all scheme-related
-                            documents carefully before investing.
+                            future outcomes.
                         </p>
+                        <div className="mt-4">
+                            <MutualFundRiskWarning className="text-left text-slate-700" />
+                        </div>
 
                     </div>
 

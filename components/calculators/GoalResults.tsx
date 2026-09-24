@@ -30,12 +30,12 @@ export default function GoalResults({
 }: GoalResultsProps) {
   const cards = [
     {
-      title: "Today's Goal Value",
+      title: "Today's Objective Value",
       value: formatCurrency(targetAmount),
       icon: <Target className="h-7 w-7" />,
     },
     {
-      title: "Future Goal Value",
+      title: "Illustrative Future Objective Value",
       value: formatCurrency(inflationAdjustedAmount),
       icon: <TrendingUp className="h-7 w-7" />,
     },
@@ -54,7 +54,7 @@ export default function GoalResults({
   return (
     <section className="mt-16">
       <h2 className="text-3xl font-bold text-slate-900">
-        Goal Planning Summary
+        Investment Objective Illustration Summary
       </h2>
 
       <p className="mt-2 text-slate-600">

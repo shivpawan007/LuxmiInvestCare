@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 
 import CalculatorHero from "@/components/calculators/CalculatorHero";
+import MutualFundRiskWarning from "@/components/compliance/MutualFundRiskWarning";
 import CalculatorCard from "@/components/calculators/CalculatorCard";
 
 export default function CalculatorsPage() {
@@ -39,7 +40,7 @@ export default function CalculatorsPage() {
                         </h2>
 
                         <p className="section-subtitle">
-                            Use these educational calculators to explore
+                            Use these investment calculators to explore
                             illustrative investment values, inflation effects, withdrawal scenarios and long-term investing assumptions.
                         </p>
 
@@ -162,10 +163,10 @@ export default function CalculatorsPage() {
                                         Results are based on the assumptions entered
                                         by the user and do not guarantee future
                                         returns. Actual outcomes may differ.
-                                        Mutual Fund investments are subject to
-                                        market risks. Please read all scheme-related
-                                        documents carefully before investing.
                                     </p>
+                                    <div className="mt-3">
+                                        <MutualFundRiskWarning className="text-left text-slate-700" />
+                                    </div>
                                 </div>
 
                             </div>

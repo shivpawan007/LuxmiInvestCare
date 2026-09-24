@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import MutualFundRiskWarning from "@/components/compliance/MutualFundRiskWarning";
 import {
     MapPin,
     Phone,
@@ -20,6 +21,8 @@ const quickLinks = [
     { label: "Services", href: "/services" },
     { label: "Investor Education", href: "/investor-education" },
     { label: "Contact", href: "/contact" },
+    { label: "Privacy Policy", href: "/privacy-policy" },
+    { label: "Regulatory Disclosures", href: "/regulatory-disclosures" },
 ];
 
 const services = [
@@ -200,8 +203,9 @@ export default function Footer() {
                 {/* Divider */}
                 <div className="mt-16 border-t border-slate-800 pt-10">
 
-                    <p className="text-center text-sm leading-7 text-slate-400">
-                        Mutual Fund investments are subject to market risks, read all scheme related documents carefully.
+                    <MutualFundRiskWarning className="text-slate-400" />
+
+                    <p className="mt-4 text-center text-xs leading-6 text-slate-500">
                         The information provided on this website is intended for investor education and general information purposes.
                     </p>
 

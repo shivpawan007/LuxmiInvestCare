@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
     Mail,
     MessageCircle,
@@ -50,6 +50,15 @@ export default function ReportShareDialog({
 }: ReportShareDialogProps) {
     const [lead, setLead] = useState<LeadDetails | null>(null);
     const [copied, setCopied] = useState(false);
+    const [privacyConsent, setPrivacyConsent] = useState(false);
+
+    useEffect(() => {
+        if (open) {
+            setLead(null);
+            setPrivacyConsent(false);
+            setCopied(false);
+        }
+    }, [open]);
 
     if (!open) {
         return null;
@@ -58,7 +67,7 @@ export default function ReportShareDialog({
     const reportUrl =
         typeof window !== "undefined"
             ? window.location.href
-            : "https://www.luxmiinvestcare.com";
+            : "https://luxmiinvestcare.com";
 
     const formatCurrency = (value: number) =>
         `₹${Math.round(value).toLocaleString("en-IN")}`;
@@ -67,14 +76,18 @@ export default function ReportShareDialog({
         `Luxmi InvestCare\n` +
         `${reportTitle}\n\n` +
         `Investment: ${formatCurrency(investment)}\n` +
-        `Expected Annual Return: ${annualReturn}%\n` +
+        `Assumed Annual Return (Illustrative): ${annualReturn}%\n` +
         `Investment Period: ${years} Years\n` +
-        `Estimated Returns: ${formatCurrency(estimatedReturns)}\n` +
-        `Projected Maturity Value: ${formatCurrency(maturityValue)}\n\n` +
+        `Illustrative Returns: ${formatCurrency(estimatedReturns)}\n` +
+        `Illustrative Illustrative Projected Value: ${formatCurrency(maturityValue)}\n\n` +
         `View calculator: ${reportUrl}\n\n` +
-        `Investor Education Disclaimer: This illustration is based on assumed returns and is not a guarantee of future performance. Mutual Fund investments are subject to market risks. Please read all scheme-related documents carefully before investing.`;
+        `Investor Education Disclaimer: This illustration is based on assumptions entered by the user and is not a guarantee of future performance. Mutual Fund investments are subject to market risks, read all scheme related documents carefully.`;
 
     function handleLeadSubmit(details: LeadDetails) {
+        if (!privacyConsent) {
+            return;
+        }
+
         setLead(details);
     }
 
@@ -84,9 +97,6 @@ export default function ReportShareDialog({
         recordReportShare({
             calculatorType,
             reportTitle,
-            customerName: lead.customerName,
-            mobile: lead.mobile,
-            email: lead.email,
             investment,
             years,
             annualReturn,
@@ -108,9 +118,6 @@ export default function ReportShareDialog({
         recordReportShare({
             calculatorType,
             reportTitle,
-            customerName: lead.customerName,
-            mobile: lead.mobile,
-            email: lead.email,
             investment,
             years,
             annualReturn,
@@ -131,9 +138,6 @@ export default function ReportShareDialog({
         recordReportShare({
             calculatorType,
             reportTitle,
-            customerName: lead.customerName,
-            mobile: lead.mobile,
-            email: lead.email,
             investment,
             years,
             annualReturn,
@@ -152,9 +156,6 @@ export default function ReportShareDialog({
             recordReportShare({
                 calculatorType,
                 reportTitle,
-                customerName: lead.customerName,
-                mobile: lead.mobile,
-                email: lead.email,
                 investment,
                 years,
                 annualReturn,
@@ -217,9 +218,37 @@ export default function ReportShareDialog({
                                 </p>
                             </div>
 
+                            <label className="mb-5 flex items-start gap-3 rounded-xl border border-slate-200 bg-white p-4 text-xs leading-5 text-slate-600">
+                                <input
+                                    type="checkbox"
+                                    checked={privacyConsent}
+                                    onChange={(event) =>
+                                        setPrivacyConsent(event.target.checked)
+                                    }
+                                    className="mt-1 h-4 w-4 rounded border-slate-300 text-green-700 focus:ring-green-600"
+                                />
+                                <span>
+                                    I agree that Luxmi InvestCare may use the
+                                    contact details I provide to enable report
+                                    sharing and respond to my enquiry, as described
+                                    in the{" "}
+                                    <a
+                                        href="/privacy-policy"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="font-semibold text-green-700 underline"
+                                    >
+                                        Privacy Policy
+                                    </a>.
+                                    Report-share activity stored in this browser
+                                    does not include my name, mobile number or email.
+                                </span>
+                            </label>
+
                             <LeadCaptureForm
                                 onSubmit={handleLeadSubmit}
                                 onCancel={onClose}
+                                privacyConsent={privacyConsent}
                             />
                         </>
                     ) : (
@@ -298,7 +327,7 @@ export default function ReportShareDialog({
                                     </p>
 
                                     <p>
-                                        Expected Return:{" "}
+                                        Assumed Annual Return (Illustrative):{" "}
                                         <strong className="text-slate-900">
                                             {annualReturn}%
                                         </strong>
@@ -312,14 +341,14 @@ export default function ReportShareDialog({
                                     </p>
 
                                     <p>
-                                        Estimated Returns:{" "}
+                                        Illustrative Returns:{" "}
                                         <strong className="text-green-700">
                                             {formatCurrency(estimatedReturns)}
                                         </strong>
                                     </p>
 
                                     <p>
-                                        Projected Value:{" "}
+                                        Illustrative Projected Value:{" "}
                                         <strong className="text-emerald-700">
                                             {formatCurrency(maturityValue)}
                                         </strong>
