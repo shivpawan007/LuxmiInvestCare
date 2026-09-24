@@ -1,5 +1,7 @@
 "use client";
 
+import MutualFundRiskWarning from "@/components/compliance/MutualFundRiskWarning";
+
 import {
   BookOpen,
   TrendingUp,
@@ -404,10 +406,10 @@ export default function InvestorEducationPage() {
               education and awareness purposes. Calculator
               illustrations are based on assumptions entered
               by the user and actual outcomes may differ.
-              Mutual Fund investments are subject to market risks, read all scheme related documents carefully. Past performance may
-              or may not be sustained in the future and should
-              not be used as the sole basis for investment
-              decisions.
+              Past performance may or may not be sustained in the
+              future and should not be used as the sole basis for
+              investment decisions.
+              <span className="mt-4 block"><MutualFundRiskWarning className="text-left text-slate-700" /></span>
             </p>
 
           </div>
