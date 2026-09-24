@@ -19,7 +19,6 @@ const leadSchema = z.object({
         .optional()
         .or(z.literal("")),
     enquiry: z.string().trim().min(2).max(5000),
-    privacyConsent: z.literal(true),
     source: z.string().trim().max(80).optional(),
     landingPage: z.string().trim().max(500).optional(),
     privacyConsent: z.literal(true),
@@ -34,75 +33,85 @@ export async function POST(request: Request) {
         if (!parsed.success) {
             return NextResponse.json(
                 {
-                    error: "Please check the information entered.",
+                    error: "Please check the information entered and accept the Privacy Policy.",
                 },
                 { status: 400 },
             );
         }
 
         const data = parsed.data;
+        const connection = await db.getConnection();
 
-        // Consent is enforced server-side; the browser checkbox is not the only control.
+        try {
+            await connection.beginTransaction();
 
-const [result] = await db.execute<ResultSetHeader>(
-            `
-            INSERT INTO leads
-                (
-                    full_name,
-                    mobile,
-                    email,
-                    enquiry,
-                    lead_source,
-                    landing_page,
-                    status,
-                    priority
-                )
-            VALUES
-                (?, ?, ?, ?, ?, ?, 'New', 'Normal')
-            `,
-            [
-                data.fullName,
-                data.mobile,
-                data.email || null,
-                data.enquiry,
-                data.source || "website",
-                data.landingPage || null,
-            ],
-        );
+            const [result] = await connection.execute<ResultSetHeader>(
+                `
+                INSERT INTO leads
+                    (
+                        full_name,
+                        mobile,
+                        email,
+                        enquiry,
+                        lead_source,
+                        landing_page,
+                        status,
+                        priority
+                    )
+                VALUES
+                    (?, ?, ?, ?, ?, ?, 'New', 'Normal')
+                `,
+                [
+                    data.fullName,
+                    data.mobile,
+                    data.email || null,
+                    data.enquiry,
+                    data.source || "website",
+                    data.landingPage || null,
+                ],
+            );
 
-        const leadId = result.insertId;
+            const leadId = result.insertId;
 
-        await db.execute(
-            `
-            INSERT INTO lead_activities
-                (lead_id, activity_type, activity_note)
-            VALUES
-                (?, 'LEAD_CREATED', 'Lead submitted from website')
-            `,
-            [leadId],
-        );
+            await connection.execute(
+                `
+                INSERT INTO lead_activities
+                    (lead_id, activity_type, activity_note)
+                VALUES
+                    (?, 'LEAD_CREATED', 'Lead submitted from website')
+                `,
+                [leadId],
+            );
 
-        await db.execute(
-            `
-            INSERT INTO consents
-                (
-                    lead_id,
-                    purpose,
-                    notice_version,
-                    consent_status,
-                    source,
-                    given_at
-                )
-            VALUES
-                (?, 'ENQUIRY_RESPONSE', 'Privacy Notice v1.0 | 23 September 2026', 'GRANTED', ?, NOW())
-            `,
-            [leadId, data.source || "website"],
-        );
+            await connection.execute(
+                `
+                INSERT INTO consents
+                    (
+                        lead_id,
+                        purpose,
+                        notice_version,
+                        consent_status,
+                        source,
+                        given_at
+                    )
+                VALUES
+                    (?, 'website-enquiry', 'Privacy Notice v1.0 | 23 September 2026', 'Granted', ?, CURRENT_TIMESTAMP)
+                `,
+                [leadId, data.source || "website"],
+            );
 
-        return NextResponse.json({
-            success: true,
-            leadId,
-        });
+            await connection.commit();
+
+            return NextResponse.json({
+                success: true,
+                leadId,
+            });
+        } catch (error) {
+            await connection.rollback();
+            throw error;
+        } finally {
+            connection.release();
+        }
     } catch (error) {
         console.error("LEAD_CREATE_ERROR", error);
 
