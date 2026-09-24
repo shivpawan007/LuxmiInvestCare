@@ -132,7 +132,7 @@ export default function SIPCalculator() {
                         />
 
                         <SIPSummaryCard
-                            title="Estimated Returns"
+                            title="Illustrative Returns"
                             value={formatCurrency(result.estimatedReturns)}
                             subtitle="Illustrative growth based on the assumed annual return."
                             icon={<TrendingUp size={22} />}
@@ -140,7 +140,7 @@ export default function SIPCalculator() {
                         />
 
                         <SIPSummaryCard
-                            title="Estimated Maturity Value"
+                            title="Illustrative Projected Value"
                             value={formatCurrency(result.maturityValue)}
                             subtitle="Projected corpus at the end of your selected investment period."
                             icon={<Landmark size={22} />}
