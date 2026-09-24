@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
     Mail,
     MessageCircle,
@@ -51,6 +51,14 @@ export default function ReportShareDialog({
     const [lead, setLead] = useState<LeadDetails | null>(null);
     const [copied, setCopied] = useState(false);
     const [privacyConsent, setPrivacyConsent] = useState(false);
+
+    useEffect(() => {
+        if (open) {
+            setLead(null);
+            setPrivacyConsent(false);
+            setCopied(false);
+        }
+    }, [open]);
 
     if (!open) {
         return null;
