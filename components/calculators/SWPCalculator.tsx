@@ -110,7 +110,7 @@ export default function SWPCalculator() {
                 </p>
 
                 <h2 className="mt-2 text-2xl font-bold text-slate-900">
-                  Plan Your SWP
+                  Explore Your SWP Illustration
                 </h2>
 
                 <p className="mt-2 text-sm leading-6 text-slate-600">
@@ -162,7 +162,7 @@ export default function SWPCalculator() {
               ================================================== */}
               <div className="mb-8">
                 <CalculatorInput
-                  label="Expected Annual Return"
+                  label="Illustrative Return Assumption"
                   value={annualReturn}
                   min={1}
                   max={20}
