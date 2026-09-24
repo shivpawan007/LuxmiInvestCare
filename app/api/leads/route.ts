@@ -22,6 +22,7 @@ const leadSchema = z.object({
     privacyConsent: z.literal(true),
     source: z.string().trim().max(80).optional(),
     landingPage: z.string().trim().max(500).optional(),
+    privacyConsent: z.literal(true),
 });
 
 export async function POST(request: Request) {
@@ -40,6 +41,8 @@ export async function POST(request: Request) {
         }
 
         const data = parsed.data;
+
+        // Consent is enforced server-side; the browser checkbox is not the only control.
 
 const [result] = await db.execute<ResultSetHeader>(
             `
