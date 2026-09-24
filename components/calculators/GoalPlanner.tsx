@@ -195,7 +195,7 @@ export default function GoalPlanner() {
                                 lumpsumRequired:
                                     result.lumpsumRequired,
                             }}
-                            reportTitle="Goal Planning Illustration"
+                            reportTitle="Investment Illustration Illustration"
                             fileName="Luxmi-InvestCare-Goal-Planning-Illustration.pdf"
                         />
 
@@ -220,7 +220,7 @@ export default function GoalPlanner() {
                             setShareOpen(false)
                         }
                         calculatorType="goal-planner"
-                        reportTitle="Goal Planning Illustration"
+                        reportTitle="Investment Illustration Illustration"
                         investment={
                             targetAmount
                         }
@@ -241,7 +241,7 @@ export default function GoalPlanner() {
           ================================================== */}
                     <ConnectWithLuxmi
                         calculatorType="goal-planner"
-                        reportTitle="Goal Planning Illustration"
+                        reportTitle="Investment Illustration Illustration"
                         investment={
                             targetAmount
                         }
