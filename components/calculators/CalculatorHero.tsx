@@ -23,7 +23,7 @@ export default function CalculatorHero() {
                     </h1>
 
                     <p className="mx-auto mt-8 max-w-3xl text-lg leading-8 text-green-100 lg:text-xl">
-                        Explore educational financial calculators designed to help
+                        Explore educational investment calculators designed to help
                         you understand investment concepts, estimate illustrative future values and explore long-term investing assumptions.
                     </p>
 
