@@ -165,12 +165,12 @@ export default function LumpsumCalculator() {
                                 <Percent className="h-5 w-5 text-green-700" />
 
                                 <span className="font-semibold">
-                                    Expected Annual Return
+                                    Illustrative Return Assumption
                                 </span>
                             </div>
 
                             <CalculatorInput
-                                label="Expected Annual Return"
+                                label="Illustrative Return Assumption"
                                 value={annualReturn}
                                 min={1}
                                 max={20}
@@ -251,7 +251,7 @@ export default function LumpsumCalculator() {
                         />
 
                         <CalculatorResultCard
-                            title="Maturity Value"
+                            title="Illustrative Future Value"
                             value={formatCurrency(
                                 result.maturityValue,
                             )}
