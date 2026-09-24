@@ -163,8 +163,10 @@ export default function CalculatorsPage() {
                                         Results are based on the assumptions entered
                                         by the user and do not guarantee future
                                         returns. Actual outcomes may differ.
-                                        <span className="block mt-3"><MutualFundRiskWarning className="text-left text-slate-700" /></span>
                                     </p>
+                                    <div className="mt-3">
+                                        <MutualFundRiskWarning className="text-left text-slate-700" />
+                                    </div>
                                 </div>
 
                             </div>
