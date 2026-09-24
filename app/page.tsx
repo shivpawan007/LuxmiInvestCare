@@ -24,10 +24,6 @@ export default function Home() {
         <InvestorEducation />
         <Services />
         <CTA />
-<<<<<<< HEAD
-        <InvestorEducation />
-=======
->>>>>>> 3009785d61e560b0d68acdde5db65bd016e215b4
         <FAQ />
         <Contact />
       </main>

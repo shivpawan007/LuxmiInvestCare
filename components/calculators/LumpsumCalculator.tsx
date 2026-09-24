@@ -159,28 +159,20 @@ export default function LumpsumCalculator() {
 
                         </div>
 
-                        {/* EXPECTED RETURN */}
+                        {/* ILLUSTRATIVE RETURN ASSUMPTION */}
                         <div className="mb-8">
 
                             <div className="mb-3 flex items-center gap-2">
                                 <Percent className="h-5 w-5 text-green-700" />
 
                                 <span className="font-semibold">
-<<<<<<< HEAD
-                                    Assumed Annual Return (Illustrative)
-=======
-                                    Illustrative Return Assumption
->>>>>>> 3009785d61e560b0d68acdde5db65bd016e215b4
-                                </span>
+
+                                    Illustrative Return Assumption                                </span>
                             </div>
 
                             <CalculatorInput
-<<<<<<< HEAD
-                                label="Assumed Annual Return (Illustrative)"
-=======
-                                label="Illustrative Return Assumption"
->>>>>>> 3009785d61e560b0d68acdde5db65bd016e215b4
-                                value={annualReturn}
+
+                                label="Illustrative Return Assumption"                                value={annualReturn}
                                 min={1}
                                 max={20}
                                 step={0.5}
@@ -260,12 +252,8 @@ export default function LumpsumCalculator() {
                         />
 
                         <CalculatorResultCard
-<<<<<<< HEAD
-                            title="Illustrative Projected Value"
-=======
-                            title="Illustrative Future Value"
->>>>>>> 3009785d61e560b0d68acdde5db65bd016e215b4
-                            value={formatCurrency(
+
+                            title="Illustrative Future Value"                            value={formatCurrency(
                                 result.maturityValue,
                             )}
                             valueColor="text-emerald-700"

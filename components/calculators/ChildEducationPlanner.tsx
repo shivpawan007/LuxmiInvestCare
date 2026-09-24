@@ -204,14 +204,9 @@ export default function ChildEducationPlanner() {
               lumpsumRequired:
                 result.lumpsumRequired,
             }}
-<<<<<<< HEAD
+
             reportTitle="Child Education Cost Illustration"
-            fileName="Luxmi-InvestCare-Child-Education-Cost-Illustration.pdf"
-=======
-            reportTitle="Education Cost Planning Illustration"
-            fileName="Luxmi-InvestCare-Child-Education-Planning-Illustration.pdf"
->>>>>>> 3009785d61e560b0d68acdde5db65bd016e215b4
-          />
+            fileName="Luxmi-InvestCare-Child-Education-Cost-Illustration.pdf"          />
 
           <ReportShareDialog
             open={
@@ -221,12 +216,8 @@ export default function ChildEducationPlanner() {
               setShareOpen(false)
             }
             calculatorType="child-education"
-<<<<<<< HEAD
-            reportTitle="Child Education Cost Illustration"
-=======
-            reportTitle="Education Cost Planning Illustration"
->>>>>>> 3009785d61e560b0d68acdde5db65bd016e215b4
-            investment={
+
+            reportTitle="Child Education Cost Illustration"            investment={
               currentEducationCost
             }
             years={
@@ -260,12 +251,8 @@ export default function ChildEducationPlanner() {
 
           <ConnectWithLuxmi
             calculatorType="child-education"
-<<<<<<< HEAD
-            reportTitle="Child Education Cost Illustration"
-=======
-            reportTitle="Education Cost Planning Illustration"
->>>>>>> 3009785d61e560b0d68acdde5db65bd016e215b4
-            investment={
+
+            reportTitle="Child Education Cost Illustration"            investment={
               currentEducationCost
             }
             years={

@@ -25,15 +25,9 @@ const services = [
     },
     {
         icon: ShieldCheck,
-<<<<<<< HEAD
-        title: "Insurance Information",
-        description:
-            "Information about life insurance products and the role of insurance in protecting family protection needs.",
-=======
         title: "Life Insurance Information",
         description:
             "Educational information about life insurance products, policy features and the importance of understanding applicable terms and conditions.",
->>>>>>> 3009785d61e560b0d68acdde5db65bd016e215b4
     },
     {
         icon: HeartPulse,

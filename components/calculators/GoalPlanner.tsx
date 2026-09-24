@@ -191,14 +191,9 @@ export default function GoalPlanner() {
                                 lumpsumRequired:
                                     result.lumpsumRequired,
                             }}
-<<<<<<< HEAD
+
                             reportTitle="Investment Objective Illustration"
-                            fileName="Luxmi-InvestCare-Investment-Objective-Illustration.pdf"
-=======
-                            reportTitle="Investment Illustration Illustration"
-                            fileName="Luxmi-InvestCare-Goal-Planning-Illustration.pdf"
->>>>>>> 3009785d61e560b0d68acdde5db65bd016e215b4
-                        />
+                            fileName="Luxmi-InvestCare-Investment-Objective-Illustration.pdf"                        />
 
                         <button
                             type="button"
@@ -221,12 +216,8 @@ export default function GoalPlanner() {
                             setShareOpen(false)
                         }
                         calculatorType="goal-planner"
-<<<<<<< HEAD
-                        reportTitle="Investment Objective Illustration"
-=======
-                        reportTitle="Investment Illustration Illustration"
->>>>>>> 3009785d61e560b0d68acdde5db65bd016e215b4
-                        investment={
+
+                        reportTitle="Investment Objective Illustration"                        investment={
                             targetAmount
                         }
                         years={years}
@@ -246,12 +237,8 @@ export default function GoalPlanner() {
           ================================================== */}
                     <ConnectWithLuxmi
                         calculatorType="goal-planner"
-<<<<<<< HEAD
-                        reportTitle="Investment Objective Illustration"
-=======
-                        reportTitle="Investment Illustration Illustration"
->>>>>>> 3009785d61e560b0d68acdde5db65bd016e215b4
-                        investment={
+
+                        reportTitle="Investment Objective Illustration"                        investment={
                             targetAmount
                         }
                         years={years}

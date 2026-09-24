@@ -857,7 +857,7 @@ function addGrowthChart(
   );
 
   pdf.text(
-    "Estimated Portfolio Value",
+    "Illustrative Value",
     x + 77,
     legendY + 1,
   );
@@ -3961,7 +3961,7 @@ export default function DownloadReport({
 
         /*
 * ============================================================
-* DEDICATED GOAL PLANNER PDF REPORT
+* DEDICATED INVESTMENT ILLUSTRATION PDF REPORT
 * ============================================================
 */
         if (
@@ -4000,7 +4000,7 @@ export default function DownloadReport({
 
           /*
            * PAGE 1
-           * GOAL PLANNER SUMMARY
+           * INVESTMENT ILLUSTRATION SUMMARY
            */
 
           addPageHeader(
@@ -5819,7 +5819,7 @@ export default function DownloadReport({
           pdf,
           "2",
           "Investment Growth",
-          "Illustrative year-wise projection of investment and estimated portfolio value",
+          "Illustrative year-wise projection of investment and illustrative value",
           69,
         );
 
