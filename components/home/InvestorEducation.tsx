@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import MutualFundRiskWarning from "@/components/compliance/MutualFundRiskWarning";
 import {
     BookOpen,
     TrendingUp,
@@ -180,12 +181,10 @@ export default function InvestorEducation() {
 
                     <p className="leading-8 text-slate-700">
                         This information is provided solely for investor
-                        education and awareness purposes. Mutual Fund
-                        investments are subject to market risks. Please
-                        read all scheme-related documents carefully before
-                        investing. Past performance may or may not be
-                        sustained in the future and should not be used as
-                        the sole basis for investment decisions.
+                        education and awareness purposes. Past performance may
+                        or may not be sustained in the future and should not be
+                        used as the sole basis for investment decisions.
+                        <span className="mt-4 block"><MutualFundRiskWarning className="text-left text-slate-700" /></span>
                     </p>
                 </motion.div>
 
