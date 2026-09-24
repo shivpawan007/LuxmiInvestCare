@@ -191,8 +191,13 @@ export default function GoalPlanner() {
                                 lumpsumRequired:
                                     result.lumpsumRequired,
                             }}
+<<<<<<< HEAD
                             reportTitle="Investment Objective Illustration"
                             fileName="Luxmi-InvestCare-Investment-Objective-Illustration.pdf"
+=======
+                            reportTitle="Investment Illustration Illustration"
+                            fileName="Luxmi-InvestCare-Goal-Planning-Illustration.pdf"
+>>>>>>> 3009785d61e560b0d68acdde5db65bd016e215b4
                         />
 
                         <button
@@ -216,7 +221,11 @@ export default function GoalPlanner() {
                             setShareOpen(false)
                         }
                         calculatorType="goal-planner"
+<<<<<<< HEAD
                         reportTitle="Investment Objective Illustration"
+=======
+                        reportTitle="Investment Illustration Illustration"
+>>>>>>> 3009785d61e560b0d68acdde5db65bd016e215b4
                         investment={
                             targetAmount
                         }
@@ -237,7 +246,11 @@ export default function GoalPlanner() {
           ================================================== */}
                     <ConnectWithLuxmi
                         calculatorType="goal-planner"
+<<<<<<< HEAD
                         reportTitle="Investment Objective Illustration"
+=======
+                        reportTitle="Investment Illustration Illustration"
+>>>>>>> 3009785d61e560b0d68acdde5db65bd016e215b4
                         investment={
                             targetAmount
                         }

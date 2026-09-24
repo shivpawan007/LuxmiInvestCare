@@ -190,7 +190,11 @@ export default function StepUpSIPCalculator() {
                 </p>
 
                 <h2 className="mt-2 text-2xl font-bold text-slate-900">
+<<<<<<< HEAD
                   Explore a Step-Up SIP Investment Illustration
+=======
+                  Explore Your Step-Up SIP Illustration
+>>>>>>> 3009785d61e560b0d68acdde5db65bd016e215b4
                 </h2>
 
                 <p className="mt-2 text-sm leading-6 text-slate-500">
@@ -262,7 +266,11 @@ export default function StepUpSIPCalculator() {
               ================================================== */}
               <div className="mb-8">
                 <CalculatorInput
+<<<<<<< HEAD
                   label="Assumed Annual Return (Illustrative)"
+=======
+                  label="Illustrative Return Assumption"
+>>>>>>> 3009785d61e560b0d68acdde5db65bd016e215b4
                   value={annualReturn}
                   min={1}
                   max={20}
@@ -314,7 +322,7 @@ export default function StepUpSIPCalculator() {
 
                 <div className="rounded-2xl border border-emerald-100 bg-white p-5 shadow-sm">
                   <p className="text-sm font-medium text-slate-500">
-                    Projected Value
+                    Illustrative Future Value
                   </p>
 
                   <p className="mt-2 text-2xl font-bold text-emerald-800">
@@ -476,7 +484,7 @@ export default function StepUpSIPCalculator() {
                         </th>
 
                         <th className="px-5 py-4">
-                          Projected Value
+                          Illustrative Future Value
                         </th>
                       </tr>
                     </thead>

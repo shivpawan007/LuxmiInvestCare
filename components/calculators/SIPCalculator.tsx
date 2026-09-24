@@ -98,7 +98,11 @@ export default function SIPCalculator() {
                         />
 
                         <SIPInputCard
+<<<<<<< HEAD
                             title="Assumed Annual Return (Illustrative)"
+=======
+                            title="Illustrative Return Assumption"
+>>>>>>> 3009785d61e560b0d68acdde5db65bd016e215b4
                             value={annualReturn}
                             suffix="%"
                             min={1}
@@ -139,7 +143,11 @@ export default function SIPCalculator() {
                         />
 
                         <SIPSummaryCard
+<<<<<<< HEAD
                             title="Illustrative Projected Value"
+=======
+                            title="Estimated Illustrative Future Value"
+>>>>>>> 3009785d61e560b0d68acdde5db65bd016e215b4
                             value={formatCurrency(result.maturityValue)}
                             subtitle="Projected corpus at the end of your selected investment period."
                             icon={<Landmark size={22} />}

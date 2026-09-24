@@ -166,12 +166,20 @@ export default function LumpsumCalculator() {
                                 <Percent className="h-5 w-5 text-green-700" />
 
                                 <span className="font-semibold">
+<<<<<<< HEAD
                                     Assumed Annual Return (Illustrative)
+=======
+                                    Illustrative Return Assumption
+>>>>>>> 3009785d61e560b0d68acdde5db65bd016e215b4
                                 </span>
                             </div>
 
                             <CalculatorInput
+<<<<<<< HEAD
                                 label="Assumed Annual Return (Illustrative)"
+=======
+                                label="Illustrative Return Assumption"
+>>>>>>> 3009785d61e560b0d68acdde5db65bd016e215b4
                                 value={annualReturn}
                                 min={1}
                                 max={20}
@@ -252,7 +260,11 @@ export default function LumpsumCalculator() {
                         />
 
                         <CalculatorResultCard
+<<<<<<< HEAD
                             title="Illustrative Projected Value"
+=======
+                            title="Illustrative Future Value"
+>>>>>>> 3009785d61e560b0d68acdde5db65bd016e215b4
                             value={formatCurrency(
                                 result.maturityValue,
                             )}
