@@ -409,8 +409,10 @@ export default function InvestorEducationPage() {
               Past performance may or may not be sustained in the
               future and should not be used as the sole basis for
               investment decisions.
-              <span className="mt-4 block"><MutualFundRiskWarning className="text-left text-slate-700" /></span>
-            </p>
+              </p>
+            <div className="mt-4">
+              <MutualFundRiskWarning className="text-left text-slate-700" />
+            </div>
 
           </div>
 
