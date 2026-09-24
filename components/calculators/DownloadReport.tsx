@@ -858,7 +858,7 @@ function addGrowthChart(
   );
 
   pdf.text(
-    "Estimated Portfolio Value",
+    "Illustrative Projected Value",
     x + 77,
     legendY + 1,
   );
@@ -1093,8 +1093,8 @@ function addYearTable(
   const headers = [
     "Year",
     "Total Investment",
-    "Estimated Value",
-    "Estimated Gain",
+    "Illustrative Projected Value",
+    "Illustrative Gain",
   ];
 
   let cx = x;
@@ -4199,7 +4199,7 @@ export default function DownloadReport({
             pdf,
             "2",
             "Inflation Impact on the Investment Objective",
-            "Illustrative comparison of the current value with its estimated future value",
+            "Illustrative comparison of the current value with its illustrative future value",
             69,
           );
 
@@ -4503,7 +4503,7 @@ export default function DownloadReport({
             pdf,
             "3",
             "Illustrative Investment Requirement",
-            "Two illustrative ways to understand the estimated future value",
+            "Two illustrative ways to understand the future value",
             69,
           );
 
@@ -5276,7 +5276,7 @@ export default function DownloadReport({
           const columns = [
             { label: "Year", width: 30 },
             { label: "Child Age", width: 42 },
-            { label: "Estimated Education Cost", width: 102 },
+            { label: "Illustrative Education Cost", width: 102 },
           ];
 
           pdf.setFillColor(...C.darkGreen);
@@ -5462,7 +5462,7 @@ export default function DownloadReport({
           pdf,
           "1",
           "Investment Details",
-          "Key assumptions and projected outcomes",
+          "Key assumptions and illustrative projected outcomes",
           69,
         );
 
@@ -5536,7 +5536,7 @@ export default function DownloadReport({
           121,
           cardW,
           cardH,
-          "Estimated Returns",
+          "Illustrative Returns",
           formatCurrency(
             estimatedReturns,
           ),
@@ -5551,7 +5551,7 @@ export default function DownloadReport({
           121,
           cardW,
           cardH,
-          "Maturity Value",
+          "Illustrative Projected Value",
           formatCurrency(
             maturityValue,
           ),
@@ -6043,7 +6043,7 @@ export default function DownloadReport({
           pdf,
           "5",
           "Investment Breakdown",
-          "A consolidated view of calculator assumptions and estimated outcomes",
+          "A consolidated view of calculator assumptions and illustrative outcomes",
           69,
         );
 
@@ -6094,13 +6094,13 @@ export default function DownloadReport({
             ),
           ],
           [
-            "Estimated Returns",
+            "Illustrative Returns",
             formatCurrency(
               estimatedReturns,
             ),
           ],
           [
-            "Maturity Value",
+            "Illustrative Projected Value",
             formatCurrency(
               maturityValue,
             ),
