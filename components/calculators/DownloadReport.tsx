@@ -386,7 +386,7 @@ function addPageHeader(
 
   setFont(pdf);
 
-  pdf.setFontSize(8);
+  pdf.setFontSize(12);
 
   pdf.setTextColor(...C.muted);
 
