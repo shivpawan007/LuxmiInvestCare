@@ -42,16 +42,16 @@ export default function DisclosuresPage() {
                         </section>
 
                         <section>
-                            <h2 className="text-2xl font-bold text-slate-900">Investment advice and financial planning</h2>
+                            <h2 className="text-2xl font-bold text-slate-900">Investment advice and planning terminology</h2>
                             <p className="mt-3 leading-7">
                                 The calculators and educational material are illustrative and
-                                informational. They should not be treated as personalised investment
+                                informational. They are not intended to provide personalised investment
                                 advice, portfolio management, suitability assessment or a promise
                                 of returns.
                             </p>
                             <p className="mt-3 leading-7">
-                                The website does not describe Luxmi InvestCare as an investment
-                                adviser or financial planner.
+                                The website does not hold Luxmi InvestCare out as a SEBI-registered Investment Adviser
+                                or as a provider of personalised investment advice.
                             </p>
                         </section>
 
@@ -72,7 +72,7 @@ export default function DisclosuresPage() {
                                 <li>Calculator results are based on the assumptions entered by the user.</li>
                                 <li>Assumed returns are illustrative and are not forecasts or guarantees.</li>
                                 <li>Actual returns, costs, taxes, scheme performance and investment outcomes may differ.</li>
-                                <li>Illustrative amounts should not be interpreted as a personalised recommendation.</li>
+                                <li>Illustrative amounts are not personalised investment instructions and should not be treated as a direction to buy, sell or switch a security.</li>
                             </ul>
                         </section>
 
@@ -81,8 +81,7 @@ export default function DisclosuresPage() {
                             <p className="mt-3 leading-7">
                                 References to insurance on this website are presented as information
                                 unless a separately disclosed and appropriately authorised service
-                                is identified. No insurance product should be treated as recommended
-                                solely because it appears on this website.
+                                is identified. The appearance of insurance information on this website does not constitute a direction to purchase any insurance product.
                             </p>
                         </section>
 
