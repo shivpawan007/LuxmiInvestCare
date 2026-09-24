@@ -25,15 +25,15 @@ const services = [
     },
     {
         icon: ShieldCheck,
-        title: "Life Insurance",
+        title: "Life Insurance Information",
         description:
-            "Information about life insurance products and the role of insurance in protecting family financial needs.",
+            "Educational information about life insurance products, policy features and the importance of understanding applicable terms and conditions.",
     },
     {
         icon: HeartPulse,
-        title: "Health Insurance",
+        title: "Health Insurance Information",
         description:
-            "Information about health insurance products, coverage considerations and the importance of understanding policy terms and conditions.",
+            "Educational information about health insurance products, coverage considerations and the importance of understanding applicable policy terms and conditions.",
     },
     {
         icon: GraduationCap,
