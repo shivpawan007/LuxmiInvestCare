@@ -57,7 +57,7 @@ export default function SIPBreakdown({
         },
         {
             icon: <Percent className="h-6 w-6 text-green-700" />,
-            title: "Expected Return",
+            title: "Assumed Annual Return (Illustrative)",
             value: `${annualReturn}%`,
         },
         {
@@ -67,12 +67,12 @@ export default function SIPBreakdown({
         },
         {
             icon: <BarChart3 className="h-6 w-6 text-green-700" />,
-            title: "Estimated Returns",
+            title: "Illustrative Returns",
             value: formatCurrency(estimatedReturns),
         },
         {
             icon: <Landmark className="h-6 w-6 text-green-700" />,
-            title: "Maturity Value",
+            title: "Illustrative Projected Value",
             value: formatCurrency(maturityValue),
         },
     ];
@@ -87,7 +87,7 @@ export default function SIPBreakdown({
                 </h2>
 
                 <p className="mt-2 text-slate-600">
-                    A quick overview of your SIP assumptions and estimated outcomes.
+                    A quick overview of your SIP assumptions and illustrative outcomes.
                 </p>
 
             </div>
