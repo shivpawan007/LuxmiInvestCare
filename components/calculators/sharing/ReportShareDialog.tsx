@@ -340,7 +340,7 @@ export default function ReportShareDialog({
                                     </p>
 
                                     <p>
-                                        Projected Value:{" "}
+                                        Illustrative Projected Value:{" "}
                                         <strong className="text-emerald-700">
                                             {formatCurrency(maturityValue)}
                                         </strong>
