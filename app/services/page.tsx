@@ -1,5 +1,7 @@
 "use client";
 
+import MutualFundRiskWarning from "@/components/compliance/MutualFundRiskWarning";
+
 import {
     Landmark,
     PiggyBank,
