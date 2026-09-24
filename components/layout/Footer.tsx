@@ -21,6 +21,8 @@ const quickLinks = [
     { label: "Services", href: "/services" },
     { label: "Investor Education", href: "/investor-education" },
     { label: "Contact", href: "/contact" },
+    { label: "Privacy Policy", href: "/privacy-policy" },
+    { label: "Regulatory Disclosures", href: "/regulatory-disclosures" },
 ];
 
 const services = [
