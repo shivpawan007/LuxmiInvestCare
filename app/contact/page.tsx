@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 
 import { useState } from "react";
+import MutualFundRiskWarning from "@/components/compliance/MutualFundRiskWarning";
 
 const CONTACT = {
     phoneDisplay: "+91 9650060044",
@@ -620,9 +621,7 @@ ${message.trim()}
                             by Luxmi InvestCare are intended for investor education
                             and general information purposes only. Illustrations are
                             based on assumptions entered by the user and actual
-                            outcomes may differ. Mutual Fund investments are subject
-                            to market risks. Please read all scheme-related
-                            documents carefully before investing.
+                            outcomes may differ.
                         </p>
 
                     </div>
