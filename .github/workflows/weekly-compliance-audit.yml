@@ -33,6 +33,15 @@ jobs:
       - name: Run compliance scan
         run: npm run compliance:scan
 
+      - name: Run dependency security audit
+        continue-on-error: true
+        run: |
+          mkdir -p compliance/audit
+          npm audit --json > compliance/audit/npm-audit.json || true
+
+      - name: Run production build
+        run: npm run build
+
       - name: Run weekly random audit
         id: audit
         continue-on-error: true
