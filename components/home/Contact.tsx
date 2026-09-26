@@ -74,7 +74,7 @@ export default function Contact() {
                                 General investor education and investment-related information only.
                                 Please review the Privacy Policy before submitting personal information.
                             </p>
-                        </div>                 </form>
+                        </div>
                     </motion.div>
 
                     {/* Contact Information */}
