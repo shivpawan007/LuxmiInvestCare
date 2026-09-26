@@ -75,7 +75,18 @@ function routeFromPage(file) {
 
 function findViolations(content, file) {
   const findings = [];
+  const regulatoryDisclosure =
+    file === "app/disclosures/page.tsx" ||
+    file === "app/privacy/page.tsx";
+
   for (const rule of FORBIDDEN_PATTERNS) {
+    if (
+      regulatoryDisclosure &&
+      rule.id.startsWith("nomenclature.")
+    ) {
+      continue;
+    }
+
     if (rule.pattern.test(content)) {
       findings.push({
         severity: "high",
