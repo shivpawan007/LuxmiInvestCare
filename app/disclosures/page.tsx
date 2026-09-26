@@ -26,6 +26,7 @@ export default function DisclosuresPage() {
                     <p className="mt-3 text-sm text-green-200">
                         Last updated: 26 September 2026
                     </p>
+                    <p className="mt-3 text-sm text-green-200">Last updated: 26 September 2026</p>
                 </div>
             </section>
 
@@ -108,6 +109,21 @@ export default function DisclosuresPage() {
                                 >
                                     SEBI SCORES — Investor Complaint Redressal
                                 </a>
+                            </p>
+                        </section>
+
+                        <section>
+                            <h2 className="text-2xl font-bold text-slate-900">Investor grievance redressal</h2>
+                            <p className="mt-3 leading-7">
+                                For a complaint relating to Luxmi InvestCare's mutual fund
+                                distribution activity, investors should first contact Luxmi
+                                InvestCare using the contact details on this website. If the
+                                grievance is not resolved through the concerned entity,
+                                investors may use SEBI's SCORES platform where the matter is
+                                within SCORES' scope.
+                            </p>
+                            <p className="mt-3 leading-7">
+                                SEBI SCORES: scores.sebi.gov.in
                             </p>
                         </section>
 
