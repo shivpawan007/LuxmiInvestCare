@@ -59,17 +59,17 @@ export default function SIPCalculator() {
                     </span>
 
                     <h1 className="section-title mt-6">
-                        Plan Your Future With
+                        Explore a SIP Investment Illustration
 
                         <span className="block text-green-700">
-                            Disciplined Investing
+                            Through Assumed Growth
                         </span>
                     </h1>
 
                     <p className="section-subtitle">
                         Estimate the potential value of your Systematic
                         Investment Plan (SIP) based on your monthly
-                        investment, expected annual return and
+                        investment, assumed annual return and
                         investment period.
                     </p>
 
@@ -98,8 +98,8 @@ export default function SIPCalculator() {
                         />
 
                         <SIPInputCard
-                            title="Expected Annual Return"
-                            value={annualReturn}
+
+                            title="Illustrative Return Assumption"                            value={annualReturn}
                             suffix="%"
                             min={1}
                             max={20}
@@ -133,14 +133,14 @@ export default function SIPCalculator() {
                         <SIPSummaryCard
                             title="Estimated Returns"
                             value={formatCurrency(result.estimatedReturns)}
-                            subtitle="Illustrative wealth generated based on expected annual returns."
+                            subtitle="Illustrative growth based on the assumed annual return."
                             icon={<TrendingUp size={22} />}
                             valueColor="text-green-700"
                         />
 
                         <SIPSummaryCard
-                            title="Estimated Maturity Value"
-                            value={formatCurrency(result.maturityValue)}
+
+                            title="Estimated Illustrative Future Value"                            value={formatCurrency(result.maturityValue)}
                             subtitle="Projected corpus at the end of your selected investment period."
                             icon={<Landmark size={22} />}
                             valueColor="text-emerald-700"
@@ -240,12 +240,7 @@ export default function SIPCalculator() {
                     </h3>
 
                     <p className="text-sm leading-7 text-slate-600">
-                        The SIP Calculator provides an illustrative estimate
-                        based on the values entered by the user and assumed
-                        rates of return. Actual investment outcomes may differ
-                        depending on market performance. Mutual Fund investments
-                        are subject to market risks. Please read all
-                        scheme-related documents carefully before investing.
+                        The SIP Calculator provides an illustrative estimate based on the values entered by the user and an assumed annual return. Actual investment outcomes may differ depending on market performance.\n\nMutual Fund investments are subject to market risks, read all scheme related documents carefully.
                     </p>
 
                 </div>

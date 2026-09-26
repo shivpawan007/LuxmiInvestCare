@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
 import { ArrowRight, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 
@@ -24,7 +23,7 @@ export default function Hero() {
                     >
                         {/* Badge */}
                         <span className="inline-flex max-w-full items-center rounded-full border border-green-200 bg-green-50 px-4 py-2 text-center text-xs font-semibold leading-5 text-green-700 shadow-sm sm:px-5 sm:text-sm">
-                            AMFI Registered Mutual Fund Distributor | ARN-365140
+                            AMFI-registered Mutual Fund Distributor | ARN: 365140
                         </span>
 
                         {/* Heading */}
@@ -47,7 +46,7 @@ export default function Hero() {
                             Luxmi InvestCare provides investor education,
                             investment product information and tools that
                             help investors understand mutual funds, SIPs,
-                            insurance and long-term investing concepts.
+                            investment concepts and long-term investing concepts.
                         </p>
 
                         {/* Buttons */}
@@ -99,12 +98,11 @@ export default function Hero() {
                     >
                         <div className="image-card w-full max-w-xl">
 
-                            <Image
-                                src="/images/office.jpg"
-                                alt="Luxmi InvestCare"
+                            <img
+                                src="/images/luxmi-compliance-hero.svg"
+                                alt="Luxmi InvestCare investor education office with branded workspace and investor awareness messaging"
                                 width={750}
                                 height={520}
-                                priority
                                 className="w-full object-cover"
                             />
 

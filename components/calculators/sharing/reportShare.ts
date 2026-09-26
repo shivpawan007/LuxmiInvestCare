@@ -46,8 +46,17 @@ export function recordReportShare(
         localStorage.getItem(STORAGE_KEY) || "[]"
     );
 
+    const {
+        customerName: _customerName,
+        mobile: _mobile,
+        email: _email,
+        ...shareRecord
+    } = record;
+
+    // Do not persist contact details in browser history.
+    // They are used only in the current sharing flow.
     const newRecord: ReportShareRecord = {
-        ...record,
+        ...shareRecord,
         id: crypto.randomUUID(),
         timestamp: new Date().toISOString(),
     };

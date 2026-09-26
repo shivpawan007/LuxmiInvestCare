@@ -37,8 +37,8 @@ export default function LumpsumInsights({
                 </h2>
 
                 <p className="mt-3 leading-8 text-slate-600">
-                    Based on your selected investment amount and expected
-                    annual return, here is an illustrative projection of
+                    Based on your selected investment amount and assumed annual
+                    return (illustrative), here is an illustrative projection of
                     potential growth.
                 </p>
 
@@ -56,7 +56,7 @@ export default function LumpsumInsights({
 
                     <div className="rounded-2xl border bg-white p-6 shadow-sm">
                         <h3 className="font-semibold text-green-700">
-                            Estimated Maturity Value
+                            Illustrative Projected Value
                         </h3>
 
                         <p className="mt-3 text-3xl font-bold">
@@ -97,7 +97,7 @@ export default function LumpsumInsights({
                         <strong>
                             {formatCurrency(investment)}
                         </strong>{" "}
-                        growing at an assumed annual return of{" "}
+                        under an assumed annual return of{" "}
                         <strong>{annualReturn}%</strong>{" "}
                         for{" "}
                         <strong>{years} years</strong>{" "}

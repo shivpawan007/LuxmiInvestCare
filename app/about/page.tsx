@@ -114,8 +114,7 @@ export default function AboutPage() {
                             <p className="mt-6 text-lg leading-8 text-slate-600">
                                 Luxmi InvestCare is focused on helping
                                 investors understand investment concepts,
-                                mutual funds, SIPs, insurance products and
-                                the risks associated with investing.
+                                mutual funds, SIPs, investment products and the risks associated with investing.
                             </p>
 
                             <p className="mt-5 leading-8 text-slate-600">
@@ -142,8 +141,8 @@ export default function AboutPage() {
                         <div className="overflow-hidden rounded-3xl border border-slate-200 bg-slate-50 shadow-sm">
 
                             <img
-                                src="/images/about.jpg"
-                                alt="Luxmi InvestCare"
+                                src="/images/luxmi-investor-education-office.webp"
+                                alt="Luxmi InvestCare investor education office with AMFI registration and investor awareness messaging"
                                 className="h-full min-h-[420px] w-full object-cover"
                             />
 
@@ -287,11 +286,11 @@ export default function AboutPage() {
                                 </h2>
 
                                 <p className="mt-3 text-lg font-semibold text-green-700">
-                                    AMFI Registered Mutual Fund Distributor
+                                    AMFI-registered Mutual Fund Distributor
                                 </p>
 
                                 <p className="mt-2 text-slate-600">
-                                    ARN-365140
+                                    ARN: 365140
                                 </p>
 
                             </div>
@@ -299,10 +298,7 @@ export default function AboutPage() {
                             <div className="rounded-2xl bg-slate-50 p-6">
 
                                 <p className="leading-8 text-slate-600">
-                                    Mutual Fund investments are subject to
-                                    market risks. Please read all
-                                    scheme-related documents carefully before
-                                    investing.
+                                    Mutual Fund investments are subject to market risks, read all scheme related documents carefully.
                                 </p>
 
                             </div>

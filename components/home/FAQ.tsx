@@ -33,7 +33,7 @@ const faqs = [
     {
         question: "Why is investing according to an objective useful?",
         answer:
-            "Defining a clear financial objective can help investors understand the amount of time available, the importance of regular investing and the risks associated with different investment choices.",
+            "Defining a clear investment objective can help investors understand the time horizon, the importance of regular investing and the risks associated with different investment choices.",
     },
 ];
 
@@ -199,10 +199,7 @@ export default function FAQ() {
                                 </a>
 
                                 <p className="max-w-sm text-right text-sm text-green-100 lg:text-base">
-                                    Mutual Fund investments are subject to
-                                    market risks. Please read all
-                                    scheme-related documents carefully before
-                                    investing.
+                                    Mutual Fund investments are subject to market risks, read all scheme related documents carefully.
                                 </p>
 
                             </div>

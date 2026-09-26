@@ -30,7 +30,7 @@ export default function Header() {
                     />
                     <div className="min-w-0">
                         <p className="truncate text-lg font-bold text-green-700">Luxmi InvestCare</p>
-                        <p className="truncate text-xs text-slate-500">AMFI Registered Mutual Fund Distributor</p>
+                        <p className="truncate text-xs text-slate-500">AMFI-registered Mutual Fund Distributor | ARN: 365140</p>
                     </div>
                 </Link>
 

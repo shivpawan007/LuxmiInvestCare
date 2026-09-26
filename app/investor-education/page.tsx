@@ -46,7 +46,7 @@ const topics = [
     icon: Target,
     title: "Investment Objectives",
     description:
-      "Investors can consider their financial objectives, investment horizon and circumstances when learning about investment options.",
+      "Investors can consider their investment objectives, investment horizon and circumstances when learning about investment options.",
   },
 ];
 
@@ -76,15 +76,15 @@ const calculators = [
     href: "/calculators/step-up-sip",
   },
   {
-    title: "Goal Planner",
+    title: "Investment Objective Calculator",
     description:
-      "Explore the effect of inflation, time horizon and investment assumptions on a selected objective.",
+      "Explore the effect of inflation, time horizon and investment assumptions on a selected investment objective.",
     href: "/calculators/goal-planner",
   },
   {
-    title: "Child Education Planner",
+    title: "Child Education Cost Calculator",
     description:
-      "Explore an illustrative future education-cost and investment requirement calculation.",
+      "Explore an illustrative future education-cost and investment requirement illustration.",
     href: "/calculators/education",
   },
 ];
@@ -209,9 +209,9 @@ export default function InvestorEducationPage() {
                 </span>
 
                 <h2 className="mt-6 text-4xl font-bold leading-tight">
-                  Knowledge Today.
+                  Learn Today.
                   <span className="block">
-                    Confidence Tomorrow.
+                    Invest With Better Understanding.
                   </span>
                 </h2>
 
@@ -404,12 +404,7 @@ export default function InvestorEducationPage() {
               education and awareness purposes. Calculator
               illustrations are based on assumptions entered
               by the user and actual outcomes may differ.
-              Mutual Fund investments are subject to market
-              risks. Please read all scheme-related documents
-              carefully before investing. Past performance may
-              or may not be sustained in the future and should
-              not be used as the sole basis for investment
-              decisions.
+              Mutual Fund investments are subject to market risks, read all scheme related documents carefully. Actual outcomes may differ from illustrations and assumptions.
             </p>
 
           </div>

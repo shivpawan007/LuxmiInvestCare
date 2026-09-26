@@ -45,7 +45,7 @@ const educationTopics = [
         icon: Target,
         title: "Investment Objectives",
         description:
-            "Investors can consider specific financial objectives, time horizons and personal circumstances when learning about investment options.",
+            "Investors can consider specific investment objectives, time horizons and personal circumstances when learning about investment options.",
     },
 ];
 
@@ -71,7 +71,7 @@ export default function InvestorEducation() {
                     <h2 className="section-title mt-8">
                         Invest First In
                         <span className="block text-green-700">
-                            Financial Knowledge
+                            Investment Knowledge
                         </span>
                     </h2>
 
@@ -179,13 +179,9 @@ export default function InvestorEducation() {
                     </h4>
 
                     <p className="leading-8 text-slate-700">
-                        This information is provided solely for investor
-                        education and awareness purposes. Mutual Fund
-                        investments are subject to market risks. Please
-                        read all scheme-related documents carefully before
-                        investing. Past performance may or may not be
-                        sustained in the future and should not be used as
-                        the sole basis for investment decisions.
+                        This information is provided solely for investor education and awareness purposes.
+
+                        Mutual Fund investments are subject to market risks, read all scheme related documents carefully. Actual outcomes may differ from illustrations and assumptions.
                     </p>
                 </motion.div>
 

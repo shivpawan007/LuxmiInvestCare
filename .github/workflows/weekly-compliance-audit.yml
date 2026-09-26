@@ -1,0 +1,77 @@
+name: Weekly Random Compliance Audit
+
+on:
+  schedule:
+    - cron: "17 3 * * 0"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: weekly-random-compliance-audit
+  cancel-in-progress: false
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 1
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run compliance scan
+        run: npm run compliance:scan
+
+      - name: Run dependency security audit
+        continue-on-error: true
+        run: |
+          mkdir -p compliance/audit
+          npm audit --json > compliance/audit/npm-audit.json || true
+
+      - name: Run production build
+        run: npm run build
+
+      - name: Run weekly random audit
+        id: audit
+        continue-on-error: true
+        env:
+          AUDIT_BASE_URL: https://luxmiinvestcare.com
+          GITHUB_SHA: ${{ github.sha }}
+          GITHUB_REF_NAME: ${{ github.ref_name }}
+        run: npm run compliance:audit
+
+      - name: Upload audit report
+        uses: actions/upload-artifact@v7
+        with:
+          name: luxmi-weekly-compliance-audit
+          path: compliance/audit/latest.json
+          retention-days: 90
+          overwrite: true
+
+      - name: Commit latest audit report
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add compliance/audit/latest.json
+          if git diff --cached --quiet; then
+            echo "No audit report changes to commit."
+          else
+            git commit -m "chore: update weekly compliance audit report"
+            git push
+          fi
+
+      - name: Fail workflow when audit failed
+        if: steps.audit.outcome == 'failure'
+        run: exit 1

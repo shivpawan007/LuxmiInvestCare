@@ -99,14 +99,14 @@ interface DownloadReportProps {
 
 const BRAND = {
   name: "Luxmi InvestCare",
-  subtitle: "AMFI Registered Mutual Fund Distributor",
+  subtitle: "AMFI-registered Mutual Fund Distributor | ARN: 365140",
   website: "www.luxmiInvestCare.com",
   email: "info@luxmiinvestcare.com",
   whatsapp: "9650060044",
   facebook: "facebook.com/luxmiinvestcare",
   instagram: "instagram.com/luxmiinvestcare",
   youtube: "youtube.com/@Luxmiinvestcare",
-  arn: "ARN-365140",
+  arn: "ARN: 365140",
 };
 
 const C = {
@@ -857,7 +857,7 @@ function addGrowthChart(
   );
 
   pdf.text(
-    "Estimated Portfolio Value",
+    "Illustrative Value",
     x + 77,
     legendY + 1,
   );
@@ -1232,72 +1232,36 @@ function addDisclaimer(pdf: jsPDF) {
     "This calculator is provided for investor education and illustration purposes only.",
     "The projections shown are based on the assumptions entered by the user and an assumed rate of return.",
     "Actual investment returns may vary depending on market conditions, scheme performance, costs, taxes and other factors.",
-    "Mutual Fund investments are subject to market risks. Read all scheme related documents carefully before investing.",
-    "Past performance does not guarantee future returns.",
-    "The projected values shown in this report are not guaranteed returns and should not be interpreted as a promise of future performance.",
-    "This calculator output should not by itself be construed as personalised investment advice.",
+    "Mutual Fund investments are subject to market risks, read all scheme related documents carefully.",
+    "Past performance may or may not be sustained in future.",
+    "The projected values shown are illustrative estimates based on the selected assumptions and are not assured outcomes.",
+    "This calculator output is for general investor education and should not be treated as personalised investment advice.",
   ];
 
-  /*
-   * Page 5 disclaimer content starts below the section
-   * title + subtitle to avoid overlap.
-   */
   let y = 91;
-
   const numberX = 20;
   const textX = 30;
   const textWidth = pageWidth - 50;
 
   items.forEach((item, index) => {
-    const lines = pdf.splitTextToSize(
-      item,
-      textWidth,
-    );
+    const lines = pdf.splitTextToSize(item, textWidth);
 
-    /*
-     * Number
-     */
     setFont(pdf, true);
     pdf.setFontSize(8.5);
     pdf.setTextColor(...C.darkGreen);
+    pdf.text(`${index + 1}.`, numberX, y);
 
-    pdf.text(
-      `${index + 1}.`,
-      numberX,
-      y,
-    );
-
-    /*
-     * Disclaimer text
-     */
     setFont(pdf);
     pdf.setFontSize(8.5);
     pdf.setTextColor(...C.text);
+    pdf.text(lines, textX, y, {
+      lineHeightFactor: 1.45,
+    });
 
-    pdf.text(
-      lines,
-      textX,
-      y,
-      {
-        lineHeightFactor: 1.45,
-      },
-    );
-
-    /*
-     * Dynamic spacing based on wrapped lines.
-     */
     const lineHeight = 4.8;
-    const itemHeight = Math.max(
-      11,
-      lines.length * lineHeight + 4,
-    );
-
-    y += itemHeight;
+    y += Math.max(11, lines.length * lineHeight + 4);
   });
 
-  /*
-   * Contact / brand information box
-   */
   const boxY = y + 5;
   const boxX = 18;
   const boxWidth = pageWidth - 36;
@@ -1306,62 +1270,20 @@ function addDisclaimer(pdf: jsPDF) {
   pdf.setFillColor(...C.light);
   pdf.setDrawColor(...C.border);
   pdf.setLineWidth(0.4);
+  pdf.roundedRect(boxX, boxY, boxWidth, boxHeight, 3, 3, "FD");
 
-  pdf.roundedRect(
-    boxX,
-    boxY,
-    boxWidth,
-    boxHeight,
-    3,
-    3,
-    "FD",
-  );
-
-  /*
-   * Brand name
-   */
   setFont(pdf, true);
   pdf.setFontSize(8.5);
   pdf.setTextColor(...C.darkGreen);
+  pdf.text(BRAND.name, boxX + 7, boxY + 8);
 
-  pdf.text(
-    BRAND.name,
-    boxX + 7,
-    boxY + 8,
-  );
-
-  /*
-   * Distributor status
-   */
   setFont(pdf);
   pdf.setFontSize(7);
   pdf.setTextColor(...C.muted);
-
-  pdf.text(
-    BRAND.subtitle,
-    boxX + 7,
-    boxY + 14,
-  );
-
-  /*
-   * Website + email
-   */
-  pdf.text(
-    `${BRAND.website} | ${BRAND.email}`,
-    boxX + 7,
-    boxY + 20,
-  );
-
-  /*
-   * WhatsApp + ARN
-   */
-  pdf.text(
-    `WhatsApp: ${BRAND.whatsapp} | ${BRAND.arn}`,
-    boxX + 7,
-    boxY + 26,
-  );
+  pdf.text(BRAND.subtitle, boxX + 7, boxY + 14);
+  pdf.text(`${BRAND.website} | ${BRAND.email}`, boxX + 7, boxY + 20);
+  pdf.text(`WhatsApp: ${BRAND.whatsapp} | ${BRAND.arn}`, boxX + 7, boxY + 26);
 }
-
 function addSWPDisclaimer(pdf: jsPDF) {
   const pageWidth = pdf.internal.pageSize.getWidth();
 
@@ -1369,10 +1291,10 @@ function addSWPDisclaimer(pdf: jsPDF) {
     "This SWP calculator is provided for investor education and illustration purposes only.",
     "The projection is based on the assumptions entered by the user, including the assumed annual rate of return and withdrawal amount.",
     "Actual investment outcomes may vary depending on market conditions, scheme performance, costs, taxes and other factors.",
-    "Mutual Fund investments are subject to market risks. Read all scheme related documents carefully before investing.",
-    "The projected values shown in this report are illustrative and are not guaranteed returns.",
+    "Mutual Fund investments are subject to market risks, read all scheme related documents carefully.",
+    "The projected values shown are illustrative estimates based on the selected assumptions and are not assured outcomes.",
     "The calculator does not account for all possible market conditions, changes in withdrawal requirements or taxation implications.",
-    "This calculator output should not by itself be construed as personalised investment advice.",
+    "This calculator output is for general investor education and should not be treated as personalised investment advice.",
   ];
 
   let y = 82;
@@ -1381,85 +1303,38 @@ function addSWPDisclaimer(pdf: jsPDF) {
     setFont(pdf, true);
     pdf.setFontSize(8);
     pdf.setTextColor(...C.darkGreen);
+    pdf.text(`${index + 1}.`, 20, y);
 
-    pdf.text(
-      `${index + 1}.`,
-      20,
-      y,
-    );
-
-    const lines = pdf.splitTextToSize(
-      item,
-      pageWidth - 54,
-    );
+    const lines = pdf.splitTextToSize(item, pageWidth - 54);
 
     setFont(pdf);
     pdf.setFontSize(8);
     pdf.setTextColor(...C.text);
+    pdf.text(lines, 29, y, {
+      lineHeightFactor: 1.35,
+    });
 
-    pdf.text(
-      lines,
-      29,
-      y,
-      {
-        lineHeightFactor: 1.35,
-      },
-    );
-
-    y += Math.max(
-      10,
-      lines.length * 4.3 + 5,
-    );
+    y += Math.max(10, lines.length * 4.3 + 5);
   });
 
   const boxY = Math.min(y + 5, 218);
 
   pdf.setFillColor(...C.light);
   pdf.setDrawColor(...C.border);
-
-  pdf.roundedRect(
-    18,
-    boxY,
-    pageWidth - 36,
-    40,
-    3,
-    3,
-    "FD",
-  );
+  pdf.roundedRect(18, boxY, pageWidth - 36, 40, 3, 3, "FD");
 
   setFont(pdf, true);
   pdf.setFontSize(9);
   pdf.setTextColor(...C.darkGreen);
-
-  pdf.text(
-    BRAND.name,
-    25,
-    boxY + 10,
-  );
+  pdf.text(BRAND.name, 25, boxY + 10);
 
   setFont(pdf);
   pdf.setFontSize(7.5);
   pdf.setTextColor(...C.muted);
-
-  pdf.text(
-    BRAND.subtitle,
-    25,
-    boxY + 17,
-  );
-
-  pdf.text(
-    `${BRAND.website} | ${BRAND.email}`,
-    25,
-    boxY + 24,
-  );
-
-  pdf.text(
-    `WhatsApp: ${BRAND.whatsapp} | ${BRAND.arn}`,
-    25,
-    boxY + 31,
-  );
+  pdf.text(BRAND.subtitle, 25, boxY + 17);
+  pdf.text(`${BRAND.website} | ${BRAND.email}`, 25, boxY + 24);
+  pdf.text(`WhatsApp: ${BRAND.whatsapp} | ${BRAND.arn}`, 25, boxY + 31);
 }
-
 export default function DownloadReport({
   calculatorType,
   investment,
@@ -1622,7 +1497,7 @@ export default function DownloadReport({
             84,
             swpCardW,
             swpCardH,
-            "Expected Return",
+            "Assumed Annual Return (Illustrative)",
             `${annualReturn}%`,
             C.gold,
           );
@@ -2229,7 +2104,7 @@ export default function DownloadReport({
           pdf.setTextColor(...C.text);
 
           pdf.text(
-            `Net Wealth Gain (Illustrative): ${formatCurrency(
+            `Illustrative Growth: ${formatCurrency(
               estimatedGrowth,
             )}`,
             25,
@@ -2281,7 +2156,7 @@ export default function DownloadReport({
               formatCurrency(initialCorpus),
             ],
             [
-              "Net Wealth Gain (Illustrative)",
+              "Illustrative Growth",
               formatCurrency(estimatedGrowth),
             ],
             [
@@ -2653,7 +2528,7 @@ export default function DownloadReport({
             84,
             stepCardW,
             stepCardH,
-            "Expected Return",
+            "Assumed Annual Return (Illustrative)",
             `${stepReturn}%`,
             C.teal,
           );
@@ -3961,7 +3836,7 @@ export default function DownloadReport({
 
         /*
 * ============================================================
-* DEDICATED GOAL PLANNER PDF REPORT
+* DEDICATED INVESTMENT ILLUSTRATION PDF REPORT
 * ============================================================
 */
         if (
@@ -3987,7 +3862,7 @@ export default function DownloadReport({
             retirement: "Retirement",
             wedding: "Wedding",
             travel: "Travel",
-            custom: "Personal Goal",
+            custom: "Personal Objective",
           };
 
           const goalLabel =
@@ -4000,21 +3875,21 @@ export default function DownloadReport({
 
           /*
            * PAGE 1
-           * GOAL PLANNER SUMMARY
+           * INVESTMENT ILLUSTRATION SUMMARY
            */
 
           addPageHeader(
             pdf,
             reportTitle ||
-            "Goal Planning Illustration",
+            "Investment Objective Illustration",
             logo,
           );
 
           addSectionTitle(
             pdf,
             "1",
-            "Goal Planning Summary",
-            "Illustrative goal cost and investment requirements",
+            "Investment Objective Summary",
+            "Illustrative investment objective value and investment requirements",
             69,
           );
 
@@ -4028,7 +3903,7 @@ export default function DownloadReport({
             84,
             cardW,
             cardH,
-            "Selected Goal",
+            "Selected Investment Objective",
             goalLabel,
           );
 
@@ -4038,7 +3913,7 @@ export default function DownloadReport({
             84,
             cardW,
             cardH,
-            "Current Goal Value",
+            "Current Objective Value",
             formatCurrency(
               targetAmount,
             ),
@@ -4051,7 +3926,7 @@ export default function DownloadReport({
             84,
             cardW,
             cardH,
-            "Years to Goal",
+            "Investment Horizon",
             `${years} ${years === 1
               ? "Year"
               : "Years"
@@ -4064,7 +3939,7 @@ export default function DownloadReport({
             121,
             cardW,
             cardH,
-            "Expected Return",
+            "Assumed Annual Return (Illustrative)",
             `${expectedReturn}%`,
             C.teal,
           );
@@ -4087,7 +3962,7 @@ export default function DownloadReport({
             121,
             cardW,
             cardH,
-            "Future Goal Value",
+            "Illustrative Future Value",
             formatCurrency(
               futureValue,
             ),
@@ -4190,15 +4065,15 @@ export default function DownloadReport({
           addPageHeader(
             pdf,
             reportTitle ||
-            "Goal Planning Illustration",
+            "Investment Objective Illustration",
             logo,
           );
 
           addSectionTitle(
             pdf,
             "2",
-            "Inflation Impact on the Goal",
-            "Illustrative comparison of today's goal value with its estimated future cost",
+            "Inflation Impact on the Investment Objective",
+            "Illustrative comparison of the current value with its estimated future value",
             69,
           );
 
@@ -4254,7 +4129,7 @@ export default function DownloadReport({
           );
 
           pdf.text(
-            "Goal Value Today",
+            "Current Value",
             31,
             inflationBoxY + 11,
           );
@@ -4340,7 +4215,7 @@ export default function DownloadReport({
           );
 
           pdf.text(
-            `Estimated Goal Value in ${years} Years`,
+            `Estimated Future Value in ${years} Years`,
             31,
             futureY + 11,
           );
@@ -4457,15 +4332,15 @@ export default function DownloadReport({
           );
 
           const inflationInsight = [
-            `At the selected ${inflation}% inflation assumption, the goal's estimated future cost is ${formatCurrency(
+            `At the selected ${inflation}% inflation assumption, the investment objective's estimated future value is ${formatCurrency(
               futureValue,
             )}, compared with ${formatCurrency(
               targetAmount,
             )} today.`,
-            `Illustrative increase in goal cost: ${formatCurrency(
+            `Illustrative increase in estimated value: ${formatCurrency(
               inflationIncrease,
             )}.`,
-            `The estimated future goal value is approximately ${inflationMultiple.toFixed(
+            `The estimated future value is approximately ${inflationMultiple.toFixed(
               1,
             )}× today's goal value.`,
           ].join(" ");
@@ -4494,7 +4369,7 @@ export default function DownloadReport({
           addPageHeader(
             pdf,
             reportTitle ||
-            "Goal Planning Illustration",
+            "Investment Objective Illustration",
             logo,
           );
 
@@ -4502,7 +4377,7 @@ export default function DownloadReport({
             pdf,
             "3",
             "Illustrative Investment Requirement",
-            "Two illustrative ways to work toward the estimated future goal value",
+            "Two illustrative ways to understand the estimated future value",
             69,
           );
 
@@ -4726,14 +4601,14 @@ export default function DownloadReport({
           addPageHeader(
             pdf,
             reportTitle ||
-            "Goal Planning Illustration",
+            "Investment Objective Illustration",
             logo,
           );
 
           addSectionTitle(
             pdf,
             "4",
-            "Goal Planning Insight",
+            "Investment Objective Insight",
             "Key assumptions and investor education",
             69,
           );
@@ -4774,7 +4649,7 @@ export default function DownloadReport({
           );
 
           pdf.text(
-            "Selected Goal",
+            "Selected Investment Objective",
             25,
             insightY + 12,
           );
@@ -4850,7 +4725,7 @@ export default function DownloadReport({
           );
 
           pdf.text(
-            "Discuss Your Goal Planning Illustration",
+            "Discuss Your Investment Objective Illustration",
             25,
             leadY + 12,
           );
@@ -4927,7 +4802,7 @@ export default function DownloadReport({
           addPageHeader(
             pdf,
             reportTitle ||
-            "Goal Planning Illustration",
+            "Investment Objective Illustration",
             logo,
           );
 
@@ -4935,7 +4810,7 @@ export default function DownloadReport({
             pdf,
             "5",
             "Investor Education Disclaimer",
-            "Important information regarding this illustrative goal calculator",
+            "Important information regarding this illustrative investment calculator",
             69,
           );
 
@@ -4995,15 +4870,15 @@ export default function DownloadReport({
           /* PAGE 1 */
           addPageHeader(
             pdf,
-            reportTitle || "Child Education Planning Illustration",
+            reportTitle || "Child Education Cost Illustration",
             logo,
           );
 
           addSectionTitle(
             pdf,
             "1",
-            "Education Planning Summary",
-            "Key assumptions and illustrative education funding requirements",
+            "Education Cost Illustration Summary",
+            "Key assumptions and illustrative education funding",
             69,
           );
 
@@ -5013,9 +4888,9 @@ export default function DownloadReport({
 
           addCard(pdf, 18, 84, cardW, cardH, "Child's Current Age", `${currentAge} ${currentAge === 1 ? "Year" : "Years"}`);
           addCard(pdf, 18 + cardW + gap, 84, cardW, cardH, "Education Start Age", `${educationStartAge} Years`, C.teal);
-          addCard(pdf, 18 + (cardW + gap) * 2, 84, cardW, cardH, "Years to Goal", `${yearsToGoal} ${yearsToGoal === 1 ? "Year" : "Years"}`, C.gold);
+          addCard(pdf, 18 + (cardW + gap) * 2, 84, cardW, cardH, "Investment Horizon", `${yearsToGoal} ${yearsToGoal === 1 ? "Year" : "Years"}`, C.gold);
           addCard(pdf, 18, 120, cardW, cardH, "Current Education Cost", formatCurrency(currentEducationCost));
-          addCard(pdf, 18 + cardW + gap, 120, cardW, cardH, "Expected Return", `${expectedReturn}%`, C.teal);
+          addCard(pdf, 18 + cardW + gap, 120, cardW, cardH, "Assumed Annual Return (Illustrative)", `${expectedReturn}%`, C.teal);
           addCard(pdf, 18 + (cardW + gap) * 2, 120, cardW, cardH, "Education Inflation", `${educationInflation}%`, C.gold);
 
           pdf.setFillColor(...C.light);
@@ -5047,14 +4922,14 @@ export default function DownloadReport({
           pdf.addPage();
           addPageHeader(
             pdf,
-            reportTitle || "Child Education Planning Illustration",
+            reportTitle || "Child Education Cost Illustration",
             logo,
           );
           addSectionTitle(
             pdf,
             "2",
-            "Education Cost Growth",
-            "Illustrative effect of education inflation over the planning period",
+            "Education Cost Illustration",
+            "Illustrative effect of education inflation over the selected period",
             69,
           );
 
@@ -5256,7 +5131,7 @@ export default function DownloadReport({
           pdf.addPage();
           addPageHeader(
             pdf,
-            reportTitle || "Child Education Planning Illustration",
+            reportTitle || "Child Education Cost Illustration",
             logo,
           );
           addSectionTitle(
@@ -5339,13 +5214,13 @@ export default function DownloadReport({
           pdf.addPage();
           addPageHeader(
             pdf,
-            reportTitle || "Child Education Planning Illustration",
+            reportTitle || "Child Education Cost Illustration",
             logo,
           );
           addSectionTitle(
             pdf,
             "4",
-            "Funding Requirement & Planning Insight",
+            "Funding Requirement & Education Insight",
             "Illustrative funding alternatives and investor education",
             69,
           );
@@ -5360,13 +5235,13 @@ export default function DownloadReport({
           setFont(pdf, true);
           pdf.setFontSize(8.8);
           pdf.setTextColor(...C.darkGreen);
-          pdf.text("Planning Snapshot", 25, 145);
+          pdf.text("Illustration Snapshot", 25, 145);
 
           setFont(pdf);
           pdf.setFontSize(7.5);
           pdf.setTextColor(...C.text);
           pdf.text(`Education begins at age ${educationStartAge}.`, 25, 157);
-          pdf.text(`${yearsToGoal} ${yearsToGoal === 1 ? "year" : "years"} are available for planning.`, 25, 166);
+          pdf.text(`${yearsToGoal} ${yearsToGoal === 1 ? "year" : "years"} are available in the selected investment horizon.`, 25, 166);
           pdf.text(`Future education cost: ${formatCurrency(futureEducationCost)}.`, 105, 157);
           pdf.text(`Inflation assumption: ${educationInflation}%.`, 105, 166);
 
@@ -5406,14 +5281,14 @@ export default function DownloadReport({
           pdf.addPage();
           addPageHeader(
             pdf,
-            reportTitle || "Child Education Planning Illustration",
+            reportTitle || "Child Education Cost Illustration",
             logo,
           );
           addSectionTitle(
             pdf,
             "5",
             "Investor Education Disclaimer",
-            "Important information regarding this illustrative education planner",
+            "Important information regarding this illustrative education cost calculator",
             69,
           );
 
@@ -5421,10 +5296,10 @@ export default function DownloadReport({
             "This calculator is provided for investor education and illustration purposes only.",
             "The projections shown are based on the assumptions entered by the user, including education cost, time period, inflation and assumed investment return.",
             "Actual education costs, investment returns and future funding requirements may differ from the illustration.",
-            "Mutual Fund investments are subject to market risks. Read all scheme related documents carefully before investing.",
-            "Past performance does not guarantee future returns.",
-            "The projected values shown in this report are not guaranteed returns and should not be interpreted as a promise of future performance.",
-            "This calculator is an educational illustration and should not be treated as a recommendation to invest in any particular scheme.",
+            "Mutual Fund investments are subject to market risks, read all scheme related documents carefully.",
+            "Past performance may or may not be sustained in future.",
+            "The projected values shown are illustrative estimates based on the selected assumptions and are not assured outcomes.",
+            "This calculator is provided for general investor education and does not constitute a recommendation to invest in any particular scheme.",
           ];
 
           let disclaimerY = 78;
@@ -5510,7 +5385,7 @@ export default function DownloadReport({
           84,
           cardW,
           cardH,
-          "Expected Return",
+          "Assumed Annual Return (Illustrative)",
           `${annualReturn}%`,
           C.gold,
         );
@@ -5550,7 +5425,7 @@ export default function DownloadReport({
           121,
           cardW,
           cardH,
-          "Maturity Value",
+          "Illustrative Projected Value",
           formatCurrency(
             maturityValue,
           ),
@@ -5608,7 +5483,7 @@ export default function DownloadReport({
         );
 
         pdf.text(
-          "Actual returns may vary and are not guaranteed.",
+          "Actual returns may vary with market conditions and other factors.",
           25,
           186,
         );
@@ -5819,7 +5694,7 @@ export default function DownloadReport({
           pdf,
           "2",
           "Investment Growth",
-          "Illustrative year-wise projection of investment and estimated portfolio value",
+          "Illustrative year-wise projection of investment and illustrative value",
           69,
         );
 
@@ -6083,7 +5958,7 @@ export default function DownloadReport({
             }`,
           ],
           [
-            "Expected Return",
+            "Assumed Annual Return (Illustrative)",
             `${annualReturn}%`,
           ],
           [
@@ -6099,7 +5974,7 @@ export default function DownloadReport({
             ),
           ],
           [
-            "Maturity Value",
+            "Illustrative Projected Value",
             formatCurrency(
               maturityValue,
             ),

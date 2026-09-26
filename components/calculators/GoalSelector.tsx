@@ -27,7 +27,7 @@ const goals = [
   },
   {
     id: "retirement",
-    title: "Retirement",
+    title: "Retirement Corpus",
     icon: <Briefcase className="h-8 w-8" />,
   },
   {
@@ -42,7 +42,7 @@ const goals = [
   },
   {
     id: "wealth",
-    title: "Wealth Creation",
+    title: "Long-Term Investing",
     icon: <Heart className="h-8 w-8" />,
   },
 ];
@@ -54,11 +54,11 @@ export default function GoalSelector({
   return (
     <section>
       <h2 className="text-3xl font-bold text-slate-900">
-        Choose Your Financial Goal
+        Choose Your Investment Objective
       </h2>
 
       <p className="mt-3 text-slate-600">
-        Select a goal to start planning your investments.
+        Select an investment objective to explore an educational illustration.
       </p>
 
       <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

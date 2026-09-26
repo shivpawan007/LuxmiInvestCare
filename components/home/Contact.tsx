@@ -58,68 +58,23 @@ export default function Contact() {
                             Send Us a Message
                         </h3>
 
-                        <form
-                            onSubmit={(event) => {
-                                event.preventDefault();
-                                window.location.href = "/contact";
-                            }}
-                            className="space-y-6"
-                        >
-                            <div>
-                                <label className="mb-2 block font-medium text-slate-700">
-                                    Full Name
-                                </label>
-
-                                <input
-                                    type="text"
-                                    placeholder="Enter your full name"
-                                    className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-green-600"
-                                />
-                            </div>
-
-                            <div>
-                                <label className="mb-2 block font-medium text-slate-700">
-                                    Mobile Number
-                                </label>
-
-                                <input
-                                    type="tel"
-                                    placeholder="Enter your mobile number"
-                                    className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-green-600"
-                                />
-                            </div>
-
-                            <div>
-                                <label className="mb-2 block font-medium text-slate-700">
-                                    Email Address
-                                </label>
-
-                                <input
-                                    type="email"
-                                    placeholder="Enter your email"
-                                    className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-green-600"
-                                />
-                            </div>
-
-                            <div>
-                                <label className="mb-2 block font-medium text-slate-700">
-                                    Message
-                                </label>
-
-                                <textarea
-                                    rows={5}
-                                    placeholder="Tell us what information you are looking for..."
-                                    className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-green-600"
-                                />
-                            </div>
-
-                            <button
-                                type="submit"
-                                className="btn-primary w-full"
+                        <div className="space-y-6">
+                            <p className="leading-7 text-slate-600">
+                                Use the dedicated contact page to submit an enquiry.
+                                The contact form there includes the applicable privacy
+                                consent before your details are submitted.
+                            </p>
+                            <a
+                                href="/contact"
+                                className="inline-flex w-full items-center justify-center rounded-xl bg-green-700 px-6 py-3 font-semibold text-white transition hover:bg-green-800"
                             >
-                                Continue to Contact Page
-                            </button>
-                        </form>
+                                Go to Contact & Enquiry Form
+                            </a>
+                            <p className="text-xs leading-5 text-slate-500">
+                                General investor education and investment-related information only.
+                                Please review the Privacy Policy before submitting personal information.
+                            </p>
+                        </div>
                     </motion.div>
 
                     {/* Contact Information */}

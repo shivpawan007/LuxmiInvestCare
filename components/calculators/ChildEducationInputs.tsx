@@ -105,7 +105,7 @@ export default function ChildEducationInputs({
     <div className="rounded-3xl border border-slate-200 bg-white p-8 shadow-lg">
 
       <h2 className="mb-8 text-2xl font-bold text-slate-900">
-        Education Goal Details
+        Education Cost Illustration Inputs
       </h2>
 
       <div className="grid gap-8 md:grid-cols-2">
@@ -186,7 +186,7 @@ export default function ChildEducationInputs({
             {yearsToGoal === 1
               ? "year"
               : "years"}{" "}
-            available for planning
+            available until the selected education start age
           </p>
         </div>
 
@@ -222,18 +222,18 @@ export default function ChildEducationInputs({
         </div>
 
         {/* ==================================================
-            EXPECTED RETURN
+            ASSUMED ANNUAL RETURN (ILLUSTRATIVE)
         ================================================== */}
         <div>
           <div className="mb-3 flex items-center gap-2 font-semibold text-slate-900">
             <Percent className="h-5 w-5 text-green-700" />
             <span>
-              Expected Investment Return
+              Assumed Annual Return (Illustrative)
             </span>
           </div>
 
           <CalculatorInput
-            label="Expected Investment Return"
+            label="Assumed Annual Return (Illustrative)"
             value={
               expectedReturn
             }
