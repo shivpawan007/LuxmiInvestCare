@@ -5297,9 +5297,9 @@ export default function DownloadReport({
             "The projections shown are based on the assumptions entered by the user, including education cost, time period, inflation and assumed investment return.",
             "Actual education costs, investment returns and future funding requirements may differ from the illustration.",
             "Mutual Fund investments are subject to market risks, read all scheme related documents carefully.",
-            "Past performance is not a guarantee of future returns.",
-            "The projected values shown in this report are not guaranteed returns and should not be interpreted as a promise of future performance.",
-            "This calculator is an educational illustration and should not be treated as a recommendation to invest in any particular scheme.",
+            "Past performance may or may not be sustained in future.",
+            "The projected values shown are illustrative estimates based on the selected assumptions and are not assured outcomes.",
+            "This calculator is provided for general investor education and does not constitute a recommendation to invest in any particular scheme.",
           ];
 
           let disclaimerY = 78;
@@ -5483,7 +5483,7 @@ export default function DownloadReport({
         );
 
         pdf.text(
-          "Actual returns may vary and are not guaranteed.",
+          "Actual returns may vary with market conditions and other factors.",
           25,
           186,
         );
