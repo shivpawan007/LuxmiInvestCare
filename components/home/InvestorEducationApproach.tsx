@@ -145,9 +145,8 @@ export default function InvestorEducationApproach() {
                     </h4>
                     <p className="mt-3 leading-7 text-slate-700">
                         This section contains general investor education and
-                        information. It does not contain customer testimonials,
-                        rankings, performance promises or guarantees of future
-                        outcomes.
+                        information. It does not make performance promises or
+                        guarantees about future outcomes.
                     </p>
                 </div>
             </div>
