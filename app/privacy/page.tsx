@@ -20,6 +20,7 @@ export default function PrivacyPolicyPage() {
                         This notice explains how Luxmi InvestCare handles information
                         submitted through this website.
                     </p>
+                    <p className="mt-3 text-sm text-green-200">Last updated: 26 September 2026</p>
                 </div>
             </section>
 
@@ -90,7 +91,8 @@ export default function PrivacyPolicyPage() {
                                 website information handled by us. Enquiry information is retained
                                 only for as long as reasonably required for the stated purposes,
                                 operational records, dispute handling, regulatory requirements or
-                                other lawful purposes.
+                                other lawful purposes. Where processing depends on consent,
+                                the consent record is retained with the enquiry workflow.
                             </p>
                         </section>
 
