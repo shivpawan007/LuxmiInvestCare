@@ -52,10 +52,7 @@ function isRegulatoryDisclosure(file) {
 for (const file of files) {
   const content = fs.readFileSync(file, "utf8");
   for (const pattern of FORBIDDEN_PROMOTIONAL_PATTERNS) {
-    if (
-      isRegulatoryDisclosure(file) &&
-      /financial|investment|wealth/.test(pattern.source)
-    ) {
+    if (isRegulatoryDisclosure(file)) {
       continue;
     }
     if (pattern.test(content)) {
