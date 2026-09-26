@@ -20,6 +20,17 @@ const FORBIDDEN_PATTERNS = [
   { id: "promotion.assured-return", pattern: /assured\s+return/i },
   { id: "promotion.guaranteed-return", pattern: /guaranteed\s+return/i },
   { id: "promotion.multibagger", pattern: /\bmultibagger\b/i },
+  { id: "promotion.portfolio-management", pattern: /portfolio\s+management/i },
+  { id: "promotion.portfolio-review", pattern: /portfolio\s+review/i },
+  { id: "promotion.retirement-planning", pattern: /retirement\s+planning/i },
+  { id: "promotion.goal-based", pattern: /goal[-\s]+based/i },
+  { id: "promotion.asset-allocation-advice", pattern: /asset\s+allocation\s+advice/i },
+  { id: "promotion.wealth-creation-services", pattern: /wealth\s+creation\s+services/i },
+  { id: "promotion.best-fund", pattern: /\bbest\s+(?:mutual\s+)?fund\b/i },
+  { id: "promotion.top-fund", pattern: /\btop\s+(?:mutual\s+)?fund\b/i },
+  { id: "promotion.highest-return", pattern: /highest\s+return/i },
+  { id: "promotion.fixed-return", pattern: /fixed\s+return/i },
+  { id: "promotion.risk-free-return", pattern: /risk[-\s]+free\s+return/i },
   { id: "promotion.ranking", pattern: /\branking\b/i },
   { id: "promotion.testimonial", pattern: /\btestimonials?\b/i },
   { id: "promotion.number-one", pattern: /number\s*1/i },
@@ -192,6 +203,48 @@ const sampledFiles = sample(sourceFiles, 8);
 const sampledRoutes = sample(publicPages, 5);
 
 const baseUrl = process.env.AUDIT_BASE_URL || "https://luxmiinvestcare.com";
+let dependencyAudit = null;
+const dependencyAuditPath = path.join(
+  process.cwd(),
+  "compliance",
+  "audit",
+  "npm-audit.json",
+);
+
+if (fs.existsSync(dependencyAuditPath)) {
+  try {
+    const raw = JSON.parse(fs.readFileSync(dependencyAuditPath, "utf8"));
+    const counts = raw.metadata?.vulnerabilities || {};
+    dependencyAudit = {
+      counts,
+      total: Object.values(counts).reduce(
+        (sum, value) => sum + Number(value || 0),
+        0,
+      ),
+    };
+    if ((counts.critical || 0) > 0 || (counts.high || 0) > 0) {
+      allFindings.push({
+        severity: "critical",
+        rule: "dependencies.high-or-critical-vulnerabilities",
+        file: "npm-audit.json",
+      });
+    } else if ((counts.moderate || 0) > 0) {
+      allFindings.push({
+        severity: "medium",
+        rule: "dependencies.moderate-vulnerabilities",
+        file: "npm-audit.json",
+      });
+    }
+  } catch (error) {
+    allFindings.push({
+      severity: "medium",
+      rule: "dependencies.audit-report-unreadable",
+      file: "npm-audit.json",
+      error: error instanceof Error ? error.message : String(error),
+    });
+  }
+}
+
 const routeResults = [];
 
 for (const route of sampledRoutes) {
@@ -243,7 +296,15 @@ const report = {
     arn365140: arnPresent,
     standardRiskWarning: warningPresent,
     liveRouteProbe: routeResults.every((x) => x.ok),
+    dependencyAudit: dependencyAudit
+      ? (dependencyAudit.counts.critical || dependencyAudit.counts.high
+        ? false
+        : dependencyAudit.counts.moderate
+          ? null
+          : true)
+      : null,
   },
+  dependencyAudit,
   routeResults,
   findings: uniqueFindings,
   status: uniqueFindings.some((x) => x.severity === "critical" || x.severity === "high")
