@@ -26,7 +26,6 @@ export default function DisclosuresPage() {
                     <p className="mt-3 text-sm text-green-200">
                         Last updated: 26 September 2026
                     </p>
-                    <p className="mt-3 text-sm text-green-200">Last updated: 26 September 2026</p>
                 </div>
             </section>
 
