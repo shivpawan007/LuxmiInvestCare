@@ -1233,71 +1233,35 @@ function addDisclaimer(pdf: jsPDF) {
     "The projections shown are based on the assumptions entered by the user and an assumed rate of return.",
     "Actual investment returns may vary depending on market conditions, scheme performance, costs, taxes and other factors.",
     "Mutual Fund investments are subject to market risks, read all scheme related documents carefully.",
-    "Past performance is not a guarantee of future returns.",
-    "The projected values shown in this report are not guaranteed returns and should not be interpreted as a promise of future performance.",
-    "This calculator output should not by itself be construed as personalised investment advice.",
+    "Past performance may or may not be sustained in future.",
+    "The projected values shown are illustrative estimates based on the selected assumptions and are not assured outcomes.",
+    "This calculator output is for general investor education and should not be treated as personalised investment advice.",
   ];
 
-  /*
-   * Page 5 disclaimer content starts below the section
-   * title + subtitle to avoid overlap.
-   */
   let y = 91;
-
   const numberX = 20;
   const textX = 30;
   const textWidth = pageWidth - 50;
 
   items.forEach((item, index) => {
-    const lines = pdf.splitTextToSize(
-      item,
-      textWidth,
-    );
+    const lines = pdf.splitTextToSize(item, textWidth);
 
-    /*
-     * Number
-     */
     setFont(pdf, true);
     pdf.setFontSize(8.5);
     pdf.setTextColor(...C.darkGreen);
+    pdf.text(`${index + 1}.`, numberX, y);
 
-    pdf.text(
-      `${index + 1}.`,
-      numberX,
-      y,
-    );
-
-    /*
-     * Disclaimer text
-     */
     setFont(pdf);
     pdf.setFontSize(8.5);
     pdf.setTextColor(...C.text);
+    pdf.text(lines, textX, y, {
+      lineHeightFactor: 1.45,
+    });
 
-    pdf.text(
-      lines,
-      textX,
-      y,
-      {
-        lineHeightFactor: 1.45,
-      },
-    );
-
-    /*
-     * Dynamic spacing based on wrapped lines.
-     */
     const lineHeight = 4.8;
-    const itemHeight = Math.max(
-      11,
-      lines.length * lineHeight + 4,
-    );
-
-    y += itemHeight;
+    y += Math.max(11, lines.length * lineHeight + 4);
   });
 
-  /*
-   * Contact / brand information box
-   */
   const boxY = y + 5;
   const boxX = 18;
   const boxWidth = pageWidth - 36;
@@ -1306,62 +1270,20 @@ function addDisclaimer(pdf: jsPDF) {
   pdf.setFillColor(...C.light);
   pdf.setDrawColor(...C.border);
   pdf.setLineWidth(0.4);
+  pdf.roundedRect(boxX, boxY, boxWidth, boxHeight, 3, 3, "FD");
 
-  pdf.roundedRect(
-    boxX,
-    boxY,
-    boxWidth,
-    boxHeight,
-    3,
-    3,
-    "FD",
-  );
-
-  /*
-   * Brand name
-   */
   setFont(pdf, true);
   pdf.setFontSize(8.5);
   pdf.setTextColor(...C.darkGreen);
+  pdf.text(BRAND.name, boxX + 7, boxY + 8);
 
-  pdf.text(
-    BRAND.name,
-    boxX + 7,
-    boxY + 8,
-  );
-
-  /*
-   * Distributor status
-   */
   setFont(pdf);
   pdf.setFontSize(7);
   pdf.setTextColor(...C.muted);
-
-  pdf.text(
-    BRAND.subtitle,
-    boxX + 7,
-    boxY + 14,
-  );
-
-  /*
-   * Website + email
-   */
-  pdf.text(
-    `${BRAND.website} | ${BRAND.email}`,
-    boxX + 7,
-    boxY + 20,
-  );
-
-  /*
-   * WhatsApp + ARN
-   */
-  pdf.text(
-    `WhatsApp: ${BRAND.whatsapp} | ${BRAND.arn}`,
-    boxX + 7,
-    boxY + 26,
-  );
+  pdf.text(BRAND.subtitle, boxX + 7, boxY + 14);
+  pdf.text(`${BRAND.website} | ${BRAND.email}`, boxX + 7, boxY + 20);
+  pdf.text(`WhatsApp: ${BRAND.whatsapp} | ${BRAND.arn}`, boxX + 7, boxY + 26);
 }
-
 function addSWPDisclaimer(pdf: jsPDF) {
   const pageWidth = pdf.internal.pageSize.getWidth();
 
@@ -1370,9 +1292,9 @@ function addSWPDisclaimer(pdf: jsPDF) {
     "The projection is based on the assumptions entered by the user, including the assumed annual rate of return and withdrawal amount.",
     "Actual investment outcomes may vary depending on market conditions, scheme performance, costs, taxes and other factors.",
     "Mutual Fund investments are subject to market risks, read all scheme related documents carefully.",
-    "The projected values shown in this report are illustrative and are not guaranteed returns.",
+    "The projected values shown are illustrative estimates based on the selected assumptions and are not assured outcomes.",
     "The calculator does not account for all possible market conditions, changes in withdrawal requirements or taxation implications.",
-    "This calculator output should not by itself be construed as personalised investment advice.",
+    "This calculator output is for general investor education and should not be treated as personalised investment advice.",
   ];
 
   let y = 82;
@@ -1381,85 +1303,38 @@ function addSWPDisclaimer(pdf: jsPDF) {
     setFont(pdf, true);
     pdf.setFontSize(8);
     pdf.setTextColor(...C.darkGreen);
+    pdf.text(`${index + 1}.`, 20, y);
 
-    pdf.text(
-      `${index + 1}.`,
-      20,
-      y,
-    );
-
-    const lines = pdf.splitTextToSize(
-      item,
-      pageWidth - 54,
-    );
+    const lines = pdf.splitTextToSize(item, pageWidth - 54);
 
     setFont(pdf);
     pdf.setFontSize(8);
     pdf.setTextColor(...C.text);
+    pdf.text(lines, 29, y, {
+      lineHeightFactor: 1.35,
+    });
 
-    pdf.text(
-      lines,
-      29,
-      y,
-      {
-        lineHeightFactor: 1.35,
-      },
-    );
-
-    y += Math.max(
-      10,
-      lines.length * 4.3 + 5,
-    );
+    y += Math.max(10, lines.length * 4.3 + 5);
   });
 
   const boxY = Math.min(y + 5, 218);
 
   pdf.setFillColor(...C.light);
   pdf.setDrawColor(...C.border);
-
-  pdf.roundedRect(
-    18,
-    boxY,
-    pageWidth - 36,
-    40,
-    3,
-    3,
-    "FD",
-  );
+  pdf.roundedRect(18, boxY, pageWidth - 36, 40, 3, 3, "FD");
 
   setFont(pdf, true);
   pdf.setFontSize(9);
   pdf.setTextColor(...C.darkGreen);
-
-  pdf.text(
-    BRAND.name,
-    25,
-    boxY + 10,
-  );
+  pdf.text(BRAND.name, 25, boxY + 10);
 
   setFont(pdf);
   pdf.setFontSize(7.5);
   pdf.setTextColor(...C.muted);
-
-  pdf.text(
-    BRAND.subtitle,
-    25,
-    boxY + 17,
-  );
-
-  pdf.text(
-    `${BRAND.website} | ${BRAND.email}`,
-    25,
-    boxY + 24,
-  );
-
-  pdf.text(
-    `WhatsApp: ${BRAND.whatsapp} | ${BRAND.arn}`,
-    25,
-    boxY + 31,
-  );
+  pdf.text(BRAND.subtitle, 25, boxY + 17);
+  pdf.text(`${BRAND.website} | ${BRAND.email}`, 25, boxY + 24);
+  pdf.text(`WhatsApp: ${BRAND.whatsapp} | ${BRAND.arn}`, 25, boxY + 31);
 }
-
 export default function DownloadReport({
   calculatorType,
   investment,
