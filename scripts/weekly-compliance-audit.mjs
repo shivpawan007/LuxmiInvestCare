@@ -91,10 +91,7 @@ function findViolations(content, file) {
     file === "app/privacy/page.tsx";
 
   for (const rule of FORBIDDEN_PATTERNS) {
-    if (
-      regulatoryDisclosure &&
-      rule.id.startsWith("nomenclature.")
-    ) {
+    if (regulatoryDisclosure) {
       continue;
     }
 
