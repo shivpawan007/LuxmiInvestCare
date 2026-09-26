@@ -36,11 +36,11 @@ const FORBIDDEN_PATTERNS = [
   { id: "promotion.number-one", pattern: /number\s*1/i },
 ];
 
-const PUBLIC_ROUTE_EXCLUSIONS = [
-  "/admin",
-  "/api",
-  "/_not-found",
-];
+const PUBLIC_ROUTE_EXCLUSIONS = ["/admin", "/api", "/_not-found"];
+
+// Critical public routes are always probed. Random sampling remains in addition
+// to these deterministic checks so the weekly audit has both coverage modes.
+const REQUIRED_PUBLIC_ROUTES = ["/", "/privacy", "/disclosures", "/services"];
 
 function walk(dir) {
   if (!fs.existsSync(dir)) return [];
@@ -69,7 +69,7 @@ function sample(items, count) {
 
 function routeFromPage(file) {
   const rel = relative(file);
-  if (!rel.startsWith("app/") || !rel.endsWith("/page.tsx") && rel !== "app/page.tsx") {
+  if (!rel.startsWith("app/") || (!rel.endsWith("/page.tsx") && rel !== "app/page.tsx")) {
     return null;
   }
 
@@ -91,57 +91,64 @@ function findViolations(content, file) {
     file === "app/privacy/page.tsx";
 
   for (const rule of FORBIDDEN_PATTERNS) {
-    if (regulatoryDisclosure) {
-      continue;
-    }
+    if (regulatoryDisclosure) continue;
 
     if (rule.pattern.test(content)) {
-      findings.push({
-        severity: "high",
-        rule: rule.id,
-        file,
-      });
+      findings.push({ severity: "high", rule: rule.id, file });
     }
   }
   return findings;
 }
 
-async function probeRoute(baseUrl, route) {
+async function probeRoute(baseUrl, route, required = false) {
   const url = new URL(route, baseUrl).toString();
   const started = Date.now();
   try {
     const response = await fetch(url, {
       redirect: "follow",
-      headers: {
-        "user-agent": "LuxmiInvestCare-ComplianceAudit/1.0",
-      },
+      headers: { "user-agent": "LuxmiInvestCare-ComplianceAudit/1.1" },
     });
     const html = await response.text();
     const findings = [];
+
     for (const rule of FORBIDDEN_PATTERNS) {
       if (rule.pattern.test(html)) {
-        findings.push({
-          severity: "high",
-          rule: rule.id,
-          route,
-        });
+        findings.push({ severity: "high", rule: rule.id, route });
       }
     }
+
+    if (!response.ok) {
+      findings.push({
+        severity: required ? "high" : "medium",
+        rule: required ? "live.required-route-not-ok" : "live.route-not-ok",
+        route,
+        status: response.status,
+      });
+    }
+
     return {
       route,
+      required,
       status: response.status,
       ok: response.ok,
       durationMs: Date.now() - started,
       findings,
     };
   } catch (error) {
+    const message = error instanceof Error ? error.message : String(error);
     return {
       route,
+      required,
       status: null,
       ok: false,
       durationMs: Date.now() - started,
-      error: error instanceof Error ? error.message : String(error),
-      findings: [],
+      error: message,
+      findings: [{
+        severity: required ? "high" : "medium",
+        rule: required ? "live.required-route-unreachable" : "live.probe-unreachable",
+        route,
+        error: message,
+      }],
     };
   }
 }
@@ -166,27 +173,13 @@ const arnPresent = /ARN\s*[:|]?\s*365140/i.test(allSource);
 const warningPresent = allSource.includes(STANDARD_WARNING);
 
 if (!identityPresent) {
-  allFindings.push({
-    severity: "critical",
-    rule: "identity.mfd-designation-missing",
-    file: "GLOBAL",
-  });
+  allFindings.push({ severity: "critical", rule: "identity.mfd-designation-missing", file: "GLOBAL" });
 }
-
 if (!arnPresent) {
-  allFindings.push({
-    severity: "critical",
-    rule: "identity.arn-365140-missing",
-    file: "GLOBAL",
-  });
+  allFindings.push({ severity: "critical", rule: "identity.arn-365140-missing", file: "GLOBAL" });
 }
-
 if (!warningPresent) {
-  allFindings.push({
-    severity: "critical",
-    rule: "risk-warning.mandatory-standard-warning-missing",
-    file: "GLOBAL",
-  });
+  allFindings.push({ severity: "critical", rule: "risk-warning.mandatory-standard-warning-missing", file: "GLOBAL" });
 }
 
 const publicPages = sourceFiles
@@ -198,15 +191,10 @@ const publicPages = sourceFiles
 
 const sampledFiles = sample(sourceFiles, 8);
 const sampledRoutes = sample(publicPages, 5);
-
 const baseUrl = process.env.AUDIT_BASE_URL || "https://luxmiinvestcare.com";
+
 let dependencyAudit = null;
-const dependencyAuditPath = path.join(
-  process.cwd(),
-  "compliance",
-  "audit",
-  "npm-audit.json",
-);
+const dependencyAuditPath = path.join(process.cwd(), "compliance", "audit", "npm-audit.json");
 
 if (fs.existsSync(dependencyAuditPath)) {
   try {
@@ -214,11 +202,9 @@ if (fs.existsSync(dependencyAuditPath)) {
     const counts = raw.metadata?.vulnerabilities || {};
     dependencyAudit = {
       counts,
-      total: Object.values(counts).reduce(
-        (sum, value) => sum + Number(value || 0),
-        0,
-      ),
+      total: Object.values(counts).reduce((sum, value) => sum + Number(value || 0), 0),
     };
+
     if ((counts.critical || 0) > 0 || (counts.high || 0) > 0) {
       allFindings.push({
         severity: "critical",
@@ -242,38 +228,38 @@ if (fs.existsSync(dependencyAuditPath)) {
   }
 }
 
-const routeResults = [];
-
-for (const route of sampledRoutes) {
-  routeResults.push(await probeRoute(baseUrl, route));
+const requiredRouteResults = [];
+for (const route of REQUIRED_PUBLIC_ROUTES) {
+  requiredRouteResults.push(await probeRoute(baseUrl, route, true));
 }
 
-const liveFailures = routeResults
-  .filter((result) => !result.ok)
-  .map((result) => ({
-    severity: "medium",
-    rule: result.status === null ? "live.probe-unreachable" : "live.route-not-ok",
-    route: result.route,
-    status: result.status,
-    error: result.error,
-  }));
+const randomRouteResults = [];
+for (const route of sampledRoutes) {
+  if (!REQUIRED_PUBLIC_ROUTES.includes(route)) {
+    randomRouteResults.push(await probeRoute(baseUrl, route, false));
+  }
+}
+
+const routeResults = [...requiredRouteResults, ...randomRouteResults];
+
+// Promote every live route finding into the report's global findings.
+// Previously high-severity production findings could remain hidden inside
+// routeResults and incorrectly leave the overall status at WARN.
+for (const result of routeResults) {
+  allFindings.push(...result.findings);
+}
 
 const sampledFileFindings = sampledFiles.flatMap((file) =>
   findViolations(contents.get(file) || "", relative(file))
 );
 
-const findings = [...allFindings, ...sampledFileFindings, ...liveFailures];
+const findings = [...allFindings, ...sampledFileFindings];
 const uniqueFindings = Array.from(
-  new Map(
-    findings.map((finding) => [
-      JSON.stringify(finding),
-      finding,
-    ])
-  ).values()
+  new Map(findings.map((finding) => [JSON.stringify(finding), finding])).values()
 );
 
 const report = {
-  auditVersion: "2.0",
+  auditVersion: "2.1",
   auditType: "weekly-random-compliance",
   generatedAt: new Date().toISOString(),
   commit: process.env.GITHUB_SHA || null,
@@ -281,6 +267,7 @@ const report = {
   baseUrl,
   sourceFilesChecked: sourceFiles.length,
   publicRoutesDiscovered: publicPages.length,
+  requiredRoutes: REQUIRED_PUBLIC_ROUTES,
   randomSample: {
     sourceFiles: sampledFiles.map(relative),
     routes: sampledRoutes,
@@ -294,11 +281,9 @@ const report = {
     standardRiskWarning: warningPresent,
     liveRouteProbe: routeResults.every((x) => x.ok),
     dependencyAudit: dependencyAudit
-      ? (dependencyAudit.counts.critical || dependencyAudit.counts.high
+      ? ((dependencyAudit.counts.critical || dependencyAudit.counts.high)
         ? false
-        : dependencyAudit.counts.moderate
-          ? null
-          : true)
+        : dependencyAudit.counts.moderate ? null : true)
       : null,
   },
   dependencyAudit,
@@ -311,13 +296,7 @@ const report = {
       : "PASS",
 };
 
-const outputPath = path.join(
-  process.cwd(),
-  "compliance",
-  "audit",
-  "latest.json"
-);
-
+const outputPath = path.join(process.cwd(), "compliance", "audit", "latest.json");
 fs.mkdirSync(path.dirname(outputPath), { recursive: true });
 fs.writeFileSync(outputPath, JSON.stringify(report, null, 2) + "\n");
 
