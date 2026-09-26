@@ -20,7 +20,11 @@ export default function DisclosuresPage() {
                     </h1>
                     <p className="mt-4 max-w-3xl leading-7 text-green-100">
                         Important information about Luxmi InvestCare's role,
-                        website content and mutual fund distribution activity.
+                        website content, mutual fund distribution activity and
+                        investor grievance process.
+                    </p>
+                    <p className="mt-3 text-sm text-green-200">
+                        Last updated: 26 September 2026
                     </p>
                 </div>
             </section>
@@ -82,6 +86,28 @@ export default function DisclosuresPage() {
                                 References to insurance on this website are presented as information
                                 unless a separately disclosed and appropriately authorised service
                                 is identified. The appearance of insurance information on this website does not constitute a direction to purchase any insurance product.
+                            </p>
+                        </section>
+
+                        <section>
+                            <h2 className="text-2xl font-bold text-slate-900">Investor grievance redressal</h2>
+                            <p className="mt-3 leading-7">
+                                For a complaint relating to Luxmi InvestCare's mutual fund
+                                distribution activity, investors should first contact Luxmi
+                                InvestCare using the contact details on this website. If the
+                                grievance is not resolved through the concerned entity,
+                                investors may use SEBI's SCORES platform where the matter is
+                                within SCORES' scope.
+                            </p>
+                            <p className="mt-3 leading-7">
+                                <a
+                                    href="https://scores.sebi.gov.in/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="font-semibold text-green-700 underline"
+                                >
+                                    SEBI SCORES — Investor Complaint Redressal
+                                </a>
                             </p>
                         </section>
 
