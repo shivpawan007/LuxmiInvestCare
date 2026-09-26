@@ -1,0 +1,17 @@
+{
+  "auditVersion": "2.0",
+  "auditType": "weekly-random-compliance",
+  "status": "PENDING",
+  "generatedAt": null,
+  "commit": null,
+  "branch": "compliance-v1.1-hardening",
+  "message": "The first scheduled audit will replace this placeholder report.",
+  "checks": {
+    "forbiddenPromotionalLanguage": null,
+    "mfdIdentity": null,
+    "arn365140": null,
+    "standardRiskWarning": null,
+    "liveRouteProbe": null
+  },
+  "findings": []
+}
