@@ -7,7 +7,8 @@
     "build": "next build --webpack",
     "start": "next start",
     "lint": "eslint",
-    "compliance:scan": "node scripts/compliance-content-scan.mjs"
+    "compliance:scan": "node scripts/compliance-content-scan.mjs",
+    "compliance:audit": "node scripts/weekly-compliance-audit.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.6.0",
