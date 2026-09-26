@@ -38,7 +38,7 @@ function walk(dir) {
 
 const files = ROOTS.flatMap((root) => walk(root))
   .map((file) => path.normalize(file))
-  .filter((file) => !EXCLUDED.has(file));
+  .filter(Boolean);
 
 const violations = [];
 
