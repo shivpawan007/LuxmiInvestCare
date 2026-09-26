@@ -42,9 +42,22 @@ const files = ROOTS.flatMap((root) => walk(root))
 
 const violations = [];
 
+function isRegulatoryDisclosure(file) {
+  return (
+    file === path.normalize("app/disclosures/page.tsx") ||
+    file === path.normalize("app/privacy/page.tsx")
+  );
+}
+
 for (const file of files) {
   const content = fs.readFileSync(file, "utf8");
   for (const pattern of FORBIDDEN_PROMOTIONAL_PATTERNS) {
+    if (
+      isRegulatoryDisclosure(file) &&
+      /financial|investment|wealth/.test(pattern.source)
+    ) {
+      continue;
+    }
     if (pattern.test(content)) {
       violations.push({ file, pattern: pattern.source });
     }
