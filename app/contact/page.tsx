@@ -13,6 +13,8 @@ import {
 
 import { useState } from "react";
 import Link from "next/link";
+import { trackEvent } from "@/components/analytics/Analytics";
+import { getMarketingAttribution } from "@/lib/attribution";
 
 const CONTACT = {
     phoneDisplay: "+91 9650060044",
@@ -116,6 +118,8 @@ export default function ContactPage() {
     setError("");
 
     try {
+        const attribution = getMarketingAttribution();
+
         const response = await fetch(
             "/api/leads",
             {
@@ -133,6 +137,7 @@ export default function ContactPage() {
                     landingPage:
                         window.location.pathname,
                     privacyConsent: true,
+                    ...attribution,
                 }),
             },
         );
@@ -160,6 +165,20 @@ Email: ${email.trim() || "Not provided"}
 Enquiry:
 ${message.trim()}
 `;
+
+        trackEvent("lead_submit", {
+            lead_source: "website-contact",
+            form_name: "contact_enquiry",
+            landing_page: attribution.landingPage,
+            utm_source: attribution.utmSource,
+            utm_medium: attribution.utmMedium,
+            utm_campaign: attribution.utmCampaign,
+        });
+
+        trackEvent("whatsapp_click", {
+            source: "contact_form_success",
+            lead_submit: true,
+        });
 
         window.open(
             `${CONTACT.whatsapp}?text=${encodeURIComponent(
