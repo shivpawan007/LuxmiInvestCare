@@ -2,7 +2,7 @@
 
 import Script from "next/script";
 import { useEffect } from "react";
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { getMarketingAttribution } from "@/lib/attribution";
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
@@ -31,11 +31,9 @@ export function trackEvent(
 
 export default function Analytics() {
   const pathname = usePathname();
-  const searchParams = useSearchParams();
-
   useEffect(() => {
     getMarketingAttribution();
-  }, [pathname, searchParams]);
+  }, [pathname]);
 
   useEffect(() => {
     if (!GA_ID || typeof window === "undefined") {
