@@ -22,6 +22,13 @@ const leadSchema = z.object({
     source: z.string().trim().max(80).optional(),
     landingPage: z.string().trim().max(500).optional(),
     privacyConsent: z.literal(true),
+    utmSource: z.string().trim().max(190).nullable().optional(),
+    utmMedium: z.string().trim().max(190).nullable().optional(),
+    utmCampaign: z.string().trim().max(190).nullable().optional(),
+    utmContent: z.string().trim().max(190).nullable().optional(),
+    utmTerm: z.string().trim().max(190).nullable().optional(),
+    firstTouchSource: z.string().trim().max(190).nullable().optional(),
+    lastTouchSource: z.string().trim().max(190).nullable().optional(),
 });
 
 export async function POST(request: Request) {
@@ -51,11 +58,18 @@ const [result] = await db.execute<ResultSetHeader>(
                     enquiry,
                     lead_source,
                     landing_page,
+                    utm_source,
+                    utm_medium,
+                    utm_campaign,
+                    utm_content,
+                    utm_term,
+                    first_touch_source,
+                    last_touch_source,
                     status,
                     priority
                 )
             VALUES
-                (?, ?, ?, ?, ?, ?, 'New', 'Normal')
+                (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'New', 'Normal')
             `,
             [
                 data.fullName,
@@ -64,6 +78,13 @@ const [result] = await db.execute<ResultSetHeader>(
                 data.enquiry,
                 data.source || "website",
                 data.landingPage || null,
+                data.utmSource || null,
+                data.utmMedium || null,
+                data.utmCampaign || null,
+                data.utmContent || null,
+                data.utmTerm || null,
+                data.firstTouchSource || null,
+                data.lastTouchSource || null,
             ],
         );
 
