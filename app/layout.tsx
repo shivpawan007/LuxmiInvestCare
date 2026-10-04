@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Geist } from "next/font/google";
 import AppShell from "@/components/layout/AppShell";
+import Analytics from "@/components/analytics/Analytics";
 
 const geist = Geist({
   subsets: ["latin"],
@@ -158,6 +159,7 @@ export default function RootLayout({
 
       <body className={geist.variable}>
         <AppShell>{children}</AppShell>
+        <Analytics />
       </body>
     </html>
   );
