@@ -2,6 +2,7 @@
 
 import { Download } from "lucide-react";
 import jsPDF from "jspdf";
+import { trackEvent } from "@/components/analytics/Analytics";
 
 import type { SIPProjection } from "@/lib/sip";
 import type { LumpsumProjection } from "@/lib/lumpsum";
@@ -6278,9 +6279,19 @@ export default function DownloadReport({
 
         addPageFooter(pdf);
 
+        trackEvent("report_generated", {
+          calculator_type: calculatorType,
+          report_title: reportTitle,
+        });
+
         pdf.save(
           fileName,
         );
+
+        trackEvent("report_downloaded", {
+          calculator_type: calculatorType,
+          report_title: reportTitle,
+        });
       } catch (error) {
         console.error(
           "PDF generation failed:",
