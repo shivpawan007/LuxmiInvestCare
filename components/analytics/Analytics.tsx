@@ -45,7 +45,7 @@ export default function Analytics() {
       page_location: window.location.href,
       page_title: document.title,
     });
-  }, [pathname, searchParams]);
+  }, [pathname]);
 
   useEffect(() => {
     if (!GA_ID) {
