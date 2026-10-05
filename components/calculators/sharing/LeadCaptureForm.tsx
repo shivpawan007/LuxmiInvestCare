@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 
 interface LeadCaptureFormProps {
     onSubmit: (details: {
@@ -35,6 +36,11 @@ export default function LeadCaptureForm({
         error,
         setError,
     ] = useState("");
+
+    const [
+        privacyAccepted,
+        setPrivacyAccepted,
+    ] = useState(false);
 
     function handleSubmit(
         event: React.FormEvent<HTMLFormElement>,
@@ -72,6 +78,13 @@ export default function LeadCaptureForm({
         ) {
             setError(
                 "Please enter a valid email address.",
+            );
+            return;
+        }
+
+        if (!privacyAccepted) {
+            setError(
+                "Please read and accept the Privacy Policy before continuing.",
             );
             return;
         }
@@ -181,6 +194,22 @@ export default function LeadCaptureForm({
                     {error}
                 </div>
             )}
+
+            <label className="flex items-start gap-3 rounded-xl border border-slate-200 bg-slate-50 p-4 text-xs leading-5 text-slate-600">
+                <input
+                    type="checkbox"
+                    checked={privacyAccepted}
+                    onChange={(event) => setPrivacyAccepted(event.target.checked)}
+                    className="mt-1 h-4 w-4 rounded border-slate-300 text-green-700 focus:ring-green-600"
+                />
+                <span>
+                    I have read the{" "}
+                    <Link href="/privacy" target="_blank" className="font-semibold text-green-700 underline">
+                        Privacy Policy
+                    </Link>
+                    {" "}and consent to Luxmi InvestCare using these details to enable the selected report-sharing action and respond to a related enquiry.
+                </span>
+            </label>
 
             <div className="flex flex-col gap-3 sm:flex-row sm:justify-end">
 

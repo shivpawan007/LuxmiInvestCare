@@ -19,6 +19,7 @@ import ChildEducationResults from "./ChildEducationResults";
 import DownloadReport from "./DownloadReport";
 import ReportShareDialog from "./sharing/ReportShareDialog";
 import ConnectWithLuxmi from "./sharing/ConnectWithLuxmi";
+import MutualFundRiskWarning from "@/components/compliance/MutualFundRiskWarning";
 
 import {
   calculateEducationPlan,
@@ -97,7 +98,7 @@ export default function ChildEducationPlanner() {
           </h1>
 
           <p className="section-subtitle">
-            Explore the illustrative future cost of education and the investment amount required under the assumptions entered.
+            Explore the illustrative future cost of education and the investment amounts shown under the assumptions entered.
           </p>
 
         </div>
@@ -203,9 +204,9 @@ export default function ChildEducationPlanner() {
               lumpsumRequired:
                 result.lumpsumRequired,
             }}
+
             reportTitle="Child Education Cost Illustration"
-            fileName="Luxmi-InvestCare-Child-Education-Cost-Illustration.pdf"
-          />
+            fileName="Luxmi-InvestCare-Child-Education-Cost-Illustration.pdf"          />
 
           <ReportShareDialog
             open={
@@ -215,8 +216,8 @@ export default function ChildEducationPlanner() {
               setShareOpen(false)
             }
             calculatorType="child-education"
-            reportTitle="Child Education Cost Illustration"
-            investment={
+
+            reportTitle="Child Education Cost Illustration"            investment={
               currentEducationCost
             }
             years={
@@ -250,8 +251,8 @@ export default function ChildEducationPlanner() {
 
           <ConnectWithLuxmi
             calculatorType="child-education"
-            reportTitle="Child Education Cost Illustration"
-            investment={
+
+            reportTitle="Child Education Cost Illustration"            investment={
               currentEducationCost
             }
             years={
@@ -275,7 +276,7 @@ export default function ChildEducationPlanner() {
         </div>
 
         {/* ==================================================
-            PLANNING NOTE
+            ILLUSTRATION NOTE
         ================================================== */}
         <div className="mt-12 rounded-3xl border border-green-200 bg-green-50 p-8">
 
@@ -287,10 +288,18 @@ export default function ChildEducationPlanner() {
             The figures shown are illustrations
             based on the assumptions entered.
             Actual education costs, investment
-            returns and future funding requirements
+            returns and illustrative investment amounts
             may differ.
           </p>
 
+        </div>
+
+        <div className="mt-10 rounded-2xl border border-slate-200 bg-slate-50 p-6">
+          <h3 className="mb-3 text-lg font-bold text-slate-900">Investor Education Disclaimer</h3>
+          <p className="mb-4 text-sm leading-7 text-slate-600">
+            This calculator provides an educational illustration based on the assumptions entered. Actual education costs and investment outcomes may differ.
+          </p>
+          <MutualFundRiskWarning />
         </div>
 
       </div>

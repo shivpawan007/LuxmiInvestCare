@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 
 import { useState } from "react";
+import Link from "next/link";
 
 const CONTACT = {
     phoneDisplay: "+91 9650060044",
@@ -53,6 +54,11 @@ export default function ContactPage() {
         message,
         setMessage,
     ] = useState("");
+
+    const [
+        privacyAccepted,
+        setPrivacyAccepted,
+    ] = useState(false);
 
     const [
         error,
@@ -100,6 +106,13 @@ export default function ContactPage() {
         return;
     }
 
+    if (!privacyAccepted) {
+        setError(
+            "Please read and accept the Privacy Policy before submitting your enquiry.",
+        );
+        return;
+    }
+
     setError("");
 
     try {
@@ -119,6 +132,7 @@ export default function ContactPage() {
                     source: "website-contact",
                     landingPage:
                         window.location.pathname,
+                    privacyConsent: true,
                 }),
             },
         );
@@ -159,6 +173,7 @@ ${message.trim()}
         setMobile("");
         setEmail("");
         setMessage("");
+        setPrivacyAccepted(false);
 
         alert(
             "Thank you. Your enquiry has been submitted successfully.",
@@ -366,6 +381,22 @@ ${message.trim()}
                                     </div>
                                 )}
 
+                                <label className="flex items-start gap-3 rounded-xl border border-slate-200 bg-slate-50 p-4 text-xs leading-5 text-slate-600">
+                                    <input
+                                        type="checkbox"
+                                        checked={privacyAccepted}
+                                        onChange={(event) => setPrivacyAccepted(event.target.checked)}
+                                        className="mt-1 h-4 w-4 rounded border-slate-300 text-green-700 focus:ring-green-600"
+                                    />
+                                    <span>
+                                        I have read the{" "}
+                                        <Link href="/privacy" target="_blank" className="font-semibold text-green-700 underline">
+                                            Privacy Policy
+                                        </Link>
+                                        {" "}and consent to Luxmi InvestCare processing the information submitted here to respond to my enquiry. I understand that continuing on WhatsApp may share the enquiry details with WhatsApp.
+                                    </span>
+                                </label>
+
                                 <button
                                     type="submit"
                                     className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-green-700 px-6 py-3.5 text-sm font-semibold text-white shadow-sm transition hover:bg-green-800"
@@ -536,11 +567,10 @@ ${message.trim()}
                                         </p>
 
                                         <h2 className="mt-2 text-xl font-bold text-slate-900">
-                                            AMFI Registered Mutual Fund Distributor
+                                            AMFI-registered Mutual Fund Distributor | ARN: 365140
                                         </h2>
 
                                         <p className="mt-2 text-sm text-slate-600">
-                                            {CONTACT.arn}
                                         </p>
 
                                         <a
@@ -576,9 +606,9 @@ ${message.trim()}
                             by Luxmi InvestCare are intended for investor education
                             and general information purposes only. Illustrations are
                             based on assumptions entered by the user and actual
-                            outcomes may differ. Mutual Fund investments are subject
-                            to market risks. Please read all scheme-related
-                            documents carefully before investing.
+                            outcomes may differ.
+
+                            Mutual Fund investments are subject to market risks, read all scheme related documents carefully.
                         </p>
 
                     </div>

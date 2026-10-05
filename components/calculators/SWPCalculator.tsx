@@ -78,7 +78,7 @@ export default function SWPCalculator() {
             </span>
 
             <h1 className="section-title mt-5">
-              Plan Your Withdrawals with a{" "}
+              Explore an SWP Investment Illustration with a{" "}
               <span className="text-emerald-700">
                 Systematic Withdrawal Plan
               </span>
@@ -110,7 +110,8 @@ export default function SWPCalculator() {
                 </p>
 
                 <h2 className="mt-2 text-2xl font-bold text-slate-900">
-                  Plan Your SWP
+
+                  Explore SWP Assumptions
                 </h2>
 
                 <p className="mt-2 text-sm leading-6 text-slate-600">
@@ -162,6 +163,7 @@ export default function SWPCalculator() {
               ================================================== */}
               <div className="mb-8">
                 <CalculatorInput
+
                   label="Assumed Annual Return (Illustrative)"
                   value={annualReturn}
                   min={1}
@@ -239,7 +241,7 @@ export default function SWPCalculator() {
                   </p>
                 </div>
 
-                {/* Net Wealth Gain */}
+                {/* Illustrative Net Change in Corpus */}
                 <div className="rounded-2xl border border-emerald-100 bg-white p-5 shadow-sm">
                   <p className="text-sm text-slate-500">
                     Net Wealth Gain

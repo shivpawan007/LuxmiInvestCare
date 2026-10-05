@@ -108,10 +108,9 @@ export default function CalculatorCTA() {
                         </h4>
 
                         <p className="mt-2 text-sm leading-6 text-slate-600">
-                            AMFI Registered Mutual Fund Distributor
+                            AMFI-registered Mutual Fund Distributor | ARN: 365140
                             <br />
-                            ARN-365140
-                        </p>
+                                                    </p>
                     </div>
 
                 </div>

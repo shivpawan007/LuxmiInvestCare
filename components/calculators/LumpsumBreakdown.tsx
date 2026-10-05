@@ -35,7 +35,7 @@ export default function LumpsumBreakdown({
             icon: <Wallet className="h-7 w-7 text-green-700" />,
         },
         {
-            title: "Wealth Created",
+            title: "Illustrative Gain",
             value: formatCurrency(returns),
             icon: <TrendingUp className="h-7 w-7 text-green-700" />,
         },

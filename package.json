@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build --webpack",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "compliance:scan": "node scripts/compliance-content-scan.mjs",
+    "compliance:audit": "node scripts/weekly-compliance-audit.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.6.0",
@@ -18,7 +20,7 @@
     "jspdf": "^4.2.1",
     "lucide-react": "^1.28.0",
     "mysql2": "^3.24.2",
-    "next": "^16.2.12",
+    "next": "^16.3.6",
     "qrcode.react": "^4.2.0",
     "react": "19.2.4",
     "react-dom": "19.2.4",

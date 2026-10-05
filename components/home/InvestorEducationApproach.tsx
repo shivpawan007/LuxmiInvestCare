@@ -35,7 +35,7 @@ const educationPoints = [
     },
 ];
 
-export default function Testimonials() {
+export default function InvestorEducationApproach() {
     return (
         <section id="investor-education-approach" className="section bg-white">
             <div className="container-custom">
@@ -145,9 +145,8 @@ export default function Testimonials() {
                     </h4>
                     <p className="mt-3 leading-7 text-slate-700">
                         This section contains general investor education and
-                        information. It does not contain customer testimonials,
-                        rankings, performance promises or guarantees of future
-                        outcomes.
+                        information. It does not make performance promises or
+                        guarantees about future outcomes.
                     </p>
                 </div>
             </div>

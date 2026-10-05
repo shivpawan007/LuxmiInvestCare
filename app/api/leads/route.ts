@@ -21,6 +21,7 @@ const leadSchema = z.object({
     enquiry: z.string().trim().min(2).max(5000),
     source: z.string().trim().max(80).optional(),
     landingPage: z.string().trim().max(500).optional(),
+    privacyConsent: z.literal(true),
 });
 
 export async function POST(request: Request) {
@@ -73,7 +74,7 @@ const [result] = await db.execute<ResultSetHeader>(
             INSERT INTO lead_activities
                 (lead_id, activity_type, activity_note)
             VALUES
-                (?, 'LEAD_CREATED', 'Lead submitted from website')
+                (?, 'LEAD_CREATED', 'Lead submitted from website; privacy notice accepted')
             `,
             [leadId],
         );

@@ -257,9 +257,9 @@ export default function ServicesPage() {
                             investor education and general information purposes
                             only. Product information and calculator illustrations
                             are based on assumptions and may not reflect actual
-                            future outcomes. Mutual Fund investments are subject
-                            to market risks. Please read all scheme-related
-                            documents carefully before investing.
+                            future outcomes.
+
+                            Mutual Fund investments are subject to market risks, read all scheme related documents carefully.
                         </p>
 
                     </div>

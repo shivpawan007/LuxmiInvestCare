@@ -67,7 +67,7 @@ export default function SIPChart({ data }: Props) {
 
             <p className="mt-2 text-sm leading-6 text-slate-600">
                 Illustrative year-wise projection of your investment and
-                estimated portfolio value.
+                illustrative value.
             </p>
 
             <div className="mt-6 h-[360px] w-full sm:h-[420px]">
@@ -122,7 +122,7 @@ export default function SIPChart({ data }: Props) {
                                 formatCurrency(Number(value)),
                                 name === "Amount Invested"
                                     ? "Invested Amount"
-                                    : "Estimated Portfolio Value",
+                                    : "Illustrative Value",
                             ]}
                             labelFormatter={(label) => `Year ${label}`}
                             contentStyle={{
@@ -157,7 +157,7 @@ export default function SIPChart({ data }: Props) {
                             stroke="#15803d"
                             strokeWidth={4}
                             dot={false}
-                            name="Estimated Portfolio Value"
+                            name="Illustrative Value"
                             activeDot={{
                                 r: 6,
                             }}

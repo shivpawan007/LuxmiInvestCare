@@ -1,0 +1,173 @@
+{
+  "auditVersion": "2.1",
+  "auditType": "weekly-random-compliance",
+  "generatedAt": "2026-10-05T20:41:14.120Z",
+  "commit": "4fc0d424b0654551eab03789e0c826667a101304",
+  "branch": "compliance-v1.1-hardening",
+  "baseUrl": "https://luxmiinvestcare.com",
+  "sourceFilesChecked": 128,
+  "publicRoutesDiscovered": 15,
+  "requiredRoutes": [
+    "/",
+    "/privacy",
+    "/disclosures",
+    "/services"
+  ],
+  "randomSample": {
+    "sourceFiles": [
+      "app/admin/account/page.tsx",
+      "components/calculators/ChildEducationInputs.tsx",
+      "components/calculators/sharing/ReportShareDialog.tsx",
+      "lib/utils.ts",
+      "app/admin/leads/[id]/page.tsx",
+      "components/ui/accordion.tsx",
+      "lib/auth.ts",
+      "components/calculators/SIPSummaryCard.tsx"
+    ],
+    "routes": [
+      "/calculators/lumpsum",
+      "/investor-education",
+      "/contact",
+      "/calculators/swp",
+      "/education"
+    ]
+  },
+  "checks": {
+    "forbiddenPromotionalLanguage": false,
+    "mfdIdentity": true,
+    "arn365140": true,
+    "standardRiskWarning": true,
+    "liveRouteProbe": false,
+    "dependencyAudit": false
+  },
+  "dependencyAudit": {
+    "counts": {
+      "info": 0,
+      "low": 1,
+      "moderate": 1,
+      "high": 8,
+      "critical": 0,
+      "total": 10
+    },
+    "total": 20
+  },
+  "routeResults": [
+    {
+      "route": "/",
+      "required": true,
+      "status": 200,
+      "ok": true,
+      "durationMs": 1187,
+      "findings": [
+        {
+          "severity": "high",
+          "rule": "promotion.testimonial",
+          "route": "/"
+        }
+      ]
+    },
+    {
+      "route": "/privacy",
+      "required": true,
+      "status": 404,
+      "ok": false,
+      "durationMs": 231,
+      "findings": [
+        {
+          "severity": "high",
+          "rule": "live.required-route-not-ok",
+          "route": "/privacy",
+          "status": 404
+        }
+      ]
+    },
+    {
+      "route": "/disclosures",
+      "required": true,
+      "status": 404,
+      "ok": false,
+      "durationMs": 211,
+      "findings": [
+        {
+          "severity": "high",
+          "rule": "live.required-route-not-ok",
+          "route": "/disclosures",
+          "status": 404
+        }
+      ]
+    },
+    {
+      "route": "/services",
+      "required": true,
+      "status": 200,
+      "ok": true,
+      "durationMs": 214,
+      "findings": []
+    },
+    {
+      "route": "/calculators/lumpsum",
+      "required": false,
+      "status": 200,
+      "ok": true,
+      "durationMs": 215,
+      "findings": []
+    },
+    {
+      "route": "/investor-education",
+      "required": false,
+      "status": 200,
+      "ok": true,
+      "durationMs": 215,
+      "findings": []
+    },
+    {
+      "route": "/contact",
+      "required": false,
+      "status": 200,
+      "ok": true,
+      "durationMs": 214,
+      "findings": []
+    },
+    {
+      "route": "/calculators/swp",
+      "required": false,
+      "status": 200,
+      "ok": true,
+      "durationMs": 212,
+      "findings": []
+    },
+    {
+      "route": "/education",
+      "required": false,
+      "status": 200,
+      "ok": true,
+      "durationMs": 218,
+      "findings": []
+    }
+  ],
+  "findings": [
+    {
+      "severity": "critical",
+      "rule": "dependencies.high-or-critical-vulnerabilities",
+      "file": "npm-audit.json"
+    },
+    {
+      "severity": "high",
+      "rule": "promotion.testimonial",
+      "route": "/"
+    },
+    {
+      "severity": "high",
+      "rule": "live.required-route-not-ok",
+      "route": "/privacy",
+      "status": 404
+    },
+    {
+      "severity": "high",
+      "rule": "live.required-route-not-ok",
+      "route": "/disclosures",
+      "status": 404
+    }
+  ],
+  "status": "FAIL"
+}
