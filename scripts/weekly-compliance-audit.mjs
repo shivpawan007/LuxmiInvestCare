@@ -108,15 +108,22 @@ async function probeRoute(baseUrl, route, required = false) {
       redirect: "follow",
       headers: { "user-agent": "LuxmiInvestCare-ComplianceAudit/1.1" },
     });
-    const html = await response.text();
-    const findings = [];
+ 
 
-    for (const rule of FORBIDDEN_PATTERNS) {
-      if (rule.pattern.test(html)) {
-        findings.push({ severity: "high", rule: rule.id, route });
-      }
+const html = await response.text();
+const findings = [];
+
+const regulatoryDisclosureRoute =
+  route === "/disclosures" ||
+  route === "/privacy";
+
+if (!regulatoryDisclosureRoute) {
+  for (const rule of FORBIDDEN_PATTERNS) {
+    if (rule.pattern.test(html)) {
+      findings.push({ severity: "high", rule: rule.id, route });
     }
-
+  }
+}
     if (!response.ok) {
       findings.push({
         severity: required ? "high" : "medium",

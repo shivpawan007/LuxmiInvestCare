@@ -1,6 +1,10 @@
 name: Weekly Random Compliance Audit
 
 on:
+  push:
+    branches:
+      - main
+      - compliance-v1.1-hardening
   schedule:
     - cron: "17 3 * * 0"
   workflow_dispatch:
