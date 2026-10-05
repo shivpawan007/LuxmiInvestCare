@@ -20,7 +20,7 @@ export default function PrivacyPolicyPage() {
                         This notice explains how Luxmi InvestCare handles information
                         submitted through this website.
                     </p>
-                    <p className="mt-3 text-sm text-green-200">Last updated: 26 September 2026</p>
+                    <p className="mt-3 text-sm text-green-200">Last updated: 6 October 2026</p>
                 </div>
             </section>
 
