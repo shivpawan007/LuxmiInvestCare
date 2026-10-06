@@ -253,7 +253,7 @@ const sampledRoutes = sample(publicPages, 5);
 const baseUrl = process.env.AUDIT_BASE_URL || "https://luxmiinvestcare.com";
 
 let dependencyAudit = null;
-const dependencyAuditPath = path.join(process.cwd(), "compliance", "audit", "npm-audit.json");
+const dependencyAuditPath = path.join(process.cwd(), "compliance", "audit", "npm-audit-production.json");
 
 if (fs.existsSync(dependencyAuditPath)) {
   try {
@@ -267,13 +267,13 @@ if (fs.existsSync(dependencyAuditPath)) {
     if ((counts.critical || 0) > 0 || (counts.high || 0) > 0) {
       allFindings.push({
         severity: "critical",
-        rule: "dependencies.high-or-critical-vulnerabilities",
+        rule: "dependencies.production-high-or-critical-vulnerabilities",
         file: "npm-audit.json",
       });
     } else if ((counts.moderate || 0) > 0) {
       allFindings.push({
         severity: "medium",
-        rule: "dependencies.moderate-vulnerabilities",
+        rule: "dependencies.production-moderate-vulnerabilities",
         file: "npm-audit.json",
       });
     }
