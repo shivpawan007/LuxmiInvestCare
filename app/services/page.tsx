@@ -5,7 +5,6 @@ import {
     PiggyBank,
     ShieldCheck,
     GraduationCap,
-    HeartPulse,
     Users,
     MessageCircle,
     ArrowRight,
@@ -23,18 +22,6 @@ const services = [
         title: "SIP Investments",
         description:
             "Educational support to help investors understand Systematic Investment Plans, regular investing and the effect of contribution amount and investment period.",
-    },
-    {
-        icon: ShieldCheck,
-        title: "Insurance Information",
-        description:
-            "Information about life insurance products and the role of insurance in protecting family financial needs.",
-    },
-    {
-        icon: HeartPulse,
-        title: "Health Insurance Information",
-        description:
-            "Information about health insurance products, coverage considerations and the importance of understanding policy terms and conditions.",
     },
     {
         icon: GraduationCap,
@@ -82,7 +69,7 @@ export default function ServicesPage() {
                         </h1>
 
                         <p className="mx-auto mt-8 max-w-3xl text-lg leading-8 text-green-100 lg:text-xl">
-                            Explore mutual funds, SIP investments, insurance information and investor education resources designed to help you understand investment products and investing concepts.
+                            Explore mutual funds, SIP investments, investor education resources and general product information designed to help you understand investing concepts and market risks.
                         </p>
 
                     </div>
