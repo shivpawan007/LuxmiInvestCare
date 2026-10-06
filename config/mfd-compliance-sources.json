@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "purpose": "Automated monitoring of official SEBI and AMFI sources relevant to Luxmi InvestCare as an AMFI-registered Mutual Fund Distributor.",
+  "sources": [
+    {
+      "id": "amfi-mfd-circulars",
+      "url": "https://www.amfiindia.com/distributor/amfi-circulars",
+      "authority": "AMFI",
+      "description": "AMFI circulars and regulatory updates specifically for Mutual Fund Distributors.",
+      "watchFor": ["new circular reference", "new circular date", "new MFD guidance"]
+    },
+    {
+      "id": "amfi-mfd-master-circular",
+      "url": "https://www.amfiindia.com/uploads/AMFI_Master_Cicular_for_MF_Ds_3c7f5ee44f.pdf",
+      "authority": "AMFI",
+      "description": "AMFI Master Circular for Mutual Fund Distributors, including the MFD Code of Conduct.",
+      "watchFor": ["new master circular", "code of conduct changes", "advertising and sales literature changes"]
+    },
+    {
+      "id": "amfi-code-of-conduct",
+      "url": "https://www.amfiindia.com/distributor/mutual-funds-introduction?zoneName=CodeOfConduct",
+      "authority": "AMFI",
+      "description": "Official AMFI MFD Code of Conduct landing page.",
+      "watchFor": ["code of conduct changes", "MFD obligations"]
+    },
+    {
+      "id": "sebi-regulations",
+      "url": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=6&smid=0&ssid=3",
+      "authority": "SEBI",
+      "description": "Official SEBI regulations listing.",
+      "watchFor": ["Mutual Funds Regulations amendments", "new applicable regulations"]
+    },
+    {
+      "id": "sebi-mf-master-circulars",
+      "url": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=1&ssid=6",
+      "authority": "SEBI",
+      "description": "Official SEBI master circular listing, including the Mutual Fund master circular.",
+      "watchFor": ["new or amended Mutual Fund master circular", "applicable distributor guidance"]
+    }
+  ]
+}
