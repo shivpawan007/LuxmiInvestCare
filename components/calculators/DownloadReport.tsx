@@ -5992,7 +5992,7 @@ export default function DownloadReport({
             ),
           ],
           [
-            "Return on Investment",
+            "Illustrative Growth vs Investment",
             `${roi.toFixed(1)}%`,
           ],
         ];
