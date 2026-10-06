@@ -6,6 +6,7 @@ import {
   PiggyBank,
   PieChart,
   ShieldCheck,
+  Target,
   Calculator,
   ArrowRight,
 } from "lucide-react";
@@ -73,12 +74,6 @@ const calculators = [
     description:
       "Explore how increasing a SIP contribution periodically may affect an illustrative projection.",
     href: "/calculators/step-up-sip",
-  },
-  {
-    title: "Child Education Cost Calculator",
-    description:
-      "Explore an illustrative future education-cost and investment requirement illustration.",
-    href: "/calculators/education",
   },
 ];
 
