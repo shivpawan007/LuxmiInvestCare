@@ -75,12 +75,6 @@ const calculators = [
     href: "/calculators/step-up-sip",
   },
   {
-    title: "Investment Objective Calculator",
-    description:
-      "Explore the effect of inflation, time horizon and investment assumptions on a selected investment objective.",
-    href: "/calculators/goal-planner",
-  },
-  {
     title: "Child Education Cost Calculator",
     description:
       "Explore an illustrative future education-cost and investment requirement illustration.",
