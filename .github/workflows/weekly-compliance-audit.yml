@@ -5,6 +5,7 @@ on:
     branches:
       - main
       - compliance-v1.1-hardening
+      - compliance-mfd-automation-hardening
   schedule:
     - cron: "17 3 * * *"
   workflow_dispatch:
@@ -59,7 +60,8 @@ jobs:
         continue-on-error: true
         run: |
           mkdir -p compliance/audit
-          npm audit --json > compliance/audit/npm-audit.json || true
+          npm audit --omit=dev --json > compliance/audit/npm-audit-production.json || true
+          npm audit --json > compliance/audit/npm-audit-full.json || true
 
       - name: Run production build
         run: npm run build
