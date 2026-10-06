@@ -6,6 +6,10 @@ on:
       - main
       - compliance-v1.1-hardening
       - compliance-mfd-automation-hardening
+    # Audit artifacts are committed back to the repository by this workflow.
+    # Do not re-trigger the workflow for those generated-only commits.
+    paths-ignore:
+      - "compliance/audit/**"
   schedule:
     - cron: "17 3 * * *"
   workflow_dispatch:
