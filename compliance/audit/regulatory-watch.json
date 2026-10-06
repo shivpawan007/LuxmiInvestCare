@@ -1,0 +1,118 @@
+{
+  "version": 1,
+  "generatedAt": "2026-10-06T15:47:46.997Z",
+  "purpose": "Detect changes in official SEBI/AMFI sources so MFD website rules can be reviewed before publication.",
+  "automaticPolicy": "A source change triggers review; the workflow must not silently rewrite compliance content or make legal interpretations.",
+  "sources": [
+    {
+      "id": "amfi-mfd-circulars",
+      "url": "https://www.amfiindia.com/distributor/amfi-circulars",
+      "authority": "AMFI",
+      "description": "AMFI circulars and regulatory updates specifically for Mutual Fund Distributors.",
+      "watchFor": [
+        "new circular reference",
+        "new circular date",
+        "new MFD guidance"
+      ],
+      "checkedAt": "2026-10-06T15:47:37.685Z",
+      "finalUrl": "https://www.amfiindia.com/distributor/amfi-circulars",
+      "status": 200,
+      "ok": true,
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 210425,
+      "sha256": "71dfd1d1938aa2c9083e6762b9c9d82eb6a600796c3faaf565ab98fe61f5d7e1"
+    },
+    {
+      "id": "amfi-mfd-master-circular",
+      "url": "https://www.amfiindia.com/uploads/AMFI_Master_Cicular_for_MF_Ds_3c7f5ee44f.pdf",
+      "authority": "AMFI",
+      "description": "AMFI Master Circular for Mutual Fund Distributors, including the MFD Code of Conduct.",
+      "watchFor": [
+        "new master circular",
+        "code of conduct changes",
+        "advertising and sales literature changes"
+      ],
+      "checkedAt": "2026-10-06T15:47:40.764Z",
+      "finalUrl": "https://www.amfiindia.com/uploads/AMFI_Master_Cicular_for_MF_Ds_3c7f5ee44f.pdf",
+      "status": 200,
+      "ok": true,
+      "contentType": "application/pdf",
+      "bytes": 1748158,
+      "sha256": "70231839de861b09af39160caccb14bfee9eb321d43ff75fd52c34ddb2eabb92"
+    },
+    {
+      "id": "amfi-code-of-conduct",
+      "url": "https://www.amfiindia.com/distributor/mutual-funds-introduction?zoneName=CodeOfConduct",
+      "authority": "AMFI",
+      "description": "Official AMFI MFD Code of Conduct landing page.",
+      "watchFor": [
+        "code of conduct changes",
+        "MFD obligations"
+      ],
+      "checkedAt": "2026-10-06T15:47:42.190Z",
+      "finalUrl": "https://www.amfiindia.com/distributor/mutual-funds-introduction?zoneName=CodeOfConduct",
+      "status": 200,
+      "ok": true,
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 170465,
+      "sha256": "5f42b9c1a3fde58c1db801b1e0130f40ab286fe94dcd3714a61c02e4ebbebde4"
+    },
+    {
+      "id": "amfi-mfd-dos-donts",
+      "url": "https://www.amfiindia.com/Themes/Theme1/downloads/FAQsonRoleofMFDsAdvts.pdf",
+      "authority": "AMFI",
+      "description": "AMFI FAQs on MFD role, nomenclature, advertising, social media and marketing do's and don'ts.",
+      "watchFor": [
+        "MFD nomenclature",
+        "financial planning terminology",
+        "free advice or portfolio review",
+        "scheme-specific recommendations",
+        "advertising and social media requirements"
+      ],
+      "checkedAt": "2026-10-06T15:47:42.705Z",
+      "finalUrl": "https://www.amfiindia.com/Themes/Theme1/downloads/FAQsonRoleofMFDsAdvts.pdf",
+      "status": 200,
+      "ok": true,
+      "contentType": "application/pdf",
+      "bytes": 218136,
+      "sha256": "75c6692189ace8afec407495681dc2ab4f5e566970e91740b9ad2fabd8320264"
+    },
+    {
+      "id": "sebi-regulations",
+      "url": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=6&smid=0&ssid=3",
+      "authority": "SEBI",
+      "description": "Official SEBI regulations listing.",
+      "watchFor": [
+        "Mutual Funds Regulations amendments",
+        "new applicable regulations"
+      ],
+      "checkedAt": "2026-10-06T15:47:45.505Z",
+      "finalUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=6&smid=0&ssid=3",
+      "status": 200,
+      "ok": true,
+      "contentType": "text/html;charset=UTF-8",
+      "bytes": 42268,
+      "sha256": "26d6e4847025f271ed64f1370bbeafc145c9f6df9111d7aaf9bb13f78e950b3f"
+    },
+    {
+      "id": "sebi-mf-master-circulars",
+      "url": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=1&ssid=6",
+      "authority": "SEBI",
+      "description": "Official SEBI master circular listing, including the Mutual Fund master circular.",
+      "watchFor": [
+        "new or amended Mutual Fund master circular",
+        "applicable distributor guidance"
+      ],
+      "checkedAt": "2026-10-06T15:47:46.997Z",
+      "finalUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=1&ssid=6",
+      "status": 200,
+      "ok": true,
+      "contentType": "text/html;charset=UTF-8",
+      "bytes": 40897,
+      "sha256": "cf62ee2e3bb74b29c5d98eddeddf3a95fc23a4107fc9045f0984178483bdb6d9"
+    }
+  ],
+  "changes": [],
+  "failures": [],
+  "status": "PASS"
+}
