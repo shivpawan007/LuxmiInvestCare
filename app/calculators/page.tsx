@@ -4,8 +4,6 @@ import {
   Calculator,
   PiggyBank,
   Wallet,
-  Target,
-  GraduationCap,
   TrendingUp,
   BookOpen,
   ShieldCheck,
@@ -66,20 +64,6 @@ export default function CalculatorsPage() {
               description="Explore how periodically increasing a monthly SIP contribution may affect an illustrative future value."
               href="/calculators/step-up-sip"
               icon={<TrendingUp className="h-8 w-8" />}
-              available={true}
-            />
-            <CalculatorCard
-              title="Investment Illustration Calculator"
-              description="Explore the mathematical relationship between an illustrative future amount, time period and hypothetical return assumption."
-              href="/calculators/goal-planner"
-              icon={<Target className="h-8 w-8" />}
-              available={true}
-            />
-            <CalculatorCard
-              title="Education Cost Illustration"
-              description="Explore how inflation assumptions may affect the illustrative future cost of education."
-              href="/calculators/education"
-              icon={<GraduationCap className="h-8 w-8" />}
               available={true}
             />
           </div>
