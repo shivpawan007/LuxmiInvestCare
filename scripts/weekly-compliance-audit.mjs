@@ -6,6 +6,9 @@ const ROOTS = ["app", "components", "lib"];
 const EXTENSIONS = /\.(tsx?|jsx?|md|txt)$/i;
 const STANDARD_WARNING =
   "Mutual Fund investments are subject to market risks, read all scheme related documents carefully.";
+const MFD_TAGLINE = "AMFI-registered Mutual Fund Distributor";
+const ARN = "ARN: 365140";
+const REQUIRED_CONFLICT_DISCLOSURE = "distribution-related remuneration";
 
 const FORBIDDEN_PATTERNS = [
   { id: "nomenclature.financial-planning", pattern: /financial\s+planning/i },
@@ -34,13 +37,35 @@ const FORBIDDEN_PATTERNS = [
   { id: "promotion.ranking", pattern: /\branking\b/i },
   { id: "promotion.testimonial", pattern: /\btestimonials?\b/i },
   { id: "promotion.number-one", pattern: /number\s*1/i },
+  { id: "promotion.return-on-investment", pattern: /return\s+on\s+investment/i },
+  { id: "promotion.plan-your-future", pattern: /plan\s+your\s+future/i },
+  { id: "promotion.grow-wealth", pattern: /grow\s+wealth/i },
+  { id: "promotion.secure-future", pattern: /secure\s+future/i },
+  { id: "promotion.free-advice", pattern: /free\s+(?:investment\s+)?advice/i },
+  { id: "promotion.free-portfolio-review", pattern: /free\s+portfolio\s+review/i },
+  { id: "promotion.rebate-or-gift", pattern: /rebate|gift[-\s]?voucher/i },
+  { id: "promotion.indicative-return", pattern: /indicative\s+(?:portfolio|yield|return)/i },
 ];
 
 const PUBLIC_ROUTE_EXCLUSIONS = ["/admin", "/api", "/_not-found"];
 
 // Critical public routes are always probed. Random sampling remains in addition
 // to these deterministic checks so the weekly audit has both coverage modes.
-const REQUIRED_PUBLIC_ROUTES = ["/", "/privacy", "/disclosures", "/services"];
+const REQUIRED_PUBLIC_ROUTES = [
+  "/",
+  "/about",
+  "/services",
+  "/calculators",
+  "/calculators/sip",
+  "/calculators/lumpsum",
+  "/calculators/swp",
+  "/calculators/step-up-sip",
+  "/education",
+  "/investor-education",
+  "/contact",
+  "/privacy",
+  "/disclosures",
+];
 
 function walk(dir) {
   if (!fs.existsSync(dir)) return [];
@@ -178,6 +203,33 @@ const identityPresent =
   /AMFI[-\s]+[Rr]egistered\s+Mutual\s+Fund\s+Distributor/i.test(allSource);
 const arnPresent = /ARN\s*[:|]?\s*365140/i.test(allSource);
 const warningPresent = allSource.includes(STANDARD_WARNING);
+const disclosureContent = contents.get("app/disclosures/page.tsx") || "";
+const conflictDisclosurePresent =
+  disclosureContent.toLowerCase().includes(REQUIRED_CONFLICT_DISCLOSURE);
+const mfdTaglinePresent = allSource.includes(MFD_TAGLINE);
+const arnPresentExact = allSource.includes(ARN);
+
+if (!mfdTaglinePresent) {
+  allFindings.push({
+    severity: "critical",
+    rule: "identity.mfd-tagline-missing",
+    file: "GLOBAL",
+  });
+}
+if (!arnPresentExact) {
+  allFindings.push({
+    severity: "critical",
+    rule: "identity.arn-365140-missing-exact",
+    file: "GLOBAL",
+  });
+}
+if (!conflictDisclosurePresent) {
+  allFindings.push({
+    severity: "high",
+    rule: "disclosure.distribution-remuneration-missing",
+    file: "app/disclosures/page.tsx",
+  });
+}
 
 if (!identityPresent) {
   allFindings.push({ severity: "critical", rule: "identity.mfd-designation-missing", file: "GLOBAL" });
@@ -201,7 +253,7 @@ const sampledRoutes = sample(publicPages, 5);
 const baseUrl = process.env.AUDIT_BASE_URL || "https://luxmiinvestcare.com";
 
 let dependencyAudit = null;
-const dependencyAuditPath = path.join(process.cwd(), "compliance", "audit", "npm-audit.json");
+const dependencyAuditPath = path.join(process.cwd(), "compliance", "audit", "npm-audit-production.json");
 
 if (fs.existsSync(dependencyAuditPath)) {
   try {
@@ -215,13 +267,13 @@ if (fs.existsSync(dependencyAuditPath)) {
     if ((counts.critical || 0) > 0 || (counts.high || 0) > 0) {
       allFindings.push({
         severity: "critical",
-        rule: "dependencies.high-or-critical-vulnerabilities",
+        rule: "dependencies.production-high-or-critical-vulnerabilities",
         file: "npm-audit.json",
       });
     } else if ((counts.moderate || 0) > 0) {
       allFindings.push({
         severity: "medium",
-        rule: "dependencies.moderate-vulnerabilities",
+        rule: "dependencies.production-moderate-vulnerabilities",
         file: "npm-audit.json",
       });
     }
@@ -266,7 +318,7 @@ const uniqueFindings = Array.from(
 );
 
 const report = {
-  auditVersion: "2.1",
+  auditVersion: "3.0",
   auditType: "weekly-random-compliance",
   generatedAt: new Date().toISOString(),
   commit: process.env.GITHUB_SHA || null,
@@ -285,6 +337,8 @@ const report = {
     ).length === 0,
     mfdIdentity: identityPresent,
     arn365140: arnPresent,
+    mfdTagline: mfdTaglinePresent,
+    distributionRemunerationDisclosure: conflictDisclosurePresent,
     standardRiskWarning: warningPresent,
     liveRouteProbe: routeResults.every((x) => x.ok),
     dependencyAudit: dependencyAudit

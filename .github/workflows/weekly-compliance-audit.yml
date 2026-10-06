@@ -5,12 +5,14 @@ on:
     branches:
       - main
       - compliance-v1.1-hardening
+      - compliance-mfd-automation-hardening
   schedule:
-    - cron: "17 3 * * 0"
+    - cron: "17 3 * * *"
   workflow_dispatch:
 
 permissions:
   contents: write
+  issues: write
 
 concurrency:
   group: weekly-random-compliance-audit
@@ -34,6 +36,23 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Check official SEBI and AMFI regulatory sources
+        id: regulatory
+        continue-on-error: true
+        run: npm run compliance:regulatory-watch
+
+      - name: Create regulatory review issue
+        if: steps.regulatory.outcome == 'failure'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TITLE="MFD regulatory review required: SEBI/AMFI source change or outage"
+          EXISTING=$(gh issue list --state open --search "in:title $TITLE" --json number --jq 'length')
+          if [ "$EXISTING" = "0" ]; then
+            gh issue create \
+              --title "$TITLE" \
+              --body "The automated Luxmi InvestCare MFD compliance watch detected a change or outage in an official SEBI/AMFI regulatory source. Review compliance/audit/regulatory-watch.json, compare the change against the current MFD Code of Conduct and applicable SEBI Mutual Fund requirements, update the website rules/content if required, and close this issue only after compliance scan, build, and production route audit pass."
+          fi
       - name: Run compliance scan
         run: npm run compliance:scan
 
@@ -41,7 +60,8 @@ jobs:
         continue-on-error: true
         run: |
           mkdir -p compliance/audit
-          npm audit --json > compliance/audit/npm-audit.json || true
+          npm audit --omit=dev --json > compliance/audit/npm-audit-production.json || true
+          npm audit --json > compliance/audit/npm-audit-full.json || true
 
       - name: Run production build
         run: npm run build
@@ -68,7 +88,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add compliance/audit/latest.json
+          git add compliance/audit/latest.json compliance/audit/regulatory-watch.json
           if git diff --cached --quiet; then
             echo "No audit report changes to commit."
           else

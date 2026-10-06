@@ -4,6 +4,9 @@ import path from "node:path";
 const ROOTS = ["app", "components", "lib"];
 const STANDARD_WARNING =
   "Mutual Fund investments are subject to market risks, read all scheme related documents carefully.";
+const MFD_TAGLINE = "AMFI-registered Mutual Fund Distributor";
+const ARN = "ARN: 365140";
+const REQUIRED_CONFLICT_DISCLOSURE = "distribution-related remuneration";
 
 const FORBIDDEN_PROMOTIONAL_PATTERNS = [
   /financial\s+planning/i,
@@ -34,6 +37,15 @@ const FORBIDDEN_PROMOTIONAL_PATTERNS = [
   /\btestimonials?\b/i,
   /\branking\b/i,
   /number\s*1/i,
+  /return\s+on\s+investment/i,
+  /plan\s+your\s+future/i,
+  /grow\s+wealth/i,
+  /secure\s+future/i,
+  /free\s+(?:investment\s+)?advice/i,
+  /free\s+portfolio\s+review/i,
+  /rebate|gift[-\s]?voucher/i,
+  /indicative\s+(?:portfolio|yield|return)/i,
+  /assur(?:ed|ance)\s+return/i,
 ];
 
 function walk(dir) {
@@ -82,6 +94,25 @@ for (const file of files) {
 const allSource = files
   .map((file) => fs.readFileSync(file, "utf8"))
   .join("\n");
+
+if (!allSource.includes(MFD_TAGLINE)) {
+  violations.push({ file: "GLOBAL", pattern: "Missing MFD identity tagline" });
+}
+
+if (!allSource.includes(ARN)) {
+  violations.push({ file: "GLOBAL", pattern: "Missing ARN 365140" });
+}
+
+const disclosure = fs.existsSync("app/disclosures/page.tsx")
+  ? fs.readFileSync("app/disclosures/page.tsx", "utf8")
+  : "";
+
+if (!disclosure.toLowerCase().includes(REQUIRED_CONFLICT_DISCLOSURE)) {
+  violations.push({
+    file: "app/disclosures/page.tsx",
+    pattern: "Missing distribution remuneration / conflict disclosure",
+  });
+}
 
 if (!allSource.includes(STANDARD_WARNING)) {
   violations.push({

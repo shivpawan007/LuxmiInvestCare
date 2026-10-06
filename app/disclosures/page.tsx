@@ -24,7 +24,7 @@ export default function DisclosuresPage() {
                         investor grievance process.
                     </p>
                     <p className="mt-3 text-sm text-green-200">
-                        Last updated: 26 September 2026
+                        Last updated: 6 October 2026
                     </p>
                 </div>
             </section>
@@ -67,6 +67,13 @@ export default function DisclosuresPage() {
                                 distribution business, where applicable under the relevant
                                 arrangements. Investors should review the relevant scheme documents
                                 and disclosures before investing.
+                            </p>
+                            <p className="mt-3 leading-7">
+                                Distribution-related remuneration and any applicable conflicts of
+                                interest are disclosed in accordance with the applicable SEBI and
+                                AMFI requirements. Where scheme-specific information is provided,
+                                investors should also review the applicable SID, SAI and KIM and
+                                the disclosures supplied by the relevant Asset Management Company.
                             </p>
                         </section>
 

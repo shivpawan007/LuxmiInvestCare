@@ -6,7 +6,6 @@ import {
   PiggyBank,
   PieChart,
   ShieldCheck,
-  Target,
   Calculator,
   ArrowRight,
 } from "lucide-react";
@@ -74,12 +73,6 @@ const calculators = [
     description:
       "Explore how increasing a SIP contribution periodically may affect an illustrative projection.",
     href: "/calculators/step-up-sip",
-  },
-  {
-    title: "Investment Objective Calculator",
-    description:
-      "Explore the effect of inflation, time horizon and investment assumptions on a selected investment objective.",
-    href: "/calculators/goal-planner",
   },
   {
     title: "Child Education Cost Calculator",

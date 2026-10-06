@@ -27,8 +27,6 @@ const quickLinks = [
 const services = [
     "Mutual Funds",
     "SIP Investments",
-    "Insurance Information",
-    "Health Insurance Information",
     "Investor Education",
     "Investor Support",
 ];
