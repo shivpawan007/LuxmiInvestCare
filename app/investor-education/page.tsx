@@ -6,7 +6,6 @@ import {
   PiggyBank,
   PieChart,
   ShieldCheck,
-  Target,
   Calculator,
   ArrowRight,
 } from "lucide-react";
