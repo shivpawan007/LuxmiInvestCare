@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-11T09:59:34.550Z",
+  "generatedAt": "2026-10-11T18:11:42.404Z",
   "purpose": "Detect changes in official SEBI/AMFI sources so MFD website rules can be reviewed before publication.",
   "automaticPolicy": "A source change triggers review; the workflow must not silently rewrite compliance content or make legal interpretations.",
   "sources": [
@@ -14,7 +14,7 @@
         "new circular date",
         "new MFD guidance"
       ],
-      "checkedAt": "2026-10-11T09:59:28.185Z",
+      "checkedAt": "2026-10-11T18:11:36.477Z",
       "finalUrl": "https://www.amfiindia.com/distributor/amfi-circulars",
       "status": 200,
       "ok": true,
@@ -32,7 +32,7 @@
         "code of conduct changes",
         "advertising and sales literature changes"
       ],
-      "checkedAt": "2026-10-11T09:59:29.978Z",
+      "checkedAt": "2026-10-11T18:11:38.022Z",
       "finalUrl": "https://www.amfiindia.com/uploads/AMFI_Master_Cicular_for_MF_Ds_3c7f5ee44f.pdf",
       "status": 200,
       "ok": true,
@@ -49,7 +49,7 @@
         "code of conduct changes",
         "MFD obligations"
       ],
-      "checkedAt": "2026-10-11T09:59:31.253Z",
+      "checkedAt": "2026-10-11T18:11:39.202Z",
       "finalUrl": "https://www.amfiindia.com/distributor/mutual-funds-introduction?zoneName=CodeOfConduct",
       "status": 200,
       "ok": true,
@@ -69,7 +69,7 @@
         "scheme-specific recommendations",
         "advertising and social media requirements"
       ],
-      "checkedAt": "2026-10-11T09:59:31.702Z",
+      "checkedAt": "2026-10-11T18:11:39.589Z",
       "finalUrl": "https://www.amfiindia.com/Themes/Theme1/downloads/FAQsonRoleofMFDsAdvts.pdf",
       "status": 200,
       "ok": true,
@@ -86,13 +86,13 @@
         "Mutual Funds Regulations amendments",
         "new applicable regulations"
       ],
-      "checkedAt": "2026-10-11T09:59:33.487Z",
+      "checkedAt": "2026-10-11T18:11:41.411Z",
       "finalUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=6&smid=0&ssid=3",
       "status": 200,
       "ok": true,
       "contentType": "text/html;charset=UTF-8",
       "bytes": 42268,
-      "sha256": "ebb384e1a854e26e90d69034ce1af07943b2c8b6d469aaa5ef93c6fe8c01d3d5"
+      "sha256": "e82cd6c9b872fe05c62cff6fa412d12a5a1e8d73da558abaeb945a2776985ad2"
     },
     {
       "id": "sebi-mf-master-circulars",
@@ -103,42 +103,33 @@
         "new or amended Mutual Fund master circular",
         "applicable distributor guidance"
       ],
-      "checkedAt": "2026-10-11T09:59:34.550Z",
+      "checkedAt": "2026-10-11T18:11:42.404Z",
       "finalUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=1&ssid=6",
       "status": 200,
       "ok": true,
       "contentType": "text/html;charset=UTF-8",
       "bytes": 40897,
-      "sha256": "8bf65548ff2a27ff521d7f9c27fab0d1526c228873b93bbf997a548fae2dceea"
+      "sha256": "abef57b7b1a9b1da4d69aaf43596eff5990225f2cc869b5e644bd8d0ce7b70c0"
     }
   ],
   "changes": [
     {
-      "id": "amfi-mfd-circulars",
-      "authority": "AMFI",
-      "url": "https://www.amfiindia.com/distributor/amfi-circulars",
-      "previousSha256": "71dfd1d1938aa2c9083e6762b9c9d82eb6a600796c3faaf565ab98fe61f5d7e1",
-      "currentSha256": "fe72e79430dd51f895204a160e90cef7b0051813035b9e36a0fb59fb783e3463",
-      "previousCheckedAt": "2026-10-10T09:49:34.803Z",
-      "currentCheckedAt": "2026-10-11T09:59:28.185Z"
-    },
-    {
       "id": "sebi-regulations",
       "authority": "SEBI",
       "url": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=6&smid=0&ssid=3",
-      "previousSha256": "0caf546b8bfcda214840272eb65fd73d0b27ee4280f5daa47a147c6c5d4e26dc",
-      "currentSha256": "ebb384e1a854e26e90d69034ce1af07943b2c8b6d469aaa5ef93c6fe8c01d3d5",
-      "previousCheckedAt": "2026-10-10T09:49:40.399Z",
-      "currentCheckedAt": "2026-10-11T09:59:33.487Z"
+      "previousSha256": "ebb384e1a854e26e90d69034ce1af07943b2c8b6d469aaa5ef93c6fe8c01d3d5",
+      "currentSha256": "e82cd6c9b872fe05c62cff6fa412d12a5a1e8d73da558abaeb945a2776985ad2",
+      "previousCheckedAt": "2026-10-11T09:59:33.487Z",
+      "currentCheckedAt": "2026-10-11T18:11:41.411Z"
     },
     {
       "id": "sebi-mf-master-circulars",
       "authority": "SEBI",
       "url": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=1&ssid=6",
-      "previousSha256": "f88d031ee7d30b1b42fdf6cd3c06885ce9ed1c49877d2663bfcb5ce7a3e1c708",
-      "currentSha256": "8bf65548ff2a27ff521d7f9c27fab0d1526c228873b93bbf997a548fae2dceea",
-      "previousCheckedAt": "2026-10-10T09:49:42.250Z",
-      "currentCheckedAt": "2026-10-11T09:59:34.550Z"
+      "previousSha256": "8bf65548ff2a27ff521d7f9c27fab0d1526c228873b93bbf997a548fae2dceea",
+      "currentSha256": "abef57b7b1a9b1da4d69aaf43596eff5990225f2cc869b5e644bd8d0ce7b70c0",
+      "previousCheckedAt": "2026-10-11T09:59:34.550Z",
+      "currentCheckedAt": "2026-10-11T18:11:42.404Z"
     }
   ],
   "failures": [],

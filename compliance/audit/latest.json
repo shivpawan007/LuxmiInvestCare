@@ -1,17 +1,185 @@
 {
-  "auditVersion": "2.0",
+  "auditVersion": "3.0",
   "auditType": "weekly-random-compliance",
-  "status": "PENDING",
-  "generatedAt": null,
-  "commit": null,
-  "branch": "compliance-v1.1-hardening",
-  "message": "The first scheduled audit will replace this placeholder report.",
-  "checks": {
-    "forbiddenPromotionalLanguage": null,
-    "mfdIdentity": null,
-    "arn365140": null,
-    "standardRiskWarning": null,
-    "liveRouteProbe": null
+  "generatedAt": "2026-10-11T18:12:30.688Z",
+  "commit": "663727857bdb472de4e12fb7ce6c38eb0980f92f",
+  "branch": "main",
+  "baseUrl": "https://www.luxmiinvestcare.com",
+  "sourceFilesChecked": 115,
+  "publicRoutesDiscovered": 13,
+  "requiredRoutes": [
+    "/",
+    "/about",
+    "/services",
+    "/calculators",
+    "/calculators/sip",
+    "/calculators/lumpsum",
+    "/calculators/swp",
+    "/calculators/step-up-sip",
+    "/education",
+    "/investor-education",
+    "/contact",
+    "/privacy",
+    "/disclosures"
+  ],
+  "randomSample": {
+    "sourceFiles": [
+      "components/common/PrimaryButton.tsx",
+      "components/layout/Header.tsx",
+      "components/calculators/SIPDisclaimer.tsx",
+      "app/metadata.ts",
+      "components/calculators/sharing/reportShare.ts",
+      "components/common/ScrollToTop.tsx",
+      "components/ui/avatar.tsx",
+      "app/api/leads/route.ts"
+    ],
+    "routes": [
+      "/calculators/sip",
+      "/contact",
+      "/calculators/lumpsum",
+      "/services",
+      "/calculators/step-up-sip"
+    ]
   },
-  "findings": []
+  "checks": {
+    "forbiddenPromotionalLanguage": false,
+    "mfdIdentity": true,
+    "arn365140": true,
+    "mfdTagline": true,
+    "distributionRemunerationDisclosure": true,
+    "standardRiskWarning": true,
+    "liveRouteProbe": true,
+    "dependencyAudit": true
+  },
+  "dependencyAudit": {
+    "counts": {
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 0,
+      "critical": 0,
+      "total": 0
+    },
+    "total": 0
+  },
+  "routeResults": [
+    {
+      "route": "/",
+      "required": true,
+      "status": 200,
+      "ok": true,
+      "durationMs": 1597,
+      "findings": []
+    },
+    {
+      "route": "/about",
+      "required": true,
+      "status": 200,
+      "ok": true,
+      "durationMs": 206,
+      "findings": []
+    },
+    {
+      "route": "/services",
+      "required": true,
+      "status": 200,
+      "ok": true,
+      "durationMs": 300,
+      "findings": []
+    },
+    {
+      "route": "/calculators",
+      "required": true,
+      "status": 200,
+      "ok": true,
+      "durationMs": 206,
+      "findings": []
+    },
+    {
+      "route": "/calculators/sip",
+      "required": true,
+      "status": 200,
+      "ok": true,
+      "durationMs": 206,
+      "findings": [
+        {
+          "severity": "high",
+          "rule": "promotion.return-on-investment",
+          "route": "/calculators/sip"
+        }
+      ]
+    },
+    {
+      "route": "/calculators/lumpsum",
+      "required": true,
+      "status": 200,
+      "ok": true,
+      "durationMs": 204,
+      "findings": []
+    },
+    {
+      "route": "/calculators/swp",
+      "required": true,
+      "status": 200,
+      "ok": true,
+      "durationMs": 204,
+      "findings": []
+    },
+    {
+      "route": "/calculators/step-up-sip",
+      "required": true,
+      "status": 200,
+      "ok": true,
+      "durationMs": 205,
+      "findings": []
+    },
+    {
+      "route": "/education",
+      "required": true,
+      "status": 200,
+      "ok": true,
+      "durationMs": 204,
+      "findings": []
+    },
+    {
+      "route": "/investor-education",
+      "required": true,
+      "status": 200,
+      "ok": true,
+      "durationMs": 205,
+      "findings": []
+    },
+    {
+      "route": "/contact",
+      "required": true,
+      "status": 200,
+      "ok": true,
+      "durationMs": 203,
+      "findings": []
+    },
+    {
+      "route": "/privacy",
+      "required": true,
+      "status": 200,
+      "ok": true,
+      "durationMs": 203,
+      "findings": []
+    },
+    {
+      "route": "/disclosures",
+      "required": true,
+      "status": 200,
+      "ok": true,
+      "durationMs": 202,
+      "findings": []
+    }
+  ],
+  "findings": [
+    {
+      "severity": "high",
+      "rule": "promotion.return-on-investment",
+      "route": "/calculators/sip"
+    }
+  ],
+  "status": "FAIL"
 }
