@@ -146,6 +146,34 @@ if (fs.existsSync(sitemapPath)) {
   }
 }
 
+const reportPath = "components/calculators/DownloadReport.tsx";
+if (fs.existsSync(reportPath)) {
+  const reportSource = fs.readFileSync(reportPath, "utf8");
+  for (const required of [
+    STANDARD_WARNING,
+    "ARN",
+    "AMFI-registered Mutual Fund Distributor",
+  ]) {
+    if (!reportSource.includes(required)) {
+      violations.push({
+        file: reportPath,
+        pattern: `Downloadable reports missing required identity/risk content: ${required}`,
+      });
+    }
+  }
+}
+
+const leadCapturePath = "components/calculators/sharing/LeadCaptureForm.tsx";
+if (fs.existsSync(leadCapturePath)) {
+  const leadCapture = fs.readFileSync(leadCapturePath, "utf8");
+  if (!/privacyAccepted/.test(leadCapture) || !/Privacy Policy/.test(leadCapture) || !/consent/i.test(leadCapture)) {
+    violations.push({
+      file: leadCapturePath,
+      pattern: "Report-share lead capture must require affirmative privacy consent",
+    });
+  }
+}
+
 if (violations.length) {
   console.error("Compliance content scan FAILED:");
   for (const violation of violations) {
