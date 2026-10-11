@@ -24,7 +24,7 @@ export default function DisclosuresPage() {
                         investor grievance process.
                     </p>
                     <p className="mt-3 text-sm text-green-200">
-                        Last updated: 26 September 2026
+                        Last updated: 11 October 2026
                     </p>
                 </div>
             </section>
@@ -80,7 +80,6 @@ export default function DisclosuresPage() {
                             </ul>
                         </section>
 
-
                         <section>
                             <h2 className="text-2xl font-bold text-slate-900">Investor grievance redressal</h2>
                             <p className="mt-3 leading-7">
@@ -103,7 +102,7 @@ export default function DisclosuresPage() {
                             </p>
                         </section>
 
-                                          <section>
+                        <section>
                             <h2 className="text-2xl font-bold text-slate-900">Standard mutual fund risk warning</h2>
                             <div className="mt-4 rounded-xl border border-slate-200 bg-slate-50 p-5">
                                 <MutualFundRiskWarning />
