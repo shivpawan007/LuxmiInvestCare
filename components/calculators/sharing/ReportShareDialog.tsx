@@ -233,7 +233,7 @@ export default function ReportShareDialog({
                                     sharing and respond to my enquiry, as described
                                     in the{" "}
                                     <a
-                                        href="/privacy-policy"
+                                        href="/privacy"
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="font-semibold text-green-700 underline"
