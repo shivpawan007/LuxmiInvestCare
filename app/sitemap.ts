@@ -26,12 +26,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
             priority: 0.8,
         },
         {
-            url: `${BASE_URL}/privacy-policy`,
+            url: `${BASE_URL}/privacy`,
             changeFrequency: "yearly",
             priority: 0.6,
         },
         {
-            url: `${BASE_URL}/regulatory-disclosures`,
+            url: `${BASE_URL}/disclosures`,
             changeFrequency: "yearly",
             priority: 0.7,
         },
@@ -62,11 +62,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
         },
         {
             url: `${BASE_URL}/calculators/step-up-sip`,
-            changeFrequency: "weekly",
-            priority: 0.9,
-        },
-{
-            url: `${BASE_URL}/calculators/education`,
             changeFrequency: "weekly",
             priority: 0.9,
         },
