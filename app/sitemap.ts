@@ -65,15 +65,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
             changeFrequency: "weekly",
             priority: 0.9,
         },
-        {
-            url: `${BASE_URL}/calculators/goal-planner`,
-            changeFrequency: "weekly",
-            priority: 0.9,
-        },
-        {
-            url: `${BASE_URL}/calculators/education`,
-            changeFrequency: "weekly",
-            priority: 0.9,
-        },
     ];
 }
