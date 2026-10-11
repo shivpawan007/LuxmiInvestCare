@@ -90,6 +90,62 @@ if (!allSource.includes(STANDARD_WARNING)) {
   });
 }
 
+const requiredContent = [
+  {
+    file: "app/disclosures/page.tsx",
+    values: [
+      "AMFI-registered Mutual Fund Distributor",
+      "ARN: 365140",
+      "https://scores.sebi.gov.in/",
+      STANDARD_WARNING,
+    ],
+  },
+  {
+    file: "components/layout/Footer.tsx",
+    values: [
+      "AMFI-registered Mutual Fund Distributor",
+      "ARN: 365140",
+      STANDARD_WARNING,
+    ],
+  },
+];
+
+for (const check of requiredContent) {
+  if (!fs.existsSync(check.file)) {
+    violations.push({
+      file: check.file,
+      pattern: "Required compliance page/component is missing",
+    });
+    continue;
+  }
+
+  const content = fs.readFileSync(check.file, "utf8");
+  for (const required of check.values) {
+    if (!content.includes(required)) {
+      violations.push({
+        file: check.file,
+        pattern: `Missing required compliance content: ${required}`,
+      });
+    }
+  }
+}
+
+const sitemapPath = "app/sitemap.ts";
+if (fs.existsSync(sitemapPath)) {
+  const sitemap = fs.readFileSync(sitemapPath, "utf8");
+  for (const redirectedRoute of [
+    "/calculators/goal-planner",
+    "/calculators/education",
+  ]) {
+    if (sitemap.includes(redirectedRoute)) {
+      violations.push({
+        file: sitemapPath,
+        pattern: `Redirected route must not be listed in sitemap: ${redirectedRoute}`,
+      });
+    }
+  }
+}
+
 if (violations.length) {
   console.error("Compliance content scan FAILED:");
   for (const violation of violations) {
