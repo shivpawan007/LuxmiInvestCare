@@ -85,9 +85,9 @@ export default function SWPCalculator() {
             </h1>
 
             <p className="section-subtitle mx-auto mt-4 max-w-2xl">
-              Estimate how regular withdrawals may affect
-              your investment corpus over time using
-              illustrative return assumptions.
+              Explore a hypothetical illustration of how regular withdrawals
+              and an assumed annual return may affect an investment balance
+              over time. The return assumption is not a forecast or guarantee.
             </p>
           </div>
         </div>
