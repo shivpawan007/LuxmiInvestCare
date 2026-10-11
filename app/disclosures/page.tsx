@@ -80,14 +80,6 @@ export default function DisclosuresPage() {
                             </ul>
                         </section>
 
-                        <section>
-                            <h2 className="text-2xl font-bold text-slate-900">Insurance information</h2>
-                            <p className="mt-3 leading-7">
-                                References to insurance on this website are presented as information
-                                unless a separately disclosed and appropriately authorised service
-                                is identified. The appearance of insurance information on this website does not constitute a direction to purchase any insurance product.
-                            </p>
-                        </section>
 
                         <section>
                             <h2 className="text-2xl font-bold text-slate-900">Investor grievance redressal</h2>
