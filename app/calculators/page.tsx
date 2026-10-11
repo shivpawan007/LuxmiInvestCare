@@ -4,8 +4,6 @@ import {
     Calculator,
     PiggyBank,
     Wallet,
-    Target,
-    GraduationCap,
     TrendingUp,
     BookOpen,
     ShieldCheck,
@@ -90,23 +88,6 @@ export default function CalculatorsPage() {
                             }
                             available={true}
                         />
-
-                        <CalculatorCard
-                            title="Investment Objective Calculator"
-                            description="Explore how inflation, investment period and assumed investment returns may affect an illustrative future value or investment requirement."
-                            href="/calculators/goal-planner"
-                            icon={
-                                <Target className="h-8 w-8" />
-                            }
-                            available={true}
-                        />
-
-                        <CalculatorCard
-                            title="Child Education Cost Calculator"
-                            description="Explore an illustrative future education cost and the investment amount required under the assumptions entered."
-                            href="/calculators/education"
-                            icon={
-                                <GraduationCap className="h-8 w-8" />
                             }
                             available={true}
                         />
