@@ -21,15 +21,13 @@ const quickLinks = [
     { label: "Services", href: "/services" },
     { label: "Investor Education", href: "/investor-education" },
     { label: "Contact", href: "/contact" },
-    { label: "Privacy Policy", href: "/privacy-policy" },
-    { label: "Regulatory Disclosures", href: "/regulatory-disclosures" },
+    { label: "Privacy Policy", href: "/privacy" },
+    { label: "Regulatory Disclosures", href: "/disclosures" },
 ];
 
 const services = [
     "Mutual Funds",
     "SIP Investments",
-    "Insurance Information",
-    "Health Insurance Information",
     "Investor Education",
     "Investor Support",
 ];
