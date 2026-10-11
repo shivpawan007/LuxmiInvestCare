@@ -1,12 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
+import MutualFundRiskWarning from "@/components/compliance/MutualFundRiskWarning";
 import {
     Landmark,
     PiggyBank,
-    ShieldCheck,
     GraduationCap,
-    HeartPulse,
     Users,
 } from "lucide-react";
 
@@ -22,18 +21,6 @@ const services = [
         title: "SIP Investments",
         description:
             "Educational support to help investors understand Systematic Investment Plans, regular investing and the effect of contribution amount and investment period.",
-    },
-    {
-        icon: ShieldCheck,
-        title: "Insurance Information",
-        description:
-            "Information about life insurance products and the role of insurance in protecting family financial needs.",
-    },
-    {
-        icon: HeartPulse,
-        title: "Health Insurance Information",
-        description:
-            "Information about health insurance products, coverage considerations and the importance of understanding policy terms and conditions.",
     },
     {
         icon: GraduationCap,
@@ -77,7 +64,7 @@ export default function Services() {
                     </h2>
 
                     <p className="section-subtitle mx-auto">
-                        Explore mutual funds, SIP investments, insurance information and investor education resources designed
+                        Explore mutual funds, SIP investments and investor education resources designed
                         to help investors understand products, risks and
                         investing concepts.
                     </p>
@@ -178,12 +165,9 @@ export default function Services() {
                                     Get Information on WhatsApp
                                 </a>
 
-                                <p className="max-w-sm text-right text-sm text-green-100 lg:text-base">
-                                    Mutual Fund investments are subject to
-                                    market risks. Please read all
-                                    scheme-related documents carefully before
-                                    investing.
-                                </p>
+                                <div className="max-w-sm text-right text-sm text-green-100 lg:text-base">
+                                    <MutualFundRiskWarning className="text-right text-green-100" />
+                                </div>
 
                             </div>
 

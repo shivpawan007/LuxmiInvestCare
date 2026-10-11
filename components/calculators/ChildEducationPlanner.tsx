@@ -291,6 +291,8 @@ export default function ChildEducationPlanner() {
             may differ.
           </p>
 
+          <MutualFundRiskWarning className="mt-4 text-slate-600" />
+
         </div>
 
       </div>

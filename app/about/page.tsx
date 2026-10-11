@@ -1,3 +1,5 @@
+import MutualFundRiskWarning from "@/components/compliance/MutualFundRiskWarning";
+
 import {
     ShieldCheck,
     GraduationCap,
@@ -141,8 +143,8 @@ export default function AboutPage() {
                         <div className="overflow-hidden rounded-3xl border border-slate-200 bg-slate-50 shadow-sm">
 
                             <img
-                                src="/images/luxmi-investor-education-office.webp"
-                                alt="Luxmi InvestCare investor education office with AMFI registration and investor awareness messaging"
+                                src="/images/luxmi-compliance-about.svg"
+                                alt="Luxmi InvestCare investor education illustration"
                                 className="h-full min-h-[420px] w-full object-cover"
                             />
 
@@ -297,9 +299,7 @@ export default function AboutPage() {
 
                             <div className="rounded-2xl bg-slate-50 p-6">
 
-                                <p className="leading-8 text-slate-600">
-                                    Mutual Fund investments are subject to market risks, read all scheme related documents carefully.
-                                </p>
+                                <MutualFundRiskWarning className="text-left text-slate-600" />
 
                             </div>
 

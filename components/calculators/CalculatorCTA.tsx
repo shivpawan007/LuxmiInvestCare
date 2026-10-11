@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 
 import { Button } from "@/components/ui/Button";
+import MfdDisclosure from "@/components/compliance/MfdDisclosure";
 
 export default function CalculatorCTA() {
     return (
@@ -108,9 +109,7 @@ export default function CalculatorCTA() {
                         </h4>
 
                         <p className="mt-2 text-sm leading-6 text-slate-600">
-                            AMFI Registered Mutual Fund Distributor
-                            <br />
-                            ARN-365140
+                            AMFI-registered Mutual Fund Distributor | ARN: 365140
                         </p>
                     </div>
 
@@ -118,7 +117,7 @@ export default function CalculatorCTA() {
             </div>
 
             <div className="flex items-center justify-center gap-2 border-t border-white/10 py-5 text-sm text-green-100">
-                Investor Education • Long-Term Investing • Financial Awareness
+                Investor Education • General Information • Financial Awareness
                 <ArrowRight className="h-4 w-4" />
             </div>
         </section>

@@ -1,5 +1,6 @@
 "use client";
 
+import MutualFundRiskWarning from "@/components/compliance/MutualFundRiskWarning";
 import { useMemo, useState } from "react";
 import { Share2 } from "lucide-react";
 
@@ -78,16 +79,16 @@ export default function SWPCalculator() {
             </span>
 
             <h1 className="section-title mt-5">
-              Plan Your Withdrawals with a{" "}
+              Explore Withdrawals with a{" "}
               <span className="text-emerald-700">
                 Systematic Withdrawal Plan
               </span>
             </h1>
 
             <p className="section-subtitle mx-auto mt-4 max-w-2xl">
-              Estimate how regular withdrawals may affect
-              your investment corpus over time using
-              illustrative return assumptions.
+              Explore a hypothetical illustration of how regular withdrawals
+              and an assumed annual return may affect an investment balance
+              over time. The return assumption is not a forecast or guarantee.
             </p>
           </div>
         </div>
@@ -110,7 +111,7 @@ export default function SWPCalculator() {
                 </p>
 
                 <h2 className="mt-2 text-2xl font-bold text-slate-900">
-                  Plan Your SWP
+                  Explore an SWP Illustration
                 </h2>
 
                 <p className="mt-2 text-sm leading-6 text-slate-600">
@@ -490,7 +491,7 @@ export default function SWPCalculator() {
               an assumed rate of return. Actual
               investment outcomes may differ
               depending on market performance.
-              Mutual Fund investments are subject to market risks, read all scheme related documents carefully.
+              
             </p>
           </div>
         </div>

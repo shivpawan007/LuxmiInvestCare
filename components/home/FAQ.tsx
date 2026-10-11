@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import MutualFundRiskWarning from "@/components/compliance/MutualFundRiskWarning";
 import { ChevronDown } from "lucide-react";
 
 const faqs = [
@@ -198,12 +199,9 @@ export default function FAQ() {
                                     Chat on WhatsApp
                                 </a>
 
-                                <p className="max-w-sm text-right text-sm text-green-100 lg:text-base">
-                                    Mutual Fund investments are subject to
-                                    market risks. Please read all
-                                    scheme-related documents carefully before
-                                    investing.
-                                </p>
+                                <div className="max-w-sm text-right text-sm text-green-100 lg:text-base">
+                                    <MutualFundRiskWarning className="text-right text-green-100" />
+                                </div>
 
                             </div>
 

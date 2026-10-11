@@ -21,10 +21,6 @@ export interface ReportShareRecord {
     calculatorType: CalculatorType;
     reportTitle: string;
 
-    customerName?: string;
-    mobile?: string;
-    email?: string;
-
     investment: number;
     years: number;
     annualReturn: number;

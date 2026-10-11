@@ -6,6 +6,7 @@ import jsPDF from "jspdf";
 import type { SIPProjection } from "@/lib/sip";
 import type { LumpsumProjection } from "@/lib/lumpsum";
 import type { SWPProjection } from "@/lib/swp";
+import { MUTUAL_FUND_STANDARD_WARNING } from "@/components/compliance/MutualFundRiskWarning";
 
 interface StepUpSIPProjection {
   year: number;
@@ -100,7 +101,7 @@ interface DownloadReportProps {
 const BRAND = {
   name: "Luxmi InvestCare",
   subtitle: "AMFI-registered Mutual Fund Distributor | ARN: 365140",
-  website: "www.luxmiInvestCare.com",
+  website: "luxmiinvestcare.com",
   email: "info@luxmiinvestcare.com",
   whatsapp: "9650060044",
   facebook: "facebook.com/luxmiinvestcare",
@@ -385,7 +386,7 @@ function addPageHeader(
 
   setFont(pdf);
 
-  pdf.setFontSize(8);
+  pdf.setFontSize(12);
 
   pdf.setTextColor(...C.muted);
 
@@ -857,7 +858,7 @@ function addGrowthChart(
   );
 
   pdf.text(
-    "Estimated Portfolio Value",
+    "Illustrative Projected Value",
     x + 77,
     legendY + 1,
   );
@@ -1092,8 +1093,8 @@ function addYearTable(
   const headers = [
     "Year",
     "Total Investment",
-    "Estimated Value",
-    "Estimated Gain",
+    "Illustrative Projected Value",
+    "Illustrative Gain",
   ];
 
   let cx = x;
@@ -1232,7 +1233,7 @@ function addDisclaimer(pdf: jsPDF) {
     "This calculator is provided for investor education and illustration purposes only.",
     "The projections shown are based on the assumptions entered by the user and an assumed rate of return.",
     "Actual investment returns may vary depending on market conditions, scheme performance, costs, taxes and other factors.",
-    "Mutual Fund investments are subject to market risks, read all scheme related documents carefully.",
+    MUTUAL_FUND_STANDARD_WARNING,
     "Past performance does not guarantee future returns.",
     "The projected values shown in this report are not guaranteed returns and should not be interpreted as a promise of future performance.",
     "This calculator output should not by itself be construed as personalised investment advice.",
@@ -1369,7 +1370,7 @@ function addSWPDisclaimer(pdf: jsPDF) {
     "This SWP calculator is provided for investor education and illustration purposes only.",
     "The projection is based on the assumptions entered by the user, including the assumed annual rate of return and withdrawal amount.",
     "Actual investment outcomes may vary depending on market conditions, scheme performance, costs, taxes and other factors.",
-    "Mutual Fund investments are subject to market risks, read all scheme related documents carefully.",
+    MUTUAL_FUND_STANDARD_WARNING,
     "The projected values shown in this report are illustrative and are not guaranteed returns.",
     "The calculator does not account for all possible market conditions, changes in withdrawal requirements or taxation implications.",
     "This calculator output should not by itself be construed as personalised investment advice.",
@@ -1622,7 +1623,7 @@ export default function DownloadReport({
             84,
             swpCardW,
             swpCardH,
-            "Expected Return",
+            "Assumed Annual Return (Illustrative)",
             `${annualReturn}%`,
             C.gold,
           );
@@ -2653,7 +2654,7 @@ export default function DownloadReport({
             84,
             stepCardW,
             stepCardH,
-            "Expected Return",
+            "Assumed Annual Return (Illustrative)",
             `${stepReturn}%`,
             C.teal,
           );
@@ -4064,7 +4065,7 @@ export default function DownloadReport({
             121,
             cardW,
             cardH,
-            "Expected Return",
+            "Assumed Annual Return (Illustrative)",
             `${expectedReturn}%`,
             C.teal,
           );
@@ -4198,7 +4199,7 @@ export default function DownloadReport({
             pdf,
             "2",
             "Inflation Impact on the Investment Objective",
-            "Illustrative comparison of the current value with its estimated future value",
+            "Illustrative comparison of the current value with its illustrative future value",
             69,
           );
 
@@ -4502,7 +4503,7 @@ export default function DownloadReport({
             pdf,
             "3",
             "Illustrative Investment Requirement",
-            "Two illustrative ways to understand the estimated future value",
+            "Two illustrative ways to understand the future value",
             69,
           );
 
@@ -5015,7 +5016,7 @@ export default function DownloadReport({
           addCard(pdf, 18 + cardW + gap, 84, cardW, cardH, "Education Start Age", `${educationStartAge} Years`, C.teal);
           addCard(pdf, 18 + (cardW + gap) * 2, 84, cardW, cardH, "Investment Horizon", `${yearsToGoal} ${yearsToGoal === 1 ? "Year" : "Years"}`, C.gold);
           addCard(pdf, 18, 120, cardW, cardH, "Current Education Cost", formatCurrency(currentEducationCost));
-          addCard(pdf, 18 + cardW + gap, 120, cardW, cardH, "Expected Return", `${expectedReturn}%`, C.teal);
+          addCard(pdf, 18 + cardW + gap, 120, cardW, cardH, "Assumed Annual Return (Illustrative)", `${expectedReturn}%`, C.teal);
           addCard(pdf, 18 + (cardW + gap) * 2, 120, cardW, cardH, "Education Inflation", `${educationInflation}%`, C.gold);
 
           pdf.setFillColor(...C.light);
@@ -5275,7 +5276,7 @@ export default function DownloadReport({
           const columns = [
             { label: "Year", width: 30 },
             { label: "Child Age", width: 42 },
-            { label: "Estimated Education Cost", width: 102 },
+            { label: "Illustrative Education Cost", width: 102 },
           ];
 
           pdf.setFillColor(...C.darkGreen);
@@ -5421,7 +5422,7 @@ export default function DownloadReport({
             "This calculator is provided for investor education and illustration purposes only.",
             "The projections shown are based on the assumptions entered by the user, including education cost, time period, inflation and assumed investment return.",
             "Actual education costs, investment returns and future funding requirements may differ from the illustration.",
-            "Mutual Fund investments are subject to market risks, read all scheme related documents carefully.",
+            MUTUAL_FUND_STANDARD_WARNING,
             "Past performance does not guarantee future returns.",
             "The projected values shown in this report are not guaranteed returns and should not be interpreted as a promise of future performance.",
             "This calculator is an educational illustration and should not be treated as a recommendation to invest in any particular scheme.",
@@ -5461,7 +5462,7 @@ export default function DownloadReport({
           pdf,
           "1",
           "Investment Details",
-          "Key assumptions and projected outcomes",
+          "Key assumptions and illustrative projected outcomes",
           69,
         );
 
@@ -5510,7 +5511,7 @@ export default function DownloadReport({
           84,
           cardW,
           cardH,
-          "Expected Return",
+          "Assumed Annual Return (Illustrative)",
           `${annualReturn}%`,
           C.gold,
         );
@@ -5535,7 +5536,7 @@ export default function DownloadReport({
           121,
           cardW,
           cardH,
-          "Estimated Returns",
+          "Illustrative Returns",
           formatCurrency(
             estimatedReturns,
           ),
@@ -5550,7 +5551,7 @@ export default function DownloadReport({
           121,
           cardW,
           cardH,
-          "Maturity Value",
+          "Illustrative Projected Value",
           formatCurrency(
             maturityValue,
           ),
@@ -6042,7 +6043,7 @@ export default function DownloadReport({
           pdf,
           "5",
           "Investment Breakdown",
-          "A consolidated view of calculator assumptions and estimated outcomes",
+          "A consolidated view of calculator assumptions and illustrative outcomes",
           69,
         );
 
@@ -6083,7 +6084,7 @@ export default function DownloadReport({
             }`,
           ],
           [
-            "Expected Return",
+            "Assumed Annual Return (Illustrative)",
             `${annualReturn}%`,
           ],
           [
@@ -6093,13 +6094,13 @@ export default function DownloadReport({
             ),
           ],
           [
-            "Estimated Returns",
+            "Illustrative Returns",
             formatCurrency(
               estimatedReturns,
             ),
           ],
           [
-            "Maturity Value",
+            "Illustrative Projected Value",
             formatCurrency(
               maturityValue,
             ),

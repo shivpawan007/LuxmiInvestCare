@@ -1,11 +1,11 @@
 "use client";
 
+import MutualFundRiskWarning from "@/components/compliance/MutualFundRiskWarning";
+
 import {
     Landmark,
     PiggyBank,
-    ShieldCheck,
     GraduationCap,
-    HeartPulse,
     Users,
     MessageCircle,
     ArrowRight,
@@ -23,18 +23,6 @@ const services = [
         title: "SIP Investments",
         description:
             "Educational support to help investors understand Systematic Investment Plans, regular investing and the effect of contribution amount and investment period.",
-    },
-    {
-        icon: ShieldCheck,
-        title: "Insurance Information",
-        description:
-            "Information about life insurance products and the role of insurance in protecting family financial needs.",
-    },
-    {
-        icon: HeartPulse,
-        title: "Health Insurance Information",
-        description:
-            "Information about health insurance products, coverage considerations and the importance of understanding policy terms and conditions.",
     },
     {
         icon: GraduationCap,
@@ -82,7 +70,7 @@ export default function ServicesPage() {
                         </h1>
 
                         <p className="mx-auto mt-8 max-w-3xl text-lg leading-8 text-green-100 lg:text-xl">
-                            Explore mutual funds, SIP investments, insurance information and investor education resources designed to help you understand investment products and investing concepts.
+                            Explore mutual fund products, SIPs and investor education resources designed to explain investment concepts, risks and product information.
                         </p>
 
                     </div>
@@ -257,10 +245,11 @@ export default function ServicesPage() {
                             investor education and general information purposes
                             only. Product information and calculator illustrations
                             are based on assumptions and may not reflect actual
-                            future outcomes. Mutual Fund investments are subject
-                            to market risks. Please read all scheme-related
-                            documents carefully before investing.
+                            future outcomes.
                         </p>
+                        <div className="mt-4">
+                            <MutualFundRiskWarning className="text-left text-slate-700" />
+                        </div>
 
                     </div>
 
