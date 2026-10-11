@@ -127,7 +127,7 @@ export default function ChildEducationProjection({
 
         <div className="mt-8 rounded-2xl border border-green-200 bg-green-50 p-5">
           <p className="text-sm font-semibold text-green-800">
-            Planning Insight
+            Illustration Insight
           </p>
 
           <p className="mt-2 leading-7 text-slate-700">

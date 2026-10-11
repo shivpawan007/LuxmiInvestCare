@@ -191,9 +191,9 @@ export default function GoalPlanner() {
                                 lumpsumRequired:
                                     result.lumpsumRequired,
                             }}
+
                             reportTitle="Investment Objective Illustration"
-                            fileName="Luxmi-InvestCare-Investment-Objective-Illustration.pdf"
-                        />
+                            fileName="Luxmi-InvestCare-Investment-Objective-Illustration.pdf"                        />
 
                         <button
                             type="button"
@@ -216,8 +216,8 @@ export default function GoalPlanner() {
                             setShareOpen(false)
                         }
                         calculatorType="goal-planner"
-                        reportTitle="Investment Objective Illustration"
-                        investment={
+
+                        reportTitle="Investment Objective Illustration"                        investment={
                             targetAmount
                         }
                         years={years}
@@ -237,8 +237,8 @@ export default function GoalPlanner() {
           ================================================== */}
                     <ConnectWithLuxmi
                         calculatorType="goal-planner"
-                        reportTitle="Investment Objective Illustration"
-                        investment={
+
+                        reportTitle="Investment Objective Illustration"                        investment={
                             targetAmount
                         }
                         years={years}
@@ -275,9 +275,7 @@ export default function GoalPlanner() {
                             illustrations based on the assumptions
                             entered. Actual costs, market returns and
                             investment requirements may differ.
-                            Mutual fund investments are subject to
-                            market risks. Please read all scheme-related
-                            documents carefully before investing.
+                            Mutual Fund investments are subject to market risks, read all scheme related documents carefully.
                         </p>
                     </div>
 

@@ -55,7 +55,7 @@ export default function LumpsumGrowthTable({
                         <tr>
                             <th className="px-6 py-4 text-left">Year</th>
                             <th className="px-6 py-4 text-right">Investment</th>
-                            <th className="px-6 py-4 text-right">Wealth Created</th>
+                            <th className="px-6 py-4 text-right">Illustrative Gain</th>
                             <th className="px-6 py-4 text-right">Portfolio Value</th>
                         </tr>
 

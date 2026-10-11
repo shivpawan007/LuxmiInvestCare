@@ -66,16 +66,15 @@ export default function GoalProjectionChart({
 
       <div className="mb-8">
         <span className="text-sm font-semibold uppercase tracking-widest text-green-700">
-          Goal Projection
+          Investment Objective Illustration
         </span>
 
         <h2 className="mt-2 text-2xl font-bold text-slate-900">
-          How Inflation May Change Your Goal
+          How Inflation May Affect an Investment Objective
         </h2>
 
         <p className="mt-2 max-w-3xl text-slate-600">
-          See how the estimated future cost of your goal compares with its
-          value today, based on the inflation assumption entered above.
+          See how the estimated future value of the selected investment objective compares with its value today, based on the inflation assumption entered above.
         </p>
       </div>
 
@@ -144,7 +143,7 @@ export default function GoalProjectionChart({
 
         <div className="rounded-2xl border border-green-200 bg-green-50 p-6">
           <p className="text-sm font-semibold uppercase tracking-wide text-green-700">
-            Required Monthly SIP
+            Illustrative Monthly SIP
           </p>
 
           <p className="mt-3 text-3xl font-bold text-slate-900">
@@ -152,14 +151,13 @@ export default function GoalProjectionChart({
           </p>
 
           <p className="mt-2 text-sm text-slate-600">
-            Illustrative monthly investment required to work toward the
-            projected goal.
+            Illustrative monthly investment amount under the selected assumptions.
           </p>
         </div>
 
         <div className="rounded-2xl border border-amber-200 bg-amber-50 p-6">
           <p className="text-sm font-semibold uppercase tracking-wide text-amber-700">
-            Required Lumpsum
+            Illustrative One-Time Investment
           </p>
 
           <p className="mt-3 text-3xl font-bold text-slate-900">
@@ -167,8 +165,7 @@ export default function GoalProjectionChart({
           </p>
 
           <p className="mt-2 text-sm text-slate-600">
-            Illustrative one-time investment required under the selected
-            assumptions.
+            Illustrative one-time investment amount under the selected assumptions.
           </p>
         </div>
 
@@ -182,21 +179,16 @@ export default function GoalProjectionChart({
           </span>{" "}
           The figures shown are estimates based on the assumptions entered,
           including inflation and an assumed investment return. Actual costs,
-          investment returns and financial requirements may differ. Mutual fund
-          investments are subject to market risks. Please consider your
-          investment objectives and risk profile before investing.
+          investment returns and investment requirements may differ. Mutual Fund investments are subject to market risks, read all scheme related documents carefully.
         </p>
       </div>
       <div className="mt-8 rounded-2xl border border-green-200 bg-green-50 p-6">
         <h3 className="text-lg font-bold text-green-800">
-          Planning Note
+          Illustration Note
         </h3>
 
         <p className="mt-3 leading-7 text-slate-700">
-          Starting early can provide more time for compounding and may reduce
-          the monthly investment required to work toward a future financial
-          goal. Review your goal periodically as your income, expenses,
-          inflation expectations and investment assumptions change.
+          The selected assumptions can materially affect the illustration. Review the assumptions periodically because actual costs, market conditions and investment outcomes may differ.
         </p>
       </div>
     </div>

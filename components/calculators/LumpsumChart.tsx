@@ -53,7 +53,7 @@ export default function LumpsumChart({ data }: Props) {
 
                     <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-600 sm:text-base">
                         Illustrative year-wise projection of your one-time
-                        investment and estimated portfolio value.
+                        investment and illustrative value.
                     </p>
                 </div>
 
@@ -116,7 +116,7 @@ export default function LumpsumChart({ data }: Props) {
                                         formatCurrency(Number(value)),
                                         name === "Amount Invested"
                                             ? "Invested Amount"
-                                            : "Estimated Portfolio Value",
+                                            : "Illustrative Value",
                                     ]}
                                 labelFormatter={(label) =>
                                     `Year ${label}`
@@ -153,7 +153,7 @@ export default function LumpsumChart({ data }: Props) {
                                 stroke="#15803d"
                                 strokeWidth={4}
                                 dot={false}
-                                name="Estimated Portfolio Value"
+                                name="Illustrative Value"
                                 activeDot={{
                                     r: 6,
                                 }}

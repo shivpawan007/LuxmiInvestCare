@@ -66,7 +66,7 @@ export default function WhyChoose() {
                     className="mx-auto mb-20 max-w-3xl text-center"
                 >
                     <span className="inline-flex items-center rounded-full border border-green-200 bg-green-50 px-5 py-2 text-sm font-semibold text-green-700 shadow-sm">
-                        WHY CHOOSE LUXMI INVESTCARE
+                        OUR APPROACH
                     </span>
 
                     <h2 className="section-title mt-8">

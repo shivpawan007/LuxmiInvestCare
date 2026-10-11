@@ -50,12 +50,20 @@ export default async function AdminDashboardPage() {
                         </p>
                     </div>
 
-                    <Link
-                        href="/admin/leads"
-                        className="rounded-xl bg-green-700 px-5 py-3 text-center font-semibold text-white hover:bg-green-800"
-                    >
-                        View Leads
-                    </Link>
+                    <div className="flex flex-wrap gap-3">
+                        <Link
+                            href="/admin/compliance"
+                            className="rounded-xl bg-slate-900 px-5 py-3 text-center font-semibold text-white hover:bg-slate-800"
+                        >
+                            Compliance Audit
+                        </Link>
+                        <Link
+                            href="/admin/leads"
+                            className="rounded-xl bg-green-700 px-5 py-3 text-center font-semibold text-white hover:bg-green-800"
+                        >
+                            View Leads
+                        </Link>
+                    </div>
                 </div>
 
                 <div className="mt-8 grid gap-5 sm:grid-cols-3">

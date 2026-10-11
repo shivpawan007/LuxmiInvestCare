@@ -1,0 +1,120 @@
+{
+  "auditVersion": "2.1",
+  "auditType": "weekly-random-compliance",
+  "generatedAt": "2026-10-11T16:59:25.433Z",
+  "commit": "fd384cdb1f483599feab2dc8b042e36b275d7e76",
+  "branch": "compliance-v1.1-hardening",
+  "baseUrl": "https://luxmiinvestcare.com",
+  "sourceFilesChecked": 128,
+  "publicRoutesDiscovered": 15,
+  "requiredRoutes": [
+    "/",
+    "/privacy",
+    "/disclosures",
+    "/services"
+  ],
+  "randomSample": {
+    "sourceFiles": [
+      "components/common/PrimaryButton.tsx",
+      "components/ui/input.tsx",
+      "app/calculators/lumpsum/page.tsx",
+      "components/ui/card.tsx",
+      "app/robots.ts",
+      "components/calculators/ChildEducationInputs.tsx",
+      "app/about/page.tsx",
+      "components/calculators/LumpsumGrowthTable.tsx"
+    ],
+    "routes": [
+      "/calculators/lumpsum",
+      "/calculators",
+      "/services",
+      "/calculators/swp",
+      "/"
+    ]
+  },
+  "checks": {
+    "forbiddenPromotionalLanguage": true,
+    "mfdIdentity": true,
+    "arn365140": true,
+    "standardRiskWarning": true,
+    "liveRouteProbe": true,
+    "dependencyAudit": false
+  },
+  "dependencyAudit": {
+    "counts": {
+      "info": 0,
+      "low": 1,
+      "moderate": 2,
+      "high": 12,
+      "critical": 1,
+      "total": 16
+    },
+    "total": 32
+  },
+  "routeResults": [
+    {
+      "route": "/",
+      "required": true,
+      "status": 200,
+      "ok": true,
+      "durationMs": 1085,
+      "findings": []
+    },
+    {
+      "route": "/privacy",
+      "required": true,
+      "status": 200,
+      "ok": true,
+      "durationMs": 205,
+      "findings": []
+    },
+    {
+      "route": "/disclosures",
+      "required": true,
+      "status": 200,
+      "ok": true,
+      "durationMs": 209,
+      "findings": []
+    },
+    {
+      "route": "/services",
+      "required": true,
+      "status": 200,
+      "ok": true,
+      "durationMs": 214,
+      "findings": []
+    },
+    {
+      "route": "/calculators/lumpsum",
+      "required": false,
+      "status": 200,
+      "ok": true,
+      "durationMs": 203,
+      "findings": []
+    },
+    {
+      "route": "/calculators",
+      "required": false,
+      "status": 200,
+      "ok": true,
+      "durationMs": 202,
+      "findings": []
+    },
+    {
+      "route": "/calculators/swp",
+      "required": false,
+      "status": 200,
+      "ok": true,
+      "durationMs": 201,
+      "findings": []
+    }
+  ],
+  "findings": [
+    {
+      "severity": "critical",
+      "rule": "dependencies.high-or-critical-vulnerabilities",
+      "file": "npm-audit.json"
+    }
+  ],
+  "status": "FAIL"
+}

@@ -47,12 +47,12 @@ export default function ChildEducationResults({
       icon: <TrendingUp className="h-7 w-7" />,
     },
     {
-      title: "Required Monthly SIP",
+      title: "Illustrative Monthly SIP",
       value: formatCurrency(monthlySIP),
       icon: <PiggyBank className="h-7 w-7" />,
     },
     {
-      title: "Required One-Time Investment",
+      title: "Illustrative One-Time Investment",
       value: formatCurrency(lumpsumRequired),
       icon: <PiggyBank className="h-7 w-7" />,
     },
@@ -61,7 +61,7 @@ export default function ChildEducationResults({
   return (
     <section className="mt-16">
       <h2 className="text-3xl font-bold text-slate-900">
-        Education Planning Summary
+        Education Cost Illustration Summary
       </h2>
 
       <p className="mt-2 text-slate-600">

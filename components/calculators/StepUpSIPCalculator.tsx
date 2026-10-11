@@ -168,9 +168,9 @@ export default function StepUpSIPCalculator() {
             </h1>
 
             <p className="section-subtitle mx-auto">
-              Estimate how increasing your SIP
-              contribution every year may affect
-              your long-term investment corpus.
+              Explore a hypothetical illustration of how increasing a monthly
+              SIP contribution each year may affect the projected value.
+              Assumed returns are not forecasts or guarantees.
             </p>
           </div>
 
@@ -190,7 +190,7 @@ export default function StepUpSIPCalculator() {
                 </p>
 
                 <h2 className="mt-2 text-2xl font-bold text-slate-900">
-                  Plan Your Step-Up SIP
+                  Explore a Step-Up SIP Investment Illustration
                 </h2>
 
                 <p className="mt-2 text-sm leading-6 text-slate-500">
@@ -258,11 +258,11 @@ export default function StepUpSIPCalculator() {
               </div>
 
               {/* ==================================================
-                  EXPECTED ANNUAL RETURN
+                  ILLUSTRATIVE RETURN ASSUMPTION
               ================================================== */}
               <div className="mb-8">
                 <CalculatorInput
-                  label="Assumed Annual Return (Illustrative)"
+                  label="Illustrative Return Assumption"
                   value={annualReturn}
                   min={1}
                   max={20}
@@ -314,7 +314,7 @@ export default function StepUpSIPCalculator() {
 
                 <div className="rounded-2xl border border-emerald-100 bg-white p-5 shadow-sm">
                   <p className="text-sm font-medium text-slate-500">
-                    Projected Value
+                    Illustrative Future Value
                   </p>
 
                   <p className="mt-2 text-2xl font-bold text-emerald-800">
@@ -476,7 +476,7 @@ export default function StepUpSIPCalculator() {
                         </th>
 
                         <th className="px-5 py-4">
-                          Projected Value
+                          Illustrative Future Value
                         </th>
                       </tr>
                     </thead>
@@ -649,9 +649,11 @@ export default function StepUpSIPCalculator() {
             </p>
 
             <p className="mt-3 text-xs leading-5 text-slate-600">
-              The calculations shown are illustrative
-              estimates based on the assumptions entered.
-              Mutual Fund investments are subject to market risks, read all scheme related documents carefully. Past performance does not indicate future performance. Actual returns may differ from the assumptions used in this calculator.
+              These figures are hypothetical illustrations based on the starting
+              monthly SIP, annual step-up, selected period and assumed annual
+              return. They are not forecasts or guarantees; actual outcomes may
+              differ. Mutual Fund investments are subject to market risks, read
+              all scheme related documents carefully.
             </p>
 
           </div>
@@ -696,14 +698,12 @@ export default function StepUpSIPCalculator() {
             </h3>
 
             <p className="text-sm leading-7 text-slate-600">
-              This calculator provides illustrative
-              estimates based on the assumptions entered
-              by the user and an assumed rate of return.
-              Actual investment outcomes may differ
-              depending on market performance. Mutual
-              Fund investments are subject to market
-              risks. Please read all scheme-related
-              documents carefully before investing.
+              This calculator provides hypothetical estimates based on the
+              starting monthly contribution, annual step-up, selected period
+              and assumed annual return. The assumed return is not a forecast
+              or guarantee. Actual investment outcomes may differ.
+
+              Mutual Fund investments are subject to market risks, read all scheme related documents carefully.
             </p>
 
           </div>

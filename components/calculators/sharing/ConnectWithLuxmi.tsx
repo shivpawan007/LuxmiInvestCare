@@ -76,7 +76,7 @@ Report: ${reportTitle}
 
 Investment: ${formatINR(investment)}
 Investment Period: ${years} Years
-Expected Return Assumption: ${annualReturn}%
+Assumed Annual Return (Illustrative): ${annualReturn}%
 Illustrative Returns: ${formatINR(estimatedReturns)}
 Illustrative Projected Value: ${formatINR(maturityValue)}
 
@@ -111,7 +111,7 @@ I would like information related to this investor education illustration.
 Report: ${reportTitle}
 Investment: ${formatINR(investment)}
 Investment Period: ${years} Years
-Expected Return Assumption: ${annualReturn}%
+Assumed Annual Return (Illustrative): ${annualReturn}%
 Illustrative Returns: ${formatINR(estimatedReturns)}
 Illustrative Projected Value: ${formatINR(maturityValue)}
 

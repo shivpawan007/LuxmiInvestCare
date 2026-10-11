@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
     cpus: 1,
   },
   typescript: {
-    ignoreBuildErrors: true,
+    ignoreBuildErrors: false,
   },
 };
 
