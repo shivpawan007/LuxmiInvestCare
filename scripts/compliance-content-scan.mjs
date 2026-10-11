@@ -97,7 +97,7 @@ const requiredContent = [
       "AMFI-registered Mutual Fund Distributor",
       "ARN: 365140",
       "https://scores.sebi.gov.in/",
-      STANDARD_WARNING,
+      "MutualFundRiskWarning",
     ],
   },
   {
