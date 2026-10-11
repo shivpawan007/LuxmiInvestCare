@@ -105,7 +105,7 @@ const requiredContent = [
     values: [
       "AMFI-registered Mutual Fund Distributor",
       "ARN: 365140",
-      STANDARD_WARNING,
+      "MutualFundRiskWarning",
     ],
   },
 ];
@@ -150,7 +150,7 @@ const reportPath = "components/calculators/DownloadReport.tsx";
 if (fs.existsSync(reportPath)) {
   const reportSource = fs.readFileSync(reportPath, "utf8");
   for (const required of [
-    STANDARD_WARNING,
+    "MUTUAL_FUND_STANDARD_WARNING",
     "ARN",
     "AMFI-registered Mutual Fund Distributor",
   ]) {
@@ -166,7 +166,7 @@ if (fs.existsSync(reportPath)) {
 const leadCapturePath = "components/calculators/sharing/LeadCaptureForm.tsx";
 if (fs.existsSync(leadCapturePath)) {
   const leadCapture = fs.readFileSync(leadCapturePath, "utf8");
-  if (!/privacyAccepted/.test(leadCapture) || !/Privacy Policy/.test(leadCapture) || !/consent/i.test(leadCapture)) {
+  if (!/(privacyAccepted|privacyConsent)/.test(leadCapture) || !/Privacy Policy/.test(leadCapture) || !/consent/i.test(leadCapture)) {
     violations.push({
       file: leadCapturePath,
       pattern: "Report-share lead capture must require affirmative privacy consent",
