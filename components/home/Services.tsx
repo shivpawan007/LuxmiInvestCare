@@ -4,9 +4,7 @@ import { motion } from "framer-motion";
 import {
     Landmark,
     PiggyBank,
-    ShieldCheck,
     GraduationCap,
-    HeartPulse,
     Users,
 } from "lucide-react";
 
@@ -22,18 +20,6 @@ const services = [
         title: "SIP Investments",
         description:
             "Educational support to help investors understand Systematic Investment Plans, regular investing and the effect of contribution amount and investment period.",
-    },
-    {
-        icon: ShieldCheck,
-        title: "Life Insurance Information",
-        description:
-            "Educational information about life insurance products, policy features and the importance of understanding applicable terms and conditions.",
-    },
-    {
-        icon: HeartPulse,
-        title: "Health Insurance Information",
-        description:
-            "Educational information about health insurance products, coverage considerations and the importance of understanding applicable policy terms and conditions.",
     },
     {
         icon: GraduationCap,
@@ -77,7 +63,7 @@ export default function Services() {
                     </h2>
 
                     <p className="section-subtitle mx-auto">
-                        Explore mutual funds, SIP investments, insurance information and investor education resources designed
+                        Explore mutual funds, SIP investments and investor education resources designed
                         to help investors understand products, risks and
                         investing concepts.
                     </p>
