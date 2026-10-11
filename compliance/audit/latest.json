@@ -1,8 +1,8 @@
 {
   "auditVersion": "2.1",
   "auditType": "weekly-random-compliance",
-  "generatedAt": "2026-10-05T20:41:14.120Z",
-  "commit": "4fc0d424b0654551eab03789e0c826667a101304",
+  "generatedAt": "2026-10-11T16:32:02.753Z",
+  "commit": "33ce0d652365b8c4f8f71000829cfd506a02c0a0",
   "branch": "compliance-v1.1-hardening",
   "baseUrl": "https://luxmiinvestcare.com",
   "sourceFilesChecked": 128,
@@ -15,41 +15,41 @@
   ],
   "randomSample": {
     "sourceFiles": [
-      "app/admin/account/page.tsx",
-      "components/calculators/ChildEducationInputs.tsx",
-      "components/calculators/sharing/ReportShareDialog.tsx",
-      "lib/utils.ts",
-      "app/admin/leads/[id]/page.tsx",
-      "components/ui/accordion.tsx",
-      "lib/auth.ts",
-      "components/calculators/SIPSummaryCard.tsx"
+      "lib/education.ts",
+      "app/calculators/SIPChart.tsx",
+      "components/calculators/CalculatorCompare.tsx",
+      "components/calculators/SIPDisclaimer.tsx",
+      "app/admin/compliance/page.tsx",
+      "components/compliance/MutualFundRiskWarning.tsx",
+      "components/ui/avatar.tsx",
+      "components/calculators/sharing/ReportShareDialog.tsx"
     ],
     "routes": [
+      "/about",
+      "/calculators/goal-planner",
+      "/calculators",
       "/calculators/lumpsum",
-      "/investor-education",
-      "/contact",
-      "/calculators/swp",
-      "/education"
+      "/services"
     ]
   },
   "checks": {
-    "forbiddenPromotionalLanguage": false,
+    "forbiddenPromotionalLanguage": true,
     "mfdIdentity": true,
     "arn365140": true,
     "standardRiskWarning": true,
-    "liveRouteProbe": false,
+    "liveRouteProbe": true,
     "dependencyAudit": false
   },
   "dependencyAudit": {
     "counts": {
       "info": 0,
       "low": 1,
-      "moderate": 1,
-      "high": 8,
-      "critical": 0,
-      "total": 10
+      "moderate": 2,
+      "high": 12,
+      "critical": 1,
+      "total": 16
     },
-    "total": 20
+    "total": 32
   },
   "routeResults": [
     {
@@ -57,51 +57,55 @@
       "required": true,
       "status": 200,
       "ok": true,
-      "durationMs": 1187,
-      "findings": [
-        {
-          "severity": "high",
-          "rule": "promotion.testimonial",
-          "route": "/"
-        }
-      ]
+      "durationMs": 1150,
+      "findings": []
     },
     {
       "route": "/privacy",
       "required": true,
-      "status": 404,
-      "ok": false,
-      "durationMs": 231,
-      "findings": [
-        {
-          "severity": "high",
-          "rule": "live.required-route-not-ok",
-          "route": "/privacy",
-          "status": 404
-        }
-      ]
+      "status": 200,
+      "ok": true,
+      "durationMs": 222,
+      "findings": []
     },
     {
       "route": "/disclosures",
       "required": true,
-      "status": 404,
-      "ok": false,
-      "durationMs": 211,
-      "findings": [
-        {
-          "severity": "high",
-          "rule": "live.required-route-not-ok",
-          "route": "/disclosures",
-          "status": 404
-        }
-      ]
+      "status": 200,
+      "ok": true,
+      "durationMs": 205,
+      "findings": []
     },
     {
       "route": "/services",
       "required": true,
       "status": 200,
       "ok": true,
-      "durationMs": 214,
+      "durationMs": 207,
+      "findings": []
+    },
+    {
+      "route": "/about",
+      "required": false,
+      "status": 200,
+      "ok": true,
+      "durationMs": 208,
+      "findings": []
+    },
+    {
+      "route": "/calculators/goal-planner",
+      "required": false,
+      "status": 200,
+      "ok": true,
+      "durationMs": 210,
+      "findings": []
+    },
+    {
+      "route": "/calculators",
+      "required": false,
+      "status": 200,
+      "ok": true,
+      "durationMs": 217,
       "findings": []
     },
     {
@@ -109,39 +113,7 @@
       "required": false,
       "status": 200,
       "ok": true,
-      "durationMs": 215,
-      "findings": []
-    },
-    {
-      "route": "/investor-education",
-      "required": false,
-      "status": 200,
-      "ok": true,
-      "durationMs": 215,
-      "findings": []
-    },
-    {
-      "route": "/contact",
-      "required": false,
-      "status": 200,
-      "ok": true,
-      "durationMs": 214,
-      "findings": []
-    },
-    {
-      "route": "/calculators/swp",
-      "required": false,
-      "status": 200,
-      "ok": true,
-      "durationMs": 212,
-      "findings": []
-    },
-    {
-      "route": "/education",
-      "required": false,
-      "status": 200,
-      "ok": true,
-      "durationMs": 218,
+      "durationMs": 208,
       "findings": []
     }
   ],
@@ -150,23 +122,6 @@
       "severity": "critical",
       "rule": "dependencies.high-or-critical-vulnerabilities",
       "file": "npm-audit.json"
-    },
-    {
-      "severity": "high",
-      "rule": "promotion.testimonial",
-      "route": "/"
-    },
-    {
-      "severity": "high",
-      "rule": "live.required-route-not-ok",
-      "route": "/privacy",
-      "status": 404
-    },
-    {
-      "severity": "high",
-      "rule": "live.required-route-not-ok",
-      "route": "/disclosures",
-      "status": 404
     }
   ],
   "status": "FAIL"
