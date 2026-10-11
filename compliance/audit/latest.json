@@ -1,8 +1,8 @@
 {
   "auditVersion": "2.1",
   "auditType": "weekly-random-compliance",
-  "generatedAt": "2026-10-11T16:38:45.808Z",
-  "commit": "0b2fdfe4339455a1b6152da598eb687cc21ef934",
+  "generatedAt": "2026-10-11T16:41:25.520Z",
+  "commit": "857dcbc8f8eb0a78fd10e34fff44c549f4cf289f",
   "branch": "compliance-v1.1-hardening",
   "baseUrl": "https://luxmiinvestcare.com",
   "sourceFilesChecked": 128,
@@ -15,21 +15,21 @@
   ],
   "randomSample": {
     "sourceFiles": [
-      "app/investor-education/page.tsx",
-      "components/home/InvestorEducationApproach.tsx",
-      "app/admin/login/page.tsx",
-      "components/home/InvestorEducation.tsx",
-      "components/calculators/LumpsumCalculator.tsx",
-      "components/home/WhyChoose.tsx",
-      "app/api/auth/change-password/route.ts",
-      "components/layout/AppShell.tsx"
+      "app/api/auth/me/route.ts",
+      "components/calculators/ChildEducationPlanner.tsx",
+      "components/calculators/SIPSummary.tsx",
+      "app/calculators/goal-planner/page.tsx",
+      "components/calculators/sharing/LeadCaptureForm.tsx",
+      "components/layout/AppShell.tsx",
+      "app/admin/leads/page.tsx",
+      "components/calculators/CalculatorResultCard.tsx"
     ],
     "routes": [
-      "/calculators/sip",
+      "/contact",
       "/",
-      "/investor-education",
       "/about",
-      "/disclosures"
+      "/calculators/step-up-sip",
+      "/calculators/education"
     ]
   },
   "checks": {
@@ -57,7 +57,7 @@
       "required": true,
       "status": 200,
       "ok": true,
-      "durationMs": 1181,
+      "durationMs": 1256,
       "findings": []
     },
     {
@@ -65,7 +65,7 @@
       "required": true,
       "status": 200,
       "ok": true,
-      "durationMs": 216,
+      "durationMs": 241,
       "findings": []
     },
     {
@@ -73,7 +73,7 @@
       "required": true,
       "status": 200,
       "ok": true,
-      "durationMs": 212,
+      "durationMs": 240,
       "findings": []
     },
     {
@@ -81,23 +81,15 @@
       "required": true,
       "status": 200,
       "ok": true,
-      "durationMs": 212,
+      "durationMs": 241,
       "findings": []
     },
     {
-      "route": "/calculators/sip",
+      "route": "/contact",
       "required": false,
       "status": 200,
       "ok": true,
-      "durationMs": 212,
-      "findings": []
-    },
-    {
-      "route": "/investor-education",
-      "required": false,
-      "status": 200,
-      "ok": true,
-      "durationMs": 211,
+      "durationMs": 241,
       "findings": []
     },
     {
@@ -105,7 +97,23 @@
       "required": false,
       "status": 200,
       "ok": true,
-      "durationMs": 210,
+      "durationMs": 242,
+      "findings": []
+    },
+    {
+      "route": "/calculators/step-up-sip",
+      "required": false,
+      "status": 200,
+      "ok": true,
+      "durationMs": 243,
+      "findings": []
+    },
+    {
+      "route": "/calculators/education",
+      "required": false,
+      "status": 200,
+      "ok": true,
+      "durationMs": 248,
       "findings": []
     }
   ],
