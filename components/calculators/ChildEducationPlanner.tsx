@@ -98,7 +98,7 @@ export default function ChildEducationPlanner() {
           </h1>
 
           <p className="section-subtitle">
-            Explore the illustrative future cost of education and the investment amounts shown under the assumptions entered.
+            This tool illustrates possible future education costs using the inflation assumption entered, alongside hypothetical investment calculations. Return assumptions are not forecasts or guarantees; actual costs and investment outcomes may differ.
           </p>
 
         </div>
