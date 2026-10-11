@@ -169,9 +169,9 @@ export default function StepUpSIPCalculator() {
             </h1>
 
             <p className="section-subtitle mx-auto">
-              Estimate how increasing your SIP
-              contribution every year may affect
-              your long-term investment corpus.
+              Explore a hypothetical illustration of how increasing a monthly
+              SIP contribution each year may affect the projected value.
+              Assumed returns are not forecasts or guarantees.
             </p>
           </div>
 
