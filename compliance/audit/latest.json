@@ -1,8 +1,8 @@
 {
   "auditVersion": "2.1",
   "auditType": "weekly-random-compliance",
-  "generatedAt": "2026-10-11T16:32:02.753Z",
-  "commit": "33ce0d652365b8c4f8f71000829cfd506a02c0a0",
+  "generatedAt": "2026-10-11T16:38:45.808Z",
+  "commit": "0b2fdfe4339455a1b6152da598eb687cc21ef934",
   "branch": "compliance-v1.1-hardening",
   "baseUrl": "https://luxmiinvestcare.com",
   "sourceFilesChecked": 128,
@@ -15,21 +15,21 @@
   ],
   "randomSample": {
     "sourceFiles": [
-      "lib/education.ts",
-      "app/calculators/SIPChart.tsx",
-      "components/calculators/CalculatorCompare.tsx",
-      "components/calculators/SIPDisclaimer.tsx",
-      "app/admin/compliance/page.tsx",
-      "components/compliance/MutualFundRiskWarning.tsx",
-      "components/ui/avatar.tsx",
-      "components/calculators/sharing/ReportShareDialog.tsx"
+      "app/investor-education/page.tsx",
+      "components/home/InvestorEducationApproach.tsx",
+      "app/admin/login/page.tsx",
+      "components/home/InvestorEducation.tsx",
+      "components/calculators/LumpsumCalculator.tsx",
+      "components/home/WhyChoose.tsx",
+      "app/api/auth/change-password/route.ts",
+      "components/layout/AppShell.tsx"
     ],
     "routes": [
+      "/calculators/sip",
+      "/",
+      "/investor-education",
       "/about",
-      "/calculators/goal-planner",
-      "/calculators",
-      "/calculators/lumpsum",
-      "/services"
+      "/disclosures"
     ]
   },
   "checks": {
@@ -57,7 +57,7 @@
       "required": true,
       "status": 200,
       "ok": true,
-      "durationMs": 1150,
+      "durationMs": 1181,
       "findings": []
     },
     {
@@ -65,7 +65,7 @@
       "required": true,
       "status": 200,
       "ok": true,
-      "durationMs": 222,
+      "durationMs": 216,
       "findings": []
     },
     {
@@ -73,7 +73,7 @@
       "required": true,
       "status": 200,
       "ok": true,
-      "durationMs": 205,
+      "durationMs": 212,
       "findings": []
     },
     {
@@ -81,7 +81,23 @@
       "required": true,
       "status": 200,
       "ok": true,
-      "durationMs": 207,
+      "durationMs": 212,
+      "findings": []
+    },
+    {
+      "route": "/calculators/sip",
+      "required": false,
+      "status": 200,
+      "ok": true,
+      "durationMs": 212,
+      "findings": []
+    },
+    {
+      "route": "/investor-education",
+      "required": false,
+      "status": 200,
+      "ok": true,
+      "durationMs": 211,
       "findings": []
     },
     {
@@ -89,31 +105,7 @@
       "required": false,
       "status": 200,
       "ok": true,
-      "durationMs": 208,
-      "findings": []
-    },
-    {
-      "route": "/calculators/goal-planner",
-      "required": false,
-      "status": 200,
-      "ok": true,
       "durationMs": 210,
-      "findings": []
-    },
-    {
-      "route": "/calculators",
-      "required": false,
-      "status": 200,
-      "ok": true,
-      "durationMs": 217,
-      "findings": []
-    },
-    {
-      "route": "/calculators/lumpsum",
-      "required": false,
-      "status": 200,
-      "ok": true,
-      "durationMs": 208,
       "findings": []
     }
   ],
