@@ -218,7 +218,7 @@ export default function LeadCaptureForm({
                 Your details are used only to enable the selected report-sharing
                 action and respond to your investor education and information
                 enquiry. See the{" "}
-                <a href="/privacy-policy" className="font-semibold text-green-700 underline">
+                <a href="/privacy" className="font-semibold text-green-700 underline">
                     Privacy Policy
                 </a>.
             </p>
