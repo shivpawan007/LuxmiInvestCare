@@ -1,5 +1,5 @@
-import GoalPlanner from "@/components/calculators/GoalPlanner";
+import { redirect } from "next/navigation";
 
-export default function Page() {
-    return <GoalPlanner />;
+export default function GoalPlannerPage() {
+    redirect("/calculators");
 }
