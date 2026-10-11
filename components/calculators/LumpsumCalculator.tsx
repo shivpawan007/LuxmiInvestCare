@@ -110,8 +110,7 @@ export default function LumpsumCalculator() {
                     </h1>
 
                     <p className="section-subtitle">
-                        Estimate the future value of a one-time
-                        investment using compound growth
+                        Explore an illustrative future value for a one-time investment using the amount, period and assumed annual return you enter. The return assumption is hypothetical, not a forecast or guarantee.
                         assumptions.
                     </p>
 
@@ -386,7 +385,7 @@ export default function LumpsumCalculator() {
                 <div className="mt-10 rounded-2xl border border-slate-200 bg-slate-50 p-6">
                     <h3 className="mb-3 text-lg font-bold text-slate-900">Investor Education Disclaimer</h3>
                     <p className="mb-4 text-sm leading-7 text-slate-600">
-                        This calculator is an educational illustration based on the assumptions entered by the user. Actual investment outcomes may differ.
+                        Illustration only: this calculation assumes a one-time investment and the selected annual return and period. The return assumption is hypothetical, not a forecast or guarantee. Actual investment outcomes may differ.
                     </p>
                     <MutualFundRiskWarning />
                 </div>
