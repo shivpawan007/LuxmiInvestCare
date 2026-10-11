@@ -1,8 +1,8 @@
 {
   "auditVersion": "2.1",
   "auditType": "weekly-random-compliance",
-  "generatedAt": "2026-10-11T16:48:01.265Z",
-  "commit": "2ade02a65153080c68af44738414c3158a1c81cd",
+  "generatedAt": "2026-10-11T16:59:25.433Z",
+  "commit": "fd384cdb1f483599feab2dc8b042e36b275d7e76",
   "branch": "compliance-v1.1-hardening",
   "baseUrl": "https://luxmiinvestcare.com",
   "sourceFilesChecked": 128,
@@ -15,21 +15,21 @@
   ],
   "randomSample": {
     "sourceFiles": [
-      "app/manifest.ts",
-      "app/education/page.tsx",
-      "lib/swp.ts",
-      "components/compliance/MutualFundRiskWarning.tsx",
-      "lib/utils.ts",
-      "components/calculators/SIPCalculator.tsx",
       "components/common/PrimaryButton.tsx",
-      "app/calculators/page.tsx"
+      "components/ui/input.tsx",
+      "app/calculators/lumpsum/page.tsx",
+      "components/ui/card.tsx",
+      "app/robots.ts",
+      "components/calculators/ChildEducationInputs.tsx",
+      "app/about/page.tsx",
+      "components/calculators/LumpsumGrowthTable.tsx"
     ],
     "routes": [
-      "/",
-      "/calculators/swp",
       "/calculators/lumpsum",
+      "/calculators",
       "/services",
-      "/education"
+      "/calculators/swp",
+      "/"
     ]
   },
   "checks": {
@@ -57,7 +57,7 @@
       "required": true,
       "status": 200,
       "ok": true,
-      "durationMs": 1134,
+      "durationMs": 1085,
       "findings": []
     },
     {
@@ -73,7 +73,7 @@
       "required": true,
       "status": 200,
       "ok": true,
-      "durationMs": 201,
+      "durationMs": 209,
       "findings": []
     },
     {
@@ -81,15 +81,7 @@
       "required": true,
       "status": 200,
       "ok": true,
-      "durationMs": 201,
-      "findings": []
-    },
-    {
-      "route": "/calculators/swp",
-      "required": false,
-      "status": 200,
-      "ok": true,
-      "durationMs": 201,
+      "durationMs": 214,
       "findings": []
     },
     {
@@ -101,11 +93,19 @@
       "findings": []
     },
     {
-      "route": "/education",
+      "route": "/calculators",
       "required": false,
       "status": 200,
       "ok": true,
       "durationMs": 202,
+      "findings": []
+    },
+    {
+      "route": "/calculators/swp",
+      "required": false,
+      "status": 200,
+      "ok": true,
+      "durationMs": 201,
       "findings": []
     }
   ],
