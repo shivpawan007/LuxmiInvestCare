@@ -8,6 +8,7 @@ on:
   push:
     branches:
       - compliance-v1.1-hardening
+      - compliance-v1-1-hardening
   workflow_dispatch:
 
 permissions:
