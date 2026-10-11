@@ -67,10 +67,7 @@ export default function SIPCalculator() {
                     </h1>
 
                     <p className="section-subtitle">
-                        Estimate the potential value of your Systematic
-                        Investment Plan (SIP) based on your monthly
-                        investment, assumed annual return and
-                        investment period.
+                        Explore an illustrative future value for monthly SIP contributions using the monthly amount, investment period and assumed annual return you enter. The return assumption is hypothetical, not a forecast or guarantee.
                     </p>
 
                 </div>
@@ -240,7 +237,7 @@ export default function SIPCalculator() {
                     </h3>
 
                     <p className="text-sm leading-7 text-slate-600">
-                        The SIP Calculator provides an illustrative estimate based on the values entered by the user and an assumed annual return. Actual investment outcomes may differ depending on market performance.\n\nMutual Fund investments are subject to market risks, read all scheme related documents carefully.
+                        Illustration only: results depend on the monthly contribution, selected period and assumed annual return. The assumption is hypothetical, not a forecast or guarantee. Actual investment outcomes may differ. Mutual Fund investments are subject to market risks, read all scheme related documents carefully.
                     </p>
 
                 </div>
