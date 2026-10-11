@@ -1,5 +1,5 @@
-import ChildEducationPlanner from "@/components/calculators/ChildEducationPlanner";
+import { redirect } from "next/navigation";
 
-export default function ChildEducationPlannerPage() {
-  return <ChildEducationPlanner />;
+export default function EducationCalculatorPage() {
+    redirect("/calculators");
 }
