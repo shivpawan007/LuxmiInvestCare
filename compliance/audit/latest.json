@@ -1,8 +1,8 @@
 {
   "auditVersion": "2.1",
   "auditType": "weekly-random-compliance",
-  "generatedAt": "2026-10-11T16:42:48.676Z",
-  "commit": "8562212ee715bbbf435b75a64c7d109377914d97",
+  "generatedAt": "2026-10-11T16:48:01.265Z",
+  "commit": "2ade02a65153080c68af44738414c3158a1c81cd",
   "branch": "compliance-v1.1-hardening",
   "baseUrl": "https://luxmiinvestcare.com",
   "sourceFilesChecked": 128,
@@ -15,20 +15,20 @@
   ],
   "randomSample": {
     "sourceFiles": [
-      "components/calculators/CalculatorInput.tsx",
-      "components/common/SocialLinks.tsx",
-      "components/calculators/SIPCalculator.tsx",
-      "app/investor-education/page.tsx",
+      "app/manifest.ts",
+      "app/education/page.tsx",
+      "lib/swp.ts",
       "components/compliance/MutualFundRiskWarning.tsx",
-      "components/calculators/sharing/LeadCaptureForm.tsx",
-      "components/calculators/ChildEducationPlanner.tsx",
-      "app/manifest.ts"
+      "lib/utils.ts",
+      "components/calculators/SIPCalculator.tsx",
+      "components/common/PrimaryButton.tsx",
+      "app/calculators/page.tsx"
     ],
     "routes": [
-      "/services",
-      "/calculators/goal-planner",
       "/",
-      "/investor-education",
+      "/calculators/swp",
+      "/calculators/lumpsum",
+      "/services",
       "/education"
     ]
   },
@@ -57,7 +57,7 @@
       "required": true,
       "status": 200,
       "ok": true,
-      "durationMs": 1229,
+      "durationMs": 1134,
       "findings": []
     },
     {
@@ -65,7 +65,7 @@
       "required": true,
       "status": 200,
       "ok": true,
-      "durationMs": 234,
+      "durationMs": 205,
       "findings": []
     },
     {
@@ -73,7 +73,7 @@
       "required": true,
       "status": 200,
       "ok": true,
-      "durationMs": 229,
+      "durationMs": 201,
       "findings": []
     },
     {
@@ -81,23 +81,23 @@
       "required": true,
       "status": 200,
       "ok": true,
-      "durationMs": 237,
+      "durationMs": 201,
       "findings": []
     },
     {
-      "route": "/calculators/goal-planner",
+      "route": "/calculators/swp",
       "required": false,
       "status": 200,
       "ok": true,
-      "durationMs": 229,
+      "durationMs": 201,
       "findings": []
     },
     {
-      "route": "/investor-education",
+      "route": "/calculators/lumpsum",
       "required": false,
       "status": 200,
       "ok": true,
-      "durationMs": 229,
+      "durationMs": 203,
       "findings": []
     },
     {
@@ -105,7 +105,7 @@
       "required": false,
       "status": 200,
       "ok": true,
-      "durationMs": 229,
+      "durationMs": 202,
       "findings": []
     }
   ],
