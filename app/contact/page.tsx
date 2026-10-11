@@ -394,7 +394,7 @@ ${message.trim()}
                                         the information submitted here to respond
                                         to my enquiry, as described in the{" "}
                                         <a
-                                            href="/privacy-policy"
+                                            href="/privacy"
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             className="font-semibold text-green-700 underline"
@@ -418,7 +418,7 @@ ${message.trim()}
                                     Your details are used to respond to your
                                     investor education and information enquiry.
                                     You can read the full{" "}
-                                    <a href="/privacy-policy" className="font-semibold text-green-700 underline">
+                                    <a href="/privacy" className="font-semibold text-green-700 underline">
                                         Privacy Policy
                                     </a>{" "}
                                     before submitting.
