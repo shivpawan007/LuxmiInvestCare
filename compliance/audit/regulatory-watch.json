@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-20T06:19:52.816Z",
+  "generatedAt": "2026-10-20T08:31:24.065Z",
   "purpose": "Detect changes in official SEBI/AMFI sources so MFD website rules can be reviewed before publication.",
   "automaticPolicy": "A source change triggers review; the workflow must not silently rewrite compliance content or make legal interpretations.",
   "sources": [
@@ -14,7 +14,7 @@
         "new circular date",
         "new MFD guidance"
       ],
-      "checkedAt": "2026-10-20T06:19:45.053Z",
+      "checkedAt": "2026-10-20T08:31:17.798Z",
       "finalUrl": "https://www.amfiindia.com/distributor/amfi-circulars",
       "status": 200,
       "ok": true,
@@ -32,7 +32,7 @@
         "code of conduct changes",
         "advertising and sales literature changes"
       ],
-      "checkedAt": "2026-10-20T06:19:46.748Z",
+      "checkedAt": "2026-10-20T08:31:18.978Z",
       "finalUrl": "https://www.amfiindia.com/uploads/AMFI_Master_Cicular_for_MF_Ds_3c7f5ee44f.pdf",
       "status": 200,
       "ok": true,
@@ -49,7 +49,7 @@
         "code of conduct changes",
         "MFD obligations"
       ],
-      "checkedAt": "2026-10-20T06:19:48.077Z",
+      "checkedAt": "2026-10-20T08:31:20.293Z",
       "finalUrl": "https://www.amfiindia.com/distributor/mutual-funds-introduction?zoneName=CodeOfConduct",
       "status": 200,
       "ok": true,
@@ -69,7 +69,7 @@
         "scheme-specific recommendations",
         "advertising and social media requirements"
       ],
-      "checkedAt": "2026-10-20T06:19:48.499Z",
+      "checkedAt": "2026-10-20T08:31:20.493Z",
       "finalUrl": "https://www.amfiindia.com/Themes/Theme1/downloads/FAQsonRoleofMFDsAdvts.pdf",
       "status": 200,
       "ok": true,
@@ -86,13 +86,13 @@
         "Mutual Funds Regulations amendments",
         "new applicable regulations"
       ],
-      "checkedAt": "2026-10-20T06:19:50.664Z",
+      "checkedAt": "2026-10-20T08:31:23.179Z",
       "finalUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=6&smid=0&ssid=3",
       "status": 200,
       "ok": true,
       "contentType": "text/html;charset=UTF-8",
       "bytes": 43421,
-      "sha256": "78d55daf982f8ff8e1b58507caab7d586a622b571682f0ec8a6040e54f9ad7e7"
+      "sha256": "0a5163a8d05fa6ce00a6e90876cc617e21c1bcee8b8ea9fe8f1ee3942c933b3b"
     },
     {
       "id": "sebi-mf-master-circulars",
@@ -103,13 +103,13 @@
         "new or amended Mutual Fund master circular",
         "applicable distributor guidance"
       ],
-      "checkedAt": "2026-10-20T06:19:52.816Z",
+      "checkedAt": "2026-10-20T08:31:24.065Z",
       "finalUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=1&ssid=6",
       "status": 200,
       "ok": true,
       "contentType": "text/html;charset=UTF-8",
       "bytes": 40897,
-      "sha256": "766fc61c444f37152361fe0d9a962e0e2dff080f6451397c72b45872977a824d"
+      "sha256": "5f6d3339c3cc79f95d7ab72fb33344c6672c6a4ca0ba805d502a0f37aec2eb7e"
     }
   ],
   "changes": [
@@ -117,19 +117,19 @@
       "id": "sebi-regulations",
       "authority": "SEBI",
       "url": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=6&smid=0&ssid=3",
-      "previousSha256": "68694e6694237e3df243751a6878050fe9941be725eba445a4af694b53fecf18",
-      "currentSha256": "78d55daf982f8ff8e1b58507caab7d586a622b571682f0ec8a6040e54f9ad7e7",
-      "previousCheckedAt": "2026-10-19T08:51:21.511Z",
-      "currentCheckedAt": "2026-10-20T06:19:50.664Z"
+      "previousSha256": "78d55daf982f8ff8e1b58507caab7d586a622b571682f0ec8a6040e54f9ad7e7",
+      "currentSha256": "0a5163a8d05fa6ce00a6e90876cc617e21c1bcee8b8ea9fe8f1ee3942c933b3b",
+      "previousCheckedAt": "2026-10-20T06:19:50.664Z",
+      "currentCheckedAt": "2026-10-20T08:31:23.179Z"
     },
     {
       "id": "sebi-mf-master-circulars",
       "authority": "SEBI",
       "url": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=1&ssid=6",
-      "previousSha256": "9d7f8585c8dd162f898e27ba728e01fdc4d7018bf90223422a46a51a61c62ff8",
-      "currentSha256": "766fc61c444f37152361fe0d9a962e0e2dff080f6451397c72b45872977a824d",
-      "previousCheckedAt": "2026-10-19T08:51:22.714Z",
-      "currentCheckedAt": "2026-10-20T06:19:52.816Z"
+      "previousSha256": "766fc61c444f37152361fe0d9a962e0e2dff080f6451397c72b45872977a824d",
+      "currentSha256": "5f6d3339c3cc79f95d7ab72fb33344c6672c6a4ca0ba805d502a0f37aec2eb7e",
+      "previousCheckedAt": "2026-10-20T06:19:52.816Z",
+      "currentCheckedAt": "2026-10-20T08:31:24.065Z"
     }
   ],
   "failures": [],
