@@ -35,6 +35,12 @@ const services = [
         description:
             "General support for understanding product information, illustrations, application processes and investor-related documentation.",
     },
+    {
+        icon: ShieldCheck,
+        title: "Insurance through PBPartners",
+        description:
+            "Luxmi acts as an appointed POSP through Policybazaar Insurance Brokers Private Limited (PBPartners). Depending on product availability and POSP authorization, options may include life, health, motor, travel, commercial/business, micro and home insurance. Product terms, eligibility and coverage are set by the relevant insurer.",
+    },
 ];
 
 export default function ServicesPage() {
@@ -69,7 +75,7 @@ export default function ServicesPage() {
                         </h1>
 
                         <p className="mx-auto mt-8 max-w-3xl text-lg leading-8 text-green-100 lg:text-xl">
-                            Explore mutual funds, SIP investments, investor education resources and general product information designed to help you understand investing concepts and market risks.
+                            Explore mutual funds, SIP investments, insurance options through PBPartners, investor education resources and general product information.
                         </p>
 
                     </div>
@@ -141,6 +147,12 @@ export default function ServicesPage() {
                         })}
 
                     </div>
+
+                    <p className="mx-auto mt-8 max-w-4xl text-center text-sm leading-6 text-slate-600">
+                        Insurance is offered only for products available within Luxmi’s POSP
+                        authorization. Luxmi is not the insurer or the owner of the PBPartners
+                        platform. Review the insurer’s policy terms and disclosures before purchase.
+                    </p>
 
                 </div>
             </section>

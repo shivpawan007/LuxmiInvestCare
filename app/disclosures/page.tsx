@@ -24,7 +24,7 @@ export default function DisclosuresPage() {
                         investor grievance process.
                     </p>
                     <p className="mt-3 text-sm text-green-200">
-                        Last updated: 6 October 2026
+                        Last updated: 20 October 2026
                     </p>
                 </div>
             </section>
@@ -35,7 +35,7 @@ export default function DisclosuresPage() {
                         <section>
                             <h2 className="text-2xl font-bold text-slate-900">MFD identity</h2>
                             <p className="mt-3 leading-7">
-                                <strong>Luxmi InvestCare — AMFI-registered Mutual Fund Distributor | ARN: 365140.</strong>
+                                <strong>LUXMI (Luxmi InvestCare) — AMFI-registered Mutual Fund Distributor | ARN: 365140.</strong>
                             </p>
                             <p className="mt-3 leading-7">
                                 AMFI registration as a Mutual Fund Distributor does not by itself
@@ -90,21 +90,40 @@ export default function DisclosuresPage() {
                         <section>
                             <h2 className="text-2xl font-bold text-slate-900">Insurance information</h2>
                             <p className="mt-3 leading-7">
-                                References to insurance on this website are presented as information
-                                unless a separately disclosed and appropriately authorised service
-                                is identified. The appearance of insurance information on this website does not constitute a direction to purchase any insurance product.
+                                Luxmi acts as an appointed Point of Sales Person (POSP) through
+                                Policybazaar Insurance Brokers Private Limited (PBPartners), subject
+                                to the POSP appointment and the products authorized for POSP sale.
+                                Insurance product availability and eligibility depend on the insurer
+                                and the applicable product terms. Luxmi is not the insurer or the
+                                owner of the PBPartners platform.
+                            </p>
+                            <p className="mt-3 leading-7">
+                                Insurance services may include life, health, motor, travel,
+                                commercial/business, micro and home insurance, where the relevant
+                                product is available and within the POSP authorization. Review the
+                                insurer’s policy wording, exclusions, limits and other terms before
+                                purchase. Insurance information is not a guarantee of coverage or
+                                claim acceptance.
                             </p>
                         </section>
 
                         <section>
                             <h2 className="text-2xl font-bold text-slate-900">Investor grievance redressal</h2>
                             <p className="mt-3 leading-7">
-                                For a complaint relating to Luxmi InvestCare's mutual fund
-                                distribution activity, investors should first contact Luxmi
-                                InvestCare using the contact details on this website. If the
-                                grievance is not resolved through the concerned entity,
-                                investors may use SEBI's SCORES platform where the matter is
-                                within SCORES' scope.
+                                To raise a complaint about Luxmi InvestCare’s services, first
+                                contact Customer Support on WhatsApp at{" "}
+                                <a className="font-semibold text-green-700 underline" href="https://wa.me/919650060044">+91 96500 60044</a>.
+                                If it is not resolved, escalate by email to{" "}
+                                <a className="font-semibold text-green-700 underline" href="mailto:luxmishiv1307@gmail.com">luxmishiv1307@gmail.com</a>
+                                {" "}or call{" "}
+                                <a className="font-semibold text-green-700 underline" href="tel:+919953792864">+91 99537 92864</a>.
+                            </p>
+                            <p className="mt-3 leading-7">
+                                For a complaint relating to mutual fund distribution activity that
+                                remains unresolved, investors may use SEBI SCORES where the matter
+                                falls within its scope. Insurance complaints should also be raised
+                                with the relevant insurer or insurance intermediary through its
+                                applicable grievance process.
                             </p>
                             <p className="mt-3 leading-7">
                                 <a
@@ -118,7 +137,7 @@ export default function DisclosuresPage() {
                             </p>
                         </section>
 
-                                          <section>
+                        <section>
                             <h2 className="text-2xl font-bold text-slate-900">Standard mutual fund risk warning</h2>
                             <div className="mt-4 rounded-xl border border-slate-200 bg-slate-50 p-5">
                                 <MutualFundRiskWarning />

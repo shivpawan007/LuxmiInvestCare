@@ -5921,13 +5921,6 @@ export default function DownloadReport({
           69,
         );
 
-        const roi =
-          investedAmount === 0
-            ? 0
-            : (estimatedReturns /
-              investedAmount) *
-            100;
-
         const installments =
           calculatorType ===
             "sip"
@@ -5990,10 +5983,6 @@ export default function DownloadReport({
             formatCurrency(
               annualInvestment,
             ),
-          ],
-          [
-            "Illustrative Growth vs Investment",
-            `${roi.toFixed(1)}%`,
           ],
         ];
 
