@@ -1,8 +1,8 @@
 {
   "auditVersion": "3.0",
   "auditType": "weekly-random-compliance",
-  "generatedAt": "2026-10-22T08:36:59.757Z",
-  "commit": "21e7dbca72c91831e66c88c1ed55f86c621e0512",
+  "generatedAt": "2026-10-23T08:32:53.736Z",
+  "commit": "b57513eaece7229052a7e150955fe67c74804003",
   "branch": "main",
   "baseUrl": "https://www.luxmiinvestcare.com",
   "sourceFilesChecked": 115,
@@ -24,20 +24,20 @@
   ],
   "randomSample": {
     "sourceFiles": [
-      "app/sitemap.ts",
-      "app/manifest.ts",
-      "app/api/admin/leads/[id]/route.ts",
-      "components/calculators/SIPForm.tsx",
-      "app/loading.tsx",
-      "components/common/StatCard.tsx",
-      "components/calculators/SIPSummary.tsx",
-      "components/calculators/DownloadReport.tsx"
+      "app/api/admin/users/[id]/route.ts",
+      "components/layout/Header.tsx",
+      "components/ui/sheet.tsx",
+      "app/layout.tsx",
+      "components/ui/SectionHeading.tsx",
+      "components/calculators/CalculatorCTA.tsx",
+      "components/home/WhyChoose.tsx",
+      "components/common/SectionHeading.tsx"
     ],
     "routes": [
+      "/disclosures",
       "/calculators/sip",
-      "/calculators/step-up-sip",
+      "/contact",
       "/about",
-      "/privacy",
       "/investor-education"
     ]
   },
@@ -49,7 +49,7 @@
     "distributionRemunerationDisclosure": true,
     "standardRiskWarning": true,
     "liveRouteProbe": true,
-    "dependencyAudit": true
+    "dependencyAudit": false
   },
   "dependencyAudit": {
     "counts": {
@@ -57,10 +57,10 @@
       "low": 0,
       "moderate": 0,
       "high": 0,
-      "critical": 0,
-      "total": 0
+      "critical": 2,
+      "total": 2
     },
-    "total": 0
+    "total": 4
   },
   "routeResults": [
     {
@@ -68,7 +68,7 @@
       "required": true,
       "status": 200,
       "ok": true,
-      "durationMs": 2025,
+      "durationMs": 2066,
       "findings": []
     },
     {
@@ -76,7 +76,7 @@
       "required": true,
       "status": 200,
       "ok": true,
-      "durationMs": 237,
+      "durationMs": 271,
       "findings": []
     },
     {
@@ -84,7 +84,7 @@
       "required": true,
       "status": 200,
       "ok": true,
-      "durationMs": 238,
+      "durationMs": 294,
       "findings": []
     },
     {
@@ -92,7 +92,7 @@
       "required": true,
       "status": 200,
       "ok": true,
-      "durationMs": 255,
+      "durationMs": 263,
       "findings": []
     },
     {
@@ -100,7 +100,7 @@
       "required": true,
       "status": 200,
       "ok": true,
-      "durationMs": 326,
+      "durationMs": 263,
       "findings": [
         {
           "severity": "high",
@@ -114,7 +114,7 @@
       "required": true,
       "status": 200,
       "ok": true,
-      "durationMs": 250,
+      "durationMs": 265,
       "findings": []
     },
     {
@@ -122,7 +122,7 @@
       "required": true,
       "status": 200,
       "ok": true,
-      "durationMs": 236,
+      "durationMs": 273,
       "findings": []
     },
     {
@@ -130,7 +130,7 @@
       "required": true,
       "status": 200,
       "ok": true,
-      "durationMs": 241,
+      "durationMs": 265,
       "findings": []
     },
     {
@@ -138,7 +138,7 @@
       "required": true,
       "status": 200,
       "ok": true,
-      "durationMs": 237,
+      "durationMs": 264,
       "findings": []
     },
     {
@@ -146,7 +146,7 @@
       "required": true,
       "status": 200,
       "ok": true,
-      "durationMs": 237,
+      "durationMs": 277,
       "findings": []
     },
     {
@@ -154,7 +154,7 @@
       "required": true,
       "status": 200,
       "ok": true,
-      "durationMs": 232,
+      "durationMs": 260,
       "findings": []
     },
     {
@@ -162,7 +162,7 @@
       "required": true,
       "status": 200,
       "ok": true,
-      "durationMs": 240,
+      "durationMs": 266,
       "findings": []
     },
     {
@@ -170,11 +170,16 @@
       "required": true,
       "status": 200,
       "ok": true,
-      "durationMs": 233,
+      "durationMs": 258,
       "findings": []
     }
   ],
   "findings": [
+    {
+      "severity": "critical",
+      "rule": "dependencies.production-high-or-critical-vulnerabilities",
+      "file": "npm-audit.json"
+    },
     {
       "severity": "high",
       "rule": "promotion.return-on-investment",

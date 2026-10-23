@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-22T08:36:08.585Z",
+  "generatedAt": "2026-10-23T08:32:02.102Z",
   "purpose": "Detect changes in official SEBI/AMFI sources so MFD website rules can be reviewed before publication.",
   "automaticPolicy": "A source change triggers review; the workflow must not silently rewrite compliance content or make legal interpretations.",
   "sources": [
@@ -14,13 +14,13 @@
         "new circular date",
         "new MFD guidance"
       ],
-      "checkedAt": "2026-10-22T08:35:55.878Z",
+      "checkedAt": "2026-10-23T08:31:49.991Z",
       "finalUrl": "https://www.amfiindia.com/distributor/amfi-circulars",
       "status": 200,
       "ok": true,
       "contentType": "text/html; charset=utf-8",
-      "bytes": 210425,
-      "sha256": "71dfd1d1938aa2c9083e6762b9c9d82eb6a600796c3faaf565ab98fe61f5d7e1"
+      "bytes": 212716,
+      "sha256": "677d9620575ad7b579aeb9f965b9754428cf80bcb3dedac1dd0d6cb4298b3ee5"
     },
     {
       "id": "amfi-mfd-master-circular",
@@ -32,7 +32,7 @@
         "code of conduct changes",
         "advertising and sales literature changes"
       ],
-      "checkedAt": "2026-10-22T08:36:00.608Z",
+      "checkedAt": "2026-10-23T08:31:55.038Z",
       "finalUrl": "https://www.amfiindia.com/uploads/AMFI_Master_Cicular_for_MF_Ds_3c7f5ee44f.pdf",
       "status": 200,
       "ok": true,
@@ -49,13 +49,13 @@
         "code of conduct changes",
         "MFD obligations"
       ],
-      "checkedAt": "2026-10-22T08:36:01.873Z",
+      "checkedAt": "2026-10-23T08:31:56.776Z",
       "finalUrl": "https://www.amfiindia.com/distributor/mutual-funds-introduction?zoneName=CodeOfConduct",
       "status": 200,
       "ok": true,
       "contentType": "text/html; charset=utf-8",
-      "bytes": 170465,
-      "sha256": "5f42b9c1a3fde58c1db801b1e0130f40ab286fe94dcd3714a61c02e4ebbebde4"
+      "bytes": 172766,
+      "sha256": "6378b76ef24e20d79061ebfd369bb9910ce1e77cfab86a7c0812d94219f535eb"
     },
     {
       "id": "amfi-mfd-dos-donts",
@@ -69,7 +69,7 @@
         "scheme-specific recommendations",
         "advertising and social media requirements"
       ],
-      "checkedAt": "2026-10-22T08:36:03.516Z",
+      "checkedAt": "2026-10-23T08:31:58.310Z",
       "finalUrl": "https://www.amfiindia.com/Themes/Theme1/downloads/FAQsonRoleofMFDsAdvts.pdf",
       "status": 200,
       "ok": true,
@@ -86,13 +86,13 @@
         "Mutual Funds Regulations amendments",
         "new applicable regulations"
       ],
-      "checkedAt": "2026-10-22T08:36:06.832Z",
+      "checkedAt": "2026-10-23T08:32:00.159Z",
       "finalUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=6&smid=0&ssid=3",
       "status": 200,
       "ok": true,
       "contentType": "text/html;charset=UTF-8",
-      "bytes": 43429,
-      "sha256": "5b8f9bfbb4e10e9f1daf31f6b5e148ebc89434d0f423bd81fa1f059bda42380b"
+      "bytes": 43445,
+      "sha256": "9f1945848bfc36893993fc66ca1c25517132f855b82bcc2fa74d39fcca18970e"
     },
     {
       "id": "sebi-mf-master-circulars",
@@ -103,33 +103,51 @@
         "new or amended Mutual Fund master circular",
         "applicable distributor guidance"
       ],
-      "checkedAt": "2026-10-22T08:36:08.585Z",
+      "checkedAt": "2026-10-23T08:32:02.102Z",
       "finalUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=1&ssid=6",
       "status": 200,
       "ok": true,
       "contentType": "text/html;charset=UTF-8",
       "bytes": 40897,
-      "sha256": "2fa6e329746a492c62c3ec138f198fc7d12adb63f04fcfacba2d651a471063df"
+      "sha256": "26fdd3b8ff299b53a4915b37e2544adf8ada4776129f7254d26f142201ff779d"
     }
   ],
   "changes": [
     {
+      "id": "amfi-mfd-circulars",
+      "authority": "AMFI",
+      "url": "https://www.amfiindia.com/distributor/amfi-circulars",
+      "previousSha256": "71dfd1d1938aa2c9083e6762b9c9d82eb6a600796c3faaf565ab98fe61f5d7e1",
+      "currentSha256": "677d9620575ad7b579aeb9f965b9754428cf80bcb3dedac1dd0d6cb4298b3ee5",
+      "previousCheckedAt": "2026-10-22T08:35:55.878Z",
+      "currentCheckedAt": "2026-10-23T08:31:49.991Z"
+    },
+    {
+      "id": "amfi-code-of-conduct",
+      "authority": "AMFI",
+      "url": "https://www.amfiindia.com/distributor/mutual-funds-introduction?zoneName=CodeOfConduct",
+      "previousSha256": "5f42b9c1a3fde58c1db801b1e0130f40ab286fe94dcd3714a61c02e4ebbebde4",
+      "currentSha256": "6378b76ef24e20d79061ebfd369bb9910ce1e77cfab86a7c0812d94219f535eb",
+      "previousCheckedAt": "2026-10-22T08:36:01.873Z",
+      "currentCheckedAt": "2026-10-23T08:31:56.776Z"
+    },
+    {
       "id": "sebi-regulations",
       "authority": "SEBI",
       "url": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=6&smid=0&ssid=3",
-      "previousSha256": "53d9da3433ced600a67cc444578b65f28d8269ce100203a99f447d942ea8abcc",
-      "currentSha256": "5b8f9bfbb4e10e9f1daf31f6b5e148ebc89434d0f423bd81fa1f059bda42380b",
-      "previousCheckedAt": "2026-10-21T08:33:47.269Z",
-      "currentCheckedAt": "2026-10-22T08:36:06.832Z"
+      "previousSha256": "5b8f9bfbb4e10e9f1daf31f6b5e148ebc89434d0f423bd81fa1f059bda42380b",
+      "currentSha256": "9f1945848bfc36893993fc66ca1c25517132f855b82bcc2fa74d39fcca18970e",
+      "previousCheckedAt": "2026-10-22T08:36:06.832Z",
+      "currentCheckedAt": "2026-10-23T08:32:00.159Z"
     },
     {
       "id": "sebi-mf-master-circulars",
       "authority": "SEBI",
       "url": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=1&ssid=6",
-      "previousSha256": "9e2a9d1dd204279aee839eead92e57f9c84d167e85827f6843b0cf95649677fa",
-      "currentSha256": "2fa6e329746a492c62c3ec138f198fc7d12adb63f04fcfacba2d651a471063df",
-      "previousCheckedAt": "2026-10-21T08:33:48.312Z",
-      "currentCheckedAt": "2026-10-22T08:36:08.585Z"
+      "previousSha256": "2fa6e329746a492c62c3ec138f198fc7d12adb63f04fcfacba2d651a471063df",
+      "currentSha256": "26fdd3b8ff299b53a4915b37e2544adf8ada4776129f7254d26f142201ff779d",
+      "previousCheckedAt": "2026-10-22T08:36:08.585Z",
+      "currentCheckedAt": "2026-10-23T08:32:02.102Z"
     }
   ],
   "failures": [],
