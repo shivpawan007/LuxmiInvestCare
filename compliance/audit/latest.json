@@ -1,8 +1,8 @@
 {
   "auditVersion": "3.0",
   "auditType": "weekly-random-compliance",
-  "generatedAt": "2026-10-26T08:54:45.939Z",
-  "commit": "2e518d68a61351ffc206be46a74a7c709d04278c",
+  "generatedAt": "2026-10-27T08:59:12.074Z",
+  "commit": "2a30431e1570c3e738399dcf16423694dce46226",
   "branch": "main",
   "baseUrl": "https://www.luxmiinvestcare.com",
   "sourceFilesChecked": 115,
@@ -24,21 +24,21 @@
   ],
   "randomSample": {
     "sourceFiles": [
-      "app/admin/leads/page.tsx",
-      "app/calculators/SIPChart.tsx",
-      "app/admin/login/page.tsx",
-      "app/calculators/swp/page.tsx",
-      "components/calculators/SIPSummary.tsx",
-      "app/api/admin/leads/[id]/activities/route.ts",
-      "components/admin/AdminHeader.tsx",
-      "components/calculators/CalculatorCard.tsx"
+      "components/calculators/CalculatorHistory.tsx",
+      "components/common/SectionHeading.tsx",
+      "components/calculators/CalculatorCard.tsx",
+      "components/calculators/SIPInputCard.tsx",
+      "components/home/InvestorEducationApproach.tsx",
+      "components/calculators/DownloadReport.tsx",
+      "app/calculators/lumpsum/page.tsx",
+      "app/admin/compliance/page.tsx"
     ],
     "routes": [
-      "/contact",
+      "/calculators/lumpsum",
       "/about",
-      "/disclosures",
-      "/calculators/sip",
-      "/calculators/lumpsum"
+      "/privacy",
+      "/investor-education",
+      "/"
     ]
   },
   "checks": {
@@ -48,7 +48,7 @@
     "mfdTagline": true,
     "distributionRemunerationDisclosure": true,
     "standardRiskWarning": true,
-    "liveRouteProbe": true,
+    "liveRouteProbe": false,
     "dependencyAudit": false
   },
   "dependencyAudit": {
@@ -68,7 +68,7 @@
       "required": true,
       "status": 200,
       "ok": true,
-      "durationMs": 1576,
+      "durationMs": 1809,
       "findings": []
     },
     {
@@ -76,23 +76,31 @@
       "required": true,
       "status": 200,
       "ok": true,
-      "durationMs": 202,
+      "durationMs": 309,
       "findings": []
     },
     {
       "route": "/services",
       "required": true,
-      "status": 200,
-      "ok": true,
-      "durationMs": 201,
-      "findings": []
+      "status": null,
+      "ok": false,
+      "durationMs": 6020,
+      "error": "fetch failed",
+      "findings": [
+        {
+          "severity": "high",
+          "rule": "live.required-route-unreachable",
+          "route": "/services",
+          "error": "fetch failed"
+        }
+      ]
     },
     {
       "route": "/calculators",
       "required": true,
       "status": 200,
       "ok": true,
-      "durationMs": 201,
+      "durationMs": 2930,
       "findings": []
     },
     {
@@ -100,7 +108,7 @@
       "required": true,
       "status": 200,
       "ok": true,
-      "durationMs": 201,
+      "durationMs": 227,
       "findings": [
         {
           "severity": "high",
@@ -114,7 +122,7 @@
       "required": true,
       "status": 200,
       "ok": true,
-      "durationMs": 202,
+      "durationMs": 237,
       "findings": []
     },
     {
@@ -122,7 +130,7 @@
       "required": true,
       "status": 200,
       "ok": true,
-      "durationMs": 201,
+      "durationMs": 266,
       "findings": []
     },
     {
@@ -130,7 +138,7 @@
       "required": true,
       "status": 200,
       "ok": true,
-      "durationMs": 206,
+      "durationMs": 310,
       "findings": []
     },
     {
@@ -138,7 +146,7 @@
       "required": true,
       "status": 200,
       "ok": true,
-      "durationMs": 202,
+      "durationMs": 300,
       "findings": []
     },
     {
@@ -146,7 +154,7 @@
       "required": true,
       "status": 200,
       "ok": true,
-      "durationMs": 201,
+      "durationMs": 293,
       "findings": []
     },
     {
@@ -154,7 +162,7 @@
       "required": true,
       "status": 200,
       "ok": true,
-      "durationMs": 468,
+      "durationMs": 300,
       "findings": []
     },
     {
@@ -162,7 +170,7 @@
       "required": true,
       "status": 200,
       "ok": true,
-      "durationMs": 200,
+      "durationMs": 302,
       "findings": []
     },
     {
@@ -170,7 +178,7 @@
       "required": true,
       "status": 200,
       "ok": true,
-      "durationMs": 201,
+      "durationMs": 303,
       "findings": []
     }
   ],
@@ -179,6 +187,12 @@
       "severity": "critical",
       "rule": "dependencies.production-high-or-critical-vulnerabilities",
       "file": "npm-audit.json"
+    },
+    {
+      "severity": "high",
+      "rule": "live.required-route-unreachable",
+      "route": "/services",
+      "error": "fetch failed"
     },
     {
       "severity": "high",
