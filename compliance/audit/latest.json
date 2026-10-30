@@ -1,8 +1,8 @@
 {
   "auditVersion": "3.0",
   "auditType": "weekly-random-compliance",
-  "generatedAt": "2026-10-29T09:58:07.527Z",
-  "commit": "f96f05b1fabcf4a59369f9ffb3ed2a5fc58d7578",
+  "generatedAt": "2026-10-30T10:00:29.029Z",
+  "commit": "91619799009bf09684f07de049d7fa2bca8917c5",
   "branch": "main",
   "baseUrl": "https://www.luxmiinvestcare.com",
   "sourceFilesChecked": 115,
@@ -24,21 +24,21 @@
   ],
   "randomSample": {
     "sourceFiles": [
-      "app/api/auth/logout/route.ts",
-      "components/common/AnimatedCounter.tsx",
-      "components/layout/Footer.tsx",
+      "app/api/admin/users/[id]/route.ts",
+      "components/calculators/sharing/ConnectWithLuxmi.tsx",
       "app/about/page.tsx",
-      "components/calculators/SIPChart.tsx",
-      "app/api/admin/users/route.ts",
-      "app/calculators/swp/page.tsx",
-      "components/compliance/MutualFundRiskWarning.tsx"
+      "components/ui/badge.tsx",
+      "app/api/admin/leads/[id]/activities/route.ts",
+      "app/calculators/lumpsum/page.tsx",
+      "components/layout/MobileMenu.tsx",
+      "app/api/admin/leads/route.ts"
     ],
     "routes": [
+      "/calculators/lumpsum",
       "/calculators",
-      "/education",
-      "/disclosures",
-      "/calculators/swp",
-      "/calculators/step-up-sip"
+      "/calculators/sip",
+      "/privacy",
+      "/services"
     ]
   },
   "checks": {
@@ -68,7 +68,7 @@
       "required": true,
       "status": 200,
       "ok": true,
-      "durationMs": 1907,
+      "durationMs": 1777,
       "findings": []
     },
     {
@@ -76,7 +76,7 @@
       "required": true,
       "status": 200,
       "ok": true,
-      "durationMs": 278,
+      "durationMs": 244,
       "findings": []
     },
     {
@@ -84,7 +84,7 @@
       "required": true,
       "status": 200,
       "ok": true,
-      "durationMs": 273,
+      "durationMs": 242,
       "findings": []
     },
     {
@@ -100,7 +100,7 @@
       "required": true,
       "status": 200,
       "ok": true,
-      "durationMs": 276,
+      "durationMs": 248,
       "findings": [
         {
           "severity": "high",
@@ -114,7 +114,7 @@
       "required": true,
       "status": 200,
       "ok": true,
-      "durationMs": 275,
+      "durationMs": 246,
       "findings": []
     },
     {
@@ -122,7 +122,7 @@
       "required": true,
       "status": 200,
       "ok": true,
-      "durationMs": 275,
+      "durationMs": 241,
       "findings": []
     },
     {
@@ -130,7 +130,7 @@
       "required": true,
       "status": 200,
       "ok": true,
-      "durationMs": 278,
+      "durationMs": 246,
       "findings": []
     },
     {
@@ -138,7 +138,7 @@
       "required": true,
       "status": 200,
       "ok": true,
-      "durationMs": 275,
+      "durationMs": 244,
       "findings": []
     },
     {
@@ -146,7 +146,7 @@
       "required": true,
       "status": 200,
       "ok": true,
-      "durationMs": 273,
+      "durationMs": 248,
       "findings": []
     },
     {
@@ -154,7 +154,7 @@
       "required": true,
       "status": 200,
       "ok": true,
-      "durationMs": 271,
+      "durationMs": 242,
       "findings": []
     },
     {
@@ -162,7 +162,7 @@
       "required": true,
       "status": 200,
       "ok": true,
-      "durationMs": 275,
+      "durationMs": 241,
       "findings": []
     },
     {
@@ -170,7 +170,7 @@
       "required": true,
       "status": 200,
       "ok": true,
-      "durationMs": 281,
+      "durationMs": 293,
       "findings": []
     }
   ],

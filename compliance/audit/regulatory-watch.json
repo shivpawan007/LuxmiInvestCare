@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-29T09:57:14.507Z",
+  "generatedAt": "2026-10-30T09:59:52.775Z",
   "purpose": "Detect changes in official SEBI/AMFI sources so MFD website rules can be reviewed before publication.",
   "automaticPolicy": "A source change triggers review; the workflow must not silently rewrite compliance content or make legal interpretations.",
   "sources": [
@@ -14,13 +14,13 @@
         "new circular date",
         "new MFD guidance"
       ],
-      "checkedAt": "2026-10-29T09:57:03.105Z",
+      "checkedAt": "2026-10-30T09:59:40.700Z",
       "finalUrl": "https://www.amfiindia.com/distributor/amfi-circulars",
       "status": 200,
       "ok": true,
       "contentType": "text/html; charset=utf-8",
       "bytes": 212716,
-      "sha256": "8fcf59ea3a177bfddcb8881518fba0e1c7325d85cfe4a25edb209a81e51182cf"
+      "sha256": "fad2eef99dced849d44a8a8e62eb0897cb03cca82487f0500ee9a862668f94b1"
     },
     {
       "id": "amfi-mfd-master-circular",
@@ -32,7 +32,7 @@
         "code of conduct changes",
         "advertising and sales literature changes"
       ],
-      "checkedAt": "2026-10-29T09:57:07.951Z",
+      "checkedAt": "2026-10-30T09:59:45.723Z",
       "finalUrl": "https://www.amfiindia.com/uploads/AMFI_Master_Cicular_for_MF_Ds_3c7f5ee44f.pdf",
       "status": 200,
       "ok": true,
@@ -49,13 +49,13 @@
         "code of conduct changes",
         "MFD obligations"
       ],
-      "checkedAt": "2026-10-29T09:57:09.494Z",
+      "checkedAt": "2026-10-30T09:59:47.051Z",
       "finalUrl": "https://www.amfiindia.com/distributor/mutual-funds-introduction?zoneName=CodeOfConduct",
       "status": 200,
       "ok": true,
       "contentType": "text/html; charset=utf-8",
       "bytes": 172766,
-      "sha256": "a3466087d6c22ba2fe2ef6777769acca514aabebfe1bb4ea7ddd14acb1455759"
+      "sha256": "2e429aad4ffe6ecdffa1884992afb9b30a69afafe2d00a9dc21aae4b03639c02"
     },
     {
       "id": "amfi-mfd-dos-donts",
@@ -69,7 +69,7 @@
         "scheme-specific recommendations",
         "advertising and social media requirements"
       ],
-      "checkedAt": "2026-10-29T09:57:11.009Z",
+      "checkedAt": "2026-10-30T09:59:48.648Z",
       "finalUrl": "https://www.amfiindia.com/Themes/Theme1/downloads/FAQsonRoleofMFDsAdvts.pdf",
       "status": 200,
       "ok": true,
@@ -86,13 +86,13 @@
         "Mutual Funds Regulations amendments",
         "new applicable regulations"
       ],
-      "checkedAt": "2026-10-29T09:57:13.396Z",
+      "checkedAt": "2026-10-30T09:59:51.276Z",
       "finalUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=6&smid=0&ssid=3",
       "status": 200,
       "ok": true,
       "contentType": "text/html;charset=UTF-8",
-      "bytes": 43445,
-      "sha256": "99873fe49285e2100fe69281a778c6583978fc07452a52e624ab8338807ee4d5"
+      "bytes": 43417,
+      "sha256": "5aca280d8ed73b20249c63698ffed5a41c57a1bcbffb1d73f8a1028387b24716"
     },
     {
       "id": "sebi-mf-master-circulars",
@@ -103,33 +103,51 @@
         "new or amended Mutual Fund master circular",
         "applicable distributor guidance"
       ],
-      "checkedAt": "2026-10-29T09:57:14.507Z",
+      "checkedAt": "2026-10-30T09:59:52.775Z",
       "finalUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=1&ssid=6",
       "status": 200,
       "ok": true,
       "contentType": "text/html;charset=UTF-8",
       "bytes": 40899,
-      "sha256": "5deda26e5c9fb0a7fec1f62506183e9674dfecb0aeb2fbc25ae487a88d10bd70"
+      "sha256": "5e9eb1ccd22c67b09befd14ca685ca02052fadf196b98762c881ec1d2d17c9a8"
     }
   ],
   "changes": [
     {
+      "id": "amfi-mfd-circulars",
+      "authority": "AMFI",
+      "url": "https://www.amfiindia.com/distributor/amfi-circulars",
+      "previousSha256": "8fcf59ea3a177bfddcb8881518fba0e1c7325d85cfe4a25edb209a81e51182cf",
+      "currentSha256": "fad2eef99dced849d44a8a8e62eb0897cb03cca82487f0500ee9a862668f94b1",
+      "previousCheckedAt": "2026-10-29T09:57:03.105Z",
+      "currentCheckedAt": "2026-10-30T09:59:40.700Z"
+    },
+    {
+      "id": "amfi-code-of-conduct",
+      "authority": "AMFI",
+      "url": "https://www.amfiindia.com/distributor/mutual-funds-introduction?zoneName=CodeOfConduct",
+      "previousSha256": "a3466087d6c22ba2fe2ef6777769acca514aabebfe1bb4ea7ddd14acb1455759",
+      "currentSha256": "2e429aad4ffe6ecdffa1884992afb9b30a69afafe2d00a9dc21aae4b03639c02",
+      "previousCheckedAt": "2026-10-29T09:57:09.494Z",
+      "currentCheckedAt": "2026-10-30T09:59:47.051Z"
+    },
+    {
       "id": "sebi-regulations",
       "authority": "SEBI",
       "url": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=6&smid=0&ssid=3",
-      "previousSha256": "d11e5eb0d023d886c968fcfc749cda5e2a9e5e4f6a81d9a423f342e977a402be",
-      "currentSha256": "99873fe49285e2100fe69281a778c6583978fc07452a52e624ab8338807ee4d5",
-      "previousCheckedAt": "2026-10-28T09:39:10.570Z",
-      "currentCheckedAt": "2026-10-29T09:57:13.396Z"
+      "previousSha256": "99873fe49285e2100fe69281a778c6583978fc07452a52e624ab8338807ee4d5",
+      "currentSha256": "5aca280d8ed73b20249c63698ffed5a41c57a1bcbffb1d73f8a1028387b24716",
+      "previousCheckedAt": "2026-10-29T09:57:13.396Z",
+      "currentCheckedAt": "2026-10-30T09:59:51.276Z"
     },
     {
       "id": "sebi-mf-master-circulars",
       "authority": "SEBI",
       "url": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=1&ssid=6",
-      "previousSha256": "96bdbea75a67bfe234e6c22b40dcb08e578bf63f38a6a2a60b39f6b548cabc5b",
-      "currentSha256": "5deda26e5c9fb0a7fec1f62506183e9674dfecb0aeb2fbc25ae487a88d10bd70",
-      "previousCheckedAt": "2026-10-28T09:39:12.120Z",
-      "currentCheckedAt": "2026-10-29T09:57:14.507Z"
+      "previousSha256": "5deda26e5c9fb0a7fec1f62506183e9674dfecb0aeb2fbc25ae487a88d10bd70",
+      "currentSha256": "5e9eb1ccd22c67b09befd14ca685ca02052fadf196b98762c881ec1d2d17c9a8",
+      "previousCheckedAt": "2026-10-29T09:57:14.507Z",
+      "currentCheckedAt": "2026-10-30T09:59:52.775Z"
     }
   ],
   "failures": [],
