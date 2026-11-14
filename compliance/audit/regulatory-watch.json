@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-13T10:57:32.313Z",
+  "generatedAt": "2026-11-14T10:24:06.186Z",
   "purpose": "Detect changes in official SEBI/AMFI sources so MFD website rules can be reviewed before publication.",
   "automaticPolicy": "A source change triggers review; the workflow must not silently rewrite compliance content or make legal interpretations.",
   "sources": [
@@ -14,13 +14,13 @@
         "new circular date",
         "new MFD guidance"
       ],
-      "checkedAt": "2026-11-13T10:57:18.296Z",
+      "checkedAt": "2026-11-14T10:23:55.766Z",
       "finalUrl": "https://www.amfiindia.com/distributor/amfi-circulars",
       "status": 200,
       "ok": true,
       "contentType": "text/html; charset=utf-8",
-      "bytes": 213176,
-      "sha256": "73a19c1fcec67cec0bd1428d7f8ebaf033c2699179c0483ee89a96be29c8907c"
+      "bytes": 217380,
+      "sha256": "441d033aa27027dc288d5cfb16ec5601270944213f8baf9d3975c18e1a1c4041"
     },
     {
       "id": "amfi-mfd-master-circular",
@@ -32,7 +32,7 @@
         "code of conduct changes",
         "advertising and sales literature changes"
       ],
-      "checkedAt": "2026-11-13T10:57:23.992Z",
+      "checkedAt": "2026-11-14T10:24:00.620Z",
       "finalUrl": "https://www.amfiindia.com/uploads/AMFI_Master_Cicular_for_MF_Ds_3c7f5ee44f.pdf",
       "status": 200,
       "ok": true,
@@ -49,13 +49,13 @@
         "code of conduct changes",
         "MFD obligations"
       ],
-      "checkedAt": "2026-11-13T10:57:25.105Z",
+      "checkedAt": "2026-11-14T10:24:01.823Z",
       "finalUrl": "https://www.amfiindia.com/distributor/mutual-funds-introduction?zoneName=CodeOfConduct",
       "status": 200,
       "ok": true,
       "contentType": "text/html; charset=utf-8",
-      "bytes": 173286,
-      "sha256": "8fdc796a030f891854eb9a254c97bc2805050550d77afeb25e375744504093d2"
+      "bytes": 177490,
+      "sha256": "2d731bb9cb771bb9fc498486d192f8e64cf339c55baedbd296d1115e3dab74bf"
     },
     {
       "id": "amfi-mfd-dos-donts",
@@ -69,7 +69,7 @@
         "scheme-specific recommendations",
         "advertising and social media requirements"
       ],
-      "checkedAt": "2026-11-13T10:57:27.959Z",
+      "checkedAt": "2026-11-14T10:24:03.299Z",
       "finalUrl": "https://www.amfiindia.com/Themes/Theme1/downloads/FAQsonRoleofMFDsAdvts.pdf",
       "status": 200,
       "ok": true,
@@ -86,13 +86,13 @@
         "Mutual Funds Regulations amendments",
         "new applicable regulations"
       ],
-      "checkedAt": "2026-11-13T10:57:31.062Z",
+      "checkedAt": "2026-11-14T10:24:05.228Z",
       "finalUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=6&smid=0&ssid=3",
-      "status": 200,
-      "ok": true,
-      "contentType": "text/html;charset=UTF-8",
-      "bytes": 43590,
-      "sha256": "518e1c68900a93e453f9dcd872437d50219e0ee887655cf4763f021279c87136"
+      "status": 530,
+      "ok": false,
+      "contentType": "text/html",
+      "bytes": 2584,
+      "sha256": "bd80c5aa4b386752f7bb3463c5bd47973ab7f69089835dfc87e20cb4619b8e9e"
     },
     {
       "id": "sebi-mf-master-circulars",
@@ -103,35 +103,48 @@
         "new or amended Mutual Fund master circular",
         "applicable distributor guidance"
       ],
-      "checkedAt": "2026-11-13T10:57:32.313Z",
+      "checkedAt": "2026-11-14T10:24:06.186Z",
       "finalUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=1&ssid=6",
-      "status": 200,
-      "ok": true,
-      "contentType": "text/html;charset=UTF-8",
-      "bytes": 40899,
-      "sha256": "f07d1e451fc8c12a707c15d627e31b56199c50f4293f8fbf097835baab9a0f81"
+      "status": 530,
+      "ok": false,
+      "contentType": "text/html",
+      "bytes": 2584,
+      "sha256": "7e5d6403ff0d6261b4d90729340c9c2a6d4b982d968308e5989d64754f166765"
     }
   ],
   "changes": [
     {
+      "id": "amfi-mfd-circulars",
+      "authority": "AMFI",
+      "url": "https://www.amfiindia.com/distributor/amfi-circulars",
+      "previousSha256": "73a19c1fcec67cec0bd1428d7f8ebaf033c2699179c0483ee89a96be29c8907c",
+      "currentSha256": "441d033aa27027dc288d5cfb16ec5601270944213f8baf9d3975c18e1a1c4041",
+      "previousCheckedAt": "2026-11-13T10:57:18.296Z",
+      "currentCheckedAt": "2026-11-14T10:23:55.766Z"
+    },
+    {
+      "id": "amfi-code-of-conduct",
+      "authority": "AMFI",
+      "url": "https://www.amfiindia.com/distributor/mutual-funds-introduction?zoneName=CodeOfConduct",
+      "previousSha256": "8fdc796a030f891854eb9a254c97bc2805050550d77afeb25e375744504093d2",
+      "currentSha256": "2d731bb9cb771bb9fc498486d192f8e64cf339c55baedbd296d1115e3dab74bf",
+      "previousCheckedAt": "2026-11-13T10:57:25.105Z",
+      "currentCheckedAt": "2026-11-14T10:24:01.823Z"
+    }
+  ],
+  "failures": [
+    {
       "id": "sebi-regulations",
-      "authority": "SEBI",
-      "url": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=6&smid=0&ssid=3",
-      "previousSha256": "457a23fd380eed715a990654b46296a601d601f8c312a82f976d5410ce44f050",
-      "currentSha256": "518e1c68900a93e453f9dcd872437d50219e0ee887655cf4763f021279c87136",
-      "previousCheckedAt": "2026-11-12T11:05:41.620Z",
-      "currentCheckedAt": "2026-11-13T10:57:31.062Z"
+      "rule": "regulatory-source.unreachable",
+      "status": 530,
+      "url": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=6&smid=0&ssid=3"
     },
     {
       "id": "sebi-mf-master-circulars",
-      "authority": "SEBI",
-      "url": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=1&ssid=6",
-      "previousSha256": "32fad289b1a34cda5258020c839ac08abda73ab74d9bc112fe6907bdebdc8972",
-      "currentSha256": "f07d1e451fc8c12a707c15d627e31b56199c50f4293f8fbf097835baab9a0f81",
-      "previousCheckedAt": "2026-11-12T11:05:43.959Z",
-      "currentCheckedAt": "2026-11-13T10:57:32.313Z"
+      "rule": "regulatory-source.unreachable",
+      "status": 530,
+      "url": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=1&ssid=6"
     }
   ],
-  "failures": [],
-  "status": "REVIEW_REQUIRED"
+  "status": "FAIL"
 }
