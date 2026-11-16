@@ -1,8 +1,8 @@
 {
   "auditVersion": "3.0",
   "auditType": "weekly-random-compliance",
-  "generatedAt": "2026-11-16T00:29:51.676Z",
-  "commit": "309673b47427649066aa2269a2d76ee5718bb356",
+  "generatedAt": "2026-11-16T00:33:28.877Z",
+  "commit": "29d470f0bbbc72563ede9ddc48426257add91fdd",
   "branch": "main",
   "baseUrl": "https://www.luxmiinvestcare.com",
   "sourceFilesChecked": 115,
@@ -24,21 +24,21 @@
   ],
   "randomSample": {
     "sourceFiles": [
-      "components/calculators/StepUpSIPCalculator.tsx",
+      "components/calculators/LumpsumBreakdown.tsx",
+      "components/ui/SectionHeading.tsx",
+      "components/layout/AppShell.tsx",
+      "components/ui/textarea.tsx",
+      "components/ui/accordion.tsx",
       "app/api/admin/users/route.ts",
-      "components/common/ScrollToTop.tsx",
-      "components/common/MFDIdentity.tsx",
-      "app/admin/account/page.tsx",
-      "components/ui/Button.tsx",
-      "app/api/auth/login/route.ts",
-      "components/calculators/sharing/reportShare.ts"
+      "components/calculators/CalculatorCard.tsx",
+      "components/common/FloatingWhatsApp.tsx"
     ],
     "routes": [
       "/calculators/lumpsum",
-      "/calculators/step-up-sip",
       "/about",
-      "/services",
-      "/investor-education"
+      "/contact",
+      "/",
+      "/education"
     ]
   },
   "checks": {
@@ -60,7 +60,38 @@
       "critical": 2,
       "total": 3
     },
-    "total": 6
+    "total": 3
+  },
+  "fullDependencyAudit": {
+    "counts": {
+      "info": 0,
+      "low": 0,
+      "moderate": 3,
+      "high": 1,
+      "critical": 2,
+      "total": 6
+    },
+    "developmentOnlyPackages": [
+      {
+        "name": "@eslint/config-array",
+        "severity": "moderate",
+        "range": "0.23.0 - 0.23.5",
+        "fixAvailable": true
+      },
+      {
+        "name": "eslint",
+        "severity": "moderate",
+        "range": "10.0.0-alpha.0 - 10.14.0",
+        "fixAvailable": true
+      },
+      {
+        "name": "minimatch",
+        "severity": "moderate",
+        "range": "7.0.0 - 11.0.0",
+        "fixAvailable": true
+      }
+    ],
+    "developmentOnlyPackageCount": 3
   },
   "routeResults": [
     {
@@ -68,7 +99,7 @@
       "required": true,
       "status": 200,
       "ok": true,
-      "durationMs": 2956,
+      "durationMs": 2735,
       "findings": []
     },
     {
@@ -76,7 +107,7 @@
       "required": true,
       "status": 200,
       "ok": true,
-      "durationMs": 377,
+      "durationMs": 282,
       "findings": []
     },
     {
@@ -84,7 +115,7 @@
       "required": true,
       "status": 200,
       "ok": true,
-      "durationMs": 366,
+      "durationMs": 280,
       "findings": []
     },
     {
@@ -92,7 +123,7 @@
       "required": true,
       "status": 200,
       "ok": true,
-      "durationMs": 371,
+      "durationMs": 289,
       "findings": []
     },
     {
@@ -100,7 +131,7 @@
       "required": true,
       "status": 200,
       "ok": true,
-      "durationMs": 396,
+      "durationMs": 303,
       "findings": [
         {
           "severity": "high",
@@ -114,7 +145,7 @@
       "required": true,
       "status": 200,
       "ok": true,
-      "durationMs": 387,
+      "durationMs": 298,
       "findings": []
     },
     {
@@ -122,7 +153,7 @@
       "required": true,
       "status": 200,
       "ok": true,
-      "durationMs": 365,
+      "durationMs": 281,
       "findings": []
     },
     {
@@ -130,7 +161,7 @@
       "required": true,
       "status": 200,
       "ok": true,
-      "durationMs": 376,
+      "durationMs": 283,
       "findings": []
     },
     {
@@ -138,7 +169,7 @@
       "required": true,
       "status": 200,
       "ok": true,
-      "durationMs": 372,
+      "durationMs": 282,
       "findings": []
     },
     {
@@ -146,7 +177,7 @@
       "required": true,
       "status": 200,
       "ok": true,
-      "durationMs": 375,
+      "durationMs": 282,
       "findings": []
     },
     {
@@ -154,7 +185,7 @@
       "required": true,
       "status": 200,
       "ok": true,
-      "durationMs": 365,
+      "durationMs": 280,
       "findings": []
     },
     {
@@ -162,7 +193,7 @@
       "required": true,
       "status": 200,
       "ok": true,
-      "durationMs": 364,
+      "durationMs": 280,
       "findings": []
     },
     {
@@ -170,7 +201,7 @@
       "required": true,
       "status": 200,
       "ok": true,
-      "durationMs": 362,
+      "durationMs": 297,
       "findings": []
     }
   ],
@@ -178,7 +209,18 @@
     {
       "severity": "critical",
       "rule": "dependencies.production-high-or-critical-vulnerabilities",
-      "file": "npm-audit.json"
+      "file": "npm-audit-production.json"
+    },
+    {
+      "severity": "medium",
+      "rule": "dependencies.development-only-vulnerabilities",
+      "packageCount": 3,
+      "packages": [
+        "@eslint/config-array",
+        "eslint",
+        "minimatch"
+      ],
+      "note": "Development-tree findings are warnings unless also present in the production audit."
     },
     {
       "severity": "high",
