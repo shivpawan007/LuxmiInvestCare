@@ -29,7 +29,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v6
         with:
-          fetch-depth: 1
+          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v6
@@ -79,11 +79,17 @@ jobs:
           GITHUB_REF_NAME: ${{ github.ref_name }}
         run: npm run compliance:audit
 
-      - name: Upload audit report
+      - name: Upload audit evidence
+        if: always()
         uses: actions/upload-artifact@v7
         with:
           name: luxmi-weekly-compliance-audit
-          path: compliance/audit/latest.json
+          path: |
+            compliance/audit/latest.json
+            compliance/audit/regulatory-watch.json
+            compliance/audit/npm-audit-production.json
+            compliance/audit/npm-audit-full.json
+          if-no-files-found: warn
           retention-days: 90
           overwrite: true
 
@@ -97,9 +103,11 @@ jobs:
             echo "No audit report changes to commit."
           else
             git commit -m "chore: update weekly compliance audit report"
-            git push
+            git fetch origin "$GITHUB_REF_NAME"
+            git rebase -X theirs "origin/$GITHUB_REF_NAME"
+            git push origin "HEAD:$GITHUB_REF_NAME"
           fi
 
       - name: Fail workflow when audit failed
-        if: steps.audit.outcome == 'failure'
+        if: ${{ always() && steps.audit.outcome == 'failure' }}
         run: exit 1

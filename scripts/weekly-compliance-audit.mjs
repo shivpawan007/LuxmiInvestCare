@@ -253,38 +253,98 @@ const sampledRoutes = sample(publicPages, 5);
 const baseUrl = process.env.AUDIT_BASE_URL || "https://luxmiinvestcare.com";
 
 let dependencyAudit = null;
-const dependencyAuditPath = path.join(process.cwd(), "compliance", "audit", "npm-audit-production.json");
+let fullDependencyAudit = null;
+const auditDirectory = path.join(process.cwd(), "compliance", "audit");
+const dependencyAuditPath = path.join(auditDirectory, "npm-audit-production.json");
+const fullDependencyAuditPath = path.join(auditDirectory, "npm-audit-full.json");
+const severityKeys = ["info", "low", "moderate", "high", "critical"];
+const productionVulnerablePackages = new Set();
 
 if (fs.existsSync(dependencyAuditPath)) {
   try {
     const raw = JSON.parse(fs.readFileSync(dependencyAuditPath, "utf8"));
     const counts = raw.metadata?.vulnerabilities || {};
-    dependencyAudit = {
-      counts,
-      total: Object.values(counts).reduce((sum, value) => sum + Number(value || 0), 0),
-    };
+    const total = Number(
+      counts.total ??
+      severityKeys.reduce((sum, key) => sum + Number(counts[key] || 0), 0)
+    );
+    dependencyAudit = { counts, total };
+
+    for (const name of Object.keys(raw.vulnerabilities || {})) {
+      productionVulnerablePackages.add(name);
+    }
 
     if ((counts.critical || 0) > 0 || (counts.high || 0) > 0) {
       allFindings.push({
         severity: "critical",
         rule: "dependencies.production-high-or-critical-vulnerabilities",
-        file: "npm-audit.json",
+        file: "npm-audit-production.json",
       });
     } else if ((counts.moderate || 0) > 0) {
       allFindings.push({
         severity: "medium",
         rule: "dependencies.production-moderate-vulnerabilities",
-        file: "npm-audit.json",
+        file: "npm-audit-production.json",
+      });
+    }
+  } catch (error) {
+    allFindings.push({
+      severity: "critical",
+      rule: "dependencies.production-audit-report-unreadable",
+      file: "npm-audit-production.json",
+      error: error instanceof Error ? error.message : String(error),
+    });
+  }
+} else {
+  allFindings.push({
+    severity: "critical",
+    rule: "dependencies.production-audit-report-missing",
+    file: "npm-audit-production.json",
+  });
+}
+
+if (fs.existsSync(fullDependencyAuditPath)) {
+  try {
+    const rawFull = JSON.parse(fs.readFileSync(fullDependencyAuditPath, "utf8"));
+    const fullCounts = rawFull.metadata?.vulnerabilities || {};
+    const developmentOnlyPackages = Object.entries(rawFull.vulnerabilities || {})
+      .filter(([name]) => !productionVulnerablePackages.has(name))
+      .map(([name, item]) => ({
+        name,
+        severity: item.severity || "unknown",
+        range: item.range || null,
+        fixAvailable: item.fixAvailable ?? null,
+      }));
+
+    fullDependencyAudit = {
+      counts: fullCounts,
+      developmentOnlyPackages,
+      developmentOnlyPackageCount: developmentOnlyPackages.length,
+    };
+
+    if (developmentOnlyPackages.length > 0) {
+      allFindings.push({
+        severity: "medium",
+        rule: "dependencies.development-only-vulnerabilities",
+        packageCount: developmentOnlyPackages.length,
+        packages: developmentOnlyPackages.map((item) => item.name),
+        note: "Development-tree findings are warnings unless also present in the production audit.",
       });
     }
   } catch (error) {
     allFindings.push({
       severity: "medium",
-      rule: "dependencies.audit-report-unreadable",
-      file: "npm-audit.json",
+      rule: "dependencies.full-audit-report-unreadable",
+      file: "npm-audit-full.json",
       error: error instanceof Error ? error.message : String(error),
     });
   }
+} else {
+  allFindings.push({
+    severity: "medium",
+    rule: "dependencies.full-audit-report-missing",
+    file: "npm-audit-full.json",
+  });
 }
 
 const requiredRouteResults = [];
@@ -348,6 +408,7 @@ const report = {
       : null,
   },
   dependencyAudit,
+  fullDependencyAudit,
   routeResults,
   findings: uniqueFindings,
   status: uniqueFindings.some((x) => x.severity === "critical" || x.severity === "high")
