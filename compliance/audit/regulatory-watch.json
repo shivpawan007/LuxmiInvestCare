@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-15T10:51:39.816Z",
+  "generatedAt": "2026-11-16T00:29:13.158Z",
   "purpose": "Detect changes in official SEBI/AMFI sources so MFD website rules can be reviewed before publication.",
   "automaticPolicy": "A source change triggers review; the workflow must not silently rewrite compliance content or make legal interpretations.",
   "sources": [
@@ -14,7 +14,7 @@
         "new circular date",
         "new MFD guidance"
       ],
-      "checkedAt": "2026-11-15T10:51:29.158Z",
+      "checkedAt": "2026-11-16T00:29:00.892Z",
       "finalUrl": "https://www.amfiindia.com/distributor/amfi-circulars",
       "status": 200,
       "ok": true,
@@ -32,7 +32,7 @@
         "code of conduct changes",
         "advertising and sales literature changes"
       ],
-      "checkedAt": "2026-11-15T10:51:34.078Z",
+      "checkedAt": "2026-11-16T00:29:06.902Z",
       "finalUrl": "https://www.amfiindia.com/uploads/AMFI_Master_Cicular_for_MF_Ds_3c7f5ee44f.pdf",
       "status": 200,
       "ok": true,
@@ -49,13 +49,33 @@
         "code of conduct changes",
         "MFD obligations"
       ],
-      "checkedAt": "2026-11-15T10:51:35.335Z",
+      "checkedAt": "2026-11-16T00:29:08.003Z",
       "finalUrl": "https://www.amfiindia.com/distributor/mutual-funds-introduction?zoneName=CodeOfConduct",
       "status": 200,
       "ok": true,
       "contentType": "text/html; charset=utf-8",
       "bytes": 177490,
       "sha256": "2d731bb9cb771bb9fc498486d192f8e64cf339c55baedbd296d1115e3dab74bf"
+    },
+    {
+      "id": "amfi-mfd-dos-donts",
+      "url": "https://www.amfiindia.com/Themes/Theme1/downloads/FAQsonRoleofMFDsAdvts.pdf",
+      "authority": "AMFI",
+      "description": "AMFI FAQs on MFD role, nomenclature, advertising, social media and marketing do's and don'ts.",
+      "watchFor": [
+        "MFD nomenclature",
+        "financial planning terminology",
+        "free advice or portfolio review",
+        "scheme-specific recommendations",
+        "advertising and social media requirements"
+      ],
+      "checkedAt": "2026-11-16T00:29:09.501Z",
+      "finalUrl": "https://www.amfiindia.com/Themes/Theme1/downloads/FAQsonRoleofMFDsAdvts.pdf",
+      "status": 200,
+      "ok": true,
+      "contentType": "application/pdf",
+      "bytes": 218136,
+      "sha256": "75c6692189ace8afec407495681dc2ab4f5e566970e91740b9ad2fabd8320264"
     },
     {
       "id": "sebi-regulations",
@@ -66,13 +86,13 @@
         "Mutual Funds Regulations amendments",
         "new applicable regulations"
       ],
-      "checkedAt": "2026-11-15T10:51:38.368Z",
+      "checkedAt": "2026-11-16T00:29:11.900Z",
       "finalUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=6&smid=0&ssid=3",
       "status": 200,
       "ok": true,
       "contentType": "text/html;charset=UTF-8",
       "bytes": 43590,
-      "sha256": "9464348a3b7bcf8fe341a8b52bb7fc2b4903182155412bfadfd8433728e74285"
+      "sha256": "6af4948e9ef347f9a69a40c7393f4a331b66c40143c1ca7fbdade7dd76b256cf"
     },
     {
       "id": "sebi-mf-master-circulars",
@@ -83,13 +103,13 @@
         "new or amended Mutual Fund master circular",
         "applicable distributor guidance"
       ],
-      "checkedAt": "2026-11-15T10:51:39.816Z",
+      "checkedAt": "2026-11-16T00:29:13.158Z",
       "finalUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=1&ssid=6",
       "status": 200,
       "ok": true,
       "contentType": "text/html;charset=UTF-8",
       "bytes": 40899,
-      "sha256": "6f69c90ddaab244a70828cf4265980a768ba2b4a73f5a1e6fccafb3a5c364148"
+      "sha256": "96e18c10691648abfbc190eb15c8833d5d3181d2818fa687469c7a1b827b9de8"
     }
   ],
   "changes": [
@@ -98,27 +118,20 @@
       "authority": "SEBI",
       "url": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=6&smid=0&ssid=3",
       "previousSha256": "bd80c5aa4b386752f7bb3463c5bd47973ab7f69089835dfc87e20cb4619b8e9e",
-      "currentSha256": "9464348a3b7bcf8fe341a8b52bb7fc2b4903182155412bfadfd8433728e74285",
+      "currentSha256": "6af4948e9ef347f9a69a40c7393f4a331b66c40143c1ca7fbdade7dd76b256cf",
       "previousCheckedAt": "2026-11-14T10:24:05.228Z",
-      "currentCheckedAt": "2026-11-15T10:51:38.368Z"
+      "currentCheckedAt": "2026-11-16T00:29:11.900Z"
     },
     {
       "id": "sebi-mf-master-circulars",
       "authority": "SEBI",
       "url": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=1&ssid=6",
       "previousSha256": "7e5d6403ff0d6261b4d90729340c9c2a6d4b982d968308e5989d64754f166765",
-      "currentSha256": "6f69c90ddaab244a70828cf4265980a768ba2b4a73f5a1e6fccafb3a5c364148",
+      "currentSha256": "96e18c10691648abfbc190eb15c8833d5d3181d2818fa687469c7a1b827b9de8",
       "previousCheckedAt": "2026-11-14T10:24:06.186Z",
-      "currentCheckedAt": "2026-11-15T10:51:39.816Z"
+      "currentCheckedAt": "2026-11-16T00:29:13.158Z"
     }
   ],
-  "failures": [
-    {
-      "id": "amfi-mfd-dos-donts",
-      "rule": "regulatory-source.fetch-error",
-      "url": "https://www.amfiindia.com/Themes/Theme1/downloads/FAQsonRoleofMFDsAdvts.pdf",
-      "error": "fetch failed"
-    }
-  ],
-  "status": "FAIL"
+  "failures": [],
+  "status": "REVIEW_REQUIRED"
 }
