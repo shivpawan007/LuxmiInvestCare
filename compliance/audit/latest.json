@@ -1,8 +1,8 @@
 {
   "auditVersion": "3.0",
   "auditType": "weekly-random-compliance",
-  "generatedAt": "2026-11-18T11:40:51.831Z",
-  "commit": "b19586d782e79c585fd2140b7c55071fa6e56350",
+  "generatedAt": "2026-11-19T11:38:10.272Z",
+  "commit": "9c3bb6a414c3a369c7d3131ced15d569d6d5ce26",
   "branch": "main",
   "baseUrl": "https://www.luxmiinvestcare.com",
   "sourceFilesChecked": 115,
@@ -24,21 +24,21 @@
   ],
   "randomSample": {
     "sourceFiles": [
-      "app/calculators/swp/page.tsx",
-      "components/common/ScrollToTop.tsx",
-      "components/calculators/CalculatorResultCard.tsx",
-      "components/home/FAQ.tsx",
-      "components/calculators/SIPSummary.tsx",
-      "components/calculators/CalculatorHistory.tsx",
-      "components/calculators/CalculatorShare.tsx",
-      "components/common/FeatureCard.tsx"
+      "lib/utils.ts",
+      "app/admin/login/page.tsx",
+      "components/layout/Footer.tsx",
+      "app/calculators/SIPChart.tsx",
+      "components/calculators/CalculatorHero.tsx",
+      "components/layout/Header.tsx",
+      "app/api/leads/route.ts",
+      "components/common/StatCard.tsx"
     ],
     "routes": [
-      "/calculators",
-      "/disclosures",
       "/about",
+      "/calculators/sip",
+      "/",
       "/privacy",
-      "/"
+      "/contact"
     ]
   },
   "checks": {
@@ -54,10 +54,10 @@
   "dependencyAudit": {
     "counts": {
       "info": 0,
-      "low": 0,
+      "low": 1,
       "moderate": 0,
       "high": 1,
-      "critical": 2,
+      "critical": 1,
       "total": 3
     },
     "total": 3
@@ -65,10 +65,10 @@
   "fullDependencyAudit": {
     "counts": {
       "info": 0,
-      "low": 0,
+      "low": 1,
       "moderate": 3,
       "high": 1,
-      "critical": 2,
+      "critical": 1,
       "total": 6
     },
     "developmentOnlyPackages": [
@@ -99,7 +99,7 @@
       "required": true,
       "status": 200,
       "ok": true,
-      "durationMs": 2931,
+      "durationMs": 2959,
       "findings": []
     },
     {
@@ -107,7 +107,7 @@
       "required": true,
       "status": 200,
       "ok": true,
-      "durationMs": 361,
+      "durationMs": 302,
       "findings": []
     },
     {
@@ -115,7 +115,7 @@
       "required": true,
       "status": 200,
       "ok": true,
-      "durationMs": 298,
+      "durationMs": 299,
       "findings": []
     },
     {
@@ -123,7 +123,7 @@
       "required": true,
       "status": 200,
       "ok": true,
-      "durationMs": 300,
+      "durationMs": 298,
       "findings": []
     },
     {
@@ -131,7 +131,7 @@
       "required": true,
       "status": 200,
       "ok": true,
-      "durationMs": 319,
+      "durationMs": 317,
       "findings": [
         {
           "severity": "high",
@@ -145,7 +145,7 @@
       "required": true,
       "status": 200,
       "ok": true,
-      "durationMs": 672,
+      "durationMs": 316,
       "findings": []
     },
     {
@@ -153,7 +153,7 @@
       "required": true,
       "status": 200,
       "ok": true,
-      "durationMs": 345,
+      "durationMs": 298,
       "findings": []
     },
     {
@@ -161,7 +161,7 @@
       "required": true,
       "status": 200,
       "ok": true,
-      "durationMs": 319,
+      "durationMs": 302,
       "findings": []
     },
     {
@@ -169,7 +169,7 @@
       "required": true,
       "status": 200,
       "ok": true,
-      "durationMs": 299,
+      "durationMs": 300,
       "findings": []
     },
     {
@@ -177,7 +177,7 @@
       "required": true,
       "status": 200,
       "ok": true,
-      "durationMs": 296,
+      "durationMs": 300,
       "findings": []
     },
     {
@@ -185,7 +185,7 @@
       "required": true,
       "status": 200,
       "ok": true,
-      "durationMs": 294,
+      "durationMs": 298,
       "findings": []
     },
     {
@@ -193,7 +193,7 @@
       "required": true,
       "status": 200,
       "ok": true,
-      "durationMs": 295,
+      "durationMs": 296,
       "findings": []
     },
     {
@@ -201,7 +201,7 @@
       "required": true,
       "status": 200,
       "ok": true,
-      "durationMs": 339,
+      "durationMs": 299,
       "findings": []
     }
   ],
