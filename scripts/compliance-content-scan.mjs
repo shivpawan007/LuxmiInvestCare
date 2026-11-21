@@ -37,7 +37,7 @@ const FORBIDDEN_PROMOTIONAL_PATTERNS = [
   /\btestimonials?\b/i,
   /\branking\b/i,
   /number\s*1/i,
-  /return\s+on\s+investment/i,
+  /\b(?:guaranteed|assured|risk[-\s]+free|high|highest|best|maximum|exceptional|superior)\s+(?:return\s+on\s+investment|roi)\b/i,
   /plan\s+your\s+future/i,
   /grow\s+wealth/i,
   /secure\s+future/i,
