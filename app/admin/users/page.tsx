@@ -56,7 +56,6 @@ export default function UsersPage() {
 
     async function loadUsers() {
         try {
-            setLoading(true);
             setError("");
 
             const response =
