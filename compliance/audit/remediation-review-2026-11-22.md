@@ -42,7 +42,7 @@ The website collects name, mobile, optional email, and enquiry text, stores cont
 
 ### 4. Advertisement-code readiness
 
-The SEBI Intermediaries Regulations amended through the Common Advertisement Code are dated through 10 October 2026; the cited amendment commences on the 180th day after Gazette publication (9 October 2026; calculated as 7 April 2027—confirm the commencement date against the Gazette before relying on it). Review the code and update approval/disclosure controls before that date.
+The SEBI Intermediaries Regulations amended through the Common Advertisement Code are dated through 10 October 2026; the cited amendment commences on the 180th day after Gazette publication (9 October 2026; calculated as 7 April 2027—verify the commencement date against the Gazette before relying on it). Review the code and update approval/disclosure controls before that date.
 
 ### 5. Repository and deployment controls
 
@@ -67,4 +67,4 @@ Initial remediation workflow run [44939644854](https://github.com/shivpawan007/L
 - Production build: **compiled successfully**.
 - Live route/compliance audit: **PASS**; all required routes were HTTP 200 and the ROI false-positive finding was cleared.
 
-Later lint-inclusive runs exposed pre-existing ESLint configuration and React-effect-state issues. The branch aligned `eslint-config-next` with Next.js 16.4.6 and corrected the remaining lint errors (including JSX apostrophe escaping and deriving admin loading state from async data). Run 44940029081 and PR run 44940440921 failed on earlier commits; the newest push run 44940650866 is pending validation of the latest branch head. No merge or deployment has occurred.
+Later lint-inclusive runs exposed pre-existing ESLint configuration and React-effect-state issues. The branch aligned `eslint-config-next` with Next.js 16.4.6 and corrected the remaining lint errors (including JSX apostrophe escaping and deriving admin loading state from async data). Run 44940029081 and PR run 44940440921 failed on earlier commits; the current-head validation run 44940719748 was in progress at the review snapshot; report updates may trigger a newer run. No merge or deployment has occurred.
