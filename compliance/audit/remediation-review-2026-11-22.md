@@ -11,7 +11,7 @@ This is a technical and compliance gap review, not a legal certification. It doe
 - **npm audit:** 6 findings in the full tree (1 low, 3 moderate, 1 high, 1 critical). Production tree had 3 (1 low, 1 high, 1 critical).
 - Production dependencies in the lockfile: Next.js **16.4.0**, Zod **4.5.1**, DOMPurify **3.4.16**.
 - Full-tree findings also included `@eslint/config-array 0.23.5`, `eslint 10.14.0`, and `minimatch 11.0.0`; fixes were available in the audit.
-- The Next.js 16.4.0 lockfile is below the November security release. Update to patched 16.4.5 or later; the remediation branch targets 16.4.6. See the [official Next.js October security update](https://nextjs.org/blog/nextjs-security-update-october-14-2026) and the [November release notes](https://nextjs-changelog.vercel.app/).
+- The Next.js 16.4.0 lockfile is below the November security release. Update to patched 16.4.5 or later; the remediation branch targets 16.4.6. See the [official Next.js October security update](https://github.com/vercel/next.js/security/advisories) and the [November release notes](https://nextjs-changelog.vercel.app/).
 - Production page text is behind repository text: production privacy/disclosures displayed 26 September 2026, while repository versions were dated 6 October and 20 October respectively. This suggests the production deployment is not reflecting the current `main` source.
 
 ## Changes made on this remediation branch
@@ -42,7 +42,7 @@ The website collects name, mobile, optional email, and enquiry text, stores cont
 
 ### 4. Advertisement-code readiness
 
-The SEBI Intermediaries Regulations amended through the Common Advertisement Code are dated through 10 October 2026; the cited amendment's effective date is 8 April 2027. Review the code and update approval/disclosure controls before that date.
+The SEBI Intermediaries Regulations amended through the Common Advertisement Code are dated through 10 October 2026; the cited amendment commences on the 180th day after Gazette publication (9 October 2026; calculated as 7 April 2027—confirm the commencement date against the Gazette before relying on it). Review the code and update approval/disclosure controls before that date.
 
 ### 5. Repository and deployment controls
 
@@ -67,4 +67,4 @@ Initial remediation workflow run [44939644854](https://github.com/shivpawan007/L
 - Production build: **compiled successfully**.
 - Live route/compliance audit: **PASS**; all required routes were HTTP 200 and the ROI false-positive finding was cleared.
 
-Later changes to privacy wording and review documentation were made after this successful run; a newer run including the added lint step is pending. No merge or deployment has occurred.
+Later lint-inclusive runs exposed pre-existing ESLint configuration and React-effect-state issues. The branch aligned `eslint-config-next` with Next.js 16.4.6 and corrected the remaining lint errors (including JSX apostrophe escaping and deriving admin loading state from async data). Run 44940029081 and PR run 44940440921 failed on earlier commits; the newest push run 44940650866 is pending validation of the latest branch head. No merge or deployment has occurred.
