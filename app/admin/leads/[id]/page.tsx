@@ -131,7 +131,9 @@ export default function LeadDetailPage() {
     }
 
     useEffect(() => {
-        void loadLead();
+        queueMicrotask(() => {
+            void loadLead();
+        });
     }, [leadId]);
 
     async function updateLead(
