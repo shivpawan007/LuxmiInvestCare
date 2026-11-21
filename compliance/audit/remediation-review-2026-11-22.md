@@ -11,7 +11,7 @@ This is a technical and compliance gap review, not a legal certification. It doe
 - **npm audit:** 6 findings in the full tree (1 low, 3 moderate, 1 high, 1 critical). Production tree had 3 (1 low, 1 high, 1 critical).
 - Production dependencies in the lockfile: Next.js **16.4.0**, Zod **4.5.1**, DOMPurify **3.4.16**.
 - Full-tree findings also included `@eslint/config-array 0.23.5`, `eslint 10.14.0`, and `minimatch 11.0.0`; fixes were available in the audit.
-- The Next.js 16.4.0 lockfile is below the November security release. Update to patched 16.4.5 or later; the remediation branch targets 16.4.6. See the [official Next.js October security update](https://nextjs.org/blog/security-update-2026-10-14) and the [November release notes](https://nextjs-changelog.vercel.app/).
+- The Next.js 16.4.0 lockfile is below the November security release. Update to patched 16.4.5 or later; the remediation branch targets 16.4.6. See the [official Next.js October security update](https://nextjs.org/blog/nextjs-security-update-october-14-2026) and the [November release notes](https://nextjs-changelog.vercel.app/).
 - Production page text is behind repository text: production privacy/disclosures displayed 26 September 2026, while repository versions were dated 6 October and 20 October respectively. This suggests the production deployment is not reflecting the current `main` source.
 
 ## Changes made on this remediation branch
