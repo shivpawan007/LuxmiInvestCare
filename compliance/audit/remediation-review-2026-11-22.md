@@ -55,4 +55,16 @@ The SEBI Intermediaries Regulations amended through the Common Advertisement Cod
 
 All changes remain on `compliance-remediation-2026-11-22`. Production has not been changed. The PR must be reviewed, CI must pass on the updated head, and the database migration/social-media/retention blockers must be addressed before deployment.
 
-**Status:** remediation in progress; not certified 100% compliant.
+**Status:** dependency/content/build/route remediation checks passed once; the latest lint-inclusive run is pending. External social-media, AMFI status, retention/processor review, branch protection, and deployment verification remain open. Not certified 100% compliant.
+
+## Remediation CI evidence
+
+Initial remediation workflow run [44939644854](https://github.com/shivpawan007/LuxmiInvestCare/actions/runs/44939644854) completed successfully on branch commit `cf2dc4f119f0df340865326407866b0151d7cd7c`:
+
+- Production and full-tree npm audits: **0 vulnerabilities**.
+- Patched lockfile versions: Next.js **16.4.6**, Zod **4.6.7**, DOMPurify **3.4.18**, ESLint **10.15.0**, `@eslint/config-array 0.23.6`, and `minimatch 11.0.9`.
+- Compliance scan: **PASS**, 116 source files checked.
+- Production build: **compiled successfully**.
+- Live route/compliance audit: **PASS**; all required routes were HTTP 200 and the ROI false-positive finding was cleared.
+
+Later changes to privacy wording and review documentation were made after this successful run; a newer run including the added lint step is pending. No merge or deployment has occurred.
