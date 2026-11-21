@@ -30,9 +30,6 @@ export default function UsersPage() {
     const [roles, setRoles] =
         useState<Role[]>([]);
 
-    const [loading, setLoading] =
-        useState(true);
-
     const [saving, setSaving] =
         useState(false);
 
@@ -88,8 +85,6 @@ export default function UsersPage() {
             setError(
                 "Unable to load users.",
             );
-        } finally {
-            setLoading(false);
         }
     }
 
@@ -474,7 +469,7 @@ export default function UsersPage() {
                 )}
 
                 <section className="overflow-x-auto rounded-2xl bg-white shadow-sm ring-1 ring-slate-200">
-                    {loading ? (
+                    {users === null && !error ? (
                         <div className="p-8 text-center text-slate-500">
                             Loading users...
                         </div>
