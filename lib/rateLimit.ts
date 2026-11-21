@@ -45,16 +45,16 @@ export async function enforceRateLimit(
         .replace("T", " ");
 
     await db.execute(
-        \`INSERT INTO api_rate_limits (bucket, key_hash, window_start, hits)
+        `INSERT INTO api_rate_limits (bucket, key_hash, window_start, hits)
          VALUES (?, ?, ?, 1)
-         ON DUPLICATE KEY UPDATE hits = hits + 1\`,
+         ON DUPLICATE KEY UPDATE hits = hits + 1`,
         [bucket, keyHash, windowStart],
     );
 
     const [rows] = await db.execute<RateLimitRow[]>(
-        \`SELECT hits FROM api_rate_limits
+        `SELECT hits FROM api_rate_limits
          WHERE bucket = ? AND key_hash = ? AND window_start = ?
-         LIMIT 1\`,
+         LIMIT 1`,
         [bucket, keyHash, windowStart],
     );
     const hits = Number(rows[0]?.hits ?? 0);
