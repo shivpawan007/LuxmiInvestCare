@@ -66,6 +66,42 @@
         "new or amended Mutual Fund master circular",
         "applicable distributor guidance"
       ]
+    },
+    {
+      "id": "sebi-eodi-social-media-disclosures",
+      "url": "https://www.sebi.gov.in/legal/circulars/feb-2026/ease-of-doing-investment-eodi-disclosure-of-registered-name-and-registration-number-by-sebi-regulated-entities-and-their-agents-on-social-media-platforms-smps-_100005.html",
+      "authority": "SEBI",
+      "description": "Circular HO/(79)2026-MIRSD-PODMMC dated 26 February 2026 on registered-name and registration-number disclosures by regulated entities and agents on social media.",
+      "watchFor": [
+        "social-media profile disclosures",
+        "registered name and ARN",
+        "principal entity registration details",
+        "content-start disclosures"
+      ]
+    },
+    {
+      "id": "sebi-common-advertisement-code-2026",
+      "url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2026/1792753250139.pdf",
+      "authority": "SEBI",
+      "description": "Intermediaries Regulations amended through the Common Advertisement Code, including effective-date and applicable provisions.",
+      "watchFor": [
+        "Chapter IIID Common Advertisement Code",
+        "commencement date",
+        "advertisement disclosure requirements",
+        "prohibited claims and endorsements"
+      ]
+    },
+    {
+      "id": "meity-dpdp-rules-2025",
+      "url": "https://www.meity.gov.in/static/uploads/2025/11/53450e6e5dc0bfa85ebd78686cadad39.pdf",
+      "authority": "MeitY",
+      "description": "Official Gazette notification of Digital Personal Data Protection Rules, 2025 and phased commencement.",
+      "watchFor": [
+        "notice and consent requirements",
+        "security safeguards",
+        "breach notification",
+        "data retention and rights"
+      ]
     }
   ]
 }
