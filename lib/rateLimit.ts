@@ -7,8 +7,7 @@ interface RateLimitRow extends RowDataPacket {
 }
 
 declare global {
-    // eslint-disable-next-line no-var
-    var __luxmiRateLimitLastCleanupAt: number | undefined;
+        var __luxmiRateLimitLastCleanupAt: number | undefined;
 }
 
 export interface RateLimitResult {
