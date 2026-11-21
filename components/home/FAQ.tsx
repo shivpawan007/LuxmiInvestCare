@@ -170,7 +170,7 @@ export default function FAQ() {
                                 </span>
 
                                 <h3 className="mt-6 text-4xl font-bold leading-tight">
-                                    We're Here To Help
+                                    We&apos;re Here To Help
                                 </h3>
 
                                 <p className="mt-6 text-lg leading-8 text-green-50">
