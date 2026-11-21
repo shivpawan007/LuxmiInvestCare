@@ -89,7 +89,9 @@ export default function UsersPage() {
     }
 
     useEffect(() => {
-        void loadUsers();
+        queueMicrotask(() => {
+            void loadUsers();
+        });
     }, []);
 
     function updateField(
