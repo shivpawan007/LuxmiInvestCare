@@ -19,7 +19,7 @@ export default function DisclosuresPage() {
                         Regulatory & Distribution Disclosures
                     </h1>
                     <p className="mt-4 max-w-3xl leading-7 text-green-100">
-                        Important information about Luxmi InvestCare's role,
+                        Important information about Luxmi InvestCare&apos;s role,
                         website content, mutual fund distribution activity and
                         investor grievance process.
                     </p>
@@ -147,7 +147,7 @@ export default function DisclosuresPage() {
                         <section>
                             <h2 className="text-2xl font-bold text-slate-900">Regulatory references</h2>
                             <p className="mt-3 leading-7">
-                                The website's compliance wording is designed with reference to
+                                The website&apos;s compliance wording is designed with reference to
                                 applicable SEBI mutual fund advertising requirements and AMFI
                                 guidance for Mutual Fund Distributors. Regulatory requirements can
                                 change, so this page does not constitute legal advice or regulatory
