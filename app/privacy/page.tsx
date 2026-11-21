@@ -101,6 +101,10 @@ export default function PrivacyPolicyPage() {
                                 operational records, dispute handling, regulatory requirements or
                                 other lawful purposes. Where processing depends on consent,
                                 the consent record is retained with the enquiry workflow.
+                                We do not currently publish a fixed retention period for enquiry
+                                records. You may request access, correction or deletion by email;
+                                requests are reviewed subject to applicable legal and record-keeping
+                                obligations.
                             </p>
                         </section>
 
