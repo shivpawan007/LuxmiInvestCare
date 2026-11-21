@@ -86,7 +86,6 @@ export default function LeadDetailPage() {
 
     async function loadLead() {
         try {
-            setLoading(true);
 
             const response = await fetch(
                 `/api/admin/leads/${leadId}`,
