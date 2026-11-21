@@ -42,7 +42,7 @@ export default function PrivacyPolicyPage() {
                                 When you submit an enquiry, we collect your name, mobile number,
                                 email address (if provided), enquiry message and the page from which
                                 the enquiry was submitted. The contact form sends these details to
-                                Luxmi InvestCare's server and stores them in the enquiry/lead database
+                                Luxmi InvestCare&apos;s server and stores them in the enquiry/lead database
                                 so the enquiry can be handled and followed up. The submission activity
                                 records acceptance of this Privacy Policy, its version and the submission
                                 time.
@@ -55,7 +55,7 @@ export default function PrivacyPolicyPage() {
                             <p className="mt-3 leading-7">
                                 When you use the calculator report-sharing feature, the details
                                 you enter are used in the current browser session to enable the
-                                selected sharing action. The website's report-share history is
+                                selected sharing action. The website&apos;s report-share history is
                                 stored in browser local storage on your device.
                             </p>
                         </section>
