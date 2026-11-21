@@ -20,7 +20,7 @@ export default function PrivacyPolicyPage() {
                         This notice explains how Luxmi InvestCare handles information
                         submitted through this website.
                     </p>
-                    <p className="mt-3 text-sm text-green-200">Last updated: 6 October 2026</p>
+                    <p className="mt-3 text-sm text-green-200">Last updated: 22 November 2026</p>
                 </div>
             </section>
 
@@ -39,10 +39,18 @@ export default function PrivacyPolicyPage() {
                         <section>
                             <h2 className="text-2xl font-bold text-slate-900">2. Information we collect</h2>
                             <p className="mt-3 leading-7">
-                                When you submit an enquiry, we may collect your name, mobile
-                                number, email address and enquiry message. The website may also
-                                record the page from which an enquiry was submitted so that the
-                                enquiry can be handled correctly.
+                                When you submit an enquiry, we collect your name, mobile number,
+                                email address (if provided), enquiry message and the page from which
+                                the enquiry was submitted. The contact form sends these details to
+                                Luxmi InvestCare's server and stores them in the enquiry/lead database
+                                so the enquiry can be handled and followed up. The submission activity
+                                records acceptance of this Privacy Policy, its version and the submission
+                                time.
+                            </p>
+                            <p className="mt-3 leading-7">
+                                After a successful contact-form submission, WhatsApp may open with a
+                                prefilled message. The message is shared with WhatsApp only if you
+                                choose to send it.
                             </p>
                             <p className="mt-3 leading-7">
                                 When you use the calculator report-sharing feature, the details
