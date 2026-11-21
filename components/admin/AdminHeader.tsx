@@ -44,6 +44,13 @@ export default function AdminHeader() {
                     </Link>
 
                     <Link
+                        href="/admin/marketing"
+                        className="hover:text-green-700"
+                    >
+                        Marketing Hub
+                    </Link>
+
+                    <Link
                         href="/admin/leads"
                         className="hover:text-green-700"
                     >
@@ -63,5 +70,4 @@ export default function AdminHeader() {
 
             </div>
         </header>
-    );
-}
+);}
