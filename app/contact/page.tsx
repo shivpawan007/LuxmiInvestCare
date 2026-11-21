@@ -275,9 +275,10 @@ ${message.trim()}
                                 </h2>
 
                                 <p className="mt-3 leading-7 text-slate-600">
-                                    Submitting saves your enquiry with Luxmi InvestCare. After a successful
-                                    save, WhatsApp opens with a prefilled message that you can
-                                    review and choose to send.
+                                    We collect your full name, mobile number, optional email and enquiry message
+                                    to respond. Submitting saves these details with Luxmi InvestCare.
+                                    After a successful save, WhatsApp opens with a prefilled message
+                                    that you can review and choose to send.
                                 </p>
 
                             </div>
