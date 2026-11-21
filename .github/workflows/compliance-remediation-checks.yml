@@ -33,7 +33,7 @@ jobs:
       - name: Update patched dependency versions (branch push only)
         if: github.event_name == 'push'
         run: |
-          npm install next@^16.4.6 zod@^4.6.7
+          npm install next@^16.4.6 zod@^4.6.7 eslint-config-next@^16.4.6
           npm audit fix
 
       - name: Commit dependency updates to remediation branch
