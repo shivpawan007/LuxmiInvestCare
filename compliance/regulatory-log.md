@@ -157,3 +157,10 @@ AMFI MFD circulars: https://www.amfiindia.com/distributor/amfi-circulars
 - Initial Markdown log commit: https://github.com/shivpawan007/LuxmiInvestCare/commit/ba9b2d7491f9b6c4532004a243182c92787b4493
 
 These commits and this PR contain only monitoring configuration and compliance documentation; no production code, merge, or deployment.
+
+
+## Supplemental verification — 23 November 2026, 00:32:06 IST
+
+- The official SEBI July 31 accessibility page confirms circular metadata, but its text/PDF could not be extracted in this web session. The previous **31 October** deadline is corroborated by a secondary full-text reproduction; the **31 January 2027** extension in the October 30 circular is confirmed from the official SEBI circular. See official July page: https://www.sebi.gov.in/legal/circulars/jul-2026/extension-of-timelines-with-repect-to-compliance-of-digital-accessibility-circulars-_103277.html and secondary cross-check: https://www.compliedai.com/updates/sebi/extension-of-timelines-with-repect-to-compliance-of-digital-accessibilit-xkojxg
+- Official SEBI FATCA/CRS page and PDF link identified. PDF text could not be extracted in this session; Form 166 / Act 2025 / Rules 2026 details were cross-checked against secondary reproductions and should be verified from the official PDF before any business action. Official PDF: https://www.sebi.gov.in/sebi_data/attachdocs/nov-2026/1794392501415.pdf
+- PR check status at 00:32:06 IST: **Vercel Preview Comments succeeded; three Vercel deployment status contexts remained pending; no GitHub Actions checks ran on this branch.** No build/test result is claimed for this PR.
