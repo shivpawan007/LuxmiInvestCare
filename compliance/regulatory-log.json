@@ -1,0 +1,238 @@
+{
+  "schemaVersion": 1,
+  "logType": "LuxmiInvestCare regulatory-compliance-watch",
+  "run": {
+    "id": "REGWATCH-2026-11-23-0024IST",
+    "retrievedAt": "2026-11-23T00:24:37+05:30",
+    "timezone": "Asia/Kolkata",
+    "reviewPeriod": "New regulatory items identified through 2026-11-23; repository audit evidence from 2026-11-22",
+    "repositoryBranch": "compliance/regulatory-watch-2026-11-23",
+    "mainCommit": "521cb8181c76a0aef25ad0326efab9b7ee3f2dd3",
+    "monitoringSourcesAdded": 12,
+    "totalMonitoringSources": 18,
+    "sourceMonitorMode": "SHA-256 byte-level; no semantic extraction",
+    "sourceMonitorLimitations": [
+      "Hash changes can be false positives from dynamic pages.",
+      "Static documents are reference-only and do not detect amendments by themselves.",
+      "No broad eGazette root monitor added because it timed out during source check.",
+      "This watch is not exhaustive and does not replace professional review."
+    ]
+  },
+  "entries": [
+    {
+      "id": "SEBI-ACCESSIBILITY-2026-10-30",
+      "authority": "SEBI",
+      "sourceTitle": "Extension of timeline with respect to compliance of Digital Accessibility Circulars",
+      "sourceURL": "https://www.sebi.gov.in/legal/circulars/oct-2026/extension-of-timeline-with-respect-to-compliance-of-digital-accessibility-circulars_105523.html",
+      "officialPDFURL": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2026/1793363799724.pdf",
+      "publicationDate": "2026-10-30",
+      "effectiveDate": "2026-10-30 (circular issued; new deadline applies)",
+      "previousRequirement": "SEBI's 31 July 2026 extension had set 31 October 2026 for accessibility audits of digital platforms and remediation. The earlier extension did not include the new wording expressly extending IAAP auditor appointment.",
+      "newRequirement": "Appointment of an IAAP auditor, accessibility audit of digital platforms and remediation of audit findings are extended to 31 January 2027. All other provisions of the earlier digital-accessibility circulars remain unchanged.",
+      "applicabilityAssessment": "Circular addressed all Registered Intermediaries and AMFI. Luxmi InvestCare is AMFI-registered as an MFD; direct applicability to this individual distributor website, as distinct from SEBI-registered intermediaries/AMFI, requires human confirmation. Treat as potentially applicable and complete accessibility assessment promptly.",
+      "risk": {
+        "severity": "HIGH",
+        "priority": "P1-review",
+        "reason": "Potential regulated accessibility obligations and a 69-day deadline from the retrieval date; no accessibility audit evidence was found in the repository audit."
+      },
+      "impactedFilesRoutes": [
+        "app/layout.tsx",
+        "app/page.tsx",
+        "app/privacy/page.tsx",
+        "app/disclosures/page.tsx",
+        "app/contact/page.tsx",
+        "all 13 public routes listed in compliance/audit/latest.json",
+        "components/common/*",
+        "components/home/*",
+        "components/calculators/*",
+        "app/admin/* (internal authenticated interface; not in public route probe)"
+      ],
+      "aiAnalysis": "The date extension does not remove the underlying accessibility obligations. Existing audit probes test route availability and compliance language, not accessibility. The current repository has no evidence of an IAAP audit or a dedicated automated accessibility test. Do not treat HTTP 200 responses or a successful build as accessibility compliance. A human must confirm scope and arrange an IAAP auditor where applicable.",
+      "changeSummary": "No website code or content change made in this run because legal scope and a formal accessibility audit require professional review. Added official accessibility circular to the watch source configuration and recorded a remediation checklist in the durable log.",
+      "commitPRLinks": [
+        "https://github.com/shivpawan007/LuxmiInvestCare/commit/68dd26030cdc320941f20d9ae0a8278998472ffe"
+      ],
+      "validationEvidence": [
+        "Official SEBI circular and PDF reviewed; primary source confirms 31 January 2027 deadline and that all other provisions remain unchanged.",
+        "Repository inspection found no accessibility audit/test evidence. This is a gap observation, not a completed accessibility audit."
+      ],
+      "unresolvedQuestions": [
+        "Confirm whether Luxmi InvestCare as AMFI-registered MFD is directly within the SEBI circular's 'Registered Intermediaries' scope or otherwise covered through AMFI.",
+        "Who will appoint an IAAP auditor and confirm audit/remediation coverage for public and internal digital platforms?"
+      ],
+      "historicalEntry": "The 31 July 2026 SEBI circular had extended accessibility audit and remediation to 31 October 2026. The 30 October 2026 circular further extended the relevant tasks to 31 January 2027 and expressly included appointment of an IAAP auditor."
+    },
+    {
+      "id": "DPDP-PHASE-2026-11-13",
+      "authority": "MeitY / Government of India",
+      "sourceTitle": "Digital Personal Data Protection Rules, 2025 (G.S.R. 846(E)) and commencement notification G.S.R. 843(E)",
+      "sourceURL": "https://www.meity.gov.in/documents/act-and-policies/digital-personal-data-protection-rules-2025-gDOxUjMtQWa?pageTitle=Digital-Personal-Data-Protection-Rules-2025",
+      "officialGazetteRulesURL": "https://egazette.gov.in/WriteReadData/2025/267650.pdf",
+      "commencementGazetteURL": "https://egazette.gov.in/WriteReadData/2025/267647.pdf",
+      "publicationDate": "2025-11-13",
+      "effectiveDate": "Rule 4: 2026-11-13 (one-year commencement). Rules 3, 5-16, 22 and 23: 2027-05-13 (calculated 18 months from Gazette date).",
+      "previousRequirement": "DPDP Act and Rules commencement was phased by G.S.R. 843(E) and Rule 1 of G.S.R. 846(E); obligations did not all commence on a single date.",
+      "newRequirement": "Rule 4 (Consent Manager registration and obligations) is effective from 13 November 2026. The principal notice, security, rights, breach and other Data Fiduciary rule package listed in Rules 3, 5-16, 22 and 23 is scheduled to commence 13 May 2027, calculated from the Gazette date. The exact commencement schedule should be read from the Gazette, including amendments/corrigenda.",
+      "applicabilityAssessment": "Luxmi's website collects enquiry details and uses report-sharing/browser storage, but current repository inspection did not identify a Consent Manager service. Rule 4 is not a direct website obligation on the facts currently observed. Future Data Fiduciary requirements are material because personal data is processed through enquiry/report-share journeys.",
+      "risk": {
+        "severity": "MEDIUM",
+        "priority": "P2-preparation",
+        "reason": "Upcoming privacy obligations with a May 2027 commencement date; current privacy notice describes data and purposes but does not specify a fixed retention period."
+      },
+      "impactedFilesRoutes": [
+        "app/privacy/page.tsx",
+        "app/contact/page.tsx",
+        "components/home/Contact.tsx",
+        "calculator report-share flows and localStorage",
+        "lead APIs/database and admin lead access"
+      ],
+      "aiAnalysis": "The current privacy page, last updated 6 October 2026, describes enquiry fields (name, phone, email, message, source page), report-sharing session data/localStorage, processing purposes, consent withdrawal contact, security and a flexible retention statement. Future Rule 3 requires a clear standalone notice with itemised personal data, specific purposes and accessible means to withdraw consent, exercise rights and complain to the Board. A gap analysis should verify these elements, retention, processor roles, rights workflow and incident response before commencement. Do not assume Rule 4 makes Luxmi a Consent Manager.",
+      "changeSummary": "No privacy policy or consent-flow code change made because implementation and legal choices require review. Added official MeitY DPDP Rules index and Gazette references to the watch configuration and logged a preparation checklist.",
+      "commitPRLinks": [
+        "https://github.com/shivpawan007/LuxmiInvestCare/commit/68dd26030cdc320941f20d9ae0a8278998472ffe"
+      ],
+      "validationEvidence": [
+        "Official DPDP Rules Gazette G.S.R. 846(E) reviewed: Rule 4 one-year commencement and Rules 3, 5-16, 22, 23 eighteen-month commencement.",
+        "Official commencement notification G.S.R. 843(E) reviewed; calendar dates calculated from 13 November 2025 publication.",
+        "Privacy policy code inspected; no privacy-specific automated test run in this session."
+      ],
+      "unresolvedQuestions": [
+        "Confirm data retention periods for enquiry records, report-sharing history and any analytics.",
+        "Confirm processors/vendors, consent bases, data rights request handling, breach-response responsibilities and whether consent is collected for each relevant processing purpose.",
+        "Have legal/privacy reviewer approve notice and implementation plan before 13 May 2027."
+      ]
+    },
+    {
+      "id": "SEBI-FATCA-CRS-2026-11-11",
+      "authority": "SEBI",
+      "sourceTitle": "Reporting requirement under FATCA and CRS revised through Income-Tax Act, 2025 and Income-Tax Rules, 2026",
+      "sourceURL": "https://www.sebi.gov.in/legal/circulars/nov-2026/reporting-requirement-under-foreign-account-tax-compliance-act-fatca-and-common-reporting-standard-crs-revised-through-income-tax-act-2025-read-with-income-tax-rules-2026_105705.html",
+      "publicationDate": "2026-11-11",
+      "effectiveDate": "2026-11-11 (circular issued; reporting/due dates follow applicable tax rules)",
+      "previousRequirement": "SEBI's earlier FATCA/CRS guidance referred to the Income-Tax Act, 1961, Rules 114F-114H and Form 61B.",
+      "newRequirement": "The circular updates references to Income-Tax Act, 2025, Rules 238-240 and Form 166, including reporting/certification responsibilities for intermediaries within scope.",
+      "applicabilityAssessment": "The circular is directed to SEBI-registered intermediaries and Reporting Financial Institutions. Luxmi InvestCare's website is an AMFI MFD enquiry/education site and does not currently collect FATCA/CRS certifications or operate a KYC onboarding flow. Direct applicability to the distributor entity is not established by website review.",
+      "risk": {
+        "severity": "LOW for website; MEDIUM if entity/RFI status applies",
+        "priority": "P3-confirm-business-status",
+        "reason": "No website-facing FATCA/CRS flow identified, but business status and any reporting obligations require confirmation."
+      },
+      "impactedFilesRoutes": [
+        "No website route identified as directly impacted; review any future onboarding/KYC forms or back-office data collection"
+      ],
+      "aiAnalysis": "Do not implement Form 166 or FATCA/CRS fields in the website without evidence that Luxmi is a reporting intermediary/RFI or that the distributor is required to collect these certifications. This circular may have obligations outside the website scope; verify entity status with a tax/compliance professional.",
+      "changeSummary": "No code change. Added the official SEBI circular to source monitoring and logged a conditional applicability review.",
+      "commitPRLinks": [
+        "https://github.com/shivpawan007/LuxmiInvestCare/commit/68dd26030cdc320941f20d9ae0a8278998472ffe"
+      ],
+      "validationEvidence": [
+        "Official SEBI circular title, publication date and circular number checked against SEBI circular listing.",
+        "Website form and privacy content reviewed at source level; no KYC/FATCA/CRS certification collection was identified in the inspected public form/privacy journey."
+      ],
+      "unresolvedQuestions": [
+        "Confirm whether Luxmi InvestCare is a SEBI-registered intermediary and/or Reporting Financial Institution for FATCA/CRS; if so, consult tax/compliance professional on new Form 166 requirements."
+      ]
+    },
+    {
+      "id": "SEBI-OTHER-CIRCULARS-2026-11-23",
+      "authority": "SEBI",
+      "sourceTitle": "Review of recent SEBI circulars published 5-17 November 2026",
+      "sourceURL": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=1&smid=0&ssid=7",
+      "publicationDate": "2026-11-05 to 2026-11-17",
+      "effectiveDate": "Per respective circulars",
+      "previousRequirement": "Existing sector-specific requirements remain; each circular must be assessed by its recipients and subject matter.",
+      "newRequirement": "Reviewed November 17 commodity-derivatives margin framework; November 11 FATCA/CRS reporting circular; November 5 accredited-investor framework and mutual-fund scheme cash-market net settlement framework.",
+      "applicabilityAssessment": "No direct website change identified for the distributor education/enquiry routes. Accredited-investor and cash-settlement matters appear to relate to other regulated entities/products/operations; FATCA/CRS is conditionally covered in separate entry.",
+      "risk": {
+        "severity": "LOW",
+        "priority": "P4-monitor",
+        "reason": "No direct public website content or user journey impact identified during this review."
+      },
+      "impactedFilesRoutes": [
+        "No immediate website files/routes identified"
+      ],
+      "aiAnalysis": "No site changes recommended based on the reviewed titles and recipient/scope descriptions. Re-review if Luxmi begins accredited-investor onboarding, direct scheme transaction processing, or FATCA/CRS certification collection.",
+      "changeSummary": "Reviewed recent SEBI circular listing and recorded no direct website changes.",
+      "commitPRLinks": [
+        "https://github.com/shivpawan007/LuxmiInvestCare/commit/68dd26030cdc320941f20d9ae0a8278998472ffe"
+      ],
+      "validationEvidence": [
+        "SEBI circular listing checked; latest items reviewed by publication date/title. FATCA/CRS circular reviewed separately."
+      ],
+      "unresolvedQuestions": [
+        "None for website scope; conditional entity-level FATCA/CRS review remains open."
+      ]
+    },
+    {
+      "id": "REPOSITORY-AUDIT-FAIL-2026-11-22",
+      "authority": "Luxmi InvestCare repository CI / audit evidence",
+      "sourceTitle": "Weekly Random Compliance Audit run #82",
+      "sourceURL": "https://github.com/shivpawan007/LuxmiInvestCare/actions/runs/45016925749",
+      "publicationDate": "2026-11-22",
+      "effectiveDate": "Immediate remediation",
+      "previousRequirement": "Existing compliance and security release gates are expected to pass before production release.",
+      "newRequirement": "No new regulation. The latest stored audit failed: production npm audit reports 3 vulnerabilities (1 critical, 1 high, 1 low); full audit reports 6 (1 low, 3 moderate, 1 high, 1 critical); high promotional-language finding promotion.return-on-investment on /calculators/sip. All 13 required public routes returned HTTP 200; compliance scan passed 115 source files; production build succeeded in that run. Final audit gate failed.",
+      "applicabilityAssessment": "Current release blocker. It is a historical repository finding from 22 November, not a fresh test executed in this automation run.",
+      "risk": {
+        "severity": "CRITICAL (dependency audit); HIGH (promotional content)",
+        "priority": "P1-remediation",
+        "reason": "Critical/high dependency vulnerabilities and high promotional-language finding keep latest audit status FAIL."
+      },
+      "impactedFilesRoutes": [
+        "package.json",
+        "package-lock.json",
+        "/calculators/sip",
+        "compliance/audit/latest.json",
+        "compliance/audit/npm-audit-production.json (artifact from run)"
+      ],
+      "aiAnalysis": "Keep the audit gates intact and remediate the vulnerable dependency chain and SIP promotional text on a separate code-fix branch. Do not treat successful route probes, build or compliance scan as a release pass because the final audit failed.",
+      "changeSummary": "This regulatory-watch PR does not remediate these code findings; it records them for the separate remediation workstream.",
+      "commitPRLinks": [
+        "https://github.com/shivpawan007/LuxmiInvestCare/actions/runs/45016925749"
+      ],
+      "validationEvidence": [
+        "Latest audit JSON stored in main: generated 2026-11-22T11:22:46.369Z; 13/13 public route probes HTTP 200; build passed; compliance scan passed; dependency audit false; overall FAIL.",
+        "Workflow job logs confirm npm audit output 6 vulnerabilities and failure at final audit gate."
+      ],
+      "unresolvedQuestions": [
+        "Current package versions and advisory IDs must be refreshed before dependency remediation; no fresh npm audit run in this automation session.",
+        "SIP wording requires a content review and remediation."
+      ]
+    },
+    {
+      "id": "REGWATCH-SOURCE-COVERAGE-2026-11-23",
+      "authority": "Internal compliance monitoring controls",
+      "sourceTitle": "Regulatory-source coverage expansion",
+      "sourceURL": "https://github.com/shivpawan007/LuxmiInvestCare/blob/main/config/mfd-compliance-sources.json",
+      "publicationDate": "2026-11-23",
+      "effectiveDate": "Upon merge of proposed PR",
+      "previousRequirement": "The source watcher monitored six SEBI/AMFI sources, and the SEBI circular listing was not monitored directly. It monitored byte-level hashes and did not preserve a chronological regulatory log.",
+      "newRequirement": "Proposed config adds 12 sources (18 total): SEBI circulars and two identified circulars, AMFI general circulars, RBI circular index, MeitY DPDP index and Gazette reference PDFs, Income Tax Department portal/FAQ, Consumer Affairs, and CERT-In. A durable append-only Markdown/JSON regulatory log is introduced.",
+      "applicabilityAssessment": "Safe monitoring improvement; source changes will still require manual semantic review and may generate false positives.",
+      "risk": {
+        "severity": "MEDIUM",
+        "priority": "P2-monitoring-quality",
+        "reason": "Prior source coverage missed the circular listing and the watcher is hash-only; broaden coverage but document limits."
+      },
+      "impactedFilesRoutes": [
+        "config/mfd-compliance-sources.json",
+        "compliance/regulatory-log.md",
+        "compliance/regulatory-log.json"
+      ],
+      "aiAnalysis": "The watcher does not interpret law and should not auto-rewrite website content. Added sources can detect changes but do not provide semantic diffs; static Gazette PDFs are reference-only and dynamic pages can cause false positives.",
+      "changeSummary": "Expanded source configuration and created a durable chronology. The watcher script itself was not changed in this PR.",
+      "commitPRLinks": [
+        "https://github.com/shivpawan007/LuxmiInvestCare/commit/68dd26030cdc320941f20d9ae0a8278998472ffe"
+      ],
+      "validationEvidence": [
+        "Updated config parsed as valid JSON before GitHub write.",
+        "12 new source URLs were checked through web research/open where available; eGazette homepage itself timed out and was not added as a broad watch source.",
+        "No Node/npm execution available in this automation run; CI is not configured to run on this branch."
+      ],
+      "unresolvedQuestions": [
+        "Should source-change detection be upgraded from raw hashes to extracted text/semantic comparison and a separately retained history archive?",
+        "Should additional official source indexes be added after their URLs and stability are verified?"
+      ]
+    }
+  ]
+}
