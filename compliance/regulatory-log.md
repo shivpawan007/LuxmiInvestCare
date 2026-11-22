@@ -146,3 +146,14 @@ AMFI MFD circulars: https://www.amfiindia.com/distributor/amfi-circulars
 4. **Existing critical release blockers:** Separate remediation workstream must resolve production dependency vulnerabilities and the high SIP promotional-language finding, then rerun the full release gates.
 
 **Change control:** This log does not authorize merging or production deployment. All changes remain in a review PR until approved. Append future updates; preserve every earlier entry.
+
+
+## Verified PR and commit links
+
+**Draft PR:** https://github.com/shivpawan007/LuxmiInvestCare/pull/18
+
+- Source configuration commit: https://github.com/shivpawan007/LuxmiInvestCare/commit/68dd26030cdc320941f20d9ae0a8278998472ffe
+- Initial machine-readable log commit: https://github.com/shivpawan007/LuxmiInvestCare/commit/6848a53ab19f35e95d60ef919f5db869e2f5c99c
+- Initial Markdown log commit: https://github.com/shivpawan007/LuxmiInvestCare/commit/ba9b2d7491f9b6c4532004a243182c92787b4493
+
+These commits and this PR contain only monitoring configuration and compliance documentation; no production code, merge, or deployment.
