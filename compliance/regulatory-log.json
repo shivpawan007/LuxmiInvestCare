@@ -16,6 +16,24 @@
       "Static documents are reference-only and do not detect amendments by themselves.",
       "No broad eGazette root monitor added because it timed out during source check.",
       "This watch is not exhaustive and does not replace professional review."
+    ],
+    "pullRequest": "https://github.com/shivpawan007/LuxmiInvestCare/pull/18",
+    "commits": [
+      {
+        "path": "config/mfd-compliance-sources.json",
+        "sha": "68dd26030cdc320941f20d9ae0a8278998472ffe",
+        "url": "https://github.com/shivpawan007/LuxmiInvestCare/commit/68dd26030cdc320941f20d9ae0a8278998472ffe"
+      },
+      {
+        "path": "compliance/regulatory-log.json (initial)",
+        "sha": "6848a53ab19f35e95d60ef919f5db869e2f5c99c",
+        "url": "https://github.com/shivpawan007/LuxmiInvestCare/commit/6848a53ab19f35e95d60ef919f5db869e2f5c99c"
+      },
+      {
+        "path": "compliance/regulatory-log.md (initial)",
+        "sha": "ba9b2d7491f9b6c4532004a243182c92787b4493",
+        "url": "https://github.com/shivpawan007/LuxmiInvestCare/commit/ba9b2d7491f9b6c4532004a243182c92787b4493"
+      }
     ]
   },
   "entries": [
@@ -50,6 +68,7 @@
       "aiAnalysis": "The date extension does not remove the underlying accessibility obligations. Existing audit probes test route availability and compliance language, not accessibility. The current repository has no evidence of an IAAP audit or a dedicated automated accessibility test. Do not treat HTTP 200 responses or a successful build as accessibility compliance. A human must confirm scope and arrange an IAAP auditor where applicable.",
       "changeSummary": "No website code or content change made in this run because legal scope and a formal accessibility audit require professional review. Added official accessibility circular to the watch source configuration and recorded a remediation checklist in the durable log.",
       "commitPRLinks": [
+        "https://github.com/shivpawan007/LuxmiInvestCare/pull/18",
         "https://github.com/shivpawan007/LuxmiInvestCare/commit/68dd26030cdc320941f20d9ae0a8278998472ffe"
       ],
       "validationEvidence": [
@@ -89,6 +108,7 @@
       "aiAnalysis": "The current privacy page, last updated 6 October 2026, describes enquiry fields (name, phone, email, message, source page), report-sharing session data/localStorage, processing purposes, consent withdrawal contact, security and a flexible retention statement. Future Rule 3 requires a clear standalone notice with itemised personal data, specific purposes and accessible means to withdraw consent, exercise rights and complain to the Board. A gap analysis should verify these elements, retention, processor roles, rights workflow and incident response before commencement. Do not assume Rule 4 makes Luxmi a Consent Manager.",
       "changeSummary": "No privacy policy or consent-flow code change made because implementation and legal choices require review. Added official MeitY DPDP Rules index and Gazette references to the watch configuration and logged a preparation checklist.",
       "commitPRLinks": [
+        "https://github.com/shivpawan007/LuxmiInvestCare/pull/18",
         "https://github.com/shivpawan007/LuxmiInvestCare/commit/68dd26030cdc320941f20d9ae0a8278998472ffe"
       ],
       "validationEvidence": [
@@ -123,6 +143,7 @@
       "aiAnalysis": "Do not implement Form 166 or FATCA/CRS fields in the website without evidence that Luxmi is a reporting intermediary/RFI or that the distributor is required to collect these certifications. This circular may have obligations outside the website scope; verify entity status with a tax/compliance professional.",
       "changeSummary": "No code change. Added the official SEBI circular to source monitoring and logged a conditional applicability review.",
       "commitPRLinks": [
+        "https://github.com/shivpawan007/LuxmiInvestCare/pull/18",
         "https://github.com/shivpawan007/LuxmiInvestCare/commit/68dd26030cdc320941f20d9ae0a8278998472ffe"
       ],
       "validationEvidence": [
@@ -154,6 +175,7 @@
       "aiAnalysis": "No site changes recommended based on the reviewed titles and recipient/scope descriptions. Re-review if Luxmi begins accredited-investor onboarding, direct scheme transaction processing, or FATCA/CRS certification collection.",
       "changeSummary": "Reviewed recent SEBI circular listing and recorded no direct website changes.",
       "commitPRLinks": [
+        "https://github.com/shivpawan007/LuxmiInvestCare/pull/18",
         "https://github.com/shivpawan007/LuxmiInvestCare/commit/68dd26030cdc320941f20d9ae0a8278998472ffe"
       ],
       "validationEvidence": [
@@ -188,7 +210,8 @@
       "aiAnalysis": "Keep the audit gates intact and remediate the vulnerable dependency chain and SIP promotional text on a separate code-fix branch. Do not treat successful route probes, build or compliance scan as a release pass because the final audit failed.",
       "changeSummary": "This regulatory-watch PR does not remediate these code findings; it records them for the separate remediation workstream.",
       "commitPRLinks": [
-        "https://github.com/shivpawan007/LuxmiInvestCare/actions/runs/45016925749"
+        "https://github.com/shivpawan007/LuxmiInvestCare/pull/18",
+        "https://github.com/shivpawan007/LuxmiInvestCare/commit/68dd26030cdc320941f20d9ae0a8278998472ffe"
       ],
       "validationEvidence": [
         "Latest audit JSON stored in main: generated 2026-11-22T11:22:46.369Z; 13/13 public route probes HTTP 200; build passed; compliance scan passed; dependency audit false; overall FAIL.",
@@ -222,6 +245,7 @@
       "aiAnalysis": "The watcher does not interpret law and should not auto-rewrite website content. Added sources can detect changes but do not provide semantic diffs; static Gazette PDFs are reference-only and dynamic pages can cause false positives.",
       "changeSummary": "Expanded source configuration and created a durable chronology. The watcher script itself was not changed in this PR.",
       "commitPRLinks": [
+        "https://github.com/shivpawan007/LuxmiInvestCare/pull/18",
         "https://github.com/shivpawan007/LuxmiInvestCare/commit/68dd26030cdc320941f20d9ae0a8278998472ffe"
       ],
       "validationEvidence": [
