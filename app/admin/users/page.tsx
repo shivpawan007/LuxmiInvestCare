@@ -25,7 +25,7 @@ type Role = {
 
 export default function UsersPage() {
     const [users, setUsers] =
-        useState<User[]>([]);
+        useState<User[] | null>(null);
 
     const [roles, setRoles] =
         useState<Role[]>([]);
@@ -595,7 +595,7 @@ export default function UsersPage() {
                         </table>
                     )}
 
-                    {!loading &&
+                    {users !== null &&
                         users.length === 0 && (
                             <div className="p-10 text-center text-slate-500">
                                 No users found.
