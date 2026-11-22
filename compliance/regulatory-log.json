@@ -258,5 +258,38 @@
         "Should additional official source indexes be added after their URLs and stability are verified?"
       ]
     }
+  ],
+  "updates": [
+    {
+      "id": "SUPPLEMENTAL-2026-11-23-003206IST",
+      "timestamp": "2026-11-23T00:32:06+05:30",
+      "timezone": "Asia/Kolkata",
+      "updates": [
+        "July 31 SEBI accessibility page is verified as an official primary page and confirms circular number/date; the extracted 31 October prior deadline is corroborated by a secondary full-text reproduction because SEBI page text/PDF could not be extracted in this web session. October 30 official circular's 31 January deadline is primary.",
+        "Official SEBI FATCA/CRS page and PDF link were identified; the SEBI PDF could not be text-extracted in this web session. Form 166 / Income-tax Act 2025 / Rules 2026 details were cross-checked against secondary reproductions and should be verified against the official PDF before business action.",
+        "PR validation check at this timestamp: Vercel Preview Comments succeeded, but three Vercel deployment status contexts remain pending; no GitHub Actions checks ran on this branch."
+      ],
+      "officialSources": [
+        "https://www.sebi.gov.in/legal/circulars/jul-2026/extension-of-timelines-with-repect-to-compliance-of-digital-accessibility-circulars-_103277.html",
+        "https://www.sebi.gov.in/legal/circulars/oct-2026/extension-of-timeline-with-respect-to-compliance-of-digital-accessibility-circulars_105523.html",
+        "https://www.sebi.gov.in/legal/circulars/nov-2026/reporting-requirement-under-foreign-account-tax-compliance-act-fatca-and-common-reporting-standard-crs-revised-through-income-tax-act-2025-read-with-income-tax-rules-2026_105705.html",
+        "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2026/1794392501415.pdf"
+      ],
+      "secondaryCrossCheck": [
+        "https://www.compliedai.com/updates/sebi/extension-of-timelines-with-repect-to-compliance-of-digital-accessibilit-xkojxg",
+        "https://www.compliedai.com/updates/sebi/reporting-requirement-under-foreign-account-tax-compliance-act-fatca-and-44bekg"
+      ],
+      "prValidation": {
+        "branchSha": "72ac4a882ec9fa3fddcbe1341dbe2bc33ae9ea95",
+        "vercelStatuses": [
+          "pending",
+          "pending",
+          "pending"
+        ],
+        "vercelPreviewComments": "success",
+        "githubActions": "no checks reported for this branch"
+      },
+      "limitations": "The secondary cross-check is explicitly not a substitute for the official SEBI PDFs. No Node/npm tests, ESLint, TypeScript, build, accessibility audit, fresh npm audit or route probes were run in this session."
+    }
   ]
 }
