@@ -1,6 +1,12 @@
 {
-  "version": 1,
-  "purpose": "Automated monitoring of official SEBI and AMFI sources relevant to Luxmi InvestCare as an AMFI-registered Mutual Fund Distributor.",
+  "version": 2,
+  "purpose": "Automated monitoring of authoritative SEBI, AMFI, RBI, MeitY, Government of India, Income Tax, Consumer Affairs and CERT-In sources relevant to Luxmi InvestCare as an AMFI-registered Mutual Fund Distributor and website operator.",
+  "monitoringLimitations": [
+    "Current watcher stores source-byte SHA-256 hashes; it does not extract, normalize or semantically diff source text.",
+    "Dynamic pages may cause false-positive review triggers. A hash change is not itself proof of a regulatory amendment.",
+    "Static Gazette PDFs are reference copies and will not detect a later amendment unless the source list is updated.",
+    "Monitoring coverage is not exhaustive and does not replace professional compliance review."
+  ],
   "sources": [
     {
       "id": "amfi-mfd-circulars",
@@ -65,6 +71,143 @@
       "watchFor": [
         "new or amended Mutual Fund master circular",
         "applicable distributor guidance"
+      ]
+    },
+    {
+      "id": "sebi-circulars",
+      "url": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=1&smid=0&ssid=7",
+      "authority": "SEBI",
+      "description": "Official SEBI circulars listing; added to close the prior monitoring gap for current circulars.",
+      "watchFor": [
+        "new circulars affecting mutual funds, distributors, intermediaries, disclosures, privacy, advertising, cyber, accessibility or investor protection"
+      ]
+    },
+    {
+      "id": "sebi-digital-accessibility-circular-2026-10",
+      "url": "https://www.sebi.gov.in/legal/circulars/oct-2026/extension-of-timeline-with-respect-to-compliance-of-digital-accessibility-circulars_105523.html",
+      "authority": "SEBI",
+      "description": "Official October 30, 2026 circular extending IAAP auditor appointment, digital accessibility audit and remediation timeline.",
+      "watchFor": [
+        "accessibility audit deadline",
+        "IAAP auditor appointment",
+        "accessibility remediation"
+      ]
+    },
+    {
+      "id": "sebi-fatca-crs-circular-2026-11",
+      "url": "https://www.sebi.gov.in/legal/circulars/nov-2026/reporting-requirement-under-foreign-account-tax-compliance-act-fatca-and-common-reporting-standard-crs-revised-through-income-tax-act-2025-read-with-income-tax-rules-2026_105705.html",
+      "authority": "SEBI",
+      "description": "Official November 11, 2026 FATCA/CRS reporting circular for SEBI-registered intermediaries.",
+      "watchFor": [
+        "FATCA CRS due diligence",
+        "Income-tax Act 2025",
+        "Income-tax Rules 2026",
+        "Form 166",
+        "KRA certification upload"
+      ]
+    },
+    {
+      "id": "amfi-general-circulars",
+      "url": "https://www.amfiindia.com/circulars",
+      "authority": "AMFI",
+      "description": "AMFI general circulars and best-practice updates.",
+      "watchFor": [
+        "new circulars",
+        "MFD best practice updates",
+        "investor protection and distribution changes"
+      ]
+    },
+    {
+      "id": "rbi-circular-index",
+      "url": "https://www.rbi.org.in/Scripts/BS_CircularIndexDisplay.aspx",
+      "authority": "RBI",
+      "description": "Official RBI circular index; review for material payments, cybersecurity, privacy, digital-service or consumer requirements that may apply.",
+      "watchFor": [
+        "digital payments",
+        "cybersecurity",
+        "privacy",
+        "consumer protection",
+        "outsourcing or operational risk"
+      ]
+    },
+    {
+      "id": "meity-dpdp-rules-index",
+      "url": "https://www.meity.gov.in/documents/act-and-policies/digital-personal-data-protection-rules-2025-gDOxUjMtQWa?pageTitle=Digital-Personal-Data-Protection-Rules-2025",
+      "authority": "MeitY",
+      "description": "Official MeitY DPDP Act and Rules documents, commencement timelines and corrigenda.",
+      "watchFor": [
+        "DPDP Rules amendments",
+        "commencement changes",
+        "privacy notice",
+        "consent",
+        "data principal rights",
+        "breach response"
+      ]
+    },
+    {
+      "id": "dpdp-rules-gazette",
+      "url": "https://www.meity.gov.in/static/uploads/2025/11/53450e6e5dc0bfa85ebd78686cadad39.pdf",
+      "authority": "Government of India / MeitY / Gazette",
+      "description": "Primary Gazette copy of Digital Personal Data Protection Rules, 2025 (G.S.R. 846(E)); static reference.",
+      "watchFor": [
+        "amendment or corrigendum to DPDP Rules"
+      ]
+    },
+    {
+      "id": "dpdp-commencement-gazette",
+      "url": "https://egazette.gov.in/WriteReadData/2025/267647.pdf",
+      "authority": "Government of India / MeitY / Gazette",
+      "description": "Primary Gazette copy of DPDP Act commencement notification G.S.R. 843(E), November 13, 2025; static reference.",
+      "watchFor": [
+        "commencement notifications",
+        "date amendments"
+      ]
+    },
+    {
+      "id": "income-tax-act-2025-faq",
+      "url": "https://www.incometax.gov.in/iec/foportal/help/all-topics/e-filing-services/objective-and-scope-new-act",
+      "authority": "Income Tax Department / Ministry of Finance",
+      "description": "Official Income Tax Department information on Income-tax Act, 2025 and transition.",
+      "watchFor": [
+        "new tax Act/Rules",
+        "tax year changes",
+        "tax reporting and disclosure"
+      ]
+    },
+    {
+      "id": "income-tax-portal-updates",
+      "url": "https://www.incometax.gov.in/iec/foportal/",
+      "authority": "Income Tax Department / Ministry of Finance",
+      "description": "Official portal announcements and updates.",
+      "watchFor": [
+        "new notifications",
+        "Income-tax Rules 2026",
+        "Form changes",
+        "tax disclosures"
+      ]
+    },
+    {
+      "id": "consumer-affairs-rights",
+      "url": "https://consumeraffairs.gov.in/pages/consumer-rights",
+      "authority": "Department of Consumer Affairs / Government of India",
+      "description": "Official consumer rights reference for consumer protection and misleading communications review.",
+      "watchFor": [
+        "consumer protection",
+        "unfair trade practices",
+        "misleading advertisements",
+        "digital/e-commerce guidance"
+      ]
+    },
+    {
+      "id": "cert-in-home",
+      "url": "https://www.cert-in.org.in/",
+      "authority": "CERT-In / MeitY",
+      "description": "Official CERT-In advisories and cyber security updates; broad homepage hash monitoring.",
+      "watchFor": [
+        "cybersecurity directions",
+        "vulnerability advisories",
+        "incident reporting",
+        "security controls"
       ]
     }
   ]
