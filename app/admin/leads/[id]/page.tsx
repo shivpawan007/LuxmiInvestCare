@@ -296,7 +296,7 @@ export default function LeadDetailPage() {
             `mailto:${lead.email}`;
     }
 
-    if (loading) {
+    if (loadedLeadId !== leadId && loadErrorLeadId !== leadId) {
         return (
             <main className="min-h-screen bg-slate-50 p-6">
                 Loading lead...
