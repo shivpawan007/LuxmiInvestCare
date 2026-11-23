@@ -164,3 +164,45 @@ These commits and this PR contain only monitoring configuration and compliance d
 - The official SEBI July 31 accessibility page confirms circular metadata, but its text/PDF could not be extracted in this web session. The previous **31 October** deadline is corroborated by a secondary full-text reproduction; the **31 January 2027** extension in the October 30 circular is confirmed from the official SEBI circular. See official July page: https://www.sebi.gov.in/legal/circulars/jul-2026/extension-of-timelines-with-repect-to-compliance-of-digital-accessibility-circulars-_103277.html and secondary cross-check: https://www.compliedai.com/updates/sebi/extension-of-timelines-with-repect-to-compliance-of-digital-accessibilit-xkojxg
 - Official SEBI FATCA/CRS page and PDF link identified. PDF text could not be extracted in this session; Form 166 / Act 2025 / Rules 2026 details were cross-checked against secondary reproductions and should be verified from the official PDF before any business action. Official PDF: https://www.sebi.gov.in/sebi_data/attachdocs/nov-2026/1794392501415.pdf
 - PR check status at 00:32:06 IST: **Vercel Preview Comments succeeded; three Vercel deployment status contexts remained pending; no GitHub Actions checks ran on this branch.** No build/test result is claimed for this PR.
+
+
+## Daily review — 24 November 2026, 00:43:45 IST (Asia/Kolkata)
+
+**Run ID:** REGWATCH-2026-11-24-0043IST  
+**Regulatory result:** No new material rule/circular/FAQ change identified for Luxmi's MFD website scope since the previous watch. This is a source-list review, not a guarantee of exhaustive coverage.
+
+### Sources checked and result
+- **SEBI circulars:** official listing reviewed through the latest displayed 17 November 2026 entry (Review of Margin Framework for Commodity Derivatives Segment). No later SEBI circular surfaced in the reviewed listing through 24 November. Commodity-derivatives margin scope does not directly affect the MFD website identified.
+- **AMFI MFD circulars:** official MFD-specific list reviewed; latest displayed MFD circular is CIR/ARN-33/2026-27 dated 28 July 2026 (registration for mutual fund and SIF distribution under NISM-V-D examination). No new MFD circular identified.
+- **AMFI general circulars:** reviewed; no new applicable MFD website requirement identified.
+- **RBI circular index:** November 23 entries include securitisation amendment directions for AIFIs, NBFCs, SFBs and commercial banks. Recipient/scope is institution-specific; no direct Luxmi website impact identified.
+- **MeitY/DPDP, Consumer Affairs and CERT-In:** fresh search did not surface a material update directly applicable to Luxmi's website in this review window. Coverage is limited by search/index access; primary-source pages may be dynamic or not fully indexed.
+
+### Previously identified regulatory items — status unchanged
+- **HIGH / P1 — SEBI digital accessibility:** deadline 31 January 2027. Direct applicability to Luxmi as an AMFI-registered MFD remains for human confirmation. Formal IAAP audit evidence still not identified. **Issue #19 opened** for scope confirmation and auditor/audit plan: https://github.com/shivpawan007/LuxmiInvestCare/issues/19.
+- **MEDIUM / P2 — DPDP preparation:** Rule 4 commenced 13 November 2026; principal Data Fiduciary rule package is scheduled for 13 May 2027 subject to Gazette verification. Privacy/data-flow and retention decisions remain open.
+- **FATCA/CRS — conditional:** entity reporting status and any Form 166 obligations remain to be confirmed; no public website KYC/certification flow was identified.
+
+### Freshly verified repository audit evidence
+- Scheduled **Weekly Random Compliance Audit #83** completed on 23 November 2026 at 18:06:43 IST, but its final audit gate **FAILED**. Workflow evidence: https://github.com/shivpawan007/LuxmiInvestCare/actions/runs/45175718230.
+- Persisted report: https://github.com/shivpawan007/LuxmiInvestCare/commit/1c8cc98ce922e7996bc85c3a03b5930d77257ea5.
+- Report status **FAIL**: production dependencies 3 vulnerabilities (1 critical, 1 high, 1 low); full tree 6 (1 critical, 1 high, 3 moderate, 1 low); high promotional-language finding `promotion.return-on-investment` on `/calculators/sip`; 13/13 required routes HTTP 200.
+- Workflow steps for compliance scan, dependency audit, build, audit report generation/upload and report commit completed; final fail-gate step failed because persisted audit was FAIL. These results are from workflow #83, not new commands run during this automation.
+- Remediation PR #17 remains open/unmerged: https://github.com/shivpawan007/LuxmiInvestCare/pull/17. Comment added with the current audit evidence and requested review: https://github.com/shivpawan007/LuxmiInvestCare/pull/17#issuecomment-7111339828.
+
+### Changes this run
+- No website code/content or production change.
+- Opened human-review issue #19 for digital accessibility scope and IAAP audit tracking.
+- Added a compliance-watch comment to PR #17 and a daily review comment to this log PR.
+- Append-only log update in this draft PR; no prior entry overwritten.
+
+### Validation and limitations
+- Source-list findings were checked via fresh web retrieval on 24 November 2026. No new direct website requirement was found.
+- No new local npm audit, lint, TypeScript, tests, build, accessibility audit, or live route probe was run in this automation. Workflow #83 results are reported separately as historical evidence.
+- Source searches may omit or lag dynamic regulatory pages; primary-source review was limited to accessible listings and surfaced documents.
+- **No PR merge or production deployment performed.**
+
+### Human action
+1. Review issue #19; confirm accessibility applicability and arrange IAAP audit if required before 31 January 2027.
+2. Review and merge/revise PR #17 only after its validation and manual/legal blockers are resolved.
+3. Review PR #18 to approve the monitoring source configuration and durable log.
