@@ -419,6 +419,83 @@
         "Approve actual data retention, processing, processor, consent/withdrawal and breach-response practices for DPDP preparation.",
         "Confirm FATCA/CRS Reporting Financial Institution/intermediary status and Form 166 obligations."
       ]
+    },
+    {
+      "id": "REGWATCH-2026-11-24-0047IST-SUPPLEMENT-1",
+      "retrievedAt": "2026-11-24T00:47:29+05:30",
+      "timezone": "Asia/Kolkata",
+      "type": "supplemental-validation-status",
+      "regulatoryUpdateStatus": "NO_NEW_MATERIAL_REGULATORY_CHANGE",
+      "repositoryStatus": {
+        "remediationPR": 17,
+        "branch": "compliance-remediation-2026-11-22",
+        "headSha": "83df93dce280067b955e687c1d93953d0dc54644",
+        "workflowRun": "https://github.com/shivpawan007/LuxmiInvestCare/actions/runs/44981759265",
+        "workflowConclusion": "FAIL",
+        "productionDependencyAudit": {
+          "low": 0,
+          "moderate": 0,
+          "high": 0,
+          "critical": 0,
+          "total": 0,
+          "artifactPresent": true
+        },
+        "fullDependencyAudit": {
+          "low": 0,
+          "moderate": 0,
+          "high": 0,
+          "critical": 0,
+          "total": 0,
+          "artifactPresent": true
+        },
+        "complianceContentScan": "PASS",
+        "eslint": "PASS",
+        "productionBuild": "FAIL",
+        "liveRouteComplianceAudit": "SKIPPED",
+        "vercelDeployments": "3 contexts failed; preview-comments check passed",
+        "artifactName": "luxmi-remediation-checks",
+        "artifactId": 14737224759,
+        "rootCause": "Build logs unavailable in artifact; not diagnosed",
+        "humanAction": "Inspect CI build logs, diagnose/fix build, investigate Vercel deployment failures, rerun all validations"
+      },
+      "mainBranchStatus": {
+        "auditRun": "https://github.com/shivpawan007/LuxmiInvestCare/actions/runs/45175718230",
+        "conclusion": "FAIL",
+        "productionDependencyAudit": {
+          "low": 1,
+          "moderate": 0,
+          "high": 1,
+          "critical": 1,
+          "total": 3
+        },
+        "fullDependencyAudit": {
+          "low": 1,
+          "moderate": 3,
+          "high": 1,
+          "critical": 1,
+          "total": 6
+        },
+        "contentFinding": {
+          "severity": "HIGH",
+          "rule": "promotion.return-on-investment",
+          "route": "/calculators/sip"
+        },
+        "routeProbe": {
+          "passed": 13,
+          "failed": 0,
+          "total": 13
+        }
+      },
+      "comments": {
+        "pr17": "https://github.com/shivpawan007/LuxmiInvestCare/pull/17#issuecomment-7111387860",
+        "pr18": "https://github.com/shivpawan007/LuxmiInvestCare/pull/18#issuecomment-7111390494"
+      },
+      "changes": {
+        "code": "none",
+        "merge": "none",
+        "productionDeployment": "none"
+      },
+      "validationThisRun": "Only GitHub workflow/artifact/status evidence reviewed; no new local build/audit/test command executed."
     }
   ]
 }
