@@ -206,3 +206,23 @@ These commits and this PR contain only monitoring configuration and compliance d
 1. Review issue #19; confirm accessibility applicability and arrange IAAP audit if required before 31 January 2027.
 2. Review and merge/revise PR #17 only after its validation and manual/legal blockers are resolved.
 3. Review PR #18 to approve the monitoring source configuration and durable log.
+
+
+## Supplemental validation status — 24 November 2026, 00:47:29 IST (Asia/Kolkata)
+
+**Supplement ID:** REGWATCH-2026-11-24-0047IST-SUPPLEMENT-1
+
+### Remediation PR #17 — latest CI evidence
+- Workflow run **#46** failed at the production-build step: https://github.com/shivpawan007/LuxmiInvestCare/actions/runs/44981759265.
+- Branch artifact `luxmi-remediation-checks` contains production and full `npm audit` JSON reports with **0 vulnerabilities each**. Compliance content scan and ESLint steps passed.
+- **Production build failed**, and the live route/compliance audit was **skipped**.
+- **Three Vercel deployment contexts failed**; the Vercel Preview Comments check itself passed.
+- The artifact did not contain the build log; root cause is not diagnosed. The PR body previously described latest validation as pending; this supplement records the actual observed failure.
+- PR #17 comment: https://github.com/shivpawan007/LuxmiInvestCare/pull/17#issuecomment-7111387860.
+
+### Main branch status remains separate
+- Main scheduled audit #83 remains **FAIL**, with 3 production dependency vulnerabilities (1 critical, 1 high, 1 low), 6 full-tree vulnerabilities (1 critical, 1 high, 3 moderate, 1 low), and the high `promotion.return-on-investment` finding on `/calculators/sip`. 13/13 routes passed the route probe.
+- Main audit evidence: https://github.com/shivpawan007/LuxmiInvestCare/actions/runs/45175718230.
+- PR #18 supplemental comment: https://github.com/shivpawan007/LuxmiInvestCare/pull/18#issuecomment-7111390494.
+
+**No code changes, merge or production deployment.** Build failure root cause and preview deployment errors require review and another CI validation run.
