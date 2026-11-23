@@ -291,5 +291,134 @@
       },
       "limitations": "The secondary cross-check is explicitly not a substitute for the official SEBI PDFs. No Node/npm tests, ESLint, TypeScript, build, accessibility audit, fresh npm audit or route probes were run in this session."
     }
+  ],
+  "dailyRuns": [
+    {
+      "id": "REGWATCH-2026-11-24-0043IST",
+      "retrievedAt": "2026-11-24T00:43:45+05:30",
+      "timezone": "Asia/Kolkata",
+      "reviewPeriod": "Fresh source review through 2026-11-24; latest scheduled repository audit evidence from 2026-11-23",
+      "regulatoryUpdateStatus": "NO_NEW_MATERIAL_DIRECTLY_APPLICABLE_UPDATES_IDENTIFIED",
+      "sourceChecks": [
+        {
+          "authority": "SEBI",
+          "sourceTitle": "Official SEBI circular listing",
+          "url": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListingAll=yes&intmid=14&sid=1&ssid=7",
+          "result": "Latest displayed relevant listing entry dated 17 Nov 2026 (commodity-derivatives margin framework); no later MFD website update identified. That circular is not directly applicable to the distributor website."
+        },
+        {
+          "authority": "AMFI",
+          "sourceTitle": "AMFI circulars for distributors",
+          "url": "https://www.amfiindia.com/distributor/amfi-circulars",
+          "result": "Latest displayed MFD-specific item is CIR/ARN-33/2026-27 dated 28 July 2026; no new MFD circular identified."
+        },
+        {
+          "authority": "AMFI",
+          "sourceTitle": "AMFI general circulars",
+          "url": "https://www.amfiindia.com/circulars",
+          "result": "Reviewed; no new directly applicable MFD website update identified."
+        },
+        {
+          "authority": "RBI",
+          "sourceTitle": "RBI circular index",
+          "url": "https://www.rbi.org.in/scripts/bs_circularindexdisplay.aspx/Scripts/BS_CircularIndexDisplay.aspx?Id=13697",
+          "result": "23 Nov 2026 securitisation amendments for AIFIs, NBFCs, SFBs and commercial banks; recipient scope institution-specific, no direct website change identified."
+        },
+        {
+          "authority": "MeitY/Government of India",
+          "sourceTitle": "DPDP Rules and official MeitY pages",
+          "url": "https://www.meity.gov.in/documents/act-and-policies/digital-personal-data-protection-rules-2025-gDOxUjMtQWa?pageTitle=Digital-Personal-Data-Protection-Rules-2025",
+          "result": "No new material DPDP update identified; previous phased commencement items remain tracked."
+        },
+        {
+          "authority": "Department of Consumer Affairs",
+          "sourceTitle": "Consumer protection and e-commerce rules index",
+          "url": "https://consumeraffairs.gov.in/pages/consumer-protection-acts",
+          "result": "Fresh search did not surface a directly applicable change; search coverage may lag."
+        },
+        {
+          "authority": "CERT-In",
+          "sourceTitle": "CERT-In advisories",
+          "url": "https://www.cert-in.org.in/",
+          "result": "Fresh search did not surface a material website-specific requirement; advisories require ongoing applicability review."
+        }
+      ],
+      "continuingItems": [
+        {
+          "id": "SEBI-ACCESSIBILITY-2026-10-30",
+          "severity": "HIGH",
+          "priority": "P1-review",
+          "status": "OPEN",
+          "deadline": "2027-01-31",
+          "humanReviewIssue": "https://github.com/shivpawan007/LuxmiInvestCare/issues/19",
+          "summary": "Confirm scope for AMFI MFD and arrange IAAP audit/remediation if applicable."
+        },
+        {
+          "id": "DPDP-PHASE-2026-11-13",
+          "severity": "MEDIUM",
+          "priority": "P2-preparation",
+          "status": "OPEN",
+          "summary": "Privacy/data-flow/retention gap review before principal rule commencement; Rule 4 already commenced."
+        },
+        {
+          "id": "SEBI-FATCA-CRS-2026-11-11",
+          "severity": "CONDITIONAL",
+          "priority": "P3-confirm-business-status",
+          "status": "OPEN",
+          "summary": "Confirm entity/reporting status and Form 166 applicability with tax/compliance professional."
+        }
+      ],
+      "auditEvidence": {
+        "workflowRun": "https://github.com/shivpawan007/LuxmiInvestCare/actions/runs/45175718230",
+        "runNumber": 83,
+        "runCompletedAt": "2026-11-23T18:06:43+05:30",
+        "workflowConclusion": "FAIL",
+        "finalFailGate": "Failed because persisted audit status was FAIL",
+        "complianceScanStep": "Completed successfully in workflow",
+        "dependencyAuditStep": "Completed successfully in workflow; report identifies vulnerabilities",
+        "productionBuildStep": "Completed successfully in workflow",
+        "reportGenerationUploadCommitSteps": "Completed successfully in workflow",
+        "productionVulnerabilities": {
+          "low": 1,
+          "moderate": 0,
+          "high": 1,
+          "critical": 1,
+          "total": 3
+        },
+        "fullTreeVulnerabilities": {
+          "low": 1,
+          "moderate": 3,
+          "high": 1,
+          "critical": 1,
+          "total": 6
+        },
+        "contentFinding": {
+          "severity": "HIGH",
+          "rule": "promotion.return-on-investment",
+          "route": "/calculators/sip"
+        },
+        "routes": {
+          "passed": 13,
+          "failed": 0,
+          "total": 13
+        },
+        "reportCommit": "https://github.com/shivpawan007/LuxmiInvestCare/commit/1c8cc98ce922e7996bc85c3a03b5930d77257ea5",
+        "note": "This is prior workflow evidence, not tests executed by the current automation."
+      },
+      "changes": {
+        "websiteCodeOrContent": "none",
+        "issueCreated": "https://github.com/shivpawan007/LuxmiInvestCare/issues/19",
+        "pr17Comment": "https://github.com/shivpawan007/LuxmiInvestCare/pull/17#issuecomment-7111339828",
+        "pr18Comment": "https://github.com/shivpawan007/LuxmiInvestCare/pull/18#issuecomment-7111340871",
+        "logBranch": "compliance/regulatory-watch-2026-11-23",
+        "validationThisRun": "No npm audit, lint, TypeScript, tests, build, accessibility audit, or route probe run in this automation.",
+        "productionDeployment": "none"
+      },
+      "unresolvedQuestions": [
+        "Confirm direct SEBI digital-accessibility circular applicability to Luxmi as an AMFI MFD; scope and IAAP audit owner.",
+        "Approve actual data retention, processing, processor, consent/withdrawal and breach-response practices for DPDP preparation.",
+        "Confirm FATCA/CRS Reporting Financial Institution/intermediary status and Form 166 obligations."
+      ]
+    }
   ]
 }
