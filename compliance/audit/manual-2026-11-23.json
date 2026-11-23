@@ -1,0 +1,164 @@
+{
+  "auditVersion": "3.0",
+  "auditType": "weekly-compliance-audit-manual-verification",
+  "generatedAt": "2026-11-23T00:27:40Z",
+  "localGeneratedAt": "2026-11-23T05:57:40+05:30",
+  "branch": "main",
+  "baseUrl": "https://www.luxmiinvestcare.com",
+  "status": "FAIL",
+  "executionStatus": "INCOMPLETE",
+  "note": "A full audit could not be executed in this runtime. Container network DNS resolution failed, and GitHub Actions workflow dispatch is not available through the connected GitHub actions tools. This report records the latest persisted audit and current partial manual web retrieval checks; it does not replace latest.json.",
+  "latestPersistedAudit": {
+    "generatedAt": "2026-11-22T11:22:46.369Z",
+    "sourceCommit": "17f48d78bd0a1a3330d2f609caa927c5321e080f",
+    "status": "FAIL",
+    "sourceFilesChecked": 115,
+    "checks": {
+      "forbiddenPromotionalLanguage": false,
+      "mfdIdentity": true,
+      "arn365140": true,
+      "mfdTagline": true,
+      "distributionRemunerationDisclosure": true,
+      "standardRiskWarning": true,
+      "liveRouteProbe": true,
+      "dependencyAudit": false
+    },
+    "productionDependencyAudit": {
+      "counts": {
+        "info": 0,
+        "low": 1,
+        "moderate": 0,
+        "high": 1,
+        "critical": 1,
+        "total": 3
+      },
+      "status": "FAIL",
+      "exactPackageAdvisoriesUnavailableInPersistedSummary": true
+    },
+    "fullDependencyAudit": {
+      "counts": {
+        "info": 0,
+        "low": 1,
+        "moderate": 3,
+        "high": 1,
+        "critical": 1,
+        "total": 6
+      },
+      "developmentOnlyPackageCount": 3,
+      "developmentOnlyPackages": [
+        {
+          "name": "@eslint/config-array",
+          "severity": "moderate",
+          "range": "0.23.0 - 0.23.5",
+          "fixAvailable": true
+        },
+        {
+          "name": "eslint",
+          "severity": "moderate",
+          "range": "10.0.0-alpha.0 - 10.14.0",
+          "fixAvailable": true
+        },
+        {
+          "name": "minimatch",
+          "severity": "moderate",
+          "range": "7.0.0 - 11.0.0",
+          "fixAvailable": true
+        }
+      ]
+    },
+    "routeProbe": {
+      "requiredRouteCount": 13,
+      "passed": 13,
+      "failed": 0,
+      "lastVerifiedAt": "2026-11-22T11:22:46.369Z",
+      "routes": [
+        "/",
+        "/about",
+        "/services",
+        "/calculators",
+        "/calculators/sip",
+        "/calculators/lumpsum",
+        "/calculators/swp",
+        "/calculators/step-up-sip",
+        "/education",
+        "/investor-education",
+        "/contact",
+        "/privacy",
+        "/disclosures"
+      ]
+    },
+    "build": {
+      "lastKnownResult": "PASS",
+      "lastKnownDate": "2026-11-16",
+      "currentRun": "NOT_EXECUTED"
+    },
+    "findings": [
+      {
+        "severity": "critical",
+        "rule": "dependencies.production-high-or-critical-vulnerabilities",
+        "file": "npm-audit-production.json"
+      },
+      {
+        "severity": "medium",
+        "rule": "dependencies.development-only-vulnerabilities",
+        "packageCount": 3,
+        "note": "Development-tree findings are warnings unless also present in production."
+      },
+      {
+        "severity": "high",
+        "rule": "promotion.return-on-investment",
+        "route": "/calculators/sip"
+      }
+    ],
+    "regulatoryWatch": {
+      "generatedAt": "2026-11-22T11:22:05.668Z",
+      "sourcesChecked": 6,
+      "failures": 0,
+      "changes": [
+        "sebi-regulations",
+        "sebi-mf-master-circulars"
+      ],
+      "status": "REVIEW_REQUIRED"
+    }
+  },
+  "currentManualWebRetrieval": {
+    "performedAt": "2026-11-23T00:27:40Z",
+    "directHttpProbe": "NOT_AVAILABLE",
+    "runtimeNetworkFailure": "DNS resolution failed in container",
+    "webFetchAccessiblePages": [
+      "/about",
+      "/services",
+      "/calculators",
+      "/calculators/lumpsum",
+      "/calculators/swp",
+      "/calculators/step-up-sip",
+      "/education",
+      "/investor-education",
+      "/contact",
+      "/privacy",
+      "/disclosures"
+    ],
+    "webFetchTimeouts": [
+      "/",
+      "/calculators/sip"
+    ],
+    "caveat": "Web page retrieval is not an HTTP status probe. Some pages were returned with stale crawl dates; accessibility cannot be treated as a current route PASS."
+  },
+  "checksCurrentRun": {
+    "productionNpmAudit": "NOT_EXECUTED",
+    "fullNpmAudit": "NOT_EXECUTED",
+    "complianceContentScan": "NOT_EXECUTED",
+    "productionBuild": "NOT_EXECUTED",
+    "liveRouteHttpProbe": "NOT_EXECUTED",
+    "reportUpdate": "SAVED_AS_SEPARATE_MANUAL_REPORT",
+    "officialRegulatorySourceRecheck": "NOT_EXECUTED"
+  },
+  "requiredAttention": [
+    "Latest persisted production audit shows 1 Critical and 1 High vulnerability; exact package-level details were not present in the persisted summary.",
+    "Latest persisted full audit shows 3 development-only Moderate package findings; warnings only unless they affect production.",
+    "Latest persisted live SIP route has a High promotion.return-on-investment finding.",
+    "Latest persisted route probe passed 13/13 routes on 2026-11-22, but no current direct HTTP probe was possible.",
+    "Production build was last known PASS on 2026-11-16; it was not run in this execution.",
+    "SEBI regulations and SEBI MF master circular listing hashes changed in the 2026-11-22 regulatory watch; human review remains required."
+  ]
+}
