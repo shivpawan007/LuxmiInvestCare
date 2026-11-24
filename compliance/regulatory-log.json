@@ -361,6 +361,21 @@
         "https://github.com/shivpawan007/LuxmiInvestCare/commit/ecf3826289fd5bfe4d003b2316302bbe1dab5d10"
       ],
       "limitations": "Compare result is informational; mergeability was unknown and no synchronization, merge, tests or deployment were performed."
+    },
+    {
+      "id": "SUPPLEMENTAL-2026-11-25-PR18-SYNC-CORRECTION",
+      "timestamp": "later verification in same run; compare API did not return timestamp",
+      "timezone": "Asia/Kolkata",
+      "updates": [
+        "A second compare after two additional log commits reports 16 commits ahead and 3 behind main, diverged; mergeability unknown.",
+        "The earlier 14-ahead comparison remains preserved as a prior snapshot. Current compare still lists only the Markdown log, JSON log, and monitoring config.",
+        "No merge or deployment; PR remains draft."
+      ],
+      "branch": "compliance/regulatory-watch-2026-11-23",
+      "commits": [
+        "https://github.com/shivpawan007/LuxmiInvestCare/commit/ca2d7b5d5f1a0e9d14f05feb93303ce1394cf106"
+      ],
+      "limitations": "The comparison API did not expose an exact retrieval timestamp."
     }
   ],
   "dailyRuns": [
@@ -722,6 +737,21 @@
           "config/mfd-compliance-sources.json"
         ],
         "note": "Keep draft; refresh against main and preserve append-only log before review/merge."
+      },
+      "githubBranchStatusLatest": {
+        "pr18": "OPEN/DRAFT",
+        "branch": "compliance/regulatory-watch-2026-11-23",
+        "compareStatus": "diverged",
+        "aheadOfMain": 16,
+        "behindMain": 3,
+        "mergeability": "unknown",
+        "comparedFiles": [
+          "compliance/regulatory-log.md",
+          "compliance/regulatory-log.json",
+          "config/mfd-compliance-sources.json"
+        ],
+        "retrievedAt": "later verification in same run; compare API did not return timestamp",
+        "note": "The prior 14-ahead snapshot is preserved in updates; current count includes two subsequent log commits. Keep draft and synchronize before review/merge."
       }
     }
   ]
