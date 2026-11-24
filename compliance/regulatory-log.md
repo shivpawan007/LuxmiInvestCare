@@ -318,3 +318,7 @@ PR #18 remains **OPEN / DRAFT**. GitHub compare of `main` with `compliance/regul
 - Markdown log: https://github.com/shivpawan007/LuxmiInvestCare/commit/5b864d36f490220544c714a9befa5725e9ed3909
 
 Comments recorded: PR #17 comment ID 7141090779; PR #18 comment ID 7141091446 and synchronization note ID 7141105352. PR #18 head SHA after updates: `5b864d36f490220544c714a9befa5725e9ed3909`. This synchronization check is read-only; no merge or deployment occurred.
+
+### Supplemental branch comparison correction (later verification in this watch run)
+
+A second read-only compare after the latest two log commits reports PR #18 as **16 commits ahead / 3 behind main** (status `diverged`, mergeability unknown). The earlier 14-ahead figure above was the comparison snapshot before those two additional log commits. The comparison still lists only the three intended log/config files. Keep the PR draft; synchronize with main and preserve append-only history before merge/review. Exact retrieval time was not returned by the compare API.
