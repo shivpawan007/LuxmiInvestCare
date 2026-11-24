@@ -226,3 +226,83 @@ These commits and this PR contain only monitoring configuration and compliance d
 - PR #18 supplemental comment: https://github.com/shivpawan007/LuxmiInvestCare/pull/18#issuecomment-7111390494.
 
 **No code changes, merge or production deployment.** Build failure root cause and preview deployment errors require review and another CI validation run.
+
+
+## Daily review — 25 November 2026, 00:10:22 IST (Asia/Kolkata)
+
+**Run ID:** REGWATCH-2026-11-25-001022IST  
+**Regulatory result:** No new directly applicable SEBI/AMFI statutory website requirement was identified. A new **CERT-In Critical threat advisory** (CIAD-2026-0062, issued 20 November) is materially relevant to Luxmi's exposed login/API and CRM/admin attack surface and requires security review. This is threat intelligence, not a new MFD rule.
+
+### New CERT-In advisory — Critical threat, Luxmi P1/high security review
+
+**Authority:** CERT-In / Ministry of Electronics and Information Technology, Government of India  
+**Title:** *Abuse of Business Payment Workflows and Use of AI-Driven Agentic Offensive Frameworks across Sectors*  
+**Advisory ID:** CIAD-2026-0062  
+**Publication date:** 20 November 2026  
+**Retrieval/review:** 25 November 2026, 00:10:22 IST (Asia/Kolkata)  
+**Official advisory:** https://www.cert-in.org.in/s2cMainServlet?VLCODE=CIAD-2026-0062&pageid=PUBVLNOTES02  
+**Official CERT-In 2026 advisory list:** https://www.cert-in.org.in/s2cMainServlet?pageid=PUBADVLIST02&year=2026
+
+**Previous guidance:** CERT-In advisories CIAD-2026-0046, 0049 and 0058 already addressed payment/disbursement API abuse and AI-enabled intrusion. The current main login and public enquiry endpoints inspected in this review did not show application-level rate-limit enforcement. PR #17 proposes rate limiting and response-security headers but remains unmerged and has a failed production-build validation.
+
+**New guidance:** CERT-In describes abuse of trusted business workflows and underlying records/approval relationships, AI-driven agentic offensive frameworks, automated reconnaissance, credential attacks and unauthorized access. It recommends reviewing internet-facing applications/APIs, identities, privileged accounts, service credentials, external integrations, monitoring/logs and incident response, and refers organizations to CIAD-0046, CIAD-0049, CIAD-0058 and the AI-assisted vulnerability-exploitation blueprint. Recommendations are not a new website-specific legal requirement.
+
+**Applicability assessment:** No payment, payout, transfer or disbursement route names were found in the recursive repository path search. This is a path/name search only—not proof that no payment workflow or code exists. Payment-workflow abuse is not directly evidenced. General credential, exposed API/application, privileged access and business-record alteration risks are relevant because the site has an admin login, public lead submission and CRM/admin routes.
+
+**Risk:** CERT-In advisory severity **CRITICAL**; Luxmi exposure assessed **HIGH / P1 security review**, not critical on current evidence. Impacts include credential abuse, unauthorized CRM access/changes, lead spam/availability and enquiry-data exposure. No evidence of compromise was found; logs and security telemetry were not examined.
+
+**Impacted files/routes:**
+- `app/api/auth/login/route.ts` — login/password verification; no visible rate-limit call in inspected main.
+- `app/api/leads/route.ts` — validated public lead submission and consent; no visible rate-limit call in inspected main.
+- `app/api/admin/leads/route.ts`, `app/api/admin/leads/[id]/route.ts`, `app/api/admin/users/route.ts`, `app/api/admin/leads/[id]/activities/route.ts` — authenticated/role-checked routes inspected; continue review of mutation authorization, privileged record changes and auditability.
+- `next.config.ts` — inspected main configuration does not define baseline response-security headers.
+- `lib/rateLimit.ts` and `database/migrations/2026-11-22-api-rate-limits.sql` — proposed in PR #17, not present/effective in main.
+
+**AI analysis / remediation:** Reuse and review PR #17's proposed MySQL-backed rate limiting for public leads and login, security headers, migration and proxy/IP handling rather than duplicating unvalidated controls. Diagnose the build failure and rerun CI first. Review MFA/least privilege for admin and provider accounts, secrets hygiene, independent verification for sensitive record changes, and logs/monitoring. No code change was made in this watch because rate-limit infrastructure, proxy trust, migration, and security configuration require validation; no incident or logs were assessed.
+
+**Issue created:** P1 security review issue #20 — https://github.com/shivpawan007/LuxmiInvestCare/issues/20  
+**Related remediation PR #17:** https://github.com/shivpawan007/LuxmiInvestCare/pull/17  
+**Regulatory-log PR #18:** https://github.com/shivpawan007/LuxmiInvestCare/pull/18
+
+### Other source checks
+
+- **SEBI circular listing:** latest displayed relevant entry dated 17 November 2026 (commodity-derivatives margin framework); no later directly relevant MFD website update surfaced. Official listing: https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListingAll=yes&sid=1&smid=0
+- **AMFI MFD circulars:** latest displayed item remains CIR/ARN-33/2026-27 dated 28 July 2026; no newer MFD-specific item surfaced. https://www.amfiindia.com/distributor/amfi-circulars
+- **RBI:** official November index shows 23 November securitisation amendment directions for AIFIs, NBFCs, SFBs and commercial banks; institution-specific, no direct Luxmi MFD website impact identified. https://www.rbi.org.in/scripts/BS_CircularIndexDisplay.aspx
+- **Consumer Affairs:** official search surfaced GATC notification S.O. 5620(E), dated 13 October 2026, legal-metrology subject; no direct website impact identified. https://consumeraffairs.gov.in/
+- **MeitY/DPDP and Income Tax:** fresh search did not surface a new directly applicable change; previous DPDP phased commencement and FATCA/CRS applicability questions remain open. Dynamic source/search coverage may be incomplete.
+
+### Latest main-branch audit — workflow #84 (historical CI evidence)
+
+**Workflow:** https://github.com/shivpawan007/LuxmiInvestCare/actions/runs/45405885027  
+**Report generated:** 24 November 2026, 19:11:42 IST  
+**Report commit:** 1c8cc98ce922e7996bc85c3a03b5930d77257ea5  
+**Conclusion:** FAIL — final fail-gate step failed because persisted audit status was FAIL.
+
+- Production dependency audit: **3 vulnerabilities** (1 critical, 1 high, 1 low).
+- Full dependency tree: **6 vulnerabilities** (1 critical, 1 high, 3 moderate, 1 low).
+- **HIGH** promotional-language finding `promotion.return-on-investment` on `/calculators/sip`.
+- Route probe: **13/13 HTTP 200**.
+- Compliance scan, dependency audit, production build, route probe, report upload and report commit steps completed in this workflow. Successful steps do not override the overall audit failure.
+
+This is workflow #84 evidence retrieved from GitHub, not a fresh local audit.
+
+### Changes this run
+
+- Created human-review security issue #20 with scope, findings, recommended options and validation limitations.
+- Added CERT-In advisory listing and direct CIAD-2026-0062 source URLs to the existing watch configuration (18 → **20 sources**).
+- Appended this review to Markdown and machine-readable logs; prior entries were preserved.
+- No application code changed; no merge or production deployment.
+
+**Validation:** Source/config and machine-readable log JSON were parsed in the automation before update. Official CERT-In advisory/listing and SEBI/AMFI/RBI/Consumer Affairs sources were reviewed. Repository/API files were read through GitHub for security posture. No local npm audit, ESLint, TypeScript, build, penetration test, production route test or log review was run.
+
+**Email:** Not sent. Gmail access/search requires interactive authorization and the recipient could not be verified.
+
+### Human actions / review queue
+
+1. **P1 security:** Review issue #20 and PR #17. Diagnose its build failure, validate rate limits/security headers/IP trust and migration, and check MFA, secrets, privileged record changes and security logs.
+2. **P1 accessibility:** Continue issue #19; confirm direct SEBI scope and arrange IAAP audit/remediation if applicable by 31 January 2027.
+3. **P2 privacy:** Approve actual retention, processor/data-flow, consent/withdrawal, rights-request and breach-response arrangements before DPDP main rules commence.
+4. **Conditional tax:** Confirm FATCA/CRS entity/reporting status with tax/compliance professional.
+
+**Change control:** No code or production deployment. Changes remain in PR #18 for review. Monitoring is source-change detection, not semantic legal analysis; primary-source access/search may be incomplete.
