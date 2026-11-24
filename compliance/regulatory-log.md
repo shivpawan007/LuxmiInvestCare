@@ -306,3 +306,15 @@ This is workflow #84 evidence retrieved from GitHub, not a fresh local audit.
 4. **Conditional tax:** Confirm FATCA/CRS entity/reporting status with tax/compliance professional.
 
 **Change control:** No code or production deployment. Changes remain in PR #18 for review. Monitoring is source-change detection, not semantic legal analysis; primary-source access/search may be incomplete.
+
+
+### Supplemental GitHub branch verification (same watch run)
+
+PR #18 remains **OPEN / DRAFT**. GitHub compare of `main` with `compliance/regulatory-watch-2026-11-23` reports **14 commits ahead / 3 behind**, compare status `diverged`, and mergeability `unknown`. The comparison lists only the three intended log/config files: `compliance/regulatory-log.md`, `compliance/regulatory-log.json`, and `config/mfd-compliance-sources.json`. Keep draft; refresh against main and resolve conflicts while preserving append-only history before approval/merge.
+
+**Verified update commits:**
+- Source configuration: https://github.com/shivpawan007/LuxmiInvestCare/commit/cb878ef908f7963d0474a4ecd6a315dd28e35673
+- Machine-readable log: https://github.com/shivpawan007/LuxmiInvestCare/commit/a587203dc06a52cdac3a64075d4c7935b528409c
+- Markdown log: https://github.com/shivpawan007/LuxmiInvestCare/commit/5b864d36f490220544c714a9befa5725e9ed3909
+
+Comments recorded: PR #17 comment ID 7141090779; PR #18 comment ID 7141091446 and synchronization note ID 7141105352. PR #18 head SHA after updates: `5b864d36f490220544c714a9befa5725e9ed3909`. This synchronization check is read-only; no merge or deployment occurred.
