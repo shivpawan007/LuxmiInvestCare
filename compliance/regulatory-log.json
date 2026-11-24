@@ -257,6 +257,56 @@
         "Should source-change detection be upgraded from raw hashes to extracted text/semantic comparison and a separately retained history archive?",
         "Should additional official source indexes be added after their URLs and stability are verified?"
       ]
+    },
+    {
+      "id": "CERT-IN-CIAD-2026-0062-2026-11-25",
+      "authority": "CERT-In / Ministry of Electronics and Information Technology",
+      "sourceTitle": "Abuse of Business Payment Workflows and Use of AI-Driven Agentic Offensive Frameworks across Sectors (CIAD-2026-0062)",
+      "sourceURL": "https://www.cert-in.org.in/s2cMainServlet?VLCODE=CIAD-2026-0062&pageid=PUBVLNOTES02",
+      "publicationDate": "2026-11-20",
+      "effectiveDate": "No separate statutory commencement date; advisory recommendations should be assessed and acted on promptly.",
+      "previousRequirement": "Prior CERT-In advisories CIAD-2026-0046, 0049 and 0058 covered payment/disbursement API abuse and AI-enabled intrusions. Existing main-branch login and public enquiry APIs were not protected by visible application-level rate-limit calls in the inspected routes; the remediation proposal remains unmerged.",
+      "newRequirement": "CIAD-2026-0062 (Critical advisory) describes misuse of trusted business workflows and underlying records/approval relationships, AI-driven agentic offensive frameworks, automated reconnaissance, credential attacks and unauthorized access. It advises reviewing exposed applications/APIs, identities, privileged accounts, service credentials, external interfaces, monitoring and incident response; see the advisory for references and applicable incident-reporting guidance.",
+      "applicabilityAssessment": "Payment/disbursement workflow abuse is not directly evidenced in Luxmi's current repository: no payment/payout/disbursement filenames or route names were found in the recursive tree search. The general credential, exposed-application/API, privileged-access, CRM record-change and AI-agent intrusion risks are relevant because the website has login, public lead-submission and authenticated admin/CRM endpoints. No evidence of compromise was identified; no incident/log investigation was performed.",
+      "risk": {
+        "severity": "HIGH",
+        "priority": "P1-security-review",
+        "status": "OPEN",
+        "reason": "CERT-In classifies the advisory as Critical. Luxmi's current evidenced exposure is elevated but not assessed Critical because payment/disbursement processing was not identified; authentication abuse and unauthorized lead/CRM access or changes remain relevant."
+      },
+      "impactedFilesRoutes": [
+        "app/api/auth/login/route.ts",
+        "app/api/leads/route.ts",
+        "app/api/admin/leads/route.ts",
+        "app/api/admin/leads/[id]/route.ts",
+        "app/api/admin/users/route.ts",
+        "app/api/admin/leads/[id]/activities/route.ts",
+        "next.config.ts",
+        "lib/rateLimit.ts (proposed in PR #17)",
+        "database/migrations/2026-11-22-api-rate-limits.sql (proposed in PR #17)"
+      ],
+      "aiAnalysis": "Read-only inspection of main shows validated login input and bcrypt password comparison, but no visible rate-limit call in the login route; the public lead endpoint validates input and consent but has no visible rate-limit call. Inspected admin APIs use getCurrentUser/role checks and parameterized SQL, but privileged record changes, session/cookie protections, logging and operational monitoring require a deeper review. Main next.config.ts has no response-security headers in the inspected version. PR #17 proposes login/lead rate limiting and response headers, but it remains open/unmerged and its last known CI build/deployment validation failed. The advisory does not by itself establish that Luxmi operates payment workflows or require a specific code change. A safe next step is review/validate the existing PR #17 mitigation rather than duplicating or making untested changes.",
+      "changeSummary": "No application code changed. Created human-review issue #20 and added two CERT-In monitoring sources (2026 advisory listing and CIAD-2026-0062 detail) to the existing regulatory-watch PR branch.",
+      "commitPRLinks": [
+        "https://github.com/shivpawan007/LuxmiInvestCare/issues/20",
+        "https://github.com/shivpawan007/LuxmiInvestCare/pull/17",
+        "https://github.com/shivpawan007/LuxmiInvestCare/pull/18",
+        "https://github.com/shivpawan007/LuxmiInvestCare/commit/cb878ef908f7963d0474a4ecd6a315dd28e35673"
+      ],
+      "validationEvidence": [
+        "Official CERT-In advisory page CIAD-2026-0062 opened and reviewed; it states Original Issue Date 20 Nov 2026 and severity Critical.",
+        "Current main login route, public leads route, selected authenticated admin routes, next.config.ts, and recursive repository tree were inspected through read-only GitHub retrieval.",
+        "Repository tree search for payment/payout/disbursement/transfer/bank/invoice filename terms returned no matches; this is a filename/path search, not proof of absence of payment code.",
+        "Main weekly audit #84 (run 45405885027) completed with final gate failure; compliance scan, dependency audit, build, route probe/report steps completed, but audit status remained FAIL. The report records production vulnerabilities (3: 1 critical, 1 high, 1 low), full-tree vulnerabilities (6: 1 critical, 1 high, 3 moderate, 1 low), high promotional-language finding on /calculators/sip, and 13/13 routes HTTP 200.",
+        "PR #17 is open/unmerged; last known CI workflow #46 failed at production build and route audit was skipped. Rate-limit/header proposal is not active in main.",
+        "JSON/source config validated by parsing in automation before GitHub update. No local npm audit, ESLint, TypeScript, build, penetration test, production test or log review was run."
+      ],
+      "unresolvedQuestions": [
+        "Confirm whether Luxmi has any payment, disbursement, payout, banking or external vendor workflows not represented in public repository paths.",
+        "Review and validate rate-limit design, migration, trusted-proxy/IP handling and security headers in PR #17; diagnose build failure and rerun CI.",
+        "Confirm admin MFA, least-privilege service credentials, secrets hygiene, privileged record-change auditability, and incident response procedures.",
+        "If compromise is suspected, investigate logs and follow applicable CERT-In incident reporting directions; this review found no evidence of compromise but did not examine logs."
+      ]
     }
   ],
   "updates": [
@@ -496,6 +546,148 @@
         "productionDeployment": "none"
       },
       "validationThisRun": "Only GitHub workflow/artifact/status evidence reviewed; no new local build/audit/test command executed."
+    },
+    {
+      "id": "REGWATCH-2026-11-25-001022IST",
+      "retrievedAt": "2026-11-25T00:10:22+05:30",
+      "timezone": "Asia/Kolkata",
+      "reviewPeriod": "Fresh primary-source review on 25 Nov 2026, plus read-only repository/API security inspection and latest main-branch audit evidence.",
+      "regulatoryUpdateStatus": "NO_NEW_DIRECTLY_APPLICABLE_STATUTORY_UPDATE_IDENTIFIED; NEW_CRITICAL_CERT_IN_THREAT_ADVISORY_REQUIRES_SECURITY_REVIEW",
+      "sourceChecks": [
+        {
+          "authority": "SEBI",
+          "sourceTitle": "Official SEBI circular listing",
+          "url": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListingAll=yes&sid=1&smid=0",
+          "result": "Latest displayed relevant circular dated 17 Nov 2026 is commodity-derivatives margin framework; no later directly relevant MFD website circular surfaced."
+        },
+        {
+          "authority": "AMFI",
+          "sourceTitle": "AMFI MFD circulars",
+          "url": "https://www.amfiindia.com/distributor/amfi-circulars",
+          "result": "Latest displayed MFD-specific circular CIR/ARN-33/2026-27 dated 28 Jul 2026; no newer MFD-specific circular identified in the listing."
+        },
+        {
+          "authority": "RBI",
+          "sourceTitle": "RBI circular index",
+          "url": "https://www.rbi.org.in/scripts/bs_circularindexdisplay.aspx",
+          "result": "Official November 2026 index shows 23 Nov securitisation amendments for AIFIs, NBFCs, SFBs and commercial banks; institution-specific and no direct MFD website impact identified."
+        },
+        {
+          "authority": "CERT-In / MeitY",
+          "sourceTitle": "CERT-In Advisory CIAD-2026-0062",
+          "url": "https://www.cert-in.org.in/s2cMainServlet?VLCODE=CIAD-2026-0062&pageid=PUBVLNOTES02",
+          "publicationDate": "2026-11-20",
+          "result": "Critical advisory on abuse of business payment workflows and AI-driven agentic offensive frameworks across sectors. Threat intelligence, not a new MFD website regulation; general exposed-app, identity, credential, privileged-access and monitoring controls are relevant to Luxmi."
+        },
+        {
+          "authority": "CERT-In / MeitY",
+          "sourceTitle": "CERT-In 2026 advisories listing",
+          "url": "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBADVLIST02&year=2026",
+          "result": "Official listing confirms CIAD-2026-0062 dated 20 Nov 2026, CIAD-0061 dated 18 Nov, CIAD-0060 dated 13 Nov and earlier advisories."
+        },
+        {
+          "authority": "MeitY / Government of India",
+          "sourceTitle": "DPDP Rules and notifications",
+          "url": "https://www.meity.gov.in/documents/act-and-policies/digital-personal-data-protection-rules-2025-gDOxUjMtQWa?pageTitle=Digital-Personal-Data-Protection-Rules-2025",
+          "result": "Search did not surface a new DPDP amendment or commencement change; previous phased commencement items remain open. Search coverage may not detect dynamic source changes."
+        },
+        {
+          "authority": "Department of Consumer Affairs",
+          "sourceTitle": "Consumer Affairs official notifications/pages",
+          "url": "https://consumeraffairs.gov.in/",
+          "result": "Latest surfaced notification was GATC S.O. 5620(E), dated 13 Oct 2026, concerning legal-metrology scope; no direct website requirement identified from this result."
+        },
+        {
+          "authority": "Income Tax Department",
+          "sourceTitle": "Income Tax official updates",
+          "url": "https://www.incometax.gov.in/iec/foportal/",
+          "result": "Search did not surface a new tax disclosure change directly applicable to the MFD website; source-search coverage was limited."
+        }
+      ],
+      "continuingItems": [
+        {
+          "id": "SEBI-ACCESSIBILITY-2026-10-30",
+          "severity": "HIGH",
+          "priority": "P1-review",
+          "status": "OPEN",
+          "deadline": "2027-01-31",
+          "humanReviewIssue": "https://github.com/shivpawan007/LuxmiInvestCare/issues/19",
+          "summary": "Confirm direct applicability to AMFI MFD and IAAP audit/remediation plan."
+        },
+        {
+          "id": "DPDP-PHASE-2026-11-13",
+          "severity": "MEDIUM",
+          "priority": "P2-preparation",
+          "status": "OPEN",
+          "summary": "Privacy/data-flow/retention review ahead of principal rule package commencement; Rule 4 already commenced."
+        },
+        {
+          "id": "SEBI-FATCA-CRS-2026-11-11",
+          "severity": "CONDITIONAL",
+          "priority": "P3-confirm-business-status",
+          "status": "OPEN",
+          "summary": "Confirm reporting financial institution/intermediary status and Form 166 obligations."
+        },
+        {
+          "id": "CERT-IN-CIAD-2026-0062-2026-11-25",
+          "severity": "HIGH",
+          "priority": "P1-security-review",
+          "status": "OPEN",
+          "humanReviewIssue": "https://github.com/shivpawan007/LuxmiInvestCare/issues/20",
+          "summary": "Assess exposed login/public enquiry endpoints, privileged admin access, CRM changes, credential hygiene and monitoring in light of CERT-In CIAD-2026-0062."
+        }
+      ],
+      "auditEvidence": {
+        "workflowRun": "https://github.com/shivpawan007/LuxmiInvestCare/actions/runs/45405885027",
+        "runNumber": 84,
+        "runCreatedAt": "2026-11-24T19:10:34+05:30",
+        "reportGeneratedAt": "2026-11-24T19:11:42+05:30",
+        "workflowConclusion": "FAIL",
+        "productionVulnerabilities": {
+          "low": 1,
+          "moderate": 0,
+          "high": 1,
+          "critical": 1,
+          "total": 3
+        },
+        "fullTreeVulnerabilities": {
+          "low": 1,
+          "moderate": 3,
+          "high": 1,
+          "critical": 1,
+          "total": 6
+        },
+        "contentFinding": {
+          "severity": "HIGH",
+          "rule": "promotion.return-on-investment",
+          "route": "/calculators/sip"
+        },
+        "routes": {
+          "passed": 13,
+          "failed": 0,
+          "total": 13
+        },
+        "complianceScanStep": "Completed successfully in workflow",
+        "dependencyAuditStep": "Completed successfully; findings persisted",
+        "productionBuildStep": "Completed successfully in workflow",
+        "routeProbeStep": "Completed successfully; 13/13 HTTP 200",
+        "finalFailGate": "Failed because persisted audit status was FAIL"
+      },
+      "changes": {
+        "code": "none",
+        "newIssue": "https://github.com/shivpawan007/LuxmiInvestCare/issues/20",
+        "pr17": "https://github.com/shivpawan007/LuxmiInvestCare/pull/17",
+        "pr18": "https://github.com/shivpawan007/LuxmiInvestCare/pull/18",
+        "sourceConfigCommit": "https://github.com/shivpawan007/LuxmiInvestCare/commit/cb878ef908f7963d0474a4ecd6a315dd28e35673",
+        "sourceConfigAdded": [
+          "cert-in-advisories-2026",
+          "cert-in-ciad-2026-0062"
+        ],
+        "sourceCount": 20,
+        "emailNotification": "not sent; Gmail search/send required interactive authorization and recipient could not be verified."
+      },
+      "validationThisRun": "Official CERT-In advisory and listings reviewed; repository source inspection and JSON parsing completed. No local tests, npm audit, lint, build, penetration test, production verification or security log review executed in this automation.",
+      "productionDeployment": "none"
     }
   ]
 }
