@@ -209,6 +209,28 @@
         "incident reporting",
         "security controls"
       ]
+    },
+    {
+      "id": "cert-in-advisories-2026",
+      "url": "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBADVLIST02&year=2026",
+      "authority": "CERT-In",
+      "description": "Official CERT-In advisory listing for 2026.",
+      "watchFor": [
+        "new advisory titles and dates",
+        "critical/high threat advisories affecting exposed applications, identities, APIs, credentials, AI-agent intrusion and business workflows"
+      ]
+    },
+    {
+      "id": "cert-in-ciad-2026-0062",
+      "url": "https://www.cert-in.org.in/s2cMainServlet?VLCODE=CIAD-2026-0062&pageid=PUBVLNOTES02",
+      "authority": "CERT-In",
+      "description": "Specific official advisory CIAD-2026-0062 dated 20 November 2026 on business workflow abuse and AI-driven agentic offensive frameworks.",
+      "watchFor": [
+        "advisory content changes",
+        "recommended security controls",
+        "incident reporting guidance",
+        "updates to severity or references"
+      ]
     }
   ]
 }
