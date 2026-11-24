@@ -291,7 +291,10 @@
         "https://github.com/shivpawan007/LuxmiInvestCare/issues/20",
         "https://github.com/shivpawan007/LuxmiInvestCare/pull/17",
         "https://github.com/shivpawan007/LuxmiInvestCare/pull/18",
-        "https://github.com/shivpawan007/LuxmiInvestCare/commit/cb878ef908f7963d0474a4ecd6a315dd28e35673"
+        "https://github.com/shivpawan007/LuxmiInvestCare/commit/cb878ef908f7963d0474a4ecd6a315dd28e35673",
+        "https://github.com/shivpawan007/LuxmiInvestCare/commit/a587203dc06a52cdac3a64075d4c7935b528409c",
+        "https://github.com/shivpawan007/LuxmiInvestCare/commit/5b864d36f490220544c714a9befa5725e9ed3909",
+        "https://github.com/shivpawan007/LuxmiInvestCare/commit/ecf3826289fd5bfe4d003b2316302bbe1dab5d10"
       ],
       "validationEvidence": [
         "Official CERT-In advisory page CIAD-2026-0062 opened and reviewed; it states Original Issue Date 20 Nov 2026 and severity Critical.",
@@ -340,6 +343,24 @@
         "githubActions": "no checks reported for this branch"
       },
       "limitations": "The secondary cross-check is explicitly not a substitute for the official SEBI PDFs. No Node/npm tests, ESLint, TypeScript, build, accessibility audit, fresh npm audit or route probes were run in this session."
+    },
+    {
+      "id": "SUPPLEMENTAL-2026-11-25-PR18-SYNC",
+      "timestamp": "same watch run; exact comparison retrieval timestamp not exposed",
+      "timezone": "Asia/Kolkata",
+      "updates": [
+        "PR #18 remains open/draft; compare reports 14 commits ahead and 3 behind main, status diverged and mergeability unknown.",
+        "Compare lists only the Markdown log, JSON log, and monitoring source configuration.",
+        "Updated PR #18 comment to keep draft and refresh against main before review/merge; no merge/deploy."
+      ],
+      "branch": "compliance/regulatory-watch-2026-11-23",
+      "commits": [
+        "https://github.com/shivpawan007/LuxmiInvestCare/commit/cb878ef908f7963d0474a4ecd6a315dd28e35673",
+        "https://github.com/shivpawan007/LuxmiInvestCare/commit/a587203dc06a52cdac3a64075d4c7935b528409c",
+        "https://github.com/shivpawan007/LuxmiInvestCare/commit/5b864d36f490220544c714a9befa5725e9ed3909",
+        "https://github.com/shivpawan007/LuxmiInvestCare/commit/ecf3826289fd5bfe4d003b2316302bbe1dab5d10"
+      ],
+      "limitations": "Compare result is informational; mergeability was unknown and no synchronization, merge, tests or deployment were performed."
     }
   ],
   "dailyRuns": [
@@ -687,7 +708,21 @@
         "emailNotification": "not sent; Gmail search/send required interactive authorization and recipient could not be verified."
       },
       "validationThisRun": "Official CERT-In advisory and listings reviewed; repository source inspection and JSON parsing completed. No local tests, npm audit, lint, build, penetration test, production verification or security log review executed in this automation.",
-      "productionDeployment": "none"
+      "productionDeployment": "none",
+      "githubBranchStatus": {
+        "pr18": "OPEN/DRAFT",
+        "branch": "compliance/regulatory-watch-2026-11-23",
+        "compareStatus": "diverged",
+        "aheadOfMain": 14,
+        "behindMain": 3,
+        "mergeability": "unknown",
+        "comparedFiles": [
+          "compliance/regulatory-log.md",
+          "compliance/regulatory-log.json",
+          "config/mfd-compliance-sources.json"
+        ],
+        "note": "Keep draft; refresh against main and preserve append-only log before review/merge."
+      }
     }
   ]
 }
