@@ -472,3 +472,15 @@ A second read-only compare after the latest two log commits reports PR #18 as **
 5. **P2 privacy:** Approve data retention, processors, consent/withdrawal, rights-request and breach-response procedures before the main DPDP rule phase.
 
 **No merge or production deployment performed.**
+
+
+## Supplemental commit references — 26 November 2026 (Asia/Kolkata)
+
+- Source configuration update (20 → 25 monitored URLs): https://github.com/shivpawan007/LuxmiInvestCare/commit/dbefc6f882e6ad8b160bd8b6ac37f031d2a0bbe2
+- Markdown append for the 26 November review: https://github.com/shivpawan007/LuxmiInvestCare/commit/90b9c5b2c2a601da9f855eab2cffaf4a7e42cf31
+- Machine-readable JSON append for the 26 November review: https://github.com/shivpawan007/LuxmiInvestCare/commit/0f1ed3406cbd5ca3ed113d9fbd4e2858494e94f2
+- Draft compliance PR (all updates remain unmerged): https://github.com/shivpawan007/LuxmiInvestCare/pull/18
+- Human-review Issue #21: https://github.com/shivpawan007/LuxmiInvestCare/issues/21
+- Human-review Issue #22: https://github.com/shivpawan007/LuxmiInvestCare/issues/22
+
+These references are added as a dated supplement. Earlier source/config/log records remain intact.
