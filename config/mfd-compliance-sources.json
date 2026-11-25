@@ -231,6 +231,69 @@
         "incident reporting guidance",
         "updates to severity or references"
       ]
+    },
+    {
+      "id": "sebi-press-releases-listing",
+      "url": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=6&smid=0&ssid=23",
+      "authority": "SEBI",
+      "description": "Official SEBI press-release listing to monitor investor warnings, impersonation, market integrity and content advisories.",
+      "watchFor": [
+        "new investor cautions",
+        "impersonation warnings",
+        "marketing/publication restrictions",
+        "unregulated products or trading channels",
+        "social media and platform safety"
+      ]
+    },
+    {
+      "id": "sebi-gmp-advisory-2026-11-23",
+      "url": "https://www.sebi.gov.in/media-and-notifications/press-releases/nov-2026/advisory-regarding-unregulated-pre-listing-premium-often-called-as-grey-market-premium-gmp-for-upcoming-initial-public-offerings-ipos-_105942.html",
+      "authority": "SEBI",
+      "description": "Official PR 75/2026 dated 23 November 2026 on unregulated pre-listing premium/GMP for IPOs.",
+      "watchFor": [
+        "advisory wording or status changes",
+        "GMP publication/display/circulation/dissemination cautions",
+        "market-participant applicability",
+        "website, email, SMS and social content implications"
+      ]
+    },
+    {
+      "id": "sebi-impersonation-warning-2026-11-23",
+      "url": "https://www.sebi.gov.in/media-and-notifications/press-releases/nov-2026/caution-to-investors-regarding-impersonation-of-sebi-registered-intermediaries-on-closed-user-groups-of-social-media-platforms_105944.html",
+      "authority": "SEBI",
+      "description": "Official PR 76/2026 dated 23 November 2026 warning investors about impersonation of registered intermediaries on closed social-media groups.",
+      "watchFor": [
+        "new impersonation cautions",
+        "fake groups and apps",
+        "fraudulent bank/UPI account red flags",
+        "verification and official-channel advice"
+      ]
+    },
+    {
+      "id": "sebi-kra-onboarding-circular-2026-11-25",
+      "url": "https://www.sebi.gov.in/legal/circulars/nov-2026/simplification-of-client-on-boarding-and-rationalisation-of-risk-management-framework-at-kyc-registration-agencies_105839.html",
+      "authority": "SEBI",
+      "description": "Official circular HO/38/14/(25)2026-MIRSD-POD3 dated 25 November 2026 on KRA KYC onboarding, updates, validation, portability and delinking.",
+      "watchFor": [
+        "KRA onboarding process changes",
+        "supplementary data centralisation",
+        "client confirmation and validated attributes",
+        "mobile verification exceptions",
+        "KYC record delinking/closure timelines",
+        "effective dates and KRA SOP"
+      ]
+    },
+    {
+      "id": "meity-dpdp-removal-difficulties-order-2026",
+      "url": "https://www.meity.gov.in/static/uploads/2026/10/daf495a7b5798a3dfa72a944b51fc176.pdf",
+      "authority": "MeitY / Government of India",
+      "description": "Official Gazette PDF S.O. 5458(E), Digital Personal Data Protection (Removal of Difficulties) Order, 2026; made 5 October and published 6 October 2026.",
+      "watchFor": [
+        "amendments or corrigenda to the order",
+        "clarification of sections 9(1) and 10(2)(c)(ii)",
+        "child/person-with-disability lawful-guardian consent wording",
+        "Significant Data Fiduciary data-audit wording"
+      ]
     }
   ]
 }
