@@ -1,0 +1,94 @@
+name: Compliance Remediation Checks
+
+on:
+  push:
+    branches:
+      - compliance-remediation-2026-11-22
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: read
+
+concurrency:
+  group: compliance-remediation-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  verify-and-remediate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Update patched dependency versions (branch push only)
+        if: github.event_name == 'push'
+        run: |
+          npm install next@^16.4.6 zod@^4.6.7 eslint-config-next@^16.4.6
+          npm audit fix
+
+      - name: Commit dependency updates to remediation branch
+        if: github.event_name == 'push'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add package.json package-lock.json
+          if git diff --cached --quiet; then
+            echo "No dependency changes to commit."
+          else
+            git commit -m "security: remediate npm audit advisories"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi
+
+      - name: Clean install from lockfile
+        run: npm ci
+
+      - name: Generate dependency audit evidence
+        if: always()
+        run: |
+          mkdir -p compliance/audit
+          npm audit --omit=dev --json > compliance/audit/npm-audit-production.json || true
+          npm audit --json > compliance/audit/npm-audit-full.json || true
+
+      - name: Require zero production vulnerabilities
+        run: npm audit --omit=dev --audit-level=low
+
+      - name: Require zero full-tree vulnerabilities
+        run: npm audit --audit-level=low
+
+      - name: Run compliance content scan
+        run: npm run compliance:scan
+
+      - name: Run lint
+        run: npm run lint
+
+      - name: Run production build
+        run: npm run build
+
+      - name: Run live route and compliance audit
+        env:
+          AUDIT_BASE_URL: https://www.luxmiinvestcare.com
+          GITHUB_SHA: ${{ github.sha }}
+          GITHUB_REF_NAME: ${{ github.ref_name }}
+        run: npm run compliance:audit
+
+      - name: Upload evidence
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: luxmi-remediation-checks
+          path: |
+            compliance/audit/npm-audit-production.json
+            compliance/audit/npm-audit-full.json
+            compliance/audit/latest.json
+          if-no-files-found: warn
+          retention-days: 90

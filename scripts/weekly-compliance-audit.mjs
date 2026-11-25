@@ -37,7 +37,7 @@ const FORBIDDEN_PATTERNS = [
   { id: "promotion.ranking", pattern: /\branking\b/i },
   { id: "promotion.testimonial", pattern: /\btestimonials?\b/i },
   { id: "promotion.number-one", pattern: /number\s*1/i },
-  { id: "promotion.return-on-investment", pattern: /return\s+on\s+investment/i },
+  { id: "promotion.return-on-investment", pattern: /\b(?:guaranteed|assured|risk[-\s]+free|high|highest|best|maximum|exceptional|superior)\s+(?:return\s+on\s+investment|roi)\b/i },
   { id: "promotion.plan-your-future", pattern: /plan\s+your\s+future/i },
   { id: "promotion.grow-wealth", pattern: /grow\s+wealth/i },
   { id: "promotion.secure-future", pattern: /secure\s+future/i },

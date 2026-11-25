@@ -1,7 +1,6 @@
 "use client";
 
 import {
-  useEffect,
   useState,
   type ChangeEvent,
 } from "react";
@@ -110,36 +109,7 @@ export default function CalculatorInput({
    * ----------------------------------------------------------
    */
 
-  useEffect(() => {
-    if (!isFocused) {
-      setInputValue(
-        formatNumericValue(value),
-      );
-    } else {
-      setInputValue(
-        String(value),
-      );
-    }
 
-    if (!allowDynamicRange) {
-      setDynamicMax(max);
-      return;
-    }
-
-    setDynamicMax(
-      (currentMax) =>
-        Math.max(
-          currentMax,
-          max,
-          value,
-        ),
-    );
-  }, [
-    value,
-    max,
-    allowDynamicRange,
-    isFocused,
-  ]);
 
   /*
    * ----------------------------------------------------------
@@ -158,7 +128,7 @@ export default function CalculatorInput({
   const effectiveMax =
     allowDynamicRange
       ? Math.min(
-        dynamicMax,
+        Math.max(dynamicMax, max, value),
         maxCap ??
         Number.POSITIVE_INFINITY,
       )
@@ -251,19 +221,11 @@ export default function CalculatorInput({
     );
 
     /*
-     * Display the formatted value while
-     * the field is not being actively edited.
+     * The displayed text is derived from the numeric prop
+     * whenever the field is not being actively edited.
      */
-    if (!isFocused) {
-      setInputValue(
-        formatNumericValue(
-          nextValue,
-        ),
-      );
-    } else {
-      setInputValue(
-        String(nextValue),
-      );
+    if (isFocused) {
+      setInputValue(String(nextValue));
     }
   };
 
@@ -381,11 +343,6 @@ export default function CalculatorInput({
         parsedValue,
       )
     ) {
-      setInputValue(
-        formatNumericValue(
-          value,
-        ),
-      );
       return;
     }
 
@@ -393,16 +350,7 @@ export default function CalculatorInput({
       parsedValue,
     );
 
-    setInputValue(
-      formatNumericValue(
-        Math.max(
-          min,
-          clampValue(
-            parsedValue,
-          ),
-        ),
-      ),
-    );
+
   };
 
   /*
@@ -501,7 +449,7 @@ export default function CalculatorInput({
                   : "decimal"
               }
               value={
-                inputValue
+                isFocused ? inputValue : formatNumericValue(value)
               }
               min={min}
               max={

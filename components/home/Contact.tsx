@@ -30,7 +30,7 @@ export default function Contact() {
                     </span>
 
                     <h2 className="section-title mt-8">
-                        Let's Continue Your
+                        Let&apos;s Continue Your
                         <span className="block text-green-700">
                             Investor Education Journey
                         </span>

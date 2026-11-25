@@ -25,13 +25,10 @@ type Role = {
 
 export default function UsersPage() {
     const [users, setUsers] =
-        useState<User[]>([]);
+        useState<User[] | null>(null);
 
     const [roles, setRoles] =
         useState<Role[]>([]);
-
-    const [loading, setLoading] =
-        useState(true);
 
     const [saving, setSaving] =
         useState(false);
@@ -56,7 +53,6 @@ export default function UsersPage() {
 
     async function loadUsers() {
         try {
-            setLoading(true);
             setError("");
 
             const response =
@@ -89,13 +85,13 @@ export default function UsersPage() {
             setError(
                 "Unable to load users.",
             );
-        } finally {
-            setLoading(false);
         }
     }
 
     useEffect(() => {
-        void loadUsers();
+        queueMicrotask(() => {
+            void loadUsers();
+        });
     }, []);
 
     function updateField(
@@ -475,7 +471,7 @@ export default function UsersPage() {
                 )}
 
                 <section className="overflow-x-auto rounded-2xl bg-white shadow-sm ring-1 ring-slate-200">
-                    {loading ? (
+                    {users === null && !error ? (
                         <div className="p-8 text-center text-slate-500">
                             Loading users...
                         </div>
@@ -599,7 +595,7 @@ export default function UsersPage() {
                         </table>
                     )}
 
-                    {!loading &&
+                    {users !== null &&
                         users.length === 0 && (
                             <div className="p-10 text-center text-slate-500">
                                 No users found.

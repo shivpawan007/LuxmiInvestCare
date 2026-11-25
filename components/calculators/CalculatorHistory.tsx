@@ -22,8 +22,15 @@ export default function CalculatorHistory({
     useEffect(() => {
         const stored = localStorage.getItem("calculator-history");
 
-        if (stored) {
-            setHistory(JSON.parse(stored));
+        if (!stored) return;
+
+        try {
+            const parsed: unknown = JSON.parse(stored);
+            if (Array.isArray(parsed)) {
+                queueMicrotask(() => setHistory(parsed as HistoryItem[]));
+            }
+        } catch {
+            localStorage.removeItem("calculator-history");
         }
     }, []);
 

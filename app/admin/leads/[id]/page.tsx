@@ -75,8 +75,11 @@ export default function LeadDetailPage() {
     const [note, setNote] =
         useState("");
 
-    const [loading, setLoading] =
-        useState(true);
+    const [loadedLeadId, setLoadedLeadId] =
+        useState<string | null>(null);
+
+    const [loadErrorLeadId, setLoadErrorLeadId] =
+        useState<string | null>(null);
 
     const [saving, setSaving] =
         useState(false);
@@ -86,7 +89,6 @@ export default function LeadDetailPage() {
 
     async function loadLead() {
         try {
-            setLoading(true);
 
             const response = await fetch(
                 `/api/admin/leads/${leadId}`,
@@ -103,10 +105,14 @@ export default function LeadDetailPage() {
                     data.error ||
                         "Unable to load lead.",
                 );
+                setLoadErrorLeadId(leadId);
                 return;
             }
 
             setLead(data.lead);
+            setLoadedLeadId(leadId);
+            setLoadErrorLeadId(null);
+            setError("");
             setActivities(
                 data.activities || [],
             );
@@ -120,13 +126,14 @@ export default function LeadDetailPage() {
             setError(
                 "Unable to load lead.",
             );
-        } finally {
-            setLoading(false);
+            setLoadErrorLeadId(leadId);
         }
     }
 
     useEffect(() => {
-        void loadLead();
+        queueMicrotask(() => {
+            void loadLead();
+        });
     }, [leadId]);
 
     async function updateLead(
@@ -289,7 +296,7 @@ export default function LeadDetailPage() {
             `mailto:${lead.email}`;
     }
 
-    if (loading) {
+    if (loadedLeadId !== leadId && loadErrorLeadId !== leadId) {
         return (
             <main className="min-h-screen bg-slate-50 p-6">
                 Loading lead...

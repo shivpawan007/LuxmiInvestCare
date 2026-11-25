@@ -275,9 +275,10 @@ ${message.trim()}
                                 </h2>
 
                                 <p className="mt-3 leading-7 text-slate-600">
-                                    Share your details and enquiry. The form
-                                    will prepare a WhatsApp message so you can
-                                    connect with Luxmi InvestCare directly.
+                                    We collect your full name, mobile number, optional email and enquiry message
+                                    to respond. Submitting saves these details with Luxmi InvestCare.
+                                    After a successful save, WhatsApp opens with a prefilled message
+                                    that you can review and choose to send.
                                 </p>
 
                             </div>
@@ -393,7 +394,7 @@ ${message.trim()}
                                         <Link href="/privacy" target="_blank" className="font-semibold text-green-700 underline">
                                             Privacy Policy
                                         </Link>
-                                        {" "}and consent to Luxmi InvestCare processing the information submitted here to respond to my enquiry. I understand that continuing on WhatsApp may share the enquiry details with WhatsApp.
+                                        {" "}and consent to Luxmi InvestCare storing and using the details submitted to respond to this enquiry. I understand WhatsApp opens with a prefilled message after submission, and I choose whether to send it.
                                     </span>
                                 </label>
 

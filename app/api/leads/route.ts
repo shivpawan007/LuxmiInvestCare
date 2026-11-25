@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import type { ResultSetHeader } from "mysql2";
 import { z } from "zod";
 import { db } from "@/lib/db";
+import { enforceRateLimit } from "@/lib/rateLimit";
 
 const leadSchema = z.object({
     fullName: z.string().trim().min(2).max(150),
@@ -26,6 +27,14 @@ const leadSchema = z.object({
 
 export async function POST(request: Request) {
     try {
+        const rateLimit = await enforceRateLimit(request, "website-leads", 5, 600);
+        if (!rateLimit.allowed) {
+            return NextResponse.json(
+                { error: "Too many enquiries. Please try again later." },
+                { status: 429, headers: { "Retry-After": String(rateLimit.retryAfterSeconds) } },
+            );
+        }
+
         const body = await request.json();
 
         const parsed = leadSchema.safeParse(body);
@@ -74,7 +83,7 @@ const [result] = await db.execute<ResultSetHeader>(
             INSERT INTO lead_activities
                 (lead_id, activity_type, activity_note)
             VALUES
-                (?, 'LEAD_CREATED', 'Lead submitted from website; privacy notice accepted')
+                (?, 'LEAD_CREATED', 'Website contact consent accepted; Privacy Policy v2026-11-22; purpose: respond to enquiry')
             `,
             [leadId],
         );

@@ -4,6 +4,7 @@ import bcrypt from "bcryptjs";
 import { z } from "zod";
 import { db } from "@/lib/db";
 import { createSession } from "@/lib/session";
+import { enforceRateLimit } from "@/lib/rateLimit";
 
 interface UserRow extends RowDataPacket {
     id: number;
@@ -17,6 +18,14 @@ const schema = z.object({
 
 export async function POST(request: Request) {
     try {
+        const rateLimit = await enforceRateLimit(request, "admin-login", 10, 900);
+        if (!rateLimit.allowed) {
+            return NextResponse.json(
+                { error: "Too many sign-in attempts. Please try again later." },
+                { status: 429, headers: { "Retry-After": String(rateLimit.retryAfterSeconds) } },
+            );
+        }
+
         const body = await request.json();
         const parsed = schema.safeParse(body);
 

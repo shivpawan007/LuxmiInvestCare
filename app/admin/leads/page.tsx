@@ -91,8 +91,9 @@ export default function LeadsPage() {
             "CALL_ATTEMPTED",
         );
 
-        window.location.href =
-            `tel:+91${lead.mobile}`;
+        window.location.assign(
+            `tel:+91${lead.mobile}`,
+        );
     }
 
     function openWhatsApp(

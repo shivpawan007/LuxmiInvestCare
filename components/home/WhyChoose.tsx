@@ -145,7 +145,7 @@ export default function WhyChoose() {
 
                             <div>
                                 <p className="text-lg leading-8 text-green-50">
-                                    Every investor's circumstances are unique.
+                                    Every investor&apos;s circumstances are unique.
                                     Our commitment is to encourage informed
                                     decision-making through investor education,
                                     transparent information and disciplined
