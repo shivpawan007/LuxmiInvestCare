@@ -322,3 +322,153 @@ Comments recorded: PR #17 comment ID 7141090779; PR #18 comment ID 7141091446 an
 ### Supplemental branch comparison correction (later verification in this watch run)
 
 A second read-only compare after the latest two log commits reports PR #18 as **16 commits ahead / 3 behind main** (status `diverged`, mergeability unknown). The earlier 14-ahead figure above was the comparison snapshot before those two additional log commits. The comparison still lists only the three intended log/config files. Keep the PR draft; synchronize with main and preserve append-only history before merge/review. Exact retrieval time was not returned by the compare API.
+
+
+## Daily regulatory review — 26 November 2026, 00:42:56 IST (Asia/Kolkata)
+
+**Retrieval timestamp:** 2026-11-26T00:42:56+05:30  
+**Review status:** NEW SEBI investor advisories and KRA circular identified; DPDP order clarification verified; no safe/direct website code change identified in the inspected content.  
+**Branch:** `compliance/regulatory-watch-2026-11-23`  
+**PR:** https://github.com/shivpawan007/LuxmiInvestCare/pull/18  
+**Current branch comparison:** At this review, `main`...watch branch reports 18 commits ahead / 4 behind, status `diverged`; only the three compliance-log/source-config files are listed in the compare. Mergeability is unknown. Do not merge; synchronize later while preserving the append-only log.
+
+### Entry 2026-11-26 — SEBI PR 75/2026: Unregulated IPO pre-listing premium / GMP advisory
+
+**Authority:** Securities and Exchange Board of India (SEBI)  
+**Source title:** *Advisory Regarding Unregulated Pre-listing Premium often called as Grey Market Premium (GMP) for Upcoming Initial Public Offers (IPOs)*  
+**Press release:** PR No. 75/2026  
+**Publication date:** 23 November 2026  
+**Effective date:** Press release/advisory published 23 November 2026; no separate commencement date stated.  
+**Official page:** https://www.sebi.gov.in/media-and-notifications/press-releases/nov-2026/advisory-regarding-unregulated-pre-listing-premium-often-called-as-grey-market-premium-gmp-for-upcoming-initial-public-offerings-ipos-_105942.html  
+**Official PDF:** https://www.sebi.gov.in/sebi_data/attachdocs/nov-2026/1795441481174.pdf
+
+**Previous requirement/status vs. new advisory:** No GMP figures or grey-market-premium content were found in the public content files specifically inspected for this watch. SEBI now warns that GMP figures are unofficial, unverified and unregulated, not part of exchange price discovery, without settlement guarantee or investor-protection framework. SEBI says publication/display/circulation/dissemination may be discontinued across the securities market and advises SEBI-registered intermediaries and market participants to refrain from publishing, displaying or broadcasting GMP figures on websites, platforms, email, SMS or social channels.
+
+**Applicability:** This is a press release/advisory, not a new circular or statutory commencement instrument. Luxmi is AMFI-registered as an MFD; whether it is within the advisory's use of “market participants” or any directly covered intermediary class requires human compliance/legal confirmation. Do not assume either exemption or direct registration status.
+
+**Risk:** MEDIUM / P2 — content/regulatory scope review. If in-scope GMP publication is used, it may expose investors to misleading unofficial pricing and create regulatory risk.
+
+**Impacted scope:** Public marketing/educational pages; any IPO content; social posts/reels/captions; WhatsApp broadcasts/groups; email/SMS; future editorial approval. Targeted checks of `app/page.tsx`, `app/investor-education/page.tsx`, `components/home/InvestorEducation.tsx`, `app/disclosures/page.tsx`, and `app/privacy/page.tsx` found no GMP/grey-market-premium content. GitHub targeted search returned no matches, but indexing/search is not exhaustive and external social channels were not checked.
+
+**AI analysis/action:** No code/content removal was made because no GMP content was identified in the inspected website material and scope to an AMFI MFD needs human confirmation. Avoid adding GMP figures to future marketing pending compliance guidance.
+
+**Human review:** Confirm advisory scope for Luxmi MFD; review all external and archived social/email/WhatsApp content; approve future IPO-content controls.
+
+**Issue:** https://github.com/shivpawan007/LuxmiInvestCare/issues/21  
+**Log PR:** https://github.com/shivpawan007/LuxmiInvestCare/pull/18
+
+**Validation:** Official SEBI press-release page and two-page PDF reviewed. Targeted repository file inspection/search only; no exhaustive external-channel audit, automated test, build, route test or production verification.
+
+### Entry 2026-11-26 — SEBI PR 76/2026: Impersonation of registered intermediaries on closed social-media groups
+
+**Authority:** SEBI  
+**Source title:** *Caution to investors regarding impersonation of SEBI registered intermediaries on closed user groups of social media platforms*  
+**Press release:** PR No. 76/2026  
+**Publication date:** 23 November 2026  
+**Effective date:** Press-release investor caution published 23 November 2026; no separate statutory commencement date.  
+**Official page:** https://www.sebi.gov.in/media-and-notifications/press-releases/nov-2026/caution-to-investors-regarding-impersonation-of-sebi-registered-intermediaries-on-closed-user-groups-of-social-media-platforms_105944.html  
+**Official PDF:** https://www.sebi.gov.in/sebi_data/attachdocs/nov-2026/1795578311073.pdf
+
+**Previous guidance vs. new:** The release references earlier SEBI impersonation and invitation-only WhatsApp stock-tip warnings. PR 76 describes fake closed WhatsApp/Telegram groups impersonating intermediaries, fabricated institutional trading opportunities, foreign-market/stock recommendations, unauthorised trading platforms and third-party bank accounts. It identifies red flags including unsolicited invitation links, fake accounts/apps, misuse of registration screenshots and letterheads, false SEBI connections and re-invitation after group suspension. Investors are directed to independently verify registration, apps and payment details and avoid unknown groups.
+
+**Applicability:** Investor-protection warning, not a new binding MFD website rule. It is relevant to brand/channel integrity because Luxmi's name/ARN/contact details could be impersonated. The official Luxmi social profiles, account ownership, group activity and external links were not independently verified in this run.
+
+**Risk:** MEDIUM / P2 — impersonation, investor fraud, brand harm and false affiliation.
+
+**Impacted scope:** Social-media account ownership and handles; WhatsApp contact/group practices; website contact/social links; investor-facing fraud warnings and marketing approval workflow.
+
+**AI analysis/action:** No new public warning was published because official account handles/contact destinations must first be verified. Issue #21 groups this warning with PR 75 for a human channel/content audit.
+
+**Issue:** https://github.com/shivpawan007/LuxmiInvestCare/issues/21  
+**Log PR:** https://github.com/shivpawan007/LuxmiInvestCare/pull/18
+
+**Validation:** SEBI official PR page and official PDF reviewed; the PDF content was cross-checked for the described impersonation patterns. No social-account access or incident investigation performed.
+
+### Entry 2026-11-26 — SEBI KRA onboarding and risk-framework circular (25 November 2026)
+
+**Authority:** SEBI  
+**Circular:** HO/38/14/(25)2026-MIRSD-POD3  
+**Source title:** *Simplification of client on-boarding and rationalisation of risk management framework at KYC Registration Agencies*  
+**Publication date:** 25 November 2026  
+**Effective date:** 24 December 2026 (30 days from issuance, as stated in the circular)  
+**KRA SOP:** KRAs to issue an implementation SOP within 30 days of circular issuance.  
+**Official page:** https://www.sebi.gov.in/legal/circulars/nov-2026/simplification-of-client-on-boarding-and-rationalisation-of-risk-management-framework-at-kyc-registration-agencies_105839.html  
+**Official 11-page PDF:** https://www.sebi.gov.in/sebi_data/attachdocs/nov-2026/1795605346389.pdf
+
+**Previous requirement/status vs. new circular:** The existing KYC Master Circular and KRA framework are amended to centralise common supplementary information; require uploading/recording CKYC ID and DIGIPIN (if available) and OVD expiry as applicable; include income range, FATCA/CRS, PEP status and occupation in KRA uploads; tag independently verified KRA information; update records from KRA/CKYCRR information and provide a client option to confirm; make mobile verification optional when KRA already marks an Aadhaar-seeded number verified; modify KYC record delinking/closure timelines; permit optional overseas address proof for certain resident OCI/foreign-national clients with verified Indian address; simplify name-change documents; and improve validated-record portability/attribute tagging. The circular's detailed paragraphs and exceptions govern; this summary is not a substitute for the text.
+
+**Applicability:** The circular is addressed to SEBI-registered intermediaries, KRAs, exchanges, clearing corporations and depositories. Luxmi is an AMFI-registered MFD and may assist in KYC workflows via AMCs/RTA/KRA, but direct applicability and the business-process duties require confirmation. Public website inspection found enquiry/contact forms, not a direct KYC/account-opening or document-upload workflow.
+
+**Risk:** MEDIUM / P2 — process readiness review because the effective date is 24 December 2026 and client onboarding/KYC work may be affected if Luxmi participates.
+
+**Impacted scope:** Any MFD/AMC/RTA/KRA onboarding or KYC-update procedure; future forms/document collection; data handling, retention and client confirmation; no direct public website route identified.
+
+**AI analysis/action:** No website form/code changes made. Do not collect CKYC, DIGIPIN, OVD expiry, income/PEP/FATCA-CRS information through a generic enquiry form without an approved, secure workflow and documented legal/business need. Confirm the relevant AMC/KRA SOP and MFD role before updating internal processes.
+
+**Human review / issue:** https://github.com/shivpawan007/LuxmiInvestCare/issues/22  
+**Log PR:** https://github.com/shivpawan007/LuxmiInvestCare/pull/18
+
+**Validation:** Official SEBI circular page and full 11-page PDF reviewed, including provisions 3.1–3.7, effective date and KRA SOP requirement. No local tests, npm audit, build, route audit or production verification performed.
+
+### Entry 2026-11-26 — DPDP Removal of Difficulties Order, 2026 (supplemental clarification)
+
+**Authority:** Ministry of Electronics and Information Technology (MeitY), Government of India  
+**Instrument:** Digital Personal Data Protection (Removal of Difficulties) Order, 2026 — S.O. 5458(E)  
+**Order date:** 5 October 2026  
+**Gazette publication date:** 6 October 2026 (Gazette issue No. 5248, printed masthead)  
+**Effective date:** 6 October 2026, on Gazette publication  
+**Official MeitY PDF:** https://www.meity.gov.in/static/uploads/2026/10/daf495a7b5798a3dfa72a944b51fc176.pdf
+
+**Previous wording vs. new:** Section 9(1) of the DPDP Act wording was corrected from “child or a person with disability” to “child or of a person with disability,” expressly pairing child data and a person with disability who has a lawful guardian for verifiable consent. Section 10(2)(c)(ii) replaces “audit” with “data audit” for the periodic audit of Significant Data Fiduciaries.
+
+**Applicability:** The Order itself is in force, but it does not create a new website obligation, amend the DPDP Rules or move commencement dates. Sections 9 and 10 remain in the 18-month commencement group (13 May 2027 is the calculated date previously logged; confirm against the Gazette commencement instrument and any subsequent amendment). Luxmi's enquiry/report-share processing remains relevant to future DPDP readiness, but the wording correction does not require a website change on present evidence.
+
+**Risk:** LOW / P3 — statutory-text accuracy and future privacy-consent planning.
+
+**Impacted scope:** `app/privacy/page.tsx`, enquiry consent/notice, any future child/person-with-disability data processing or consent verification, and future SDF audit planning only if designated.
+
+**AI analysis/action:** The earlier DPDP phased-commencement entry remains valid but is supplemented to record this Order. No policy/code change made: no child/person-with-disability processing flow was identified, and the corrected wording does not change the existing website flow. Do not infer that Luxmi is a Significant Data Fiduciary.
+
+**Official source:** https://www.meity.gov.in/static/uploads/2026/10/daf495a7b5798a3dfa72a944b51fc176.pdf  
+**Cross-check reference (secondary only):** DSCI brief, 9 October 2026: https://www.dsci.in/resource/content/brief-meitys-digital-personal-data-protection-removal-difficulties-order-2026
+
+**Validation:** Official MeitY-hosted Gazette PDF reviewed, including Gazette masthead, operative substitutions and commencement paragraph. No website code or privacy copy changed.
+
+### Daily source checks — 26 November 2026
+
+- **SEBI circular listing (25 Nov):** KRA client-onboarding/risk-framework circular and significant-indices circular newly displayed. KRA circular recorded above; index-provider circular is outside Luxmi's website/MFD scope on present evidence. https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListingAll=yes&sid=1&smid=0&ssid=7
+- **SEBI press releases (23 Nov):** PR 75 GMP advisory and PR 76 impersonation caution recorded above. https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=6&smid=0&ssid=23
+- **AMFI MFD circulars:** Official distributor circular listing searched; no newer MFD-specific item than the previously identified July 2026 entry surfaced in this search. https://www.amfiindia.com/distributor/amfi-circulars
+- **RBI:** November circular index shows 23 November securitisation directions for AIFIs, NBFCs, SFBs and commercial banks; no direct MFD website change identified. https://www.rbi.org.in/scripts/BS_CircularIndexDisplay.aspx
+- **MeitY/DPDP:** Official MeitY-hosted S.O. 5458(E) PDF verified. No new DPDP commencement change identified in this review. https://www.meity.gov.in/static/uploads/2026/10/daf495a7b5798a3dfa72a944b51fc176.pdf
+- **Income Tax Department:** Latest surfaced 6 November update concerned an IFSC aircraft-leasing dividend exemption; 3 November notification concerned non-profit mergers. No direct MFD website disclosure impact identified. https://www.incometax.gov.in/iec/foportal/
+- **Consumer Affairs:** Latest surfaced GATC notification S.O. 5620(E), dated 13 October 2026; no direct website requirement identified. https://consumeraffairs.gov.in/pages/gatc-notifications
+- **CERT-In:** Official 2026 advisory listing still shows CIAD-2026-0062 (20 Nov), CIAD-0061 (18 Nov), CIAD-0060 (13 Nov) and earlier advisories. No new advisory later than 0062 surfaced in this review. https://www.cert-in.org.in/s2cMainServlet?pageid=PUBADVLIST02&year=2026
+
+### Changes this run
+
+- Created human-review issues **#21** (SEBI PR 75/76: GMP content and social-channel impersonation) and **#22** (SEBI KRA onboarding circular applicability and process impact).
+- Expanded source monitoring **20 → 25** by adding SEBI press-release listing, PR 75, PR 76, KRA circular and official MeitY DPDP Order.
+- Appended four detailed entries to the Markdown log and four corresponding machine-readable entries; prior history preserved.
+- No application code, public marketing content, forms or privacy flows changed because no GMP content was found in the inspected public website material and the scope/business decisions require human confirmation.
+- PR #18 remains open/draft; latest comparison at review time reports 18 commits ahead/4 behind main, diverged. Only the compliance log and monitoring configuration are in the comparison. Do not merge/deploy.
+
+### Validation and limitations
+
+- Official SEBI PR 75 and PR 76 pages/PDFs reviewed.
+- Official SEBI KRA circular page and full 11-page PDF reviewed.
+- Official MeitY-hosted DPDP Removal of Difficulties Order PDF reviewed.
+- Targeted main-branch file inspection and repository search performed; search indexing may be incomplete. No external social channels or closed groups inspected.
+- No local npm audit, ESLint, TypeScript, tests, build, accessibility audit, live route probe, penetration test or incident-log investigation performed in this watch run.
+- Existing main-branch audit #84 and remediation PR #17 evidence remain historical, not rerun today.
+- Gmail profile/search/send requires interactive authorization in this non-interactive run; recipient could not be verified, so no email was sent. GitHub issues and PR #18 provide the actionable notifications.
+
+### Human review queue
+
+1. **P2 / Issue #21:** Verify official Luxmi social handles, contact destinations and any closed groups; review GMP content on website, social, email, SMS and WhatsApp; confirm legal applicability of PR 75 to an AMFI MFD.
+2. **P2 / Issue #22:** Confirm whether Luxmi assists with KYC onboarding/update through AMC/RTA/KRA and obtain applicable SOPs before 24 December 2026.
+3. **P1 / Issue #20:** Continue CERT-In security review, validate PR #17 controls and diagnose build/deployment failures; investigate logs if suspicious activity is suspected.
+4. **P1 / Issue #19:** Confirm accessibility circular scope and IAAP audit plan before 31 January 2027.
+5. **P2 privacy:** Approve data retention, processors, consent/withdrawal, rights-request and breach-response procedures before the main DPDP rule phase.
+
+**No merge or production deployment performed.**
