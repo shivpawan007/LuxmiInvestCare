@@ -737,6 +737,42 @@
         "https://github.com/shivpawan007/LuxmiInvestCare/commit/62cbd3b73fc27132dfbbc8072a817d02153df5a3"
       ],
       "limitations": "No device/app versions, hosting-provider attestation, endpoint inventory or incident telemetry reviewed. No local audits/tests/build/route/accessibility/penetration checks run. Gmail interactive authorization unavailable."
+    },
+    {
+      "id": "SUPPLEMENTAL-2026-11-27-COMMIT-INDEX",
+      "timestamp": "2026-11-27T00:21:11+05:30",
+      "timezone": "Asia/Kolkata",
+      "updates": [
+        "Added verified commit references for the 27 Nov source configuration, JSON and Markdown log updates, plus issue and PR comments.",
+        "PR #18 compare snapshot after the four source/log commits: 28 ahead/5 behind main, diverged; three compliance files only; mergeable=false. Exact compare retrieval time was not returned by GitHub.",
+        "Keep PR #18 open/draft and synchronize against main before review/merge. No merge or deployment."
+      ],
+      "branch": "compliance/regulatory-watch-2026-11-23",
+      "commits": [
+        "https://github.com/shivpawan007/LuxmiInvestCare/commit/62cbd3b73fc27132dfbbc8072a817d02153df5a3",
+        "https://github.com/shivpawan007/LuxmiInvestCare/commit/875a45286a272596e7205b2cf276aad8647d7973",
+        "https://github.com/shivpawan007/LuxmiInvestCare/commit/89fbf483b23760977776ab43ef4781abc1520a2d",
+        "https://github.com/shivpawan007/LuxmiInvestCare/commit/ebfc958c9b15684c293ef308e93ff635e096f510",
+        "https://github.com/shivpawan007/LuxmiInvestCare/issues/23",
+        "https://github.com/shivpawan007/LuxmiInvestCare/issues/20#issuecomment-7200981112",
+        "https://github.com/shivpawan007/LuxmiInvestCare/pull/17#issuecomment-7200981648",
+        "https://github.com/shivpawan007/LuxmiInvestCare/pull/18#issuecomment-7200982142"
+      ],
+      "branchStatusSnapshot": {
+        "mainSHA": "eb07b574691570533b15b4c6e291397d25e10b9d",
+        "preSupplementHeadSHA": "ebfc958c9b15684c293ef308e93ff635e096f510",
+        "aheadBy": 28,
+        "behindBy": 5,
+        "status": "diverged",
+        "changedFiles": [
+          "compliance/regulatory-log.json",
+          "compliance/regulatory-log.md",
+          "config/mfd-compliance-sources.json"
+        ],
+        "mergeable": false,
+        "draft": true
+      },
+      "limitations": "GitHub compare did not return a timestamp; snapshot is recorded as a supplemental observation from this review. This JSON commit's SHA is not self-referential; it will be verified in the PR comment."
     }
   ],
   "dailyRuns": [
