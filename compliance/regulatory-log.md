@@ -484,3 +484,94 @@ A second read-only compare after the latest two log commits reports PR #18 as **
 - Human-review Issue #22: https://github.com/shivpawan007/LuxmiInvestCare/issues/22
 
 These references are added as a dated supplement. Earlier source/config/log records remain intact.
+
+
+## Regulatory compliance watch — 27 November 2026, 00:21:11 IST (Asia/Kolkata)
+
+**Review result: no new directly applicable MFD website regulation identified in the reviewed official listings. New high/critical CERT-In product-vulnerability notes require human asset/version triage.**
+
+### Official-source comparison
+
+- **SEBI official news listing (reviewed through 26 Nov):** 26 Nov shows an UAPA sanctions-list amendment and an SBI MSCI India ETF FoF draft filing; 25 Nov shows the KRA onboarding circular (already recorded) and a significant-indices circular (no direct MFD website impact identified). No new direct MFD website circular surfaced in the reviewed listing. [SEBI listing](https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListingAll=yes&search=Of)
+- **AMFI MFD circulars:** latest displayed MFD-specific item remains CIR/ARN-33/2026-27, 28 July 2026; no new item surfaced. [AMFI MFD circular listing](https://www.amfiindia.com/distributor/amfi-circulars)
+- **RBI notifications:** 26 Nov UAPA sanctions-list updates addressed to RBI-regulated entities; 23 Nov securitisation amendments are institution-specific. No direct MFD website change identified. [RBI notifications](https://www.rbi.org.in/scripts/NotificationUser.aspx)
+- **CERT-In advisories:** latest listed advisory remains CIAD-2026-0062 (20 Nov); no later advisory surfaced. [CERT-In advisories](https://www.cert-in.org.in/s2cMainServlet?pageid=PUBADVLIST02&year=2026)
+- **MeitY/DPDP, Consumer Affairs and Income Tax:** targeted official-source searches did not surface a new directly applicable change. Coverage is limited and not exhaustive.
+
+### New product vulnerabilities
+
+#### P1 / HIGH — CERT-In CIVN-2026-0576: Multiple Vulnerabilities in WhatsApp
+
+- **Publication:** 26 November 2026; CERT-In severity **HIGH**.
+- **Affected products:** WhatsApp and WhatsApp Business for Android/iOS and WhatsApp desktop versions listed in the official note, including WhatsApp Business Android prior to 2.26.23.70 / 2.26.17.4 and iOS prior to 2.26.23.72. Verify exact version branch against vendor guidance.
+- **Previous:** Watch included CERT-In advisories but did not explicitly monitor the product Vulnerability Notes listing.
+- **New:** crafted messages, attachments or URLs may lead to code execution, sensitive-information disclosure or security restriction bypass on affected versions.
+- **Luxmi applicability:** potential because website contact includes WhatsApp; staff use and installed versions are unknown. This is a product-security advisory, not a new MFD regulatory duty.
+- **Impacted:** Luxmi-owned staff devices/accounts; `components/home/Contact.tsx` only as a channel reference, not as a vulnerability code target.
+- **AI analysis/remediation:** verify all business communication devices and WhatsApp/WhatsApp Business versions; apply vendor-fixed updates immediately if affected; avoid unsolicited links/attachments. No website code patch was made because version and device inventory are unavailable.
+- **Official source:** [CERT-In CIVN-2026-0576](https://www.cert-in.org.in/s2cMainServlet?VLCODE=CIVN-2026-0576&pageid=PUBVLNOTES01)
+- **Human action:** [Issue #23](https://github.com/shivpawan007/LuxmiInvestCare/issues/23) — device/account/version inventory and patch verification.
+
+#### P1 / CRITICAL advisory — CERT-In CIVN-2026-0572: Multiple Vulnerabilities in NGINX
+
+- **Publication:** 25 November 2026; CERT-In severity **CRITICAL**.
+- **Affected:** version-specific NGINX/F5 products; impacts include remote code execution, memory corruption and denial of service.
+- **Previous:** NGINX/F5 assets were not identified in the inspected repository; vulnerability-note monitoring was not explicit.
+- **New:** affected product versions require inventory and vendor patch verification.
+- **Luxmi applicability:** unconfirmed. Repository `vercel.json` indicates Vercel-oriented hosting; no self-managed NGINX/F5 version or asset was found. This does not prove provider-managed ingress is unaffected.
+- **Impacted:** hosting/provider infrastructure and any self-managed reverse proxy; public routes only if an affected component is in scope. No application source patch identified.
+- **AI analysis/remediation:** obtain provider/IT confirmation and asset inventory; patch only if an affected NGINX/F5 component is actually deployed. Do not make an unsupported Next.js code change.
+- **Official source:** [CERT-In CIVN-2026-0572](https://www.cert-in.org.in/s2cMainServlet?VLCODE=CIVN-2026-0572&pageid=PUBVLNOTES01)
+- **Human action:** [Issue #23](https://github.com/shivpawan007/LuxmiInvestCare/issues/23).
+
+#### P3 / LOW website risk — SEBI/RBI UAPA sanctions-list amendments, 26 November
+
+- **Previous:** Section 51A/UAPA and sanctions-list obligations continue for covered entities under applicable directions; no MFD website screening flow was identified.
+- **New:** SEBI's 26 Nov listing and RBI notification list show amendments to the UNSC ISIL/Al-Qaida sanctions list. RBI directions are addressed to RBI-regulated entities, and no direct MFD website obligation was identified.
+- **Applicability:** no direct MFD website change. Luxmi's precise AML/screening/escalation duties under its MFD/AMC arrangements require human confirmation.
+- **Impacted files/routes:** none identified; potentially business AML/KYC procedures only if applicable.
+- **AI analysis:** log as list update awareness, not a new MFD statutory rule. Confirm obligations with compliance/legal; do not autonomously add a sensitive screening process.
+- **Official sources:** [SEBI news listing](https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListingAll=yes&search=Of), [RBI notification listing](https://www.rbi.org.in/scripts/NotificationUser.aspx).
+
+### Monitoring-source expansion
+
+Added three official listing sources to the PR branch, increasing the monitored source configuration from **25 to 28**:
+
+1. SEBI official news listing (orders, mutual-fund items, sanctions-list notices): https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListingAll=yes&search=Of
+2. RBI official notifications listing: https://www.rbi.org.in/scripts/NotificationUser.aspx
+3. CERT-In 2026 vulnerability-note listing: https://www.cert-in.org.in/s2cMainServlet?pageid=VLNLIST02&year=2026
+
+### Latest main-branch audit evidence — Workflow #86 (26 Nov)
+
+- **Status: FAIL.** Report timestamp `2026-11-26T12:31:31.128Z` = **18:01:31.128 IST**.
+- **115 source files checked; 13 public routes discovered.**
+- Critical: `dependencies.production-high-or-critical-vulnerabilities` in production dependency audit.
+- High: `promotion.return-on-investment` on `/calculators/sip`.
+- Medium: development-only dependency findings in `@eslint/config-array`, `eslint`, and `minimatch`.
+- Route probe: **13/13 HTTP 200**.
+- Workflow steps for compliance scan, dependency-audit collection, production build, random audit, artifact upload and audit-report commit succeeded; the final fail-gate step failed because the stored audit status was FAIL.
+- Evidence: [Workflow #86](https://github.com/shivpawan007/LuxmiInvestCare/actions/runs/45820206882) and [latest audit report](https://github.com/shivpawan007/LuxmiInvestCare/blob/main/compliance/audit/latest.json).
+- This is historical GitHub workflow evidence, not a fresh local run. No local `npm audit`, ESLint, TypeScript, build, route probe, accessibility audit or penetration test was run today.
+
+### GitHub updates and branch state
+
+
+- **Issue #23 created:** P1 security triage for WhatsApp HIGH and NGINX CRITICAL product notes. https://github.com/shivpawan007/LuxmiInvestCare/issues/23
+- **Issue #20 updated:** cross-reference to Issue #23.
+- **PR #17 updated:** latest main audit #86 and vulnerability triage evidence.
+- **PR #18 updated:** daily watch findings, sources, audit and branch state.
+- **Source config commit:** https://github.com/shivpawan007/LuxmiInvestCare/commit/62cbd3b73fc27132dfbbc8072a817d02153df5a3
+- **JSON log commit:** recorded after this entry is appended; final commit references will be posted in PR #18.
+- **PR #18 current comparison:** 23 commits ahead / 5 behind main; compare status diverged, only the three compliance files listed, PR open/draft; mergeable flag true but mergeable state unstable. Latest main SHA `eb07b574691570533b15b4c6e291397d25e10b9d`, PR head `24581f4d16bd7f60394784e369afafbab7916405`. Synchronization remains required.
+
+### Human review queue
+
+1. **P1 / Issue #23:** check WhatsApp/WhatsApp Business devices and versions; verify patch status; confirm hosting-provider/NGINX/F5 exposure.
+2. **P1 / Issue #20:** continue broader CERT-In security review; validate PR #17 security controls and diagnose build failure.
+3. **P1 / Issue #19:** confirm accessibility circular scope and IAAP audit owner before 31 January 2027.
+4. **P2 / Issue #21:** verify official social handles, channels, GMP content and impersonation controls.
+5. **P2 / Issue #22:** confirm KRA circular applicability and process/SOP before 24 December 2026.
+6. **P2 privacy:** approve retention, processors, consent/withdrawal, rights requests and breach response ahead of the DPDP commencement schedule.
+7. **P3:** confirm sanctions-list screening/escalation scope with compliance/legal.
+
+**No website code/content patch, merge or production deployment.** Gmail interactive authorization was unavailable; no recipient was verified and no email was sent.
