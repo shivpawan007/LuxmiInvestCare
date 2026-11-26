@@ -294,6 +294,41 @@
         "child/person-with-disability lawful-guardian consent wording",
         "Significant Data Fiduciary data-audit wording"
       ]
+    },
+    {
+      "id": "sebi-regulatory-news-listing",
+      "url": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListingAll=yes&search=Of",
+      "authority": "SEBI",
+      "description": "Official SEBI News Listing for new orders, mutual-fund filings, circulars, notices and sanctions-list communications.",
+      "watchFor": [
+        "new circulars/orders/press releases/notifications",
+        "mutual fund items",
+        "sanctions list updates",
+        "regulatory notices and applicability"
+      ]
+    },
+    {
+      "id": "rbi-notifications-list",
+      "url": "https://www.rbi.org.in/scripts/NotificationUser.aspx",
+      "authority": "RBI",
+      "description": "Official RBI notifications list, including KYC, sanctions, AML and regulated-entity directions.",
+      "watchFor": [
+        "new notification and amendment directions",
+        "Section 51A/UAPA sanctions-list updates",
+        "KYC/AML updates and regulated-entity scope"
+      ]
+    },
+    {
+      "id": "cert-in-vulnerability-notes-2026",
+      "url": "https://www.cert-in.org.in/s2cMainServlet?pageid=VLNLIST02&year=2026",
+      "authority": "CERT-In / MeitY",
+      "description": "Official CERT-In 2026 vulnerability-note listing for product-specific vulnerabilities and patch notices.",
+      "watchFor": [
+        "critical/high vulnerabilities affecting Luxmi assets/devices",
+        "WhatsApp Business vulnerabilities and version updates",
+        "NGINX/F5 vulnerabilities if self-managed infrastructure is present",
+        "new vulnerability notes requiring asset inventory/patch triage"
+      ]
     }
   ]
 }
