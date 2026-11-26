@@ -575,3 +575,16 @@ Added three official listing sources to the PR branch, increasing the monitored 
 7. **P3:** confirm sanctions-list screening/escalation scope with compliance/legal.
 
 **No website code/content patch, merge or production deployment.** Gmail interactive authorization was unavailable; no recipient was verified and no email was sent.
+
+
+## Commit-reference supplement — 27 November 2026 (IST)
+
+- Monitoring-source configuration (25 → 28 URLs): https://github.com/shivpawan007/LuxmiInvestCare/commit/62cbd3b73fc27132dfbbc8072a817d02153df5a3
+- Machine-readable JSON log and daily-run record: https://github.com/shivpawan007/LuxmiInvestCare/commit/875a45286a272596e7205b2cf276aad8647d7973
+- Markdown watch entry: https://github.com/shivpawan007/LuxmiInvestCare/commit/89fbf483b23760977776ab43ef4781abc1520a2d
+- P1 device/hosting vulnerability triage: https://github.com/shivpawan007/LuxmiInvestCare/issues/23
+- Existing security issue #20 comment: https://github.com/shivpawan007/LuxmiInvestCare/issues/20#issuecomment-7200981112
+- Existing security-hardening PR #17 comment: https://github.com/shivpawan007/LuxmiInvestCare/pull/17#issuecomment-7200981648
+- Regulatory PR #18 comment: https://github.com/shivpawan007/LuxmiInvestCare/pull/18#issuecomment-7200982142
+
+All new entries are appended; prior records remain intact. This supplement records the commits and GitHub notifications for this review.
