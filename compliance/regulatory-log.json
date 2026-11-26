@@ -716,6 +716,27 @@
         "https://github.com/shivpawan007/LuxmiInvestCare/commit/62cbd3b73fc27132dfbbc8072a817d02153df5a3"
       ],
       "limitations": "No device/app versions, hosting-provider attestation, endpoint inventory or incident telemetry reviewed. No local audits/tests/build/route/accessibility/penetration checks run. Gmail interactive authorization unavailable."
+    },
+    {
+      "id": "SUPPLEMENTAL-2026-11-27-REGWATCH",
+      "timestamp": "2026-11-27T00:21:11+05:30",
+      "timezone": "Asia/Kolkata",
+      "updates": [
+        "Official-source review through 27 Nov found no new directly applicable MFD website regulation; 26 Nov SEBI/RBI UAPA list updates logged as scope-awareness.",
+        "Added CERT-In WhatsApp HIGH (CIVN-2026-0576) and NGINX CRITICAL (CIVN-2026-0572) vulnerability entries; applicability is unconfirmed pending asset/device/provider checks.",
+        "Created P1 Issue #23 and posted comments to Issue #20, PR #17 and PR #18.",
+        "Added SEBI news, RBI notifications and CERT-In vulnerability-note listing; source configuration now 28 URLs.",
+        "Reviewed main audit #86: FAIL; critical production dependency finding, high SIP promotional-language finding, medium dev dependency warning, 13/13 routes HTTP 200; workflow steps succeeded except final fail-gate.",
+        "PR #18 currently 23 ahead/5 behind main, diverged; remains draft/open. No code patch, merge or deployment."
+      ],
+      "branch": "compliance/regulatory-watch-2026-11-23",
+      "issues": [
+        "https://github.com/shivpawan007/LuxmiInvestCare/issues/23"
+      ],
+      "commits": [
+        "https://github.com/shivpawan007/LuxmiInvestCare/commit/62cbd3b73fc27132dfbbc8072a817d02153df5a3"
+      ],
+      "limitations": "No device/app versions, hosting-provider attestation, endpoint inventory or incident telemetry reviewed. No local audits/tests/build/route/accessibility/penetration checks run. Gmail interactive authorization unavailable."
     }
   ],
   "dailyRuns": [
