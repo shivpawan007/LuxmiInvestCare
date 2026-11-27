@@ -670,3 +670,15 @@ All new entries are appended; prior records remain intact. This supplement recor
 - **Unresolved:** Endpoint, CMS, phone-system, VM and provider asset inventories; exact patch responsibility/status; existing audit #87 blockers; accessibility scope/audit; KRA applicability; DPDP privacy implementation; branch synchronization.
 
 **No merge or production deployment.**
+
+
+## Commit and notification supplement — 28 November 2026 (IST)
+
+- JSON log and commit-reference index: [27f571b8a38e0512580608c080a2be34cb5c786a](https://github.com/shivpawan007/LuxmiInvestCare/commit/27f571b8a38e0512580608c080a2be34cb5c786a)
+- Initial 28 Nov JSON entries: [a931d8d1c8a647cdda51e2c0c6355dfc96c58005](https://github.com/shivpawan007/LuxmiInvestCare/commit/a931d8d1c8a647cdda51e2c0c6355dfc96c58005)
+- Markdown entry append: [0656d3f1fc78753331d9a7630e50f4f3b37d7953](https://github.com/shivpawan007/LuxmiInvestCare/commit/0656d3f1fc78753331d9a7630e50f4f3b37d7953)
+- Issue #23 comment with four new CERT-In advisories: [comment 7226604686](https://github.com/shivpawan007/LuxmiInvestCare/issues/23#issuecomment-7226604686)
+- PR #18 review summary: [comment 7226605172](https://github.com/shivpawan007/LuxmiInvestCare/pull/18#issuecomment-7226605172)
+- Latest main audit: [Run #87](https://github.com/shivpawan007/LuxmiInvestCare/actions/runs/45997250609), status FAIL, generated 27 Nov 2026 17:47:36 IST. Production dependency counts: 1 critical, 1 high, 1 low; full-tree: 1 critical, 1 high, 3 moderate, 1 low; HIGH SIP promotional-language finding remains. 13/13 public routes returned HTTP 200; final audit gate failed.
+- PR #18 remains open/draft; pre-commit comparison 29 ahead/6 behind main, diverged, mergeable=false. No merge or deployment.
+- Email notification was not sent: Gmail profile resolution requires interactive input, and no recipient was verified.
