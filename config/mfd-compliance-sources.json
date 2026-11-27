@@ -1,6 +1,12 @@
 {
-  "version": 1,
-  "purpose": "Automated monitoring of official SEBI and AMFI sources relevant to Luxmi InvestCare as an AMFI-registered Mutual Fund Distributor.",
+  "version": 2,
+  "purpose": "Automated monitoring of authoritative SEBI, AMFI, RBI, MeitY, Government of India, Income Tax, Consumer Affairs and CERT-In sources relevant to Luxmi InvestCare as an AMFI-registered Mutual Fund Distributor and website operator.",
+  "monitoringLimitations": [
+    "Current watcher stores source-byte SHA-256 hashes; it does not extract, normalize or semantically diff source text.",
+    "Dynamic pages may cause false-positive review triggers. A hash change is not itself proof of a regulatory amendment.",
+    "Static Gazette PDFs are reference copies and will not detect a later amendment unless the source list is updated.",
+    "Monitoring coverage is not exhaustive and does not replace professional compliance review."
+  ],
   "sources": [
     {
       "id": "amfi-mfd-circulars",
@@ -65,6 +71,263 @@
       "watchFor": [
         "new or amended Mutual Fund master circular",
         "applicable distributor guidance"
+      ]
+    },
+    {
+      "id": "sebi-circulars",
+      "url": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=1&smid=0&ssid=7",
+      "authority": "SEBI",
+      "description": "Official SEBI circulars listing; added to close the prior monitoring gap for current circulars.",
+      "watchFor": [
+        "new circulars affecting mutual funds, distributors, intermediaries, disclosures, privacy, advertising, cyber, accessibility or investor protection"
+      ]
+    },
+    {
+      "id": "sebi-digital-accessibility-circular-2026-10",
+      "url": "https://www.sebi.gov.in/legal/circulars/oct-2026/extension-of-timeline-with-respect-to-compliance-of-digital-accessibility-circulars_105523.html",
+      "authority": "SEBI",
+      "description": "Official October 30, 2026 circular extending IAAP auditor appointment, digital accessibility audit and remediation timeline.",
+      "watchFor": [
+        "accessibility audit deadline",
+        "IAAP auditor appointment",
+        "accessibility remediation"
+      ]
+    },
+    {
+      "id": "sebi-fatca-crs-circular-2026-11",
+      "url": "https://www.sebi.gov.in/legal/circulars/nov-2026/reporting-requirement-under-foreign-account-tax-compliance-act-fatca-and-common-reporting-standard-crs-revised-through-income-tax-act-2025-read-with-income-tax-rules-2026_105705.html",
+      "authority": "SEBI",
+      "description": "Official November 11, 2026 FATCA/CRS reporting circular for SEBI-registered intermediaries.",
+      "watchFor": [
+        "FATCA CRS due diligence",
+        "Income-tax Act 2025",
+        "Income-tax Rules 2026",
+        "Form 166",
+        "KRA certification upload"
+      ]
+    },
+    {
+      "id": "amfi-general-circulars",
+      "url": "https://www.amfiindia.com/circulars",
+      "authority": "AMFI",
+      "description": "AMFI general circulars and best-practice updates.",
+      "watchFor": [
+        "new circulars",
+        "MFD best practice updates",
+        "investor protection and distribution changes"
+      ]
+    },
+    {
+      "id": "rbi-circular-index",
+      "url": "https://www.rbi.org.in/Scripts/BS_CircularIndexDisplay.aspx",
+      "authority": "RBI",
+      "description": "Official RBI circular index; review for material payments, cybersecurity, privacy, digital-service or consumer requirements that may apply.",
+      "watchFor": [
+        "digital payments",
+        "cybersecurity",
+        "privacy",
+        "consumer protection",
+        "outsourcing or operational risk"
+      ]
+    },
+    {
+      "id": "meity-dpdp-rules-index",
+      "url": "https://www.meity.gov.in/documents/act-and-policies/digital-personal-data-protection-rules-2025-gDOxUjMtQWa?pageTitle=Digital-Personal-Data-Protection-Rules-2025",
+      "authority": "MeitY",
+      "description": "Official MeitY DPDP Act and Rules documents, commencement timelines and corrigenda.",
+      "watchFor": [
+        "DPDP Rules amendments",
+        "commencement changes",
+        "privacy notice",
+        "consent",
+        "data principal rights",
+        "breach response"
+      ]
+    },
+    {
+      "id": "dpdp-rules-gazette",
+      "url": "https://www.meity.gov.in/static/uploads/2025/11/53450e6e5dc0bfa85ebd78686cadad39.pdf",
+      "authority": "Government of India / MeitY / Gazette",
+      "description": "Primary Gazette copy of Digital Personal Data Protection Rules, 2025 (G.S.R. 846(E)); static reference.",
+      "watchFor": [
+        "amendment or corrigendum to DPDP Rules"
+      ]
+    },
+    {
+      "id": "dpdp-commencement-gazette",
+      "url": "https://egazette.gov.in/WriteReadData/2025/267647.pdf",
+      "authority": "Government of India / MeitY / Gazette",
+      "description": "Primary Gazette copy of DPDP Act commencement notification G.S.R. 843(E), November 13, 2025; static reference.",
+      "watchFor": [
+        "commencement notifications",
+        "date amendments"
+      ]
+    },
+    {
+      "id": "income-tax-act-2025-faq",
+      "url": "https://www.incometax.gov.in/iec/foportal/help/all-topics/e-filing-services/objective-and-scope-new-act",
+      "authority": "Income Tax Department / Ministry of Finance",
+      "description": "Official Income Tax Department information on Income-tax Act, 2025 and transition.",
+      "watchFor": [
+        "new tax Act/Rules",
+        "tax year changes",
+        "tax reporting and disclosure"
+      ]
+    },
+    {
+      "id": "income-tax-portal-updates",
+      "url": "https://www.incometax.gov.in/iec/foportal/",
+      "authority": "Income Tax Department / Ministry of Finance",
+      "description": "Official portal announcements and updates.",
+      "watchFor": [
+        "new notifications",
+        "Income-tax Rules 2026",
+        "Form changes",
+        "tax disclosures"
+      ]
+    },
+    {
+      "id": "consumer-affairs-rights",
+      "url": "https://consumeraffairs.gov.in/pages/consumer-rights",
+      "authority": "Department of Consumer Affairs / Government of India",
+      "description": "Official consumer rights reference for consumer protection and misleading communications review.",
+      "watchFor": [
+        "consumer protection",
+        "unfair trade practices",
+        "misleading advertisements",
+        "digital/e-commerce guidance"
+      ]
+    },
+    {
+      "id": "cert-in-home",
+      "url": "https://www.cert-in.org.in/",
+      "authority": "CERT-In / MeitY",
+      "description": "Official CERT-In advisories and cyber security updates; broad homepage hash monitoring.",
+      "watchFor": [
+        "cybersecurity directions",
+        "vulnerability advisories",
+        "incident reporting",
+        "security controls"
+      ]
+    },
+    {
+      "id": "cert-in-advisories-2026",
+      "url": "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBADVLIST02&year=2026",
+      "authority": "CERT-In",
+      "description": "Official CERT-In advisory listing for 2026.",
+      "watchFor": [
+        "new advisory titles and dates",
+        "critical/high threat advisories affecting exposed applications, identities, APIs, credentials, AI-agent intrusion and business workflows"
+      ]
+    },
+    {
+      "id": "cert-in-ciad-2026-0062",
+      "url": "https://www.cert-in.org.in/s2cMainServlet?VLCODE=CIAD-2026-0062&pageid=PUBVLNOTES02",
+      "authority": "CERT-In",
+      "description": "Specific official advisory CIAD-2026-0062 dated 20 November 2026 on business workflow abuse and AI-driven agentic offensive frameworks.",
+      "watchFor": [
+        "advisory content changes",
+        "recommended security controls",
+        "incident reporting guidance",
+        "updates to severity or references"
+      ]
+    },
+    {
+      "id": "sebi-press-releases-listing",
+      "url": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=6&smid=0&ssid=23",
+      "authority": "SEBI",
+      "description": "Official SEBI press-release listing to monitor investor warnings, impersonation, market integrity and content advisories.",
+      "watchFor": [
+        "new investor cautions",
+        "impersonation warnings",
+        "marketing/publication restrictions",
+        "unregulated products or trading channels",
+        "social media and platform safety"
+      ]
+    },
+    {
+      "id": "sebi-gmp-advisory-2026-11-23",
+      "url": "https://www.sebi.gov.in/media-and-notifications/press-releases/nov-2026/advisory-regarding-unregulated-pre-listing-premium-often-called-as-grey-market-premium-gmp-for-upcoming-initial-public-offerings-ipos-_105942.html",
+      "authority": "SEBI",
+      "description": "Official PR 75/2026 dated 23 November 2026 on unregulated pre-listing premium/GMP for IPOs.",
+      "watchFor": [
+        "advisory wording or status changes",
+        "GMP publication/display/circulation/dissemination cautions",
+        "market-participant applicability",
+        "website, email, SMS and social content implications"
+      ]
+    },
+    {
+      "id": "sebi-impersonation-warning-2026-11-23",
+      "url": "https://www.sebi.gov.in/media-and-notifications/press-releases/nov-2026/caution-to-investors-regarding-impersonation-of-sebi-registered-intermediaries-on-closed-user-groups-of-social-media-platforms_105944.html",
+      "authority": "SEBI",
+      "description": "Official PR 76/2026 dated 23 November 2026 warning investors about impersonation of registered intermediaries on closed social-media groups.",
+      "watchFor": [
+        "new impersonation cautions",
+        "fake groups and apps",
+        "fraudulent bank/UPI account red flags",
+        "verification and official-channel advice"
+      ]
+    },
+    {
+      "id": "sebi-kra-onboarding-circular-2026-11-25",
+      "url": "https://www.sebi.gov.in/legal/circulars/nov-2026/simplification-of-client-on-boarding-and-rationalisation-of-risk-management-framework-at-kyc-registration-agencies_105839.html",
+      "authority": "SEBI",
+      "description": "Official circular HO/38/14/(25)2026-MIRSD-POD3 dated 25 November 2026 on KRA KYC onboarding, updates, validation, portability and delinking.",
+      "watchFor": [
+        "KRA onboarding process changes",
+        "supplementary data centralisation",
+        "client confirmation and validated attributes",
+        "mobile verification exceptions",
+        "KYC record delinking/closure timelines",
+        "effective dates and KRA SOP"
+      ]
+    },
+    {
+      "id": "meity-dpdp-removal-difficulties-order-2026",
+      "url": "https://www.meity.gov.in/static/uploads/2026/10/daf495a7b5798a3dfa72a944b51fc176.pdf",
+      "authority": "MeitY / Government of India",
+      "description": "Official Gazette PDF S.O. 5458(E), Digital Personal Data Protection (Removal of Difficulties) Order, 2026; made 5 October and published 6 October 2026.",
+      "watchFor": [
+        "amendments or corrigenda to the order",
+        "clarification of sections 9(1) and 10(2)(c)(ii)",
+        "child/person-with-disability lawful-guardian consent wording",
+        "Significant Data Fiduciary data-audit wording"
+      ]
+    },
+    {
+      "id": "sebi-regulatory-news-listing",
+      "url": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListingAll=yes&search=Of",
+      "authority": "SEBI",
+      "description": "Official SEBI News Listing for new orders, mutual-fund filings, circulars, notices and sanctions-list communications.",
+      "watchFor": [
+        "new circulars/orders/press releases/notifications",
+        "mutual fund items",
+        "sanctions list updates",
+        "regulatory notices and applicability"
+      ]
+    },
+    {
+      "id": "rbi-notifications-list",
+      "url": "https://www.rbi.org.in/scripts/NotificationUser.aspx",
+      "authority": "RBI",
+      "description": "Official RBI notifications list, including KYC, sanctions, AML and regulated-entity directions.",
+      "watchFor": [
+        "new notification and amendment directions",
+        "Section 51A/UAPA sanctions-list updates",
+        "KYC/AML updates and regulated-entity scope"
+      ]
+    },
+    {
+      "id": "cert-in-vulnerability-notes-2026",
+      "url": "https://www.cert-in.org.in/s2cMainServlet?pageid=VLNLIST02&year=2026",
+      "authority": "CERT-In / MeitY",
+      "description": "Official CERT-In 2026 vulnerability-note listing for product-specific vulnerabilities and patch notices.",
+      "watchFor": [
+        "critical/high vulnerabilities affecting Luxmi assets/devices",
+        "WhatsApp Business vulnerabilities and version updates",
+        "NGINX/F5 vulnerabilities if self-managed infrastructure is present",
+        "new vulnerability notes requiring asset inventory/patch triage"
       ]
     }
   ]

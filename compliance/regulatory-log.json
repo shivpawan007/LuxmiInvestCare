@@ -1,0 +1,2030 @@
+{
+  "schemaVersion": 1,
+  "logType": "LuxmiInvestCare regulatory-compliance-watch",
+  "run": {
+    "id": "REGWATCH-2026-11-23-0024IST",
+    "retrievedAt": "2026-11-23T00:24:37+05:30",
+    "timezone": "Asia/Kolkata",
+    "reviewPeriod": "New regulatory items identified through 2026-11-23; repository audit evidence from 2026-11-22",
+    "repositoryBranch": "compliance/regulatory-watch-2026-11-23",
+    "mainCommit": "521cb8181c76a0aef25ad0326efab9b7ee3f2dd3",
+    "monitoringSourcesAdded": 12,
+    "totalMonitoringSources": 18,
+    "sourceMonitorMode": "SHA-256 byte-level; no semantic extraction",
+    "sourceMonitorLimitations": [
+      "Hash changes can be false positives from dynamic pages.",
+      "Static documents are reference-only and do not detect amendments by themselves.",
+      "No broad eGazette root monitor added because it timed out during source check.",
+      "This watch is not exhaustive and does not replace professional review."
+    ],
+    "pullRequest": "https://github.com/shivpawan007/LuxmiInvestCare/pull/18",
+    "commits": [
+      {
+        "path": "config/mfd-compliance-sources.json",
+        "sha": "68dd26030cdc320941f20d9ae0a8278998472ffe",
+        "url": "https://github.com/shivpawan007/LuxmiInvestCare/commit/68dd26030cdc320941f20d9ae0a8278998472ffe"
+      },
+      {
+        "path": "compliance/regulatory-log.json (initial)",
+        "sha": "6848a53ab19f35e95d60ef919f5db869e2f5c99c",
+        "url": "https://github.com/shivpawan007/LuxmiInvestCare/commit/6848a53ab19f35e95d60ef919f5db869e2f5c99c"
+      },
+      {
+        "path": "compliance/regulatory-log.md (initial)",
+        "sha": "ba9b2d7491f9b6c4532004a243182c92787b4493",
+        "url": "https://github.com/shivpawan007/LuxmiInvestCare/commit/ba9b2d7491f9b6c4532004a243182c92787b4493"
+      }
+    ]
+  },
+  "entries": [
+    {
+      "id": "SEBI-ACCESSIBILITY-2026-10-30",
+      "authority": "SEBI",
+      "sourceTitle": "Extension of timeline with respect to compliance of Digital Accessibility Circulars",
+      "sourceURL": "https://www.sebi.gov.in/legal/circulars/oct-2026/extension-of-timeline-with-respect-to-compliance-of-digital-accessibility-circulars_105523.html",
+      "officialPDFURL": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2026/1793363799724.pdf",
+      "publicationDate": "2026-10-30",
+      "effectiveDate": "2026-10-30 (circular issued; new deadline applies)",
+      "previousRequirement": "SEBI's 31 July 2026 extension had set 31 October 2026 for accessibility audits of digital platforms and remediation. The earlier extension did not include the new wording expressly extending IAAP auditor appointment.",
+      "newRequirement": "Appointment of an IAAP auditor, accessibility audit of digital platforms and remediation of audit findings are extended to 31 January 2027. All other provisions of the earlier digital-accessibility circulars remain unchanged.",
+      "applicabilityAssessment": "Circular addressed all Registered Intermediaries and AMFI. Luxmi InvestCare is AMFI-registered as an MFD; direct applicability to this individual distributor website, as distinct from SEBI-registered intermediaries/AMFI, requires human confirmation. Treat as potentially applicable and complete accessibility assessment promptly.",
+      "risk": {
+        "severity": "HIGH",
+        "priority": "P1-review",
+        "reason": "Potential regulated accessibility obligations and a 69-day deadline from the retrieval date; no accessibility audit evidence was found in the repository audit."
+      },
+      "impactedFilesRoutes": [
+        "app/layout.tsx",
+        "app/page.tsx",
+        "app/privacy/page.tsx",
+        "app/disclosures/page.tsx",
+        "app/contact/page.tsx",
+        "all 13 public routes listed in compliance/audit/latest.json",
+        "components/common/*",
+        "components/home/*",
+        "components/calculators/*",
+        "app/admin/* (internal authenticated interface; not in public route probe)"
+      ],
+      "aiAnalysis": "The date extension does not remove the underlying accessibility obligations. Existing audit probes test route availability and compliance language, not accessibility. The current repository has no evidence of an IAAP audit or a dedicated automated accessibility test. Do not treat HTTP 200 responses or a successful build as accessibility compliance. A human must confirm scope and arrange an IAAP auditor where applicable.",
+      "changeSummary": "No website code or content change made in this run because legal scope and a formal accessibility audit require professional review. Added official accessibility circular to the watch source configuration and recorded a remediation checklist in the durable log.",
+      "commitPRLinks": [
+        "https://github.com/shivpawan007/LuxmiInvestCare/pull/18",
+        "https://github.com/shivpawan007/LuxmiInvestCare/commit/68dd26030cdc320941f20d9ae0a8278998472ffe"
+      ],
+      "validationEvidence": [
+        "Official SEBI circular and PDF reviewed; primary source confirms 31 January 2027 deadline and that all other provisions remain unchanged.",
+        "Repository inspection found no accessibility audit/test evidence. This is a gap observation, not a completed accessibility audit."
+      ],
+      "unresolvedQuestions": [
+        "Confirm whether Luxmi InvestCare as AMFI-registered MFD is directly within the SEBI circular's 'Registered Intermediaries' scope or otherwise covered through AMFI.",
+        "Who will appoint an IAAP auditor and confirm audit/remediation coverage for public and internal digital platforms?"
+      ],
+      "historicalEntry": "The 31 July 2026 SEBI circular had extended accessibility audit and remediation to 31 October 2026. The 30 October 2026 circular further extended the relevant tasks to 31 January 2027 and expressly included appointment of an IAAP auditor."
+    },
+    {
+      "id": "DPDP-PHASE-2026-11-13",
+      "authority": "MeitY / Government of India",
+      "sourceTitle": "Digital Personal Data Protection Rules, 2025 (G.S.R. 846(E)) and commencement notification G.S.R. 843(E)",
+      "sourceURL": "https://www.meity.gov.in/documents/act-and-policies/digital-personal-data-protection-rules-2025-gDOxUjMtQWa?pageTitle=Digital-Personal-Data-Protection-Rules-2025",
+      "officialGazetteRulesURL": "https://egazette.gov.in/WriteReadData/2025/267650.pdf",
+      "commencementGazetteURL": "https://egazette.gov.in/WriteReadData/2025/267647.pdf",
+      "publicationDate": "2025-11-13",
+      "effectiveDate": "Rule 4: 2026-11-13 (one-year commencement). Rules 3, 5-16, 22 and 23: 2027-05-13 (calculated 18 months from Gazette date).",
+      "previousRequirement": "DPDP Act and Rules commencement was phased by G.S.R. 843(E) and Rule 1 of G.S.R. 846(E); obligations did not all commence on a single date.",
+      "newRequirement": "Rule 4 (Consent Manager registration and obligations) is effective from 13 November 2026. The principal notice, security, rights, breach and other Data Fiduciary rule package listed in Rules 3, 5-16, 22 and 23 is scheduled to commence 13 May 2027, calculated from the Gazette date. The exact commencement schedule should be read from the Gazette, including amendments/corrigenda.",
+      "applicabilityAssessment": "Luxmi's website collects enquiry details and uses report-sharing/browser storage, but current repository inspection did not identify a Consent Manager service. Rule 4 is not a direct website obligation on the facts currently observed. Future Data Fiduciary requirements are material because personal data is processed through enquiry/report-share journeys.",
+      "risk": {
+        "severity": "MEDIUM",
+        "priority": "P2-preparation",
+        "reason": "Upcoming privacy obligations with a May 2027 commencement date; current privacy notice describes data and purposes but does not specify a fixed retention period."
+      },
+      "impactedFilesRoutes": [
+        "app/privacy/page.tsx",
+        "app/contact/page.tsx",
+        "components/home/Contact.tsx",
+        "calculator report-share flows and localStorage",
+        "lead APIs/database and admin lead access"
+      ],
+      "aiAnalysis": "The current privacy page, last updated 6 October 2026, describes enquiry fields (name, phone, email, message, source page), report-sharing session data/localStorage, processing purposes, consent withdrawal contact, security and a flexible retention statement. Future Rule 3 requires a clear standalone notice with itemised personal data, specific purposes and accessible means to withdraw consent, exercise rights and complain to the Board. A gap analysis should verify these elements, retention, processor roles, rights workflow and incident response before commencement. Do not assume Rule 4 makes Luxmi a Consent Manager.",
+      "changeSummary": "No privacy policy or consent-flow code change made because implementation and legal choices require review. Added official MeitY DPDP Rules index and Gazette references to the watch configuration and logged a preparation checklist.",
+      "commitPRLinks": [
+        "https://github.com/shivpawan007/LuxmiInvestCare/pull/18",
+        "https://github.com/shivpawan007/LuxmiInvestCare/commit/68dd26030cdc320941f20d9ae0a8278998472ffe"
+      ],
+      "validationEvidence": [
+        "Official DPDP Rules Gazette G.S.R. 846(E) reviewed: Rule 4 one-year commencement and Rules 3, 5-16, 22, 23 eighteen-month commencement.",
+        "Official commencement notification G.S.R. 843(E) reviewed; calendar dates calculated from 13 November 2025 publication.",
+        "Privacy policy code inspected; no privacy-specific automated test run in this session."
+      ],
+      "unresolvedQuestions": [
+        "Confirm data retention periods for enquiry records, report-sharing history and any analytics.",
+        "Confirm processors/vendors, consent bases, data rights request handling, breach-response responsibilities and whether consent is collected for each relevant processing purpose.",
+        "Have legal/privacy reviewer approve notice and implementation plan before 13 May 2027."
+      ]
+    },
+    {
+      "id": "SEBI-FATCA-CRS-2026-11-11",
+      "authority": "SEBI",
+      "sourceTitle": "Reporting requirement under FATCA and CRS revised through Income-Tax Act, 2025 and Income-Tax Rules, 2026",
+      "sourceURL": "https://www.sebi.gov.in/legal/circulars/nov-2026/reporting-requirement-under-foreign-account-tax-compliance-act-fatca-and-common-reporting-standard-crs-revised-through-income-tax-act-2025-read-with-income-tax-rules-2026_105705.html",
+      "publicationDate": "2026-11-11",
+      "effectiveDate": "2026-11-11 (circular issued; reporting/due dates follow applicable tax rules)",
+      "previousRequirement": "SEBI's earlier FATCA/CRS guidance referred to the Income-Tax Act, 1961, Rules 114F-114H and Form 61B.",
+      "newRequirement": "The circular updates references to Income-Tax Act, 2025, Rules 238-240 and Form 166, including reporting/certification responsibilities for intermediaries within scope.",
+      "applicabilityAssessment": "The circular is directed to SEBI-registered intermediaries and Reporting Financial Institutions. Luxmi InvestCare's website is an AMFI MFD enquiry/education site and does not currently collect FATCA/CRS certifications or operate a KYC onboarding flow. Direct applicability to the distributor entity is not established by website review.",
+      "risk": {
+        "severity": "LOW for website; MEDIUM if entity/RFI status applies",
+        "priority": "P3-confirm-business-status",
+        "reason": "No website-facing FATCA/CRS flow identified, but business status and any reporting obligations require confirmation."
+      },
+      "impactedFilesRoutes": [
+        "No website route identified as directly impacted; review any future onboarding/KYC forms or back-office data collection"
+      ],
+      "aiAnalysis": "Do not implement Form 166 or FATCA/CRS fields in the website without evidence that Luxmi is a reporting intermediary/RFI or that the distributor is required to collect these certifications. This circular may have obligations outside the website scope; verify entity status with a tax/compliance professional.",
+      "changeSummary": "No code change. Added the official SEBI circular to source monitoring and logged a conditional applicability review.",
+      "commitPRLinks": [
+        "https://github.com/shivpawan007/LuxmiInvestCare/pull/18",
+        "https://github.com/shivpawan007/LuxmiInvestCare/commit/68dd26030cdc320941f20d9ae0a8278998472ffe"
+      ],
+      "validationEvidence": [
+        "Official SEBI circular title, publication date and circular number checked against SEBI circular listing.",
+        "Website form and privacy content reviewed at source level; no KYC/FATCA/CRS certification collection was identified in the inspected public form/privacy journey."
+      ],
+      "unresolvedQuestions": [
+        "Confirm whether Luxmi InvestCare is a SEBI-registered intermediary and/or Reporting Financial Institution for FATCA/CRS; if so, consult tax/compliance professional on new Form 166 requirements."
+      ]
+    },
+    {
+      "id": "SEBI-OTHER-CIRCULARS-2026-11-23",
+      "authority": "SEBI",
+      "sourceTitle": "Review of recent SEBI circulars published 5-17 November 2026",
+      "sourceURL": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=1&smid=0&ssid=7",
+      "publicationDate": "2026-11-05 to 2026-11-17",
+      "effectiveDate": "Per respective circulars",
+      "previousRequirement": "Existing sector-specific requirements remain; each circular must be assessed by its recipients and subject matter.",
+      "newRequirement": "Reviewed November 17 commodity-derivatives margin framework; November 11 FATCA/CRS reporting circular; November 5 accredited-investor framework and mutual-fund scheme cash-market net settlement framework.",
+      "applicabilityAssessment": "No direct website change identified for the distributor education/enquiry routes. Accredited-investor and cash-settlement matters appear to relate to other regulated entities/products/operations; FATCA/CRS is conditionally covered in separate entry.",
+      "risk": {
+        "severity": "LOW",
+        "priority": "P4-monitor",
+        "reason": "No direct public website content or user journey impact identified during this review."
+      },
+      "impactedFilesRoutes": [
+        "No immediate website files/routes identified"
+      ],
+      "aiAnalysis": "No site changes recommended based on the reviewed titles and recipient/scope descriptions. Re-review if Luxmi begins accredited-investor onboarding, direct scheme transaction processing, or FATCA/CRS certification collection.",
+      "changeSummary": "Reviewed recent SEBI circular listing and recorded no direct website changes.",
+      "commitPRLinks": [
+        "https://github.com/shivpawan007/LuxmiInvestCare/pull/18",
+        "https://github.com/shivpawan007/LuxmiInvestCare/commit/68dd26030cdc320941f20d9ae0a8278998472ffe"
+      ],
+      "validationEvidence": [
+        "SEBI circular listing checked; latest items reviewed by publication date/title. FATCA/CRS circular reviewed separately."
+      ],
+      "unresolvedQuestions": [
+        "None for website scope; conditional entity-level FATCA/CRS review remains open."
+      ]
+    },
+    {
+      "id": "REPOSITORY-AUDIT-FAIL-2026-11-22",
+      "authority": "Luxmi InvestCare repository CI / audit evidence",
+      "sourceTitle": "Weekly Random Compliance Audit run #82",
+      "sourceURL": "https://github.com/shivpawan007/LuxmiInvestCare/actions/runs/45016925749",
+      "publicationDate": "2026-11-22",
+      "effectiveDate": "Immediate remediation",
+      "previousRequirement": "Existing compliance and security release gates are expected to pass before production release.",
+      "newRequirement": "No new regulation. The latest stored audit failed: production npm audit reports 3 vulnerabilities (1 critical, 1 high, 1 low); full audit reports 6 (1 low, 3 moderate, 1 high, 1 critical); high promotional-language finding promotion.return-on-investment on /calculators/sip. All 13 required public routes returned HTTP 200; compliance scan passed 115 source files; production build succeeded in that run. Final audit gate failed.",
+      "applicabilityAssessment": "Current release blocker. It is a historical repository finding from 22 November, not a fresh test executed in this automation run.",
+      "risk": {
+        "severity": "CRITICAL (dependency audit); HIGH (promotional content)",
+        "priority": "P1-remediation",
+        "reason": "Critical/high dependency vulnerabilities and high promotional-language finding keep latest audit status FAIL."
+      },
+      "impactedFilesRoutes": [
+        "package.json",
+        "package-lock.json",
+        "/calculators/sip",
+        "compliance/audit/latest.json",
+        "compliance/audit/npm-audit-production.json (artifact from run)"
+      ],
+      "aiAnalysis": "Keep the audit gates intact and remediate the vulnerable dependency chain and SIP promotional text on a separate code-fix branch. Do not treat successful route probes, build or compliance scan as a release pass because the final audit failed.",
+      "changeSummary": "This regulatory-watch PR does not remediate these code findings; it records them for the separate remediation workstream.",
+      "commitPRLinks": [
+        "https://github.com/shivpawan007/LuxmiInvestCare/pull/18",
+        "https://github.com/shivpawan007/LuxmiInvestCare/commit/68dd26030cdc320941f20d9ae0a8278998472ffe"
+      ],
+      "validationEvidence": [
+        "Latest audit JSON stored in main: generated 2026-11-22T11:22:46.369Z; 13/13 public route probes HTTP 200; build passed; compliance scan passed; dependency audit false; overall FAIL.",
+        "Workflow job logs confirm npm audit output 6 vulnerabilities and failure at final audit gate."
+      ],
+      "unresolvedQuestions": [
+        "Current package versions and advisory IDs must be refreshed before dependency remediation; no fresh npm audit run in this automation session.",
+        "SIP wording requires a content review and remediation."
+      ]
+    },
+    {
+      "id": "REGWATCH-SOURCE-COVERAGE-2026-11-23",
+      "authority": "Internal compliance monitoring controls",
+      "sourceTitle": "Regulatory-source coverage expansion",
+      "sourceURL": "https://github.com/shivpawan007/LuxmiInvestCare/blob/main/config/mfd-compliance-sources.json",
+      "publicationDate": "2026-11-23",
+      "effectiveDate": "Upon merge of proposed PR",
+      "previousRequirement": "The source watcher monitored six SEBI/AMFI sources, and the SEBI circular listing was not monitored directly. It monitored byte-level hashes and did not preserve a chronological regulatory log.",
+      "newRequirement": "Proposed config adds 12 sources (18 total): SEBI circulars and two identified circulars, AMFI general circulars, RBI circular index, MeitY DPDP index and Gazette reference PDFs, Income Tax Department portal/FAQ, Consumer Affairs, and CERT-In. A durable append-only Markdown/JSON regulatory log is introduced.",
+      "applicabilityAssessment": "Safe monitoring improvement; source changes will still require manual semantic review and may generate false positives.",
+      "risk": {
+        "severity": "MEDIUM",
+        "priority": "P2-monitoring-quality",
+        "reason": "Prior source coverage missed the circular listing and the watcher is hash-only; broaden coverage but document limits."
+      },
+      "impactedFilesRoutes": [
+        "config/mfd-compliance-sources.json",
+        "compliance/regulatory-log.md",
+        "compliance/regulatory-log.json"
+      ],
+      "aiAnalysis": "The watcher does not interpret law and should not auto-rewrite website content. Added sources can detect changes but do not provide semantic diffs; static Gazette PDFs are reference-only and dynamic pages can cause false positives.",
+      "changeSummary": "Expanded source configuration and created a durable chronology. The watcher script itself was not changed in this PR.",
+      "commitPRLinks": [
+        "https://github.com/shivpawan007/LuxmiInvestCare/pull/18",
+        "https://github.com/shivpawan007/LuxmiInvestCare/commit/68dd26030cdc320941f20d9ae0a8278998472ffe"
+      ],
+      "validationEvidence": [
+        "Updated config parsed as valid JSON before GitHub write.",
+        "12 new source URLs were checked through web research/open where available; eGazette homepage itself timed out and was not added as a broad watch source.",
+        "No Node/npm execution available in this automation run; CI is not configured to run on this branch."
+      ],
+      "unresolvedQuestions": [
+        "Should source-change detection be upgraded from raw hashes to extracted text/semantic comparison and a separately retained history archive?",
+        "Should additional official source indexes be added after their URLs and stability are verified?"
+      ]
+    },
+    {
+      "id": "CERT-IN-CIAD-2026-0062-2026-11-25",
+      "authority": "CERT-In / Ministry of Electronics and Information Technology",
+      "sourceTitle": "Abuse of Business Payment Workflows and Use of AI-Driven Agentic Offensive Frameworks across Sectors (CIAD-2026-0062)",
+      "sourceURL": "https://www.cert-in.org.in/s2cMainServlet?VLCODE=CIAD-2026-0062&pageid=PUBVLNOTES02",
+      "publicationDate": "2026-11-20",
+      "effectiveDate": "No separate statutory commencement date; advisory recommendations should be assessed and acted on promptly.",
+      "previousRequirement": "Prior CERT-In advisories CIAD-2026-0046, 0049 and 0058 covered payment/disbursement API abuse and AI-enabled intrusions. Existing main-branch login and public enquiry APIs were not protected by visible application-level rate-limit calls in the inspected routes; the remediation proposal remains unmerged.",
+      "newRequirement": "CIAD-2026-0062 (Critical advisory) describes misuse of trusted business workflows and underlying records/approval relationships, AI-driven agentic offensive frameworks, automated reconnaissance, credential attacks and unauthorized access. It advises reviewing exposed applications/APIs, identities, privileged accounts, service credentials, external interfaces, monitoring and incident response; see the advisory for references and applicable incident-reporting guidance.",
+      "applicabilityAssessment": "Payment/disbursement workflow abuse is not directly evidenced in Luxmi's current repository: no payment/payout/disbursement filenames or route names were found in the recursive tree search. The general credential, exposed-application/API, privileged-access, CRM record-change and AI-agent intrusion risks are relevant because the website has login, public lead-submission and authenticated admin/CRM endpoints. No evidence of compromise was identified; no incident/log investigation was performed.",
+      "risk": {
+        "severity": "HIGH",
+        "priority": "P1-security-review",
+        "status": "OPEN",
+        "reason": "CERT-In classifies the advisory as Critical. Luxmi's current evidenced exposure is elevated but not assessed Critical because payment/disbursement processing was not identified; authentication abuse and unauthorized lead/CRM access or changes remain relevant."
+      },
+      "impactedFilesRoutes": [
+        "app/api/auth/login/route.ts",
+        "app/api/leads/route.ts",
+        "app/api/admin/leads/route.ts",
+        "app/api/admin/leads/[id]/route.ts",
+        "app/api/admin/users/route.ts",
+        "app/api/admin/leads/[id]/activities/route.ts",
+        "next.config.ts",
+        "lib/rateLimit.ts (proposed in PR #17)",
+        "database/migrations/2026-11-22-api-rate-limits.sql (proposed in PR #17)"
+      ],
+      "aiAnalysis": "Read-only inspection of main shows validated login input and bcrypt password comparison, but no visible rate-limit call in the login route; the public lead endpoint validates input and consent but has no visible rate-limit call. Inspected admin APIs use getCurrentUser/role checks and parameterized SQL, but privileged record changes, session/cookie protections, logging and operational monitoring require a deeper review. Main next.config.ts has no response-security headers in the inspected version. PR #17 proposes login/lead rate limiting and response headers, but it remains open/unmerged and its last known CI build/deployment validation failed. The advisory does not by itself establish that Luxmi operates payment workflows or require a specific code change. A safe next step is review/validate the existing PR #17 mitigation rather than duplicating or making untested changes.",
+      "changeSummary": "No application code changed. Created human-review issue #20 and added two CERT-In monitoring sources (2026 advisory listing and CIAD-2026-0062 detail) to the existing regulatory-watch PR branch.",
+      "commitPRLinks": [
+        "https://github.com/shivpawan007/LuxmiInvestCare/issues/20",
+        "https://github.com/shivpawan007/LuxmiInvestCare/pull/17",
+        "https://github.com/shivpawan007/LuxmiInvestCare/pull/18",
+        "https://github.com/shivpawan007/LuxmiInvestCare/commit/cb878ef908f7963d0474a4ecd6a315dd28e35673",
+        "https://github.com/shivpawan007/LuxmiInvestCare/commit/a587203dc06a52cdac3a64075d4c7935b528409c",
+        "https://github.com/shivpawan007/LuxmiInvestCare/commit/5b864d36f490220544c714a9befa5725e9ed3909",
+        "https://github.com/shivpawan007/LuxmiInvestCare/commit/ecf3826289fd5bfe4d003b2316302bbe1dab5d10"
+      ],
+      "validationEvidence": [
+        "Official CERT-In advisory page CIAD-2026-0062 opened and reviewed; it states Original Issue Date 20 Nov 2026 and severity Critical.",
+        "Current main login route, public leads route, selected authenticated admin routes, next.config.ts, and recursive repository tree were inspected through read-only GitHub retrieval.",
+        "Repository tree search for payment/payout/disbursement/transfer/bank/invoice filename terms returned no matches; this is a filename/path search, not proof of absence of payment code.",
+        "Main weekly audit #84 (run 45405885027) completed with final gate failure; compliance scan, dependency audit, build, route probe/report steps completed, but audit status remained FAIL. The report records production vulnerabilities (3: 1 critical, 1 high, 1 low), full-tree vulnerabilities (6: 1 critical, 1 high, 3 moderate, 1 low), high promotional-language finding on /calculators/sip, and 13/13 routes HTTP 200.",
+        "PR #17 is open/unmerged; last known CI workflow #46 failed at production build and route audit was skipped. Rate-limit/header proposal is not active in main.",
+        "JSON/source config validated by parsing in automation before GitHub update. No local npm audit, ESLint, TypeScript, build, penetration test, production test or log review was run."
+      ],
+      "unresolvedQuestions": [
+        "Confirm whether Luxmi has any payment, disbursement, payout, banking or external vendor workflows not represented in public repository paths.",
+        "Review and validate rate-limit design, migration, trusted-proxy/IP handling and security headers in PR #17; diagnose build failure and rerun CI.",
+        "Confirm admin MFA, least-privilege service credentials, secrets hygiene, privileged record-change auditability, and incident response procedures.",
+        "If compromise is suspected, investigate logs and follow applicable CERT-In incident reporting directions; this review found no evidence of compromise but did not examine logs."
+      ]
+    },
+    {
+      "id": "SEBI-GMP-ADVISORY-2026-11-23",
+      "authority": "SEBI",
+      "sourceTitle": "Advisory Regarding Unregulated Pre-listing Premium often called as Grey Market Premium (GMP) for Upcoming Initial Public Offers (IPOs) — PR 75/2026",
+      "sourceURL": "https://www.sebi.gov.in/media-and-notifications/press-releases/nov-2026/advisory-regarding-unregulated-pre-listing-premium-often-called-as-grey-market-premium-gmp-for-upcoming-initial-public-offerings-ipos-_105942.html",
+      "officialPDFURL": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2026/1795441481174.pdf",
+      "publicationDate": "2026-11-23",
+      "effectiveDate": "Press release/advisory published 23 November 2026; no separate commencement date stated.",
+      "previousRequirement": "No GMP figures or grey-market-premium content were identified in the public website files specifically inspected for this watch. Prior SEBI investor cautions addressed unregulated trading and investor-risk themes, but this log did not previously record an explicit GMP-publication advisory.",
+      "newRequirement": "PR 75/2026 states GMP figures are unofficial, unverified and unregulated, outside exchange price discovery, with no exchange settlement guarantee or investor-protection framework. SEBI states publication, display, circulation or dissemination may be discontinued across the securities market and advises all SEBI-registered intermediaries and market participants to refrain from publishing, displaying or broadcasting GMP figures on websites, platforms, email, SMS and social media.",
+      "applicabilityAssessment": "This is a press release/advisory, not a new circular or statutory commencement instrument. Luxmi is AMFI-registered as an MFD; whether the advisory's references to 'market participants' or covered intermediary classes apply directly to Luxmi requires human compliance/legal confirmation. No GMP/IPO figures were found in targeted website files; repository search is not exhaustive and external social channels were not checked.",
+      "risk": {
+        "severity": "MEDIUM",
+        "priority": "P2-content-review",
+        "status": "OPEN",
+        "reason": "Potential misleading unregulated GMP content and regulatory scope uncertainty for an MFD; no GMP content found in inspected public pages."
+      },
+      "impactedFilesRoutes": [
+        "app/page.tsx",
+        "app/investor-education/page.tsx",
+        "components/home/InvestorEducation.tsx",
+        "app/disclosures/page.tsx",
+        "future IPO content",
+        "social posts/reels/captions",
+        "WhatsApp/email/SMS marketing",
+        "content approval workflow"
+      ],
+      "aiAnalysis": "The official advisory strongly discourages publication of GMP figures by the stated covered classes. No GMP/grey-market-premium references were found in targeted homepage, investor-education, disclosures or privacy files. Targeted GitHub search returned no matches, but index coverage is not exhaustive. Since MFD applicability is not confirmed, avoid creating a public prohibition or changing content without human review; keep future content GMP-free pending compliance guidance.",
+      "changeSummary": "No code or content change made. Created human-review Issue #21, appended a regulatory entry, and added the official SEBI press-release listing and direct GMP advisory to the monitoring configuration.",
+      "commitPRLinks": [
+        "https://github.com/shivpawan007/LuxmiInvestCare/issues/21",
+        "https://github.com/shivpawan007/LuxmiInvestCare/pull/18",
+        "https://github.com/shivpawan007/LuxmiInvestCare/commit/dbefc6f882e6ad8b160bd8b6ac37f031d2a0bbe2",
+        "https://github.com/shivpawan007/LuxmiInvestCare/commit/90b9c5b2c2a601da9f855eab2cffaf4a7e42cf31"
+      ],
+      "validationEvidence": [
+        "Official SEBI press-release page and two-page PDF reviewed.",
+        "Targeted repository file inspection and search only; no exhaustive external-channel audit or production verification."
+      ],
+      "unresolvedQuestions": [
+        "Confirm direct scope of PR 75/2026 for Luxmi as an AMFI MFD and/or market participant.",
+        "Review external and archived IPO-related content and social, WhatsApp, email and SMS channels for GMP figures."
+      ],
+      "historicalEntry": "This is the first entry in this log specifically recording SEBI PR 75/2026; earlier monitoring entries are preserved."
+    },
+    {
+      "id": "SEBI-IMPERSONATION-WARNING-2026-11-23",
+      "authority": "SEBI",
+      "sourceTitle": "Caution to investors regarding impersonation of SEBI registered intermediaries on closed user groups of social media platforms — PR 76/2026",
+      "sourceURL": "https://www.sebi.gov.in/media-and-notifications/press-releases/nov-2026/caution-to-investors-regarding-impersonation-of-sebi-registered-intermediaries-on-closed-user-groups-of-social-media-platforms_105944.html",
+      "officialPDFURL": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2026/1795578311073.pdf",
+      "publicationDate": "2026-11-23",
+      "effectiveDate": "Press-release investor caution published 23 November 2026; no separate statutory commencement date.",
+      "previousRequirement": "SEBI had earlier cautioned about impersonation and invitation-only stock-tip groups. This log had not recorded PR 76/2026's expanded warning about impersonating registered intermediaries, purported institutional opportunities, unauthorised platforms and third-party bank accounts.",
+      "newRequirement": "PR 76/2026 describes impersonation on closed WhatsApp/Telegram and other closed social groups, purported institutional trades, international-market/stock recommendations, unauthorised trading platforms and third-party bank accounts. Red flags include unsolicited invitations, fake apps/accounts, misuse of registration screenshots/letterheads and false SEBI connections; investors should independently verify entities/apps/payment details and avoid unknown groups.",
+      "applicabilityAssessment": "Investor-protection press release rather than a new binding MFD website rule. Relevant to Luxmi brand/channel integrity and the risk of investor fraud using its name, ARN, logo or contact details. Official Luxmi social accounts, handles, closed groups and external URLs were not independently verified.",
+      "risk": {
+        "severity": "MEDIUM",
+        "priority": "P2-channel-integrity",
+        "status": "OPEN",
+        "reason": "Impersonation may cause investor fraud, false affiliation, reputational harm or misdirected enquiries/payments."
+      },
+      "impactedFilesRoutes": [
+        "official social account handles and bios (not verified in this run)",
+        "components/common/SocialLinks.tsx (empty file in inspected main branch)",
+        "app/page.tsx",
+        "app/contact/page.tsx",
+        "WhatsApp contact/group practices",
+        "marketing and brand approval workflow"
+      ],
+      "aiAnalysis": "A verified-channel warning or public anti-impersonation notice may be useful, but it must use confirmed official handles, URLs and contact details. No public copy was added and no account/closed-group investigation was performed. Existing website source files do not establish social profile ownership.",
+      "changeSummary": "No code/content change. Issue #21 created to verify official social channels and review impersonation/GMP content; SEBI PR 76 and PDF added to monitoring sources.",
+      "commitPRLinks": [
+        "https://github.com/shivpawan007/LuxmiInvestCare/issues/21",
+        "https://github.com/shivpawan007/LuxmiInvestCare/pull/18",
+        "https://github.com/shivpawan007/LuxmiInvestCare/commit/dbefc6f882e6ad8b160bd8b6ac37f031d2a0bbe2",
+        "https://github.com/shivpawan007/LuxmiInvestCare/commit/90b9c5b2c2a601da9f855eab2cffaf4a7e42cf31"
+      ],
+      "validationEvidence": [
+        "Official SEBI PR 76 page and four-page PDF reviewed; the PDF's impersonation pattern and investor-verification advice were cross-checked.",
+        "No external social-account access or incident investigation performed."
+      ],
+      "unresolvedQuestions": [
+        "Confirm official Luxmi social handles, phone/WhatsApp destinations and any closed-group presence.",
+        "Has any impersonation or misuse of ARN/logo/contact occurred? If yes, preserve evidence and report through appropriate channels."
+      ],
+      "historicalEntry": "New PR 76/2026 entry; earlier general security monitoring entries remain unchanged."
+    },
+    {
+      "id": "SEBI-KRA-ONBOARDING-2026-11-25",
+      "authority": "SEBI",
+      "sourceTitle": "Simplification of client on-boarding and rationalisation of risk management framework at KYC Registration Agencies — Circular HO/38/14/(25)2026-MIRSD-POD3",
+      "sourceURL": "https://www.sebi.gov.in/legal/circulars/nov-2026/simplification-of-client-on-boarding-and-rationalisation-of-risk-management-framework-at-kyc-registration-agencies_105839.html",
+      "officialPDFURL": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2026/1795605346389.pdf",
+      "publicationDate": "2026-11-25",
+      "effectiveDate": "2026-12-24 (30 days from issuance, as stated in the circular). KRAs must issue an implementation SOP within 30 days from circular issuance.",
+      "previousRequirement": "The KYC Master Circular and KRA framework governed client onboarding, supplementary information, updates, verification, portability and delinking; the circular revises several of those provisions and data flows.",
+      "newRequirement": "The circular centralises common supplementary KYC information; requires relevant uploads including income range, FATCA/CRS, PEP, occupation, CKYC ID/DIGIPIN where available and OVD expiry as applicable; tags independently validated information; requires updating KYC records from KRA/CKYCRR updates and a client option to confirm; makes mobile verification optional if KRA already tags an Aadhaar-seeded number verified; revises closure/non-association/delinking timelines; permits optional overseas address proof for certain resident OCI/foreign-national clients with verified Indian address; revises name-change evidence; and enhances validated-record portability/attribute tagging. Detailed circular text and exceptions control.",
+      "applicabilityAssessment": "Circular is addressed to SEBI-registered intermediaries, KRAs, exchanges, clearing corporations and depositories. Luxmi is AMFI-registered as an MFD and may participate in KYC workflows through AMCs/RTA/KRA; direct applicability and actual workflow duties need confirmation. Public site routes inspected contain enquiry/contact forms, not a direct KYC/account-opening or document-upload journey.",
+      "risk": {
+        "severity": "MEDIUM",
+        "priority": "P2-process-review",
+        "status": "OPEN",
+        "reason": "Effective 24 December 2026, close to this review; MFD business onboarding/KYC processes may be affected if Luxmi participates."
+      },
+      "impactedFilesRoutes": [
+        "MFD/AMC/RTA/KRA internal onboarding and KYC procedures",
+        "future forms/document-upload flows",
+        "app/contact/page.tsx (generic enquiry only, not KYC onboarding)",
+        "privacy notice/data handling only if an approved KYC process is added"
+      ],
+      "aiAnalysis": "Do not add CKYC, DIGIPIN, OVD-expiry, income/PEP/FATCA-CRS collection to a generic enquiry form absent an approved secure workflow and documented legal need. Confirm applicable AMC/KRA SOP, MFD role, client-confirmation requirements, validated/nonvalidated attribute treatment and delinking timelines before modifying business processes.",
+      "changeSummary": "No website code, form or privacy content changed. Created Issue #22 for human applicability and process review and added the official SEBI circular page/PDF to monitoring.",
+      "commitPRLinks": [
+        "https://github.com/shivpawan007/LuxmiInvestCare/issues/22",
+        "https://github.com/shivpawan007/LuxmiInvestCare/pull/18",
+        "https://github.com/shivpawan007/LuxmiInvestCare/commit/dbefc6f882e6ad8b160bd8b6ac37f031d2a0bbe2",
+        "https://github.com/shivpawan007/LuxmiInvestCare/commit/90b9c5b2c2a601da9f855eab2cffaf4a7e42cf31"
+      ],
+      "validationEvidence": [
+        "Official SEBI circular page and full 11-page PDF reviewed, including sections 3.1–3.7, effective date and KRA SOP timing.",
+        "Website route/source inspection found enquiry forms but no KYC document-upload/account-opening journey in inspected public routes."
+      ],
+      "unresolvedQuestions": [
+        "Confirm Luxmi's exact KYC role and direct applicability under this circular.",
+        "Obtain relevant AMC/RTA/KRA SOP and decide whether internal procedure updates are required before 24 December 2026."
+      ],
+      "historicalEntry": "New circular published 25 November 2026; this log first records it on 26 November. No website KYC onboarding flow was identified in this review."
+    },
+    {
+      "id": "DPDP-REMOVAL-DIFFICULTIES-ORDER-2026-10-06",
+      "authority": "MeitY / Government of India",
+      "sourceTitle": "Digital Personal Data Protection (Removal of Difficulties) Order, 2026 — S.O. 5458(E)",
+      "sourceURL": "https://www.meity.gov.in/static/uploads/2026/10/daf495a7b5798a3dfa72a944b51fc176.pdf",
+      "publicationDate": "2026-10-06 (Gazette masthead; order dated 2026-10-05)",
+      "effectiveDate": "2026-10-06 (on Gazette publication)",
+      "previousRequirement": "Section 9(1) used the phrase 'child or a person with disability' and section 10(2)(c)(ii) used 'periodic audit'. The prior DPDP phased-commencement entry recorded dates and privacy preparation but did not include this textual correction.",
+      "newRequirement": "The Order substitutes 'child or of a person with disability' in section 9(1), clarifying the child/person-with-disability categories (the latter where there is a lawful guardian), and replaces 'audit' with 'data audit' in section 10(2)(c)(ii). It does not amend the DPDP Rules or commencement notifications, create a new duty or move any commencement date.",
+      "applicabilityAssessment": "The Order is in force but is a textual clarification of the Act. Sections 9 and 10 remain in the 18-month commencement group (13 May 2027 as previously calculated; confirm the commencement instrument and any later amendment). No direct current website-flow change identified; Luxmi's personal-data enquiry/report-share processing remains relevant to future DPDP readiness.",
+      "risk": {
+        "severity": "LOW",
+        "priority": "P3-text-accuracy",
+        "status": "RECORDED",
+        "reason": "Clarification of statutory wording; no new direct website obligation or commencement change identified."
+      },
+      "impactedFilesRoutes": [
+        "app/privacy/page.tsx",
+        "contact/enquiry consent and notice",
+        "any future child/person-with-disability consent-verification flow",
+        "SDF audit planning only if designated"
+      ],
+      "aiAnalysis": "The official MeitY-hosted Gazette PDF confirms the Order is dated 5 October and Gazette issue masthead 6 October 2026; operative paragraph 1(2) makes it effective on publication. Two textual substitutions only. No website consent flow for children or persons with disability was identified. Do not infer Luxmi is a Significant Data Fiduciary.",
+      "changeSummary": "Added a supplemental log entry to preserve the prior DPDP phased-commencement record; no privacy policy or code change made.",
+      "commitPRLinks": [
+        "https://github.com/shivpawan007/LuxmiInvestCare/pull/18",
+        "https://github.com/shivpawan007/LuxmiInvestCare/commit/dbefc6f882e6ad8b160bd8b6ac37f031d2a0bbe2",
+        "https://github.com/shivpawan007/LuxmiInvestCare/commit/90b9c5b2c2a601da9f855eab2cffaf4a7e42cf31"
+      ],
+      "validationEvidence": [
+        "Official MeitY-hosted Gazette PDF reviewed, including publication masthead, operative substitutions and commencement paragraph.",
+        "Cross-check secondary DSCI brief used only as supplementary explanation; primary MeitY PDF is controlling."
+      ],
+      "unresolvedQuestions": [
+        "Confirm future consent requirements and retention/rights/breach processes during DPDP preparation.",
+        "Confirm any future processing involving child or person with disability with lawful guardian before implementing consent-verification flows."
+      ],
+      "historicalEntry": "Supplemental clarification to DPDP-PHASE-2026-11-13. The original phased commencement entry is not rewritten or deleted."
+    },
+    {
+      "id": "CERTIN-WHATSAPP-VULNS-CIVN-2026-0576",
+      "authority": "CERT-In / MeitY",
+      "sourceTitle": "CERT-In Vulnerability Note CIVN-2026-0576 — Multiple Vulnerabilities in WhatsApp",
+      "sourceURL": "https://www.cert-in.org.in/s2cMainServlet?VLCODE=CIVN-2026-0576&pageid=PUBVLNOTES01",
+      "publicationDate": "2026-11-26",
+      "effectiveDate": "Published 26 November 2026; vendor-fixed releases should be applied as appropriate to each affected version branch",
+      "previousRequirement": "Prior monitoring included CERT-In advisories but did not explicitly monitor the product-specific Vulnerability Notes listing. Luxmi's public site uses WhatsApp contact links, but no business-device inventory or app-version evidence was available.",
+      "newRequirement": "CERT-In rates this note HIGH. It lists affected WhatsApp and WhatsApp Business Android/iOS, Mac and Windows versions; crafted messages, attachments or URLs may cause arbitrary code execution, sensitive information disclosure or security-restriction bypass. Verify the exact affected version branch and apply vendor updates.",
+      "applicabilityAssessment": "Potentially material to Luxmi staff devices if WhatsApp/WhatsApp Business is used for investor/lead communications. Exposure cannot be confirmed without checking device OS, app versions and business accounts. No public-site code patch is indicated.",
+      "risk": {
+        "severity": "HIGH (CERT-In advisory); Luxmi exposure unconfirmed",
+        "priority": "P1-security-triage",
+        "reason": "Affected communication apps may be used on business devices. The note describes remote exploitation through crafted message/attachment/URL. Confirm inventory and update promptly."
+      },
+      "impactedFilesRoutes": [
+        "components/home/Contact.tsx (WhatsApp contact link; operational channel only)",
+        "Luxmi-owned Android/iOS/macOS/Windows endpoints and WhatsApp/WhatsApp Business accounts (inventory not available)",
+        "No website route change identified"
+      ],
+      "aiAnalysis": "The advisory is a product vulnerability, not a new MFD regulation. Luxmi's public WhatsApp links establish a plausible communication-channel relevance but do not prove the business uses an affected client/device version. The safe response is version inventory and vendor patch verification, not an autonomous website change. Staff should avoid unsolicited attachments/URLs while updating.",
+      "changeSummary": "Created human-action Issue #23; added CERT-In Vulnerability Notes listing to source config; posted cross-reference on P1 security Issue #20 and PR #17/PR #18. No code patch or device update was possible in this automation.",
+      "commitPRLinks": [
+        "https://github.com/shivpawan007/LuxmiInvestCare/issues/23",
+        "https://github.com/shivpawan007/LuxmiInvestCare/issues/20",
+        "https://github.com/shivpawan007/LuxmiInvestCare/pull/18"
+      ],
+      "validationEvidence": [
+        "Official CERT-In CIVN-2026-0576 opened and reviewed; publication date, severity, affected product/version ranges and solution reference captured.",
+        "Public website code was not modified. No device/app version, endpoint inventory, incident log or vendor-fixed version was verified."
+      ],
+      "unresolvedQuestions": [
+        "Which Luxmi staff-owned devices and accounts use WhatsApp/WhatsApp Business?",
+        "Are their OS and app versions within the affected ranges?",
+        "Has each affected device been updated to the vendor-fixed version and verified?"
+      ],
+      "historicalEntry": "New product-specific vulnerability entry. Prior CERT-In advisory monitoring remains unchanged."
+    },
+    {
+      "id": "CERTIN-NGINX-VULNS-CIVN-2026-0572",
+      "authority": "CERT-In / MeitY",
+      "sourceTitle": "CERT-In Vulnerability Note CIVN-2026-0572 — Multiple Vulnerabilities in NGINX",
+      "sourceURL": "https://www.cert-in.org.in/s2cMainServlet?VLCODE=CIVN-2026-0572&pageid=PUBVLNOTES01",
+      "publicationDate": "2026-11-25",
+      "effectiveDate": "Published 25 November 2026; vendor patch releases apply to affected versions",
+      "previousRequirement": "The compliance watch monitored CERT-In advisories but did not explicitly monitor product-specific vulnerability notes. Main repository contains Vercel configuration; no self-managed NGINX version was previously identified.",
+      "newRequirement": "CERT-In rates the note CRITICAL and lists affected F5 NGINX product versions. Vulnerabilities can lead to remote code execution, memory corruption or denial of service; affected product/version identification and vendor updates are required.",
+      "applicabilityAssessment": "Exposure is unconfirmed. Repository main contains vercel.json and Next.js configuration, suggesting Vercel deployment, but this is not proof that the provider's ingress stack is unaffected or that no self-managed NGINX exists elsewhere. No NGINX/F5 version or infrastructure inventory is available.",
+      "risk": {
+        "severity": "CRITICAL (CERT-In advisory); Luxmi exposure unconfirmed",
+        "priority": "P1-infrastructure-verification",
+        "reason": "Critical vendor vulnerability with remote exploitation consequences if affected product/version is present. No asset evidence confirms Luxmi is affected."
+      },
+      "impactedFilesRoutes": [
+        "vercel.json",
+        "next.config.ts",
+        "All public routes if affected infrastructure is in scope",
+        "Hosting/provider infrastructure and any self-managed reverse proxy (not present in inspected repository)"
+      ],
+      "aiAnalysis": "This note is product-specific, not a new MFD regulatory requirement. Do not patch Next.js source for an NGINX vulnerability without evidence that an affected NGINX/F5 component is in Luxmi's deployment path. Vercel configuration was observed; provider-managed infrastructure should be confirmed with provider status/security documentation or support.",
+      "changeSummary": "Recorded critical vulnerability triage in Issue #23 and added CERT-In vulnerability-note listing to monitoring. No hosting or application code patch made because exposure is unverified.",
+      "commitPRLinks": [
+        "https://github.com/shivpawan007/LuxmiInvestCare/issues/23",
+        "https://github.com/shivpawan007/LuxmiInvestCare/pull/18"
+      ],
+      "validationEvidence": [
+        "Official CERT-In CIVN-2026-0572 reviewed; affected product families/version ranges, severity and impacts recorded.",
+        "Read-only inspection of main vercel.json and next.config.ts confirms Vercel-oriented deployment configuration; no NGINX/F5 asset inventory or hosting attestation was available."
+      ],
+      "unresolvedQuestions": [
+        "Does Luxmi or any vendor-managed environment use affected NGINX/F5 products?",
+        "If applicable, what exact versions are deployed and are vendor fixes applied?",
+        "Who owns hosting-provider security verification and endpoint inventory?"
+      ],
+      "historicalEntry": "New product-specific vulnerability entry; prior CERT-In advisory records preserved."
+    },
+    {
+      "id": "SEBI-RBI-UAPA-SANCTIONS-LIST-2026-11-26",
+      "authority": "SEBI; RBI; Ministry of External Affairs / UNSC",
+      "sourceTitle": "26 November 2026 sanctions-list amendments under Section 51A UAPA — SEBI and RBI notifications",
+      "sourceURL": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListingAll=yes&search=Of",
+      "officialRBIURL": "https://www.rbi.org.in/scripts/NotificationUser.aspx",
+      "publicationDate": "2026-11-26",
+      "effectiveDate": "List amendments communicated 26 November 2026; applicable compliance timing is governed by each authority's directions and UAPA framework",
+      "previousRequirement": "Previously circulated UNSC sanctions lists and Section 51A/UAPA obligations remain in place for entities subject to applicable directions; no general MFD website screening workflow was identified in the reviewed public repository.",
+      "newRequirement": "SEBI's official news listing and RBI notifications list show 26 November amendments to the UNSC ISIL/Al-Qaida sanctions list. RBI notifications are directed to RBI-regulated entities under the applicable KYC Directions; list details updated by the UNSC require covered entities to act under their governing instructions.",
+      "applicabilityAssessment": "No new website obligation or direct MFD-specific change identified. RBI's notification addressees include banks, NBFCs, ARCs and other RBI-regulated entities, not a standalone mutual-fund distributor. Luxmi's exact obligations under its MFD/AML arrangements and AMC procedures are not established; do not assume the RBI KYC Directions directly apply.",
+      "risk": {
+        "severity": "LOW for website; conditional compliance review",
+        "priority": "P3-scope-awareness",
+        "reason": "New sanctions-list update is relevant to regulated AML/sanctions processes, but direct MFD applicability and Luxmi's screening responsibilities are unconfirmed. No website KYC/screening journey was identified."
+      },
+      "impactedFilesRoutes": [
+        "No public website route or file change identified",
+        "Potential business AML/KYC/sanctions-screening procedures only if covered by applicable obligations/AMC arrangements"
+      ],
+      "aiAnalysis": "Treat this as an update to an existing sanctions-list obligation for covered entities, not a new standalone MFD website rule. Human compliance should confirm Luxmi's role and any required AMC/transaction screening or escalation procedures.",
+      "changeSummary": "Logged the 26 November list update for awareness; added official SEBI news listing and RBI notification listing to monitoring sources. No code/content change.",
+      "commitPRLinks": [
+        "https://github.com/shivpawan007/LuxmiInvestCare/pull/18"
+      ],
+      "validationEvidence": [
+        "SEBI official listing reviewed through 26 November 2026, showing sanctions-list update, mutual-fund draft filing, 25 November KRA circular and significant-indices circular.",
+        "RBI official notification list reviewed; 26 November sanctions-list amendments and 23 November institution-specific securitisation directions checked.",
+        "No local tests or operational AML screening review performed."
+      ],
+      "unresolvedQuestions": [
+        "Does Luxmi's role/AMC agreement impose any sanctions-list screening or escalation requirement beyond its MFD obligations?",
+        "Confirm operational policy with compliance/legal professional if client onboarding/transaction facilitation involves screening responsibilities."
+      ],
+      "historicalEntry": "New source-review entry. Does not alter prior sanctions-list or AML records."
+    },
+    {
+      "id": "CERTIN-MOZILLA-CIVN-2026-0577",
+      "authority": "CERT-In / MeitY",
+      "sourceTitle": "Multiple Vulnerabilities in Mozilla Products — CIVN-2026-0577",
+      "sourceURL": "https://www.cert-in.org.in/s2cMainServlet?VLCODE=CIVN-2026-0577&pageid=PUBVLNOTES01",
+      "officialPDFURL": null,
+      "publicationDate": "2026-11-27",
+      "effectiveDate": "Vendor remediation/update guidance; no new statutory commencement date",
+      "previousRequirement": "Previous review covered product-specific WhatsApp/NGINX notes; Mozilla vulnerability note not yet logged. Routine endpoint browser/email client patching remains necessary.",
+      "newRequirement": "CERT-In reports CRITICAL multiple Mozilla vulnerabilities. Affected: Firefox before 161; Firefox ESR before 153.8 and 115.46; Thunderbird before 161 and 153.8. Remote exploitation may lead to privilege escalation, security bypass, sensitive-information disclosure, spoofing or DoS; update to vendor-fixed releases.",
+      "applicabilityAssessment": "Conditional on Luxmi-owned/staff devices using affected Firefox, Firefox ESR or Thunderbird versions. The repository does not establish staff device inventory or installed versions. No website-route exposure is implied.",
+      "risk": {
+        "severity": "CRITICAL (CERT-In advisory rating; actual Luxmi exposure unconfirmed)",
+        "priority": "P1-asset-inventory",
+        "reason": "CERT-In product advisory severity is high/critical, but Luxmi asset exposure is not established; prioritize inventory/version confirmation and patching if present."
+      },
+      "impactedFilesRoutes": [
+        "Staff endpoint browsers/email clients; no public route or repository source file directly identified."
+      ],
+      "aiAnalysis": "This is an endpoint-security advisory, not a new MFD website rule. Because browser and email clients may be used for business communication/admin access, inventory and update checks are prudent. Do not claim the organisation is affected until versions are verified.",
+      "changeSummary": "Append product-specific Mozilla advisory and version checks to security triage. No website patch.",
+      "commitPRLinks": [
+        "https://github.com/shivpawan007/LuxmiInvestCare/pull/18",
+        "https://github.com/shivpawan007/LuxmiInvestCare/issues/23",
+        "https://github.com/shivpawan007/LuxmiInvestCare/commit/a931d8d1c8a647cdda51e2c0c6355dfc96c58005",
+        "https://github.com/shivpawan007/LuxmiInvestCare/commit/0656d3f1fc78753331d9a7630e50f4f3b37d7953",
+        "https://github.com/shivpawan007/LuxmiInvestCare/issues/23#issuecomment-7226604686",
+        "https://github.com/shivpawan007/LuxmiInvestCare/pull/18#issuecomment-7226605172"
+      ],
+      "validationEvidence": [
+        "CERT-In 2026 Vulnerability Notes index reviewed on 28 Nov 2026; individual advisory pages inspected.",
+        "Read-only inspection of main package.json (Next.js), vercel.json and next.config.ts; repository configuration indicates Vercel-oriented Next.js, not evidence of third-party device/hosting assets.",
+        "No endpoint/hosting asset inventory, installed software versions, vendor attestations or security telemetry available.",
+        "Mozilla vendor advisories linked by CERT-In: https://www.mozilla.org/en-US/security/advisories/mfsa2026-131/ through mfsa2026-135/"
+      ],
+      "unresolvedQuestions": [
+        "Verify Firefox/Firefox ESR/Thunderbird inventory and version on staff/admin devices; patch affected versions and record verification."
+      ],
+      "historicalEntry": null
+    },
+    {
+      "id": "CERTIN-KVM-CIVN-2026-0578",
+      "authority": "CERT-In / MeitY",
+      "sourceTitle": "Memory Management Vulnerability in Linux Kernel KVM — CIVN-2026-0578",
+      "sourceURL": "https://www.cert-in.org.in/s2cMainServlet?VLCODE=CIVN-2026-0578&pageid=PUBVLNOTES01",
+      "officialPDFURL": null,
+      "publicationDate": "2026-11-27",
+      "effectiveDate": "Vendor remediation/update guidance; no new statutory commencement date",
+      "previousRequirement": "Prior review logged NGINX/WhatsApp and other device advisories; this Linux KVM host-memory vulnerability had not been logged.",
+      "newRequirement": "CERT-In rates HIGH. Listed affected Linux kernel versions include versions before 5.16, 6.1.193, 6.12.118, 6.18.64, 7.3.5 and 7.4-rc2. Under specific nested AMD virtualization conditions, a privileged guest attacker may obtain host memory read/write access.",
+      "applicabilityAssessment": "Conditional on Luxmi or its vendor operating affected Linux KVM virtualization hosts. Vercel-oriented repository configuration does not establish underlying managed hypervisor versions; no self-managed KVM host is identified.",
+      "risk": {
+        "severity": "HIGH (CERT-In advisory rating; infrastructure exposure unconfirmed)",
+        "priority": "P1-asset-inventory",
+        "reason": "CERT-In product advisory severity is high/critical, but Luxmi asset exposure is not established; prioritize inventory/version confirmation and patching if present."
+      },
+      "impactedFilesRoutes": [
+        "Potential virtualization hosts and vendor-managed infrastructure; no public route/source file directly affected."
+      ],
+      "aiAnalysis": "Treat as host/virtualization asset triage. Do not attempt application-code remediation for a kernel/hypervisor vulnerability. Managed hosting provider should verify and patch if within their infrastructure.",
+      "changeSummary": "Added KVM advisory to the asset-inventory review. No code change.",
+      "commitPRLinks": [
+        "https://github.com/shivpawan007/LuxmiInvestCare/pull/18",
+        "https://github.com/shivpawan007/LuxmiInvestCare/issues/23",
+        "https://github.com/shivpawan007/LuxmiInvestCare/commit/a931d8d1c8a647cdda51e2c0c6355dfc96c58005",
+        "https://github.com/shivpawan007/LuxmiInvestCare/commit/0656d3f1fc78753331d9a7630e50f4f3b37d7953",
+        "https://github.com/shivpawan007/LuxmiInvestCare/issues/23#issuecomment-7226604686",
+        "https://github.com/shivpawan007/LuxmiInvestCare/pull/18#issuecomment-7226605172"
+      ],
+      "validationEvidence": [
+        "CERT-In 2026 Vulnerability Notes index reviewed on 28 Nov 2026; individual advisory pages inspected.",
+        "Read-only inspection of main package.json (Next.js), vercel.json and next.config.ts; repository configuration indicates Vercel-oriented Next.js, not evidence of third-party device/hosting assets.",
+        "No endpoint/hosting asset inventory, installed software versions, vendor attestations or security telemetry available.",
+        "CVE-2026-99312 identified in CERT-In note."
+      ],
+      "unresolvedQuestions": [
+        "Confirm whether any Luxmi-controlled Linux KVM hosts exist; if yes, identify exact kernel versions and patch. If hosted, request provider assurance as appropriate."
+      ],
+      "historicalEntry": null
+    },
+    {
+      "id": "CERTIN-DRUPAL-CIVN-2026-0579",
+      "authority": "CERT-In / MeitY",
+      "sourceTitle": "Access Bypass Vulnerability in Drupal — CIVN-2026-0579",
+      "sourceURL": "https://www.cert-in.org.in/s2cMainServlet?VLCODE=CIVN-2026-0579&pageid=PUBVLNOTES01",
+      "officialPDFURL": null,
+      "publicationDate": "2026-11-27",
+      "effectiveDate": "Vendor remediation/update guidance; no new statutory commencement date",
+      "previousRequirement": "Previous review did not identify Drupal as a Luxmi website technology; no Drupal advisory had been logged for this run.",
+      "newRequirement": "CERT-In rates CRITICAL and reports active exploitation. Affected Drupal Core versions: before 10.6.23; 11.0.0 before 11.3.23; 11.4.0 before 11.4.14. An improperly secured install.php in unusual/incomplete installation states can allow access bypass and website takeover. Administrators should review logs, including unexpected user-1 account changes, and update.",
+      "applicabilityAssessment": "Repository main package/config inspection shows a Next.js/Vercel application and no Drupal dependency in package.json. No Drupal instance was identified in the inspected repo; external microsites, vendor systems or abandoned installations are not inventoried.",
+      "risk": {
+        "severity": "CRITICAL (CERT-In advisory rating; active exploitation reported; Luxmi Drupal exposure not established)",
+        "priority": "P1-asset-inventory",
+        "reason": "CERT-In product advisory severity is high/critical, but Luxmi asset exposure is not established; prioritize inventory/version confirmation and patching if present."
+      },
+      "impactedFilesRoutes": [
+        "External web/CMS assets and hosting inventory; no Next.js public route directly affected by this Drupal core note."
+      ],
+      "aiAnalysis": "Drupal-specific finding. Repository framework is not Drupal, so no code patch is indicated. However, critical active exploitation warrants confirmation that Luxmi has no Drupal-based campaign site, legacy subdomain, vendor-managed microsite or abandoned install.",
+      "changeSummary": "Recorded Drupal advisory and asset check requirement; no website code change.",
+      "commitPRLinks": [
+        "https://github.com/shivpawan007/LuxmiInvestCare/pull/18",
+        "https://github.com/shivpawan007/LuxmiInvestCare/issues/23",
+        "https://github.com/shivpawan007/LuxmiInvestCare/commit/a931d8d1c8a647cdda51e2c0c6355dfc96c58005",
+        "https://github.com/shivpawan007/LuxmiInvestCare/commit/0656d3f1fc78753331d9a7630e50f4f3b37d7953",
+        "https://github.com/shivpawan007/LuxmiInvestCare/issues/23#issuecomment-7226604686",
+        "https://github.com/shivpawan007/LuxmiInvestCare/pull/18#issuecomment-7226605172"
+      ],
+      "validationEvidence": [
+        "CERT-In 2026 Vulnerability Notes index reviewed on 28 Nov 2026; individual advisory pages inspected.",
+        "Read-only inspection of main package.json (Next.js), vercel.json and next.config.ts; repository configuration indicates Vercel-oriented Next.js, not evidence of third-party device/hosting assets.",
+        "No endpoint/hosting asset inventory, installed software versions, vendor attestations or security telemetry available.",
+        "CERT-In states active exploitation in the wild and advises log review where affected Drupal installer exposure may persist."
+      ],
+      "unresolvedQuestions": [
+        "Confirm all Luxmi domains/subdomains and third-party marketing sites; if Drupal is present, inventory version, inspect installer exposure/logs/user-1 changes, and update to vendor-fixed release."
+      ],
+      "historicalEntry": null
+    },
+    {
+      "id": "CERTIN-MITEL-MICOLLAB-CIVN-2026-0580",
+      "authority": "CERT-In / MeitY",
+      "sourceTitle": "Multiple Vulnerabilities in Mitel MiCollab — CIVN-2026-0580",
+      "sourceURL": "https://www.cert-in.org.in/s2cMainServlet?VLCODE=CIVN-2026-0580&pageid=PUBVLNOTES01",
+      "officialPDFURL": null,
+      "publicationDate": "2026-11-27",
+      "effectiveDate": "Vendor remediation/update guidance; no new statutory commencement date",
+      "previousRequirement": "Previous watch had not logged a MiCollab vulnerability note; business communications software inventory was not available.",
+      "newRequirement": "CERT-In rates CRITICAL and says vulnerabilities are exploited in the wild. Mitel MiCollab version 10.3 (10.3.0.18) and earlier may permit unauthenticated arbitrary file upload, command execution, sensitive-information disclosure or authentication bypass. Vendor advises upgrading.",
+      "applicabilityAssessment": "Conditional on Luxmi using Mitel MiCollab or a vendor-managed instance. Repository does not establish any MiCollab deployment or communications-platform inventory.",
+      "risk": {
+        "severity": "CRITICAL (CERT-In advisory rating; active exploitation reported; Luxmi exposure unconfirmed)",
+        "priority": "P1-asset-inventory",
+        "reason": "CERT-In product advisory severity is high/critical, but Luxmi asset exposure is not established; prioritize inventory/version confirmation and patching if present."
+      },
+      "impactedFilesRoutes": [
+        "Potential business communications servers/instances and admin endpoints; no website route/source file directly identified."
+      ],
+      "aiAnalysis": "Critical, actively exploited vendor-specific risk. Check business communications inventory and vendor ownership; no Next.js/Vercel source patch is appropriate unless a deployment is discovered.",
+      "changeSummary": "Logged MiCollab advisory for conditional asset triage; no code/content changes.",
+      "commitPRLinks": [
+        "https://github.com/shivpawan007/LuxmiInvestCare/pull/18",
+        "https://github.com/shivpawan007/LuxmiInvestCare/issues/23",
+        "https://github.com/shivpawan007/LuxmiInvestCare/commit/a931d8d1c8a647cdda51e2c0c6355dfc96c58005",
+        "https://github.com/shivpawan007/LuxmiInvestCare/commit/0656d3f1fc78753331d9a7630e50f4f3b37d7953",
+        "https://github.com/shivpawan007/LuxmiInvestCare/issues/23#issuecomment-7226604686",
+        "https://github.com/shivpawan007/LuxmiInvestCare/pull/18#issuecomment-7226605172"
+      ],
+      "validationEvidence": [
+        "CERT-In 2026 Vulnerability Notes index reviewed on 28 Nov 2026; individual advisory pages inspected.",
+        "Read-only inspection of main package.json (Next.js), vercel.json and next.config.ts; repository configuration indicates Vercel-oriented Next.js, not evidence of third-party device/hosting assets.",
+        "No endpoint/hosting asset inventory, installed software versions, vendor attestations or security telemetry available.",
+        "CERT-In note says vulnerabilities are known to be exploited in the wild."
+      ],
+      "unresolvedQuestions": [
+        "Confirm whether MiCollab is used by Luxmi or any provider; if version 10.3/10.3.0.18 or earlier is present, upgrade per Mitel advisory and review access/logs."
+      ],
+      "historicalEntry": null
+    }
+  ],
+  "updates": [
+    {
+      "id": "SUPPLEMENTAL-2026-11-23-003206IST",
+      "timestamp": "2026-11-23T00:32:06+05:30",
+      "timezone": "Asia/Kolkata",
+      "updates": [
+        "July 31 SEBI accessibility page is verified as an official primary page and confirms circular number/date; the extracted 31 October prior deadline is corroborated by a secondary full-text reproduction because SEBI page text/PDF could not be extracted in this web session. October 30 official circular's 31 January deadline is primary.",
+        "Official SEBI FATCA/CRS page and PDF link were identified; the SEBI PDF could not be text-extracted in this web session. Form 166 / Income-tax Act 2025 / Rules 2026 details were cross-checked against secondary reproductions and should be verified against the official PDF before business action.",
+        "PR validation check at this timestamp: Vercel Preview Comments succeeded, but three Vercel deployment status contexts remain pending; no GitHub Actions checks ran on this branch."
+      ],
+      "officialSources": [
+        "https://www.sebi.gov.in/legal/circulars/jul-2026/extension-of-timelines-with-repect-to-compliance-of-digital-accessibility-circulars-_103277.html",
+        "https://www.sebi.gov.in/legal/circulars/oct-2026/extension-of-timeline-with-respect-to-compliance-of-digital-accessibility-circulars_105523.html",
+        "https://www.sebi.gov.in/legal/circulars/nov-2026/reporting-requirement-under-foreign-account-tax-compliance-act-fatca-and-common-reporting-standard-crs-revised-through-income-tax-act-2025-read-with-income-tax-rules-2026_105705.html",
+        "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2026/1794392501415.pdf"
+      ],
+      "secondaryCrossCheck": [
+        "https://www.compliedai.com/updates/sebi/extension-of-timelines-with-repect-to-compliance-of-digital-accessibilit-xkojxg",
+        "https://www.compliedai.com/updates/sebi/reporting-requirement-under-foreign-account-tax-compliance-act-fatca-and-44bekg"
+      ],
+      "prValidation": {
+        "branchSha": "72ac4a882ec9fa3fddcbe1341dbe2bc33ae9ea95",
+        "vercelStatuses": [
+          "pending",
+          "pending",
+          "pending"
+        ],
+        "vercelPreviewComments": "success",
+        "githubActions": "no checks reported for this branch"
+      },
+      "limitations": "The secondary cross-check is explicitly not a substitute for the official SEBI PDFs. No Node/npm tests, ESLint, TypeScript, build, accessibility audit, fresh npm audit or route probes were run in this session."
+    },
+    {
+      "id": "SUPPLEMENTAL-2026-11-25-PR18-SYNC",
+      "timestamp": "same watch run; exact comparison retrieval timestamp not exposed",
+      "timezone": "Asia/Kolkata",
+      "updates": [
+        "PR #18 remains open/draft; compare reports 14 commits ahead and 3 behind main, status diverged and mergeability unknown.",
+        "Compare lists only the Markdown log, JSON log, and monitoring source configuration.",
+        "Updated PR #18 comment to keep draft and refresh against main before review/merge; no merge/deploy."
+      ],
+      "branch": "compliance/regulatory-watch-2026-11-23",
+      "commits": [
+        "https://github.com/shivpawan007/LuxmiInvestCare/commit/cb878ef908f7963d0474a4ecd6a315dd28e35673",
+        "https://github.com/shivpawan007/LuxmiInvestCare/commit/a587203dc06a52cdac3a64075d4c7935b528409c",
+        "https://github.com/shivpawan007/LuxmiInvestCare/commit/5b864d36f490220544c714a9befa5725e9ed3909",
+        "https://github.com/shivpawan007/LuxmiInvestCare/commit/ecf3826289fd5bfe4d003b2316302bbe1dab5d10"
+      ],
+      "limitations": "Compare result is informational; mergeability was unknown and no synchronization, merge, tests or deployment were performed."
+    },
+    {
+      "id": "SUPPLEMENTAL-2026-11-25-PR18-SYNC-CORRECTION",
+      "timestamp": "later verification in same run; compare API did not return timestamp",
+      "timezone": "Asia/Kolkata",
+      "updates": [
+        "A second compare after two additional log commits reports 16 commits ahead and 3 behind main, diverged; mergeability unknown.",
+        "The earlier 14-ahead comparison remains preserved as a prior snapshot. Current compare still lists only the Markdown log, JSON log, and monitoring config.",
+        "No merge or deployment; PR remains draft."
+      ],
+      "branch": "compliance/regulatory-watch-2026-11-23",
+      "commits": [
+        "https://github.com/shivpawan007/LuxmiInvestCare/commit/ca2d7b5d5f1a0e9d14f05feb93303ce1394cf106"
+      ],
+      "limitations": "The comparison API did not expose an exact retrieval timestamp."
+    },
+    {
+      "id": "SUPPLEMENTAL-2026-11-26-REGWATCH",
+      "timestamp": "2026-11-26T00:42:56+05:30",
+      "timezone": "Asia/Kolkata",
+      "updates": [
+        "Added four chronological regulatory entries: SEBI PR75 GMP advisory, SEBI PR76 impersonation caution, SEBI KRA onboarding circular dated 25 Nov, and DPDP Removal of Difficulties Order clarification.",
+        "Created human review issues #21 (GMP/social-channel content and impersonation) and #22 (KRA circular applicability/process impact).",
+        "Expanded regulatory-source configuration from 20 to 25 by adding SEBI press-release listing, PR75, PR76, KRA circular and official MeitY order PDF.",
+        "Latest main audit #85 reviewed: overall FAIL; 3 production vulnerabilities (1 critical, 1 high, 1 low), 6 full-tree vulnerabilities (1 critical, 1 high, 3 moderate, 1 low), high SIP promotional-language finding; 13/13 routes HTTP 200; build and scan steps succeeded in the workflow, final fail-gate failed.",
+        "No website code or marketing/privacy/KYC content changed; no merge or deployment."
+      ],
+      "branch": "compliance/regulatory-watch-2026-11-23",
+      "issues": [
+        "https://github.com/shivpawan007/LuxmiInvestCare/issues/21",
+        "https://github.com/shivpawan007/LuxmiInvestCare/issues/22"
+      ],
+      "commits": [
+        "https://github.com/shivpawan007/LuxmiInvestCare/commit/dbefc6f882e6ad8b160bd8b6ac37f031d2a0bbe2",
+        "https://github.com/shivpawan007/LuxmiInvestCare/commit/90b9c5b2c2a601da9f855eab2cffaf4a7e42cf31"
+      ],
+      "limitations": "No tests, npm audit, ESLint, TypeScript, build, route audit, accessibility audit, penetration test, external social-account verification, or security-log review run. Gmail required interactive authorization; email not sent."
+    },
+    {
+      "id": "SUPPLEMENTAL-2026-11-26-COMMIT-INDEX",
+      "timestamp": "2026-11-26T00:42:56+05:30",
+      "timezone": "Asia/Kolkata",
+      "updates": [
+        "Added a chronological commit-reference supplement to the Markdown log after the initial JSON/log/source commits, linking all three files and human-review issues.",
+        "PR #18 remains draft/open; no merge or production deployment."
+      ],
+      "branch": "compliance/regulatory-watch-2026-11-23",
+      "commits": [
+        "https://github.com/shivpawan007/LuxmiInvestCare/commit/dbefc6f882e6ad8b160bd8b6ac37f031d2a0bbe2",
+        "https://github.com/shivpawan007/LuxmiInvestCare/commit/90b9c5b2c2a601da9f855eab2cffaf4a7e42cf31",
+        "https://github.com/shivpawan007/LuxmiInvestCare/commit/0f1ed3406cbd5ca3ed113d9fbd4e2858494e94f2",
+        "https://github.com/shivpawan007/LuxmiInvestCare/commit/ecd13592a1f02031a9b208a597c24002a54287e5"
+      ],
+      "limitations": "The final commit SHA for this JSON supplement is not self-referentially recorded inside its own file; it will be verified and linked in the PR update."
+    },
+    {
+      "id": "SUPPLEMENTAL-2026-11-27-REGWATCH",
+      "timestamp": "2026-11-27T00:21:11+05:30",
+      "timezone": "Asia/Kolkata",
+      "updates": [
+        "Reviewed official SEBI, AMFI, RBI, MeitY/DPDP, Income Tax, Consumer Affairs and CERT-In listings through 27 November 2026; no new directly applicable MFD website regulation identified.",
+        "Added CERT-In CIVN-2026-0576 (WhatsApp HIGH) and CIVN-2026-0572 (NGINX CRITICAL) entries; exposure remains unconfirmed pending device and hosting inventory.",
+        "Added SEBI/RBI UAPA sanctions-list update entry for awareness; direct MFD scope not established.",
+        "Created P1 Issue #23; comments posted to existing Issue #20, PR #17 and PR #18.",
+        "Added three official monitoring sources, increasing source list from 25 to 28.",
+        "Latest main audit #86 reviewed and remains FAIL; no local checks run in this watch."
+      ],
+      "branch": "compliance/regulatory-watch-2026-11-23",
+      "issues": [
+        "https://github.com/shivpawan007/LuxmiInvestCare/issues/23"
+      ],
+      "commits": [
+        "https://github.com/shivpawan007/LuxmiInvestCare/commit/62cbd3b73fc27132dfbbc8072a817d02153df5a3"
+      ],
+      "limitations": "No device/app versions, hosting-provider attestation, endpoint inventory or incident telemetry reviewed. No local audits/tests/build/route/accessibility/penetration checks run. Gmail interactive authorization unavailable."
+    },
+    {
+      "id": "SUPPLEMENTAL-2026-11-27-REGWATCH",
+      "timestamp": "2026-11-27T00:21:11+05:30",
+      "timezone": "Asia/Kolkata",
+      "updates": [
+        "Official-source review through 27 Nov found no new directly applicable MFD website regulation; 26 Nov SEBI/RBI UAPA list updates logged as scope-awareness.",
+        "Added CERT-In WhatsApp HIGH (CIVN-2026-0576) and NGINX CRITICAL (CIVN-2026-0572) vulnerability entries; applicability is unconfirmed pending asset/device/provider checks.",
+        "Created P1 Issue #23 and posted comments to Issue #20, PR #17 and PR #18.",
+        "Added SEBI news, RBI notifications and CERT-In vulnerability-note listing; source configuration now 28 URLs.",
+        "Reviewed main audit #86: FAIL; critical production dependency finding, high SIP promotional-language finding, medium dev dependency warning, 13/13 routes HTTP 200; workflow steps succeeded except final fail-gate.",
+        "PR #18 currently 23 ahead/5 behind main, diverged; remains draft/open. No code patch, merge or deployment."
+      ],
+      "branch": "compliance/regulatory-watch-2026-11-23",
+      "issues": [
+        "https://github.com/shivpawan007/LuxmiInvestCare/issues/23"
+      ],
+      "commits": [
+        "https://github.com/shivpawan007/LuxmiInvestCare/commit/62cbd3b73fc27132dfbbc8072a817d02153df5a3"
+      ],
+      "limitations": "No device/app versions, hosting-provider attestation, endpoint inventory or incident telemetry reviewed. No local audits/tests/build/route/accessibility/penetration checks run. Gmail interactive authorization unavailable."
+    },
+    {
+      "id": "SUPPLEMENTAL-2026-11-27-COMMIT-INDEX",
+      "timestamp": "2026-11-27T00:21:11+05:30",
+      "timezone": "Asia/Kolkata",
+      "updates": [
+        "Added verified commit references for the 27 Nov source configuration, JSON and Markdown log updates, plus issue and PR comments.",
+        "PR #18 compare snapshot after the four source/log commits: 28 ahead/5 behind main, diverged; three compliance files only; mergeable=false. Exact compare retrieval time was not returned by GitHub.",
+        "Keep PR #18 open/draft and synchronize against main before review/merge. No merge or deployment."
+      ],
+      "branch": "compliance/regulatory-watch-2026-11-23",
+      "commits": [
+        "https://github.com/shivpawan007/LuxmiInvestCare/commit/62cbd3b73fc27132dfbbc8072a817d02153df5a3",
+        "https://github.com/shivpawan007/LuxmiInvestCare/commit/875a45286a272596e7205b2cf276aad8647d7973",
+        "https://github.com/shivpawan007/LuxmiInvestCare/commit/89fbf483b23760977776ab43ef4781abc1520a2d",
+        "https://github.com/shivpawan007/LuxmiInvestCare/commit/ebfc958c9b15684c293ef308e93ff635e096f510",
+        "https://github.com/shivpawan007/LuxmiInvestCare/issues/23",
+        "https://github.com/shivpawan007/LuxmiInvestCare/issues/20#issuecomment-7200981112",
+        "https://github.com/shivpawan007/LuxmiInvestCare/pull/17#issuecomment-7200981648",
+        "https://github.com/shivpawan007/LuxmiInvestCare/pull/18#issuecomment-7200982142"
+      ],
+      "branchStatusSnapshot": {
+        "mainSHA": "eb07b574691570533b15b4c6e291397d25e10b9d",
+        "preSupplementHeadSHA": "ebfc958c9b15684c293ef308e93ff635e096f510",
+        "aheadBy": 28,
+        "behindBy": 5,
+        "status": "diverged",
+        "changedFiles": [
+          "compliance/regulatory-log.json",
+          "compliance/regulatory-log.md",
+          "config/mfd-compliance-sources.json"
+        ],
+        "mergeable": false,
+        "draft": true
+      },
+      "limitations": "GitHub compare did not return a timestamp; snapshot is recorded as a supplemental observation from this review. This JSON commit's SHA is not self-referential; it will be verified in the PR comment."
+    },
+    {
+      "id": "SUPPLEMENTAL-2026-11-28-COMMIT-INDEX",
+      "timestamp": "2026-11-28T00:56:59+05:30",
+      "timezone": "Asia/Kolkata",
+      "updates": [
+        "Added four 27 Nov CERT-In product vulnerability notes (Mozilla CRITICAL, KVM HIGH, Drupal CRITICAL/actively exploited, Mitel MiCollab CRITICAL/actively exploited) to entries and the 28 Nov daily run.",
+        "JSON append commit and Markdown append commit verified; Issue #23 asset triage and PR #18 comments posted.",
+        "No application code or source configuration changed. Source count remains 28; no merge or production deployment."
+      ],
+      "branch": "compliance/regulatory-watch-2026-11-23",
+      "commits": [
+        "https://github.com/shivpawan007/LuxmiInvestCare/commit/a931d8d1c8a647cdda51e2c0c6355dfc96c58005",
+        "https://github.com/shivpawan007/LuxmiInvestCare/commit/0656d3f1fc78753331d9a7630e50f4f3b37d7953",
+        "https://github.com/shivpawan007/LuxmiInvestCare/issues/23#issuecomment-7226604686",
+        "https://github.com/shivpawan007/LuxmiInvestCare/pull/18#issuecomment-7226605172",
+        "https://github.com/shivpawan007/LuxmiInvestCare/pull/18"
+      ],
+      "branchStatusSnapshot": {
+        "mainSHA": "776d36a83418df3d374af3158a58bdf3b5cc6fcf",
+        "preSupplementHeadSHA": "ae2d6845ded29483d91a32beee373e1e922883d8",
+        "aheadBy": 29,
+        "behindBy": 6,
+        "status": "diverged",
+        "changedFiles": [
+          "compliance/regulatory-log.json",
+          "compliance/regulatory-log.md",
+          "config/mfd-compliance-sources.json"
+        ],
+        "mergeable": false,
+        "draft": true,
+        "snapshotAt": "2026-11-28T00:56:59+05:30"
+      },
+      "limitations": "This supplement is committed after the initial JSON and Markdown append commits. The supplemental JSON commit is not self-referential; its SHA is added to the Markdown follow-up."
+    }
+  ],
+  "dailyRuns": [
+    {
+      "id": "REGWATCH-2026-11-24-0043IST",
+      "retrievedAt": "2026-11-24T00:43:45+05:30",
+      "timezone": "Asia/Kolkata",
+      "reviewPeriod": "Fresh source review through 2026-11-24; latest scheduled repository audit evidence from 2026-11-23",
+      "regulatoryUpdateStatus": "NO_NEW_MATERIAL_DIRECTLY_APPLICABLE_UPDATES_IDENTIFIED",
+      "sourceChecks": [
+        {
+          "authority": "SEBI",
+          "sourceTitle": "Official SEBI circular listing",
+          "url": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListingAll=yes&intmid=14&sid=1&ssid=7",
+          "result": "Latest displayed relevant listing entry dated 17 Nov 2026 (commodity-derivatives margin framework); no later MFD website update identified. That circular is not directly applicable to the distributor website."
+        },
+        {
+          "authority": "AMFI",
+          "sourceTitle": "AMFI circulars for distributors",
+          "url": "https://www.amfiindia.com/distributor/amfi-circulars",
+          "result": "Latest displayed MFD-specific item is CIR/ARN-33/2026-27 dated 28 July 2026; no new MFD circular identified."
+        },
+        {
+          "authority": "AMFI",
+          "sourceTitle": "AMFI general circulars",
+          "url": "https://www.amfiindia.com/circulars",
+          "result": "Reviewed; no new directly applicable MFD website update identified."
+        },
+        {
+          "authority": "RBI",
+          "sourceTitle": "RBI circular index",
+          "url": "https://www.rbi.org.in/scripts/bs_circularindexdisplay.aspx/Scripts/BS_CircularIndexDisplay.aspx?Id=13697",
+          "result": "23 Nov 2026 securitisation amendments for AIFIs, NBFCs, SFBs and commercial banks; recipient scope institution-specific, no direct website change identified."
+        },
+        {
+          "authority": "MeitY/Government of India",
+          "sourceTitle": "DPDP Rules and official MeitY pages",
+          "url": "https://www.meity.gov.in/documents/act-and-policies/digital-personal-data-protection-rules-2025-gDOxUjMtQWa?pageTitle=Digital-Personal-Data-Protection-Rules-2025",
+          "result": "No new material DPDP update identified; previous phased commencement items remain tracked."
+        },
+        {
+          "authority": "Department of Consumer Affairs",
+          "sourceTitle": "Consumer protection and e-commerce rules index",
+          "url": "https://consumeraffairs.gov.in/pages/consumer-protection-acts",
+          "result": "Fresh search did not surface a directly applicable change; search coverage may lag."
+        },
+        {
+          "authority": "CERT-In",
+          "sourceTitle": "CERT-In advisories",
+          "url": "https://www.cert-in.org.in/",
+          "result": "Fresh search did not surface a material website-specific requirement; advisories require ongoing applicability review."
+        }
+      ],
+      "continuingItems": [
+        {
+          "id": "SEBI-ACCESSIBILITY-2026-10-30",
+          "severity": "HIGH",
+          "priority": "P1-review",
+          "status": "OPEN",
+          "deadline": "2027-01-31",
+          "humanReviewIssue": "https://github.com/shivpawan007/LuxmiInvestCare/issues/19",
+          "summary": "Confirm scope for AMFI MFD and arrange IAAP audit/remediation if applicable."
+        },
+        {
+          "id": "DPDP-PHASE-2026-11-13",
+          "severity": "MEDIUM",
+          "priority": "P2-preparation",
+          "status": "OPEN",
+          "summary": "Privacy/data-flow/retention gap review before principal rule commencement; Rule 4 already commenced."
+        },
+        {
+          "id": "SEBI-FATCA-CRS-2026-11-11",
+          "severity": "CONDITIONAL",
+          "priority": "P3-confirm-business-status",
+          "status": "OPEN",
+          "summary": "Confirm entity/reporting status and Form 166 applicability with tax/compliance professional."
+        }
+      ],
+      "auditEvidence": {
+        "workflowRun": "https://github.com/shivpawan007/LuxmiInvestCare/actions/runs/45175718230",
+        "runNumber": 83,
+        "runCompletedAt": "2026-11-23T18:06:43+05:30",
+        "workflowConclusion": "FAIL",
+        "finalFailGate": "Failed because persisted audit status was FAIL",
+        "complianceScanStep": "Completed successfully in workflow",
+        "dependencyAuditStep": "Completed successfully in workflow; report identifies vulnerabilities",
+        "productionBuildStep": "Completed successfully in workflow",
+        "reportGenerationUploadCommitSteps": "Completed successfully in workflow",
+        "productionVulnerabilities": {
+          "low": 1,
+          "moderate": 0,
+          "high": 1,
+          "critical": 1,
+          "total": 3
+        },
+        "fullTreeVulnerabilities": {
+          "low": 1,
+          "moderate": 3,
+          "high": 1,
+          "critical": 1,
+          "total": 6
+        },
+        "contentFinding": {
+          "severity": "HIGH",
+          "rule": "promotion.return-on-investment",
+          "route": "/calculators/sip"
+        },
+        "routes": {
+          "passed": 13,
+          "failed": 0,
+          "total": 13
+        },
+        "reportCommit": "https://github.com/shivpawan007/LuxmiInvestCare/commit/1c8cc98ce922e7996bc85c3a03b5930d77257ea5",
+        "note": "This is prior workflow evidence, not tests executed by the current automation."
+      },
+      "changes": {
+        "websiteCodeOrContent": "none",
+        "issueCreated": "https://github.com/shivpawan007/LuxmiInvestCare/issues/19",
+        "pr17Comment": "https://github.com/shivpawan007/LuxmiInvestCare/pull/17#issuecomment-7111339828",
+        "pr18Comment": "https://github.com/shivpawan007/LuxmiInvestCare/pull/18#issuecomment-7111340871",
+        "logBranch": "compliance/regulatory-watch-2026-11-23",
+        "validationThisRun": "No npm audit, lint, TypeScript, tests, build, accessibility audit, or route probe run in this automation.",
+        "productionDeployment": "none"
+      },
+      "unresolvedQuestions": [
+        "Confirm direct SEBI digital-accessibility circular applicability to Luxmi as an AMFI MFD; scope and IAAP audit owner.",
+        "Approve actual data retention, processing, processor, consent/withdrawal and breach-response practices for DPDP preparation.",
+        "Confirm FATCA/CRS Reporting Financial Institution/intermediary status and Form 166 obligations."
+      ]
+    },
+    {
+      "id": "REGWATCH-2026-11-24-0047IST-SUPPLEMENT-1",
+      "retrievedAt": "2026-11-24T00:47:29+05:30",
+      "timezone": "Asia/Kolkata",
+      "type": "supplemental-validation-status",
+      "regulatoryUpdateStatus": "NO_NEW_MATERIAL_REGULATORY_CHANGE",
+      "repositoryStatus": {
+        "remediationPR": 17,
+        "branch": "compliance-remediation-2026-11-22",
+        "headSha": "83df93dce280067b955e687c1d93953d0dc54644",
+        "workflowRun": "https://github.com/shivpawan007/LuxmiInvestCare/actions/runs/44981759265",
+        "workflowConclusion": "FAIL",
+        "productionDependencyAudit": {
+          "low": 0,
+          "moderate": 0,
+          "high": 0,
+          "critical": 0,
+          "total": 0,
+          "artifactPresent": true
+        },
+        "fullDependencyAudit": {
+          "low": 0,
+          "moderate": 0,
+          "high": 0,
+          "critical": 0,
+          "total": 0,
+          "artifactPresent": true
+        },
+        "complianceContentScan": "PASS",
+        "eslint": "PASS",
+        "productionBuild": "FAIL",
+        "liveRouteComplianceAudit": "SKIPPED",
+        "vercelDeployments": "3 contexts failed; preview-comments check passed",
+        "artifactName": "luxmi-remediation-checks",
+        "artifactId": 14737224759,
+        "rootCause": "Build logs unavailable in artifact; not diagnosed",
+        "humanAction": "Inspect CI build logs, diagnose/fix build, investigate Vercel deployment failures, rerun all validations"
+      },
+      "mainBranchStatus": {
+        "auditRun": "https://github.com/shivpawan007/LuxmiInvestCare/actions/runs/45175718230",
+        "conclusion": "FAIL",
+        "productionDependencyAudit": {
+          "low": 1,
+          "moderate": 0,
+          "high": 1,
+          "critical": 1,
+          "total": 3
+        },
+        "fullDependencyAudit": {
+          "low": 1,
+          "moderate": 3,
+          "high": 1,
+          "critical": 1,
+          "total": 6
+        },
+        "contentFinding": {
+          "severity": "HIGH",
+          "rule": "promotion.return-on-investment",
+          "route": "/calculators/sip"
+        },
+        "routeProbe": {
+          "passed": 13,
+          "failed": 0,
+          "total": 13
+        }
+      },
+      "comments": {
+        "pr17": "https://github.com/shivpawan007/LuxmiInvestCare/pull/17#issuecomment-7111387860",
+        "pr18": "https://github.com/shivpawan007/LuxmiInvestCare/pull/18#issuecomment-7111390494"
+      },
+      "changes": {
+        "code": "none",
+        "merge": "none",
+        "productionDeployment": "none"
+      },
+      "validationThisRun": "Only GitHub workflow/artifact/status evidence reviewed; no new local build/audit/test command executed."
+    },
+    {
+      "id": "REGWATCH-2026-11-25-001022IST",
+      "retrievedAt": "2026-11-25T00:10:22+05:30",
+      "timezone": "Asia/Kolkata",
+      "reviewPeriod": "Fresh primary-source review on 25 Nov 2026, plus read-only repository/API security inspection and latest main-branch audit evidence.",
+      "regulatoryUpdateStatus": "NO_NEW_DIRECTLY_APPLICABLE_STATUTORY_UPDATE_IDENTIFIED; NEW_CRITICAL_CERT_IN_THREAT_ADVISORY_REQUIRES_SECURITY_REVIEW",
+      "sourceChecks": [
+        {
+          "authority": "SEBI",
+          "sourceTitle": "Official SEBI circular listing",
+          "url": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListingAll=yes&sid=1&smid=0",
+          "result": "Latest displayed relevant circular dated 17 Nov 2026 is commodity-derivatives margin framework; no later directly relevant MFD website circular surfaced."
+        },
+        {
+          "authority": "AMFI",
+          "sourceTitle": "AMFI MFD circulars",
+          "url": "https://www.amfiindia.com/distributor/amfi-circulars",
+          "result": "Latest displayed MFD-specific circular CIR/ARN-33/2026-27 dated 28 Jul 2026; no newer MFD-specific circular identified in the listing."
+        },
+        {
+          "authority": "RBI",
+          "sourceTitle": "RBI circular index",
+          "url": "https://www.rbi.org.in/scripts/bs_circularindexdisplay.aspx",
+          "result": "Official November 2026 index shows 23 Nov securitisation amendments for AIFIs, NBFCs, SFBs and commercial banks; institution-specific and no direct MFD website impact identified."
+        },
+        {
+          "authority": "CERT-In / MeitY",
+          "sourceTitle": "CERT-In Advisory CIAD-2026-0062",
+          "url": "https://www.cert-in.org.in/s2cMainServlet?VLCODE=CIAD-2026-0062&pageid=PUBVLNOTES02",
+          "publicationDate": "2026-11-20",
+          "result": "Critical advisory on abuse of business payment workflows and AI-driven agentic offensive frameworks across sectors. Threat intelligence, not a new MFD website regulation; general exposed-app, identity, credential, privileged-access and monitoring controls are relevant to Luxmi."
+        },
+        {
+          "authority": "CERT-In / MeitY",
+          "sourceTitle": "CERT-In 2026 advisories listing",
+          "url": "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBADVLIST02&year=2026",
+          "result": "Official listing confirms CIAD-2026-0062 dated 20 Nov 2026, CIAD-0061 dated 18 Nov, CIAD-0060 dated 13 Nov and earlier advisories."
+        },
+        {
+          "authority": "MeitY / Government of India",
+          "sourceTitle": "DPDP Rules and notifications",
+          "url": "https://www.meity.gov.in/documents/act-and-policies/digital-personal-data-protection-rules-2025-gDOxUjMtQWa?pageTitle=Digital-Personal-Data-Protection-Rules-2025",
+          "result": "Search did not surface a new DPDP amendment or commencement change; previous phased commencement items remain open. Search coverage may not detect dynamic source changes."
+        },
+        {
+          "authority": "Department of Consumer Affairs",
+          "sourceTitle": "Consumer Affairs official notifications/pages",
+          "url": "https://consumeraffairs.gov.in/",
+          "result": "Latest surfaced notification was GATC S.O. 5620(E), dated 13 Oct 2026, concerning legal-metrology scope; no direct website requirement identified from this result."
+        },
+        {
+          "authority": "Income Tax Department",
+          "sourceTitle": "Income Tax official updates",
+          "url": "https://www.incometax.gov.in/iec/foportal/",
+          "result": "Search did not surface a new tax disclosure change directly applicable to the MFD website; source-search coverage was limited."
+        }
+      ],
+      "continuingItems": [
+        {
+          "id": "SEBI-ACCESSIBILITY-2026-10-30",
+          "severity": "HIGH",
+          "priority": "P1-review",
+          "status": "OPEN",
+          "deadline": "2027-01-31",
+          "humanReviewIssue": "https://github.com/shivpawan007/LuxmiInvestCare/issues/19",
+          "summary": "Confirm direct applicability to AMFI MFD and IAAP audit/remediation plan."
+        },
+        {
+          "id": "DPDP-PHASE-2026-11-13",
+          "severity": "MEDIUM",
+          "priority": "P2-preparation",
+          "status": "OPEN",
+          "summary": "Privacy/data-flow/retention review ahead of principal rule package commencement; Rule 4 already commenced."
+        },
+        {
+          "id": "SEBI-FATCA-CRS-2026-11-11",
+          "severity": "CONDITIONAL",
+          "priority": "P3-confirm-business-status",
+          "status": "OPEN",
+          "summary": "Confirm reporting financial institution/intermediary status and Form 166 obligations."
+        },
+        {
+          "id": "CERT-IN-CIAD-2026-0062-2026-11-25",
+          "severity": "HIGH",
+          "priority": "P1-security-review",
+          "status": "OPEN",
+          "humanReviewIssue": "https://github.com/shivpawan007/LuxmiInvestCare/issues/20",
+          "summary": "Assess exposed login/public enquiry endpoints, privileged admin access, CRM changes, credential hygiene and monitoring in light of CERT-In CIAD-2026-0062."
+        }
+      ],
+      "auditEvidence": {
+        "workflowRun": "https://github.com/shivpawan007/LuxmiInvestCare/actions/runs/45405885027",
+        "runNumber": 84,
+        "runCreatedAt": "2026-11-24T19:10:34+05:30",
+        "reportGeneratedAt": "2026-11-24T19:11:42+05:30",
+        "workflowConclusion": "FAIL",
+        "productionVulnerabilities": {
+          "low": 1,
+          "moderate": 0,
+          "high": 1,
+          "critical": 1,
+          "total": 3
+        },
+        "fullTreeVulnerabilities": {
+          "low": 1,
+          "moderate": 3,
+          "high": 1,
+          "critical": 1,
+          "total": 6
+        },
+        "contentFinding": {
+          "severity": "HIGH",
+          "rule": "promotion.return-on-investment",
+          "route": "/calculators/sip"
+        },
+        "routes": {
+          "passed": 13,
+          "failed": 0,
+          "total": 13
+        },
+        "complianceScanStep": "Completed successfully in workflow",
+        "dependencyAuditStep": "Completed successfully; findings persisted",
+        "productionBuildStep": "Completed successfully in workflow",
+        "routeProbeStep": "Completed successfully; 13/13 HTTP 200",
+        "finalFailGate": "Failed because persisted audit status was FAIL"
+      },
+      "changes": {
+        "code": "none",
+        "newIssue": "https://github.com/shivpawan007/LuxmiInvestCare/issues/20",
+        "pr17": "https://github.com/shivpawan007/LuxmiInvestCare/pull/17",
+        "pr18": "https://github.com/shivpawan007/LuxmiInvestCare/pull/18",
+        "sourceConfigCommit": "https://github.com/shivpawan007/LuxmiInvestCare/commit/cb878ef908f7963d0474a4ecd6a315dd28e35673",
+        "sourceConfigAdded": [
+          "cert-in-advisories-2026",
+          "cert-in-ciad-2026-0062"
+        ],
+        "sourceCount": 20,
+        "emailNotification": "not sent; Gmail search/send required interactive authorization and recipient could not be verified."
+      },
+      "validationThisRun": "Official CERT-In advisory and listings reviewed; repository source inspection and JSON parsing completed. No local tests, npm audit, lint, build, penetration test, production verification or security log review executed in this automation.",
+      "productionDeployment": "none",
+      "githubBranchStatus": {
+        "pr18": "OPEN/DRAFT",
+        "branch": "compliance/regulatory-watch-2026-11-23",
+        "compareStatus": "diverged",
+        "aheadOfMain": 14,
+        "behindMain": 3,
+        "mergeability": "unknown",
+        "comparedFiles": [
+          "compliance/regulatory-log.md",
+          "compliance/regulatory-log.json",
+          "config/mfd-compliance-sources.json"
+        ],
+        "note": "Keep draft; refresh against main and preserve append-only log before review/merge."
+      },
+      "githubBranchStatusLatest": {
+        "pr18": "OPEN/DRAFT",
+        "branch": "compliance/regulatory-watch-2026-11-23",
+        "compareStatus": "diverged",
+        "aheadOfMain": 16,
+        "behindMain": 3,
+        "mergeability": "unknown",
+        "comparedFiles": [
+          "compliance/regulatory-log.md",
+          "compliance/regulatory-log.json",
+          "config/mfd-compliance-sources.json"
+        ],
+        "retrievedAt": "later verification in same run; compare API did not return timestamp",
+        "note": "The prior 14-ahead snapshot is preserved in updates; current count includes two subsequent log commits. Keep draft and synchronize before review/merge."
+      }
+    },
+    {
+      "id": "REGWATCH-2026-11-26-004256IST",
+      "retrievedAt": "2026-11-26T00:42:56+05:30",
+      "timezone": "Asia/Kolkata",
+      "reviewPeriod": "Fresh official-source review through 26 Nov 2026; SEBI PR75/76 dated 23 Nov, SEBI KRA circular dated 25 Nov, DPDP Removal of Difficulties Order published 6 Oct discovered/verified.",
+      "regulatoryUpdateStatus": "NEW_SEBI_PUBLIC_ADVISORIES_AND_KRA_CIRCULAR; DPDP_ORDER_TEXTUAL_CLARIFICATION; NO_DIRECT_WEBSITE_CODE_CHANGE_IDENTIFIED",
+      "sourceChecks": [
+        {
+          "authority": "SEBI",
+          "sourceTitle": "Official SEBI circular listing",
+          "url": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListingAll=yes&sid=1&smid=0&ssid=7",
+          "result": "Listing surfaced 25 Nov 2026 KRA onboarding/risk-framework circular and significant-indices circular. KRA circular recorded; index-provider circular has no direct website/MFD impact identified."
+        },
+        {
+          "authority": "SEBI",
+          "sourceTitle": "Official SEBI press releases listing",
+          "url": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=6&smid=0&ssid=23",
+          "result": "23 Nov PR75 GMP advisory and PR76 impersonation warning reviewed and recorded."
+        },
+        {
+          "authority": "SEBI",
+          "sourceTitle": "PR75/2026 GMP advisory",
+          "url": "https://www.sebi.gov.in/media-and-notifications/press-releases/nov-2026/advisory-regarding-unregulated-pre-listing-premium-often-called-as-grey-market-premium-gmp-for-upcoming-initial-public-offerings-ipos-_105942.html",
+          "result": "GMP figures described as unofficial/unverified/unregulated; SEBI states publication/display/circulation/dissemination may be discontinued and advises covered intermediaries/market participants not to publish figures. MFD applicability requires review."
+        },
+        {
+          "authority": "SEBI",
+          "sourceTitle": "PR76/2026 impersonation caution",
+          "url": "https://www.sebi.gov.in/media-and-notifications/press-releases/nov-2026/caution-to-investors-regarding-impersonation-of-sebi-registered-intermediaries-on-closed-user-groups-of-social-media-platforms_105944.html",
+          "result": "Investor caution about impersonation on closed social-media groups, fake institutional opportunities, unauthorised platforms/accounts and false registration claims; relevant to brand/channel integrity."
+        },
+        {
+          "authority": "SEBI",
+          "sourceTitle": "KRA onboarding circular HO/38/14/(25)2026-MIRSD-POD3",
+          "url": "https://www.sebi.gov.in/legal/circulars/nov-2026/simplification-of-client-on-boarding-and-rationalisation-of-risk-management-framework-at-kyc-registration-agencies_105839.html",
+          "publicationDate": "2026-11-25",
+          "result": "Full 11-page PDF reviewed; effective 24 Dec 2026, KRA SOP due within 30 days. MFD role/direct applicability and operational flow require human review."
+        },
+        {
+          "authority": "AMFI",
+          "sourceTitle": "AMFI MFD circular listing",
+          "url": "https://www.amfiindia.com/distributor/amfi-circulars",
+          "result": "Official page reviewed; latest displayed MFD-specific item CIR/ARN-33/2026-27 dated 28 July 2026. No new MFD-specific item surfaced."
+        },
+        {
+          "authority": "AMFI",
+          "sourceTitle": "AMFI general circulars",
+          "url": "https://www.amfiindia.com/circulars",
+          "result": "Official circular listing reviewed; no newly surfaced directly applicable MFD website update identified."
+        },
+        {
+          "authority": "RBI",
+          "sourceTitle": "RBI November 2026 circular index",
+          "url": "https://www.rbi.org.in/scripts/BS_CircularIndexDisplay.aspx",
+          "result": "23 Nov securitisation directions concern AIFIs, NBFCs, SFBs and commercial banks. RBI notification listing also surfaced 11 Nov domestic money-transfer directions and 5 Nov cyber-resilience directions for non-bank payment system operators; no direct MFD website impact identified."
+        },
+        {
+          "authority": "MeitY / Government of India",
+          "sourceTitle": "Official DPDP Removal of Difficulties Order",
+          "url": "https://www.meity.gov.in/static/uploads/2026/10/daf495a7b5798a3dfa72a944b51fc176.pdf",
+          "publicationDate": "2026-10-06 Gazette; Order dated 2026-10-05",
+          "result": "Official Gazette PDF reviewed; two textual corrections in DPDP Act sections 9(1) and 10(2)(c)(ii); no new obligations, Rules amendment or commencement change."
+        },
+        {
+          "authority": "Income Tax Department",
+          "sourceTitle": "Income Tax official latest updates",
+          "url": "https://www.incometax.gov.in/iec/foportal/",
+          "result": "Latest surfaced 6 Nov update relates to IFSC aircraft-leasing dividend exemption; 3 Nov update relates to non-profit merger notification. No direct MFD website disclosure change identified."
+        },
+        {
+          "authority": "Department of Consumer Affairs",
+          "sourceTitle": "GATC notifications",
+          "url": "https://consumeraffairs.gov.in/pages/gatc-notifications",
+          "result": "Latest surfaced GATC S.O. 5620(E) dated 13 Oct 2026. No direct Luxmi website requirement identified."
+        },
+        {
+          "authority": "CERT-In",
+          "sourceTitle": "CERT-In 2026 advisory listing",
+          "url": "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBADVLIST02&year=2026",
+          "result": "Latest displayed CIAD-0062 (20 Nov), CIAD-0061 (18 Nov, Oracle Java/GraalVM RCE), CIAD-0060 (13 Nov, ransomware), CIAD-0059 (12 Nov, Microsoft vulnerabilities). No new advisory later than CIAD-0062 surfaced."
+        }
+      ],
+      "newEntries": [
+        {
+          "id": "SEBI-GMP-ADVISORY-2026-11-23",
+          "severity": "MEDIUM",
+          "priority": "P2-content-review",
+          "status": "OPEN",
+          "summary": "Advisory Regarding Unregulated Pre-listing Premium often called as Grey Market Premium (GMP) for Upcoming Initial Public Offers (IPOs) — PR 75/2026"
+        },
+        {
+          "id": "SEBI-IMPERSONATION-WARNING-2026-11-23",
+          "severity": "MEDIUM",
+          "priority": "P2-channel-integrity",
+          "status": "OPEN",
+          "summary": "Caution to investors regarding impersonation of SEBI registered intermediaries on closed user groups of social media platforms — PR 76/2026"
+        },
+        {
+          "id": "SEBI-KRA-ONBOARDING-2026-11-25",
+          "severity": "MEDIUM",
+          "priority": "P2-process-review",
+          "status": "OPEN",
+          "summary": "Simplification of client on-boarding and rationalisation of risk management framework at KYC Registration Agencies — Circular HO/38/14/(25)2026-MIRSD-POD3"
+        },
+        {
+          "id": "DPDP-REMOVAL-DIFFICULTIES-ORDER-2026-10-06",
+          "severity": "LOW",
+          "priority": "P3-text-accuracy",
+          "status": "RECORDED",
+          "summary": "Digital Personal Data Protection (Removal of Difficulties) Order, 2026 — S.O. 5458(E)"
+        }
+      ],
+      "continuingItems": [
+        {
+          "id": "SEBI-ACCESSIBILITY-2026-10-30",
+          "severity": "HIGH",
+          "priority": "P1-review",
+          "status": "OPEN",
+          "deadline": "2027-01-31",
+          "issue": "https://github.com/shivpawan007/LuxmiInvestCare/issues/19",
+          "summary": "Confirm direct applicability and IAAP audit/remediation plan."
+        },
+        {
+          "id": "DPDP-PHASE-2026-11-13",
+          "severity": "MEDIUM",
+          "priority": "P2-preparation",
+          "status": "OPEN",
+          "summary": "Privacy/data flow/retention review ahead of substantive rules; Rule 4 commencement recorded."
+        },
+        {
+          "id": "SEBI-FATCA-CRS-2026-11-11",
+          "severity": "CONDITIONAL",
+          "priority": "P3-confirm-business-status",
+          "status": "OPEN",
+          "summary": "Confirm entity/reporting status and Form 166 obligations."
+        },
+        {
+          "id": "CERT-IN-CIAD-2026-0062-2026-11-25",
+          "severity": "HIGH",
+          "priority": "P1-security-review",
+          "status": "OPEN",
+          "issue": "https://github.com/shivpawan007/LuxmiInvestCare/issues/20",
+          "summary": "Review login/public lead APIs, admin access, credential hygiene, monitoring and PR17."
+        }
+      ],
+      "latestMainAudit": {
+        "workflowRun": "https://github.com/shivpawan007/LuxmiInvestCare/actions/runs/45617856063",
+        "runNumber": 85,
+        "runCreatedAt": "2026-11-25T12:51:53Z",
+        "reportGeneratedAt": "2026-11-25T12:53:10.323Z",
+        "commit": "abe55fd6185e78b411e96f9b9115e0b2344c93d9",
+        "workflowConclusion": "FAIL",
+        "auditStatus": "FAIL",
+        "productionVulnerabilities": {
+          "low": 1,
+          "moderate": 0,
+          "high": 1,
+          "critical": 1,
+          "total": 3
+        },
+        "fullTreeVulnerabilities": {
+          "low": 1,
+          "moderate": 3,
+          "high": 1,
+          "critical": 1,
+          "total": 6
+        },
+        "contentFinding": {
+          "severity": "HIGH",
+          "rule": "promotion.return-on-investment",
+          "route": "/calculators/sip"
+        },
+        "routeProbe": {
+          "passed": 13,
+          "failed": 0,
+          "total": 13
+        },
+        "checks": {
+          "forbiddenPromotionalLanguage": false,
+          "mfdIdentity": true,
+          "arn365140": true,
+          "mfdTagline": true,
+          "distributionRemunerationDisclosure": true,
+          "standardRiskWarning": true,
+          "liveRouteProbe": true,
+          "dependencyAudit": false
+        },
+        "steps": {
+          "dependencyInstall": "success",
+          "officialSourceCheck": "success",
+          "complianceScan": "success",
+          "dependencyAudit": "success",
+          "productionBuild": "success",
+          "weeklyRandomAudit": "success",
+          "reportUpload": "success",
+          "reportCommit": "success",
+          "finalFailGate": "failure"
+        },
+        "note": "This is the latest stored main-branch audit from GitHub, reviewed in this watch; it is not a test executed by this automation."
+      },
+      "branchStatus": {
+        "pr18": "OPEN/DRAFT",
+        "branch": "compliance/regulatory-watch-2026-11-23",
+        "status": "diverged",
+        "aheadOfMain": 18,
+        "behindMain": 4,
+        "mergeability": "unknown",
+        "compareMainSha": "c6cda788c7f0c2e71498112ec2c1b3703727bc4f",
+        "compareRetrievedAt": "2026-11-26T00:42:56+05:30",
+        "comparedFiles": [
+          "compliance/regulatory-log.json",
+          "compliance/regulatory-log.md",
+          "config/mfd-compliance-sources.json"
+        ],
+        "note": "Branch compare was performed before this watch's new log/config commits; commit count will increase. Keep draft and synchronize later while preserving append-only history."
+      },
+      "changes": {
+        "websiteCodeOrContent": "none",
+        "issuesCreated": [
+          "https://github.com/shivpawan007/LuxmiInvestCare/issues/21",
+          "https://github.com/shivpawan007/LuxmiInvestCare/issues/22"
+        ],
+        "sourceConfigurationCommit": "https://github.com/shivpawan007/LuxmiInvestCare/commit/dbefc6f882e6ad8b160bd8b6ac37f031d2a0bbe2",
+        "markdownLogCommit": "https://github.com/shivpawan007/LuxmiInvestCare/commit/90b9c5b2c2a601da9f855eab2cffaf4a7e42cf31",
+        "sourceCountBefore": 20,
+        "sourceCountAfter": 25,
+        "addedSources": [
+          "sebi-press-releases-listing",
+          "sebi-gmp-advisory-2026-11-23",
+          "sebi-impersonation-warning-2026-11-23",
+          "sebi-kra-onboarding-circular-2026-11-25",
+          "meity-dpdp-removal-difficulties-order-2026"
+        ],
+        "pr18": "https://github.com/shivpawan007/LuxmiInvestCare/pull/18",
+        "validationThisRun": "Official SEBI pages/PDFs and MeitY-hosted Gazette PDF reviewed; main-branch targeted content files inspected; configuration and log JSON parsed. No local test, npm audit, ESLint, TypeScript, build, accessibility audit, route probe, penetration test, or incident-log review executed by this automation.",
+        "emailNotification": "not sent; Gmail profile/search required interactive authorization and recipient could not be verified",
+        "productionDeployment": "none"
+      },
+      "unresolvedQuestions": [
+        "Confirm PR75 GMP advisory scope for Luxmi as an AMFI MFD/market participant; review website and all external marketing channels.",
+        "Verify official Luxmi social handles, phone/WhatsApp destinations, closed groups and impersonation reports.",
+        "Confirm KRA circular applicability to Luxmi's actual onboarding/KYC role and obtain relevant AMC/RTA/KRA SOP before 24 December.",
+        "Confirm direct SEBI accessibility circular scope and IAAP audit owner; deadline 31 January 2027.",
+        "Approve privacy data retention, processors, consent/withdrawal, rights request and breach-response arrangements before the substantive DPDP rule phase.",
+        "Review P1 security issue #20 and PR #17, including build/deployment failure, rate limiting, IP trust, credentials, admin access and monitoring.",
+        "Confirm FATCA/CRS reporting status and Form 166 applicability with tax/compliance professional."
+      ],
+      "productionDeployment": "none",
+      "limitations": [
+        "Repository code search/index is not exhaustive; targeted files only were inspected.",
+        "No external social profiles or closed groups were accessed.",
+        "No incident/security logs or compromise indicators were investigated.",
+        "No local audits/tests/build or production-route verification were executed.",
+        "Gmail connector access is blocked by interactive authorization in this run."
+      ]
+    },
+    {
+      "id": "REGWATCH-2026-11-27-002111IST",
+      "retrievedAt": "2026-11-27T00:21:11+05:30",
+      "timezone": "Asia/Kolkata",
+      "reviewPeriod": "Fresh official-source review through 27 Nov 2026, including 26 Nov SEBI/RBI listings and CERT-In product vulnerability notes",
+      "regulatoryUpdateStatus": "NO_NEW_DIRECT_MFD_WEBSITE_REGULATION_IDENTIFIED; NEW_CERTIN_HIGH_WHATSAPP_AND_CRITICAL_NGINX_PRODUCT_VULNERABILITIES; UAPA_SANCTIONS_LIST_UPDATE_SCOPE_REVIEW",
+      "sourceChecks": [
+        {
+          "authority": "SEBI",
+          "sourceTitle": "Official SEBI news listing",
+          "url": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListingAll=yes&search=Of",
+          "result": "26 Nov listing shows an UAPA sanctions-list update, SBI MSCI India ETF FoF draft filing; 25 Nov includes KRA onboarding circular (already logged) and significant-index-provider circular (no direct MFD website impact identified). No new direct MFD website circular surfaced in this listing."
+        },
+        {
+          "authority": "AMFI",
+          "sourceTitle": "AMFI MFD circular listing",
+          "url": "https://www.amfiindia.com/distributor/amfi-circulars",
+          "result": "Latest displayed MFD-specific item remains CIR/ARN-33/2026-27 dated 28 July 2026. No new MFD-specific circular surfaced."
+        },
+        {
+          "authority": "AMFI",
+          "sourceTitle": "AMFI general circulars",
+          "url": "https://www.amfiindia.com/circulars",
+          "result": "Reviewed official listing; no new directly applicable MFD website update surfaced."
+        },
+        {
+          "authority": "RBI",
+          "sourceTitle": "RBI official notifications listing",
+          "url": "https://www.rbi.org.in/scripts/NotificationUser.aspx",
+          "result": "26 Nov UAPA sanctions-list amendments addressed to RBI-regulated entities; 23 Nov securitisation directions institution-specific. No direct MFD website change identified."
+        },
+        {
+          "authority": "CERT-In / MeitY",
+          "sourceTitle": "CERT-In 2026 advisory listing",
+          "url": "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBADVLIST02&year=2026",
+          "result": "Latest listed advisory remains CIAD-2026-0062 dated 20 Nov; no later advisory surfaced."
+        },
+        {
+          "authority": "CERT-In / MeitY",
+          "sourceTitle": "CERT-In 2026 Vulnerability Notes listing",
+          "url": "https://www.cert-in.org.in/s2cMainServlet?pageid=VLNLIST02&year=2026",
+          "result": "New 26 Nov notes include CIVN-2026-0576 WhatsApp (HIGH), CIVN-2026-0575 ASUS, CIVN-2026-0574 SAP and CIVN-2026-0573 Cisco ClamAV; 25 Nov note CIVN-2026-0572 NGINX (CRITICAL) and other product notes. Asset/version applicability needs inventory."
+        },
+        {
+          "authority": "CERT-In / MeitY",
+          "sourceTitle": "CIVN-2026-0576 WhatsApp",
+          "url": "https://www.cert-in.org.in/s2cMainServlet?VLCODE=CIVN-2026-0576&pageid=PUBVLNOTES01",
+          "publicationDate": "2026-11-26",
+          "result": "HIGH severity. Version-specific WhatsApp/WhatsApp Business Android/iOS and desktop products; crafted message/attachment/URL may cause code execution, information disclosure or restriction bypass. Verify versions and update."
+        },
+        {
+          "authority": "CERT-In / MeitY",
+          "sourceTitle": "CIVN-2026-0572 NGINX",
+          "url": "https://www.cert-in.org.in/s2cMainServlet?VLCODE=CIVN-2026-0572&pageid=PUBVLNOTES01",
+          "publicationDate": "2026-11-25",
+          "result": "CRITICAL severity for listed F5 NGINX product versions, including RCE/memory corruption/DoS. Luxmi deployment evidence points to Vercel; self-managed NGINX exposure not identified, must be confirmed."
+        },
+        {
+          "authority": "MeitY / Government of India",
+          "sourceTitle": "DPDP official rules and notification sources",
+          "url": "https://www.meity.gov.in/documents/act-and-policies/digital-personal-data-protection-rules-2025-gDOxUjMtQWa?pageTitle=Digital-Personal-Data-Protection-Rules-2025",
+          "result": "Search did not surface a new DPDP amendment, corrigendum or commencement change in this review. Earlier phase schedule remains logged; source coverage is not exhaustive."
+        },
+        {
+          "authority": "Department of Consumer Affairs",
+          "sourceTitle": "Official Consumer Affairs portal",
+          "url": "https://consumeraffairs.gov.in/",
+          "result": "No new direct website/e-commerce/advertising requirement identified from this limited official-source review."
+        },
+        {
+          "authority": "Income Tax Department",
+          "sourceTitle": "Official Income Tax portal",
+          "url": "https://www.incometax.gov.in/iec/foportal/",
+          "result": "No new direct MFD website tax disclosure change surfaced in this review; coverage limited to targeted source searches."
+        }
+      ],
+      "newEntries": [
+        "CERTIN-WHATSAPP-VULNS-CIVN-2026-0576",
+        "CERTIN-NGINX-VULNS-CIVN-2026-0572",
+        "SEBI-RBI-UAPA-SANCTIONS-LIST-2026-11-26"
+      ],
+      "continuingItems": [
+        {
+          "id": "ISSUE-23-CERTIN-VULN-TRIAGE",
+          "severity": "HIGH",
+          "priority": "P1",
+          "status": "OPEN",
+          "humanReviewIssue": "https://github.com/shivpawan007/LuxmiInvestCare/issues/23",
+          "summary": "Verify WhatsApp Business device versions and NGINX/F5 hosting exposure; update affected software and confirm asset inventory."
+        },
+        {
+          "id": "ISSUE-20-CERTIN-SECURITY-REVIEW",
+          "severity": "HIGH",
+          "priority": "P1",
+          "status": "OPEN",
+          "humanReviewIssue": "https://github.com/shivpawan007/LuxmiInvestCare/issues/20",
+          "summary": "Existing CERT-In security review remains open; issue updated with vulnerability-note cross-reference."
+        },
+        {
+          "id": "PR-17-SECURITY-HARDENING",
+          "severity": "HIGH",
+          "priority": "P1",
+          "status": "OPEN",
+          "humanReviewPR": "https://github.com/shivpawan007/LuxmiInvestCare/pull/17",
+          "summary": "Dependency/security hardening PR remains open; build failure from prior evidence requires diagnosis and complete CI rerun."
+        },
+        {
+          "id": "PR-18-REGULATORY-LOG",
+          "severity": "MEDIUM",
+          "priority": "P2",
+          "status": "OPEN-DRAFT",
+          "humanReviewPR": "https://github.com/shivpawan007/LuxmiInvestCare/pull/18",
+          "summary": "Append new run, update source config, keep draft and synchronize branch before review."
+        },
+        {
+          "id": "ISSUE-21-GMP-IMPERSONATION",
+          "severity": "MEDIUM",
+          "priority": "P2",
+          "status": "OPEN",
+          "humanReviewIssue": "https://github.com/shivpawan007/LuxmiInvestCare/issues/21",
+          "summary": "Review GMP advisory scope, social channels and impersonation safeguards."
+        },
+        {
+          "id": "ISSUE-22-KRA-CIRCULAR",
+          "severity": "MEDIUM",
+          "priority": "P2",
+          "status": "OPEN",
+          "humanReviewIssue": "https://github.com/shivpawan007/LuxmiInvestCare/issues/22",
+          "summary": "Confirm KRA onboarding circular applicability and processes before 24 Dec 2026."
+        },
+        {
+          "id": "ISSUE-19-ACCESSIBILITY",
+          "severity": "HIGH",
+          "priority": "P1",
+          "status": "OPEN",
+          "humanReviewIssue": "https://github.com/shivpawan007/LuxmiInvestCare/issues/19",
+          "summary": "Confirm scope and IAAP accessibility audit plan before 31 Jan 2027."
+        }
+      ],
+      "latestMainAudit": {
+        "runNumber": 86,
+        "workflowRunId": 45820206882,
+        "runURL": "https://github.com/shivpawan007/LuxmiInvestCare/actions/runs/45820206882",
+        "generatedAt": "2026-11-26T12:31:31.128Z",
+        "generatedAtIST": "2026-11-26T18:01:31.128+05:30",
+        "status": "FAIL",
+        "sourceFilesChecked": 115,
+        "publicRoutesDiscovered": 13,
+        "findings": [
+          {
+            "severity": "critical",
+            "rule": "dependencies.production-high-or-critical-vulnerabilities",
+            "file": "npm-audit-production.json"
+          },
+          {
+            "severity": "medium",
+            "rule": "dependencies.development-only-vulnerabilities",
+            "packageCount": 3,
+            "packages": [
+              "@eslint/config-array",
+              "eslint",
+              "minimatch"
+            ],
+            "note": "Development-tree findings are warnings unless also present in production audit."
+          },
+          {
+            "severity": "high",
+            "rule": "promotion.return-on-investment",
+            "route": "/calculators/sip"
+          }
+        ],
+        "routeProbe": "13/13 routes HTTP 200",
+        "workflowSteps": "Compliance scan, dependency-audit step, production build, random audit, artifact upload and report commit succeeded; final fail-gate failed because stored audit status is FAIL."
+      },
+      "branchStatus": {
+        "pullRequest": "https://github.com/shivpawan007/LuxmiInvestCare/pull/18",
+        "branch": "compliance/regulatory-watch-2026-11-23",
+        "headSHA": "24581f4d16bd7f60394784e369afafbab7916405",
+        "mainSHA": "eb07b574691570533b15b4c6e291397d25e10b9d",
+        "aheadBy": 23,
+        "behindBy": 5,
+        "status": "diverged",
+        "changedFiles": [
+          "compliance/regulatory-log.json",
+          "compliance/regulatory-log.md",
+          "config/mfd-compliance-sources.json"
+        ],
+        "draft": true,
+        "mergeable": true,
+        "mergeableState": "unstable"
+      },
+      "changes": [
+        "Appended three regulatory/security entries to the chronological log (WhatsApp vulnerability, NGINX vulnerability, and UAPA sanctions-list update).",
+        "Appended daily source review for 27 November; no new directly applicable MFD website regulatory requirement identified.",
+        "Added official SEBI news listing, RBI notifications listing and CERT-In 2026 vulnerability-notes listing; monitoring source count increased from 25 to 28.",
+        "Created Issue #23 for P1 version/asset triage and posted comments to Issue #20, PR #17 and PR #18.",
+        "No application code, marketing copy, privacy flow or website route was modified."
+      ],
+      "unresolvedQuestions": [
+        "Which Luxmi staff devices/accounts use WhatsApp/WhatsApp Business, and are versions patched?",
+        "Does Luxmi or its hosting/vendor operate affected NGINX/F5 versions? Confirm with asset inventory/provider.",
+        "Confirm Luxmi's MFD/AMC obligations for UAPA/sanctions-list screening or escalation.",
+        "Resolve existing critical dependency and high SIP promotional-language audit findings; PR #17 build remediation.",
+        "Refresh PR #18 against main while preserving append-only logs; it is 23 ahead/5 behind as verified.",
+        "Confirm accessibility circular applicability and IAAP audit owner/deadline (31 Jan 2027).",
+        "Confirm KRA circular applicability and process/SOP before 24 Dec 2026.",
+        "Continue DPDP retention, processor, consent/rights and breach-response preparation."
+      ],
+      "productionDeployment": "none",
+      "limitations": [
+        "No device inventory, app-version verification, hosting-provider attestation, endpoint inventory, incident logs or security telemetry were accessible.",
+        "No local npm audit, ESLint, TypeScript, build, route check, accessibility audit or penetration test was run.",
+        "Latest main workflow audit #86 is historical GitHub evidence: steps succeeded except final audit fail-gate; not a fresh local run.",
+        "Gmail connector requires interactive authorization; recipient could not be verified and no email was sent."
+      ]
+    },
+    {
+      "id": "REGWATCH-2026-11-28-005659IST",
+      "retrievedAt": "2026-11-28T00:56:59+05:30",
+      "timezone": "Asia/Kolkata",
+      "reviewPeriod": "Fresh official-source review through 28 Nov 2026; SEBI/AMFI/RBI and CERT-In latest listings reviewed",
+      "regulatoryUpdateStatus": "NO_NEW_DIRECT_MFD_WEBSITE_REGULATION_IDENTIFIED; FOUR_NEW_CERTIN_PRODUCT_VULNERABILITY_NOTES_CRITICAL/HIGH; ASSET_APPLICABILITY_UNCONFIRMED",
+      "sourceChecks": [
+        {
+          "authority": "SEBI",
+          "sourceTitle": "Official SEBI circular listing",
+          "url": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=1&smid=0&ssid=7",
+          "result": "Latest surfaced circular dated 27 Nov 2026: FPI Participation in Exchange Traded Commodity Derivatives (ETCDs). No direct MFD website applicability identified. 25 Nov KRA circular and accessibility extension remain previously logged."
+        },
+        {
+          "authority": "AMFI",
+          "sourceTitle": "AMFI MFD circulars listing",
+          "url": "https://www.amfiindia.com/distributor/amfi-circulars",
+          "result": "Latest displayed MFD-specific item remains CIR/ARN-33/2026-27 dated 28 Jul 2026; no new MFD-specific circular surfaced."
+        },
+        {
+          "authority": "RBI",
+          "sourceTitle": "RBI notification and master directions listing",
+          "url": "https://www.rbi.org.in/scripts/NotificationUser.aspx",
+          "result": "Reviewed notifications and updated KYC directions shown as 27 Nov 2026 for regulated bank categories. No direct MFD website obligation identified."
+        },
+        {
+          "authority": "CERT-In / MeitY",
+          "sourceTitle": "CERT-In 2026 vulnerability notes index",
+          "url": "https://www.cert-in.org.in/s2cMainServlet?pageid=VLNLIST02&year=2026",
+          "result": "New notes dated 27 Nov: CIVN-2026-0577 Mozilla (CRITICAL), 0578 Linux KVM (HIGH), 0579 Drupal (CRITICAL, active exploitation) and 0580 Mitel MiCollab (CRITICAL, active exploitation). Conditional asset/version triage required."
+        },
+        {
+          "authority": "CERT-In / MeitY",
+          "sourceTitle": "CERT-In 2026 advisory index",
+          "url": "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBADVLIST02&year=2026",
+          "result": "Latest listed advisory remains CIAD-2026-0062 dated 20 Nov; no newer advisory surfaced."
+        },
+        {
+          "authority": "MeitY / Government of India",
+          "sourceTitle": "DPDP Rules and Gazette targeted review",
+          "url": "https://www.meity.gov.in/documents/act-and-policies/digital-personal-data-protection-rules-2025-gDOxUjMtQWa?pageTitle=Digital-Personal-Data-Protection-Rules-2025",
+          "result": "Targeted searches did not surface a new DPDP amendment, corrigendum or commencement change. Existing phased commencement remains logged; search coverage is not exhaustive."
+        },
+        {
+          "authority": "CERT-In / MeitY",
+          "sourceTitle": "AI Security Auditing Guidelines v1.0 (4 Nov 2026)",
+          "url": "https://www.cert-in.org.in/PDF/AI_Security_Auditing_Guidelines.pdf",
+          "result": "Guideline framework reviewed; not identified as a new binding MFD website rule. No AI system deployment was identified in inspected website package/config; if Luxmi deploys AI features, scope and risk tier should be assessed."
+        },
+        {
+          "authority": "Department of Consumer Affairs / Income Tax Department",
+          "sourceTitle": "Official portal targeted search",
+          "url": "https://consumeraffairs.gov.in/; https://www.incometax.gov.in/iec/foportal/",
+          "result": "No new direct MFD website advertising, e-commerce or tax-disclosure requirement surfaced in this limited targeted review."
+        }
+      ],
+      "newEntries": [
+        "CERTIN-MOZILLA-CIVN-2026-0577",
+        "CERTIN-KVM-CIVN-2026-0578",
+        "CERTIN-DRUPAL-CIVN-2026-0579",
+        "CERTIN-MITEL-MICOLLAB-CIVN-2026-0580"
+      ],
+      "continuingItems": [
+        {
+          "id": "ISSUE-23-CERTIN-ASSET-TRIAGE",
+          "severity": "CRITICAL/HIGH advisory triage",
+          "priority": "P1",
+          "status": "OPEN",
+          "humanReviewIssue": "https://github.com/shivpawan007/LuxmiInvestCare/issues/23",
+          "summary": "Verify Mozilla, Drupal, KVM and Mitel assets in addition to WhatsApp and NGINX. Two critical advisories (Drupal and Mitel) report active exploitation; exposure is unconfirmed."
+        },
+        {
+          "id": "PR-18-REGULATORY-LOG",
+          "severity": "MEDIUM",
+          "priority": "P2",
+          "status": "OPEN-DRAFT",
+          "humanReviewPR": "https://github.com/shivpawan007/LuxmiInvestCare/pull/18",
+          "summary": "Append watch entries; synchronize branch against main before review."
+        },
+        {
+          "id": "ISSUE-20-SECURITY-REVIEW",
+          "severity": "HIGH",
+          "priority": "P1",
+          "status": "OPEN",
+          "humanReviewIssue": "https://github.com/shivpawan007/LuxmiInvestCare/issues/20",
+          "summary": "Broader security review remains open."
+        },
+        {
+          "id": "PR-17-SECURITY-HARDENING",
+          "severity": "HIGH",
+          "priority": "P1",
+          "status": "OPEN",
+          "humanReviewPR": "https://github.com/shivpawan007/LuxmiInvestCare/pull/17",
+          "summary": "Dependency/security remediation and build failures still require review."
+        },
+        {
+          "id": "ISSUE-19-ACCESSIBILITY",
+          "severity": "HIGH",
+          "priority": "P1",
+          "status": "OPEN",
+          "humanReviewIssue": "https://github.com/shivpawan007/LuxmiInvestCare/issues/19",
+          "summary": "Confirm applicability and IAAP audit plan before 31 Jan 2027."
+        },
+        {
+          "id": "ISSUE-21-GMP-IMPERSONATION",
+          "severity": "MEDIUM",
+          "priority": "P2",
+          "status": "OPEN",
+          "humanReviewIssue": "https://github.com/shivpawan007/LuxmiInvestCare/issues/21",
+          "summary": "Verify official channels, impersonation and GMP content."
+        },
+        {
+          "id": "ISSUE-22-KRA",
+          "severity": "MEDIUM",
+          "priority": "P2",
+          "status": "OPEN",
+          "humanReviewIssue": "https://github.com/shivpawan007/LuxmiInvestCare/issues/22",
+          "summary": "Confirm KRA circular applicability and processes before 24 Dec 2026."
+        }
+      ],
+      "latestMainAudit": {
+        "workflowRun": "https://github.com/shivpawan007/LuxmiInvestCare/actions/runs/45997250609",
+        "runNumber": 87,
+        "runCreatedAt": "2026-11-27T12:16:23Z",
+        "reportGeneratedAt": "2026-11-27T12:17:36.183Z",
+        "commit": "eb07b574691570533b15b4c6e291397d25e10b9d",
+        "workflowConclusion": "FAIL",
+        "auditStatus": "FAIL",
+        "productionVulnerabilities": "Critical gate present; detailed counts retained in latest audit report; not re-run locally",
+        "fullTreeVulnerabilities": "Medium development-only findings recorded",
+        "contentFinding": {
+          "severity": "HIGH",
+          "rule": "promotion.return-on-investment",
+          "route": "/calculators/sip"
+        },
+        "routeProbe": {
+          "passed": 13,
+          "failed": 0,
+          "total": 13
+        },
+        "checks": {
+          "forbiddenPromotionalLanguage": false,
+          "mfdIdentity": true,
+          "arn365140": true,
+          "mfdTagline": true,
+          "distributionRemunerationDisclosure": true,
+          "standardRiskWarning": true,
+          "liveRouteProbe": true,
+          "dependencyAudit": false
+        },
+        "steps": {
+          "dependencyInstall": "success",
+          "officialSourceCheck": "success",
+          "complianceScan": "success",
+          "dependencyAudit": "success",
+          "productionBuild": "success",
+          "weeklyRandomAudit": "success",
+          "reportUpload": "success",
+          "reportCommit": "success",
+          "finalFailGate": "failure"
+        },
+        "note": "GitHub workflow run #87 is historical CI evidence; no local audit/tests/build were run during this watch."
+      },
+      "branchStatus": {
+        "pullRequest": "https://github.com/shivpawan007/LuxmiInvestCare/pull/18",
+        "branch": "compliance/regulatory-watch-2026-11-23",
+        "headSHA": "ae2d6845ded29483d91a32beee373e1e922883d8",
+        "mainSHA": "776d36a83418df3d374af3158a58bdf3b5cc6fcf",
+        "aheadBy": 29,
+        "behindBy": 6,
+        "status": "diverged",
+        "changedFiles": [
+          "compliance/regulatory-log.json",
+          "compliance/regulatory-log.md",
+          "config/mfd-compliance-sources.json"
+        ],
+        "draft": true,
+        "mergeable": false,
+        "mergeableState": "unknown",
+        "snapshotAt": "2026-11-28T00:56:59+05:30",
+        "note": "Snapshot before the 28 Nov log commits; branch head will advance, but remains behind main."
+      },
+      "changes": [
+        "Appended four CERT-In vulnerability entries dated 27 Nov (Mozilla CRITICAL, Linux KVM HIGH, Drupal CRITICAL active exploitation, Mitel MiCollab CRITICAL active exploitation) to the append-only regulatory log.",
+        "Added a new daily run record for 28 Nov; monitoring source list unchanged at 28 because CERT-In vulnerability-notes index already covers these items.",
+        "No website code, marketing copy, forms, calculators, privacy flows or route changes made; product applicability depends on device/server asset inventory.",
+        "Updated existing P1 Issue #23 asset triage and PR #18 discussion after log commits.",
+        "Verified JSON entry append commit a931d8d and Markdown append commit 0656d3f.",
+        "Posted asset-triage update to Issue #23 (comment 7226604686) and summary to PR #18 (comment 7226605172).",
+        "PR #18 comparison before today's commits: 29 ahead/6 behind main, diverged, mergeable=false; main SHA 776d36a83418df3d374af3158a58bdf3b5cc6fcf. No merge/deploy."
+      ],
+      "unresolvedQuestions": [
+        "Are Firefox/Firefox ESR/Thunderbird installed on Luxmi staff/admin devices; are affected versions patched?",
+        "Does Luxmi or any vendor-managed subdomain/site use Drupal, including legacy/abandoned install states? Review subdomain inventory and logs if present.",
+        "Does Luxmi use Mitel MiCollab (10.3.0.18 or earlier); confirm version and update if affected.",
+        "Does Luxmi or its hosting provider operate Linux KVM hosts with affected kernels? Confirm provider scope and remediation responsibility.",
+        "Verify WhatsApp Business and NGINX/F5 status from prior Issue #23; exposure remains unconfirmed.",
+        "Resolve existing P1 dependency/security audit and high SIP promotional-language finding; latest audit #87 failed.",
+        "Confirm accessibility circular applicability and IAAP audit owner by 31 Jan 2027; KRA circular scope/process by 24 Dec 2026.",
+        "Confirm DPDP retention, processor, consent/withdrawal, rights-request and breach-response arrangements."
+      ],
+      "productionDeployment": "none",
+      "limitations": [
+        "No endpoint inventory, installed-version evidence, vendor attestations, hosting inventory or incident telemetry available.",
+        "Targeted source search and repository/config inspection are not exhaustive; external social accounts, subdomains and vendor assets not independently inventoried.",
+        "No local npm audit, ESLint, TypeScript, build, route probe, accessibility audit or penetration test was run. CI run #87 is remote historical evidence.",
+        "Gmail profile resolution required interactive input; no recipient was verified and no email was sent."
+      ]
+    }
+  ]
+}
