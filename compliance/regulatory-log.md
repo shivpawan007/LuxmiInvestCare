@@ -588,3 +588,85 @@ Added three official listing sources to the PR branch, increasing the monitored 
 - Regulatory PR #18 comment: https://github.com/shivpawan007/LuxmiInvestCare/pull/18#issuecomment-7200982142
 
 All new entries are appended; prior records remain intact. This supplement records the commits and GitHub notifications for this review.
+
+
+## Regulatory and security watch — 28 November 2026, 00:56:59 IST (Asia/Kolkata)
+
+**Review period:** Official listings checked through 28 Nov 2026. **No new direct MFD website regulatory requirement identified.** Four CERT-In vulnerability notes dated 27 Nov were newly listed and reviewed. Three are CRITICAL (Mozilla, Drupal, Mitel MiCollab); Linux KVM is HIGH. Drupal and Mitel notes state active exploitation in the wild. Luxmi exposure is **unconfirmed**; no code patch is indicated without asset/version evidence.
+
+### Entry — CERT-In CIVN-2026-0577, Multiple Vulnerabilities in Mozilla Products
+
+- **Authority / source:** CERT-In / MeitY — [official note](https://www.cert-in.org.in/s2cMainServlet?VLCODE=CIVN-2026-0577&pageid=PUBVLNOTES01); vendor advisories [MFSA 2026-131](https://www.mozilla.org/en-US/security/advisories/mfsa2026-131/) through MFSA 2026-135.
+- **Publication:** 27 Nov 2026. **Retrieval:** 28 Nov 2026, 00:56:59 IST (Asia/Kolkata). **Effective date:** vendor update guidance; no statutory commencement date.
+- **Previous vs new:** Routine endpoint patching was already expected; this specific critical multi-vulnerability note was not in the prior watch. CERT-In lists Firefox before 161, Firefox ESR before 153.8 and 115.46, and Thunderbird before 161 and 153.8 as affected. Potential impacts include privilege escalation, security bypass, information disclosure, spoofing and DoS; apply vendor fixes.
+- **Applicability:** Conditional on staff/admin devices using affected Firefox/Firefox ESR/Thunderbird versions. Device inventory and installed versions are unavailable; actual exposure is not established.
+- **Risk / priority:** CRITICAL advisory rating; P1 asset/version verification. This is not a new MFD website rule.
+- **Impacted files/routes:** No public route or source file directly identified. Staff endpoint browsers/email clients and admin access devices may be in scope.
+- **AI analysis / change:** Endpoint patching is the appropriate remediation; no application-code change. Check versions and update affected devices.
+- **Validation evidence:** CERT-In note and vendor advisory links reviewed; repo main package.json, vercel.json, next.config.ts read-only inspected. No endpoint inventory, installed versions, telemetry or vendor attestations.
+- **Unresolved:** Are Firefox/ESR/Thunderbird installed on Luxmi staff/admin devices? Are they patched?
+
+### Entry — CERT-In CIVN-2026-0578, Memory Management Vulnerability in Linux Kernel KVM
+
+- **Authority / source:** CERT-In / MeitY — [official note](https://www.cert-in.org.in/s2cMainServlet?VLCODE=CIVN-2026-0578&pageid=PUBVLNOTES01); [CVE-2026-99312](https://www.cve.org/CVERecord?id=CVE-2026-99312); vendor kernel updates [kernel.org](https://www.kernel.org/).
+- **Publication:** 27 Nov 2026. **Retrieval:** 28 Nov 2026, 00:56:59 IST (Asia/Kolkata). **Effective date:** vendor patch/update guidance.
+- **Previous vs new:** Prior watch covered WhatsApp and NGINX; this KVM host-memory vulnerability was not logged. CERT-In rates HIGH and lists affected kernels before 5.16, 6.1.193, 6.12.118, 6.18.64, 7.3.5 and 7.4-rc2. A privileged guest attacker under specific nested AMD virtualization conditions may gain host memory read/write access.
+- **Applicability:** Conditional on Luxmi or a vendor using affected Linux KVM hosts. The Vercel-oriented repo does not reveal provider hypervisor versions or establish self-managed KVM exposure.
+- **Risk / priority:** HIGH advisory rating; P1 host/asset inventory, exposure unconfirmed.
+- **Impacted files/routes:** No website route or app source file directly affected; possible Linux virtualization hosts/provider infrastructure.
+- **AI analysis / change:** Patch the host/kernel if an affected asset exists; obtain provider confirmation if managed. No application code change.
+- **Validation evidence:** CERT-In note reviewed; no server inventory, kernel version, provider attestation or security telemetry.
+- **Unresolved:** Does Luxmi operate or rely on affected KVM hosts? Who is responsible for patching?
+
+### Entry — CERT-In CIVN-2026-0579, Access Bypass Vulnerability in Drupal
+
+- **Authority / source:** CERT-In / MeitY — [official note](https://www.cert-in.org.in/s2cMainServlet?VLCODE=CIVN-2026-0579&pageid=PUBVLNOTES01); [Drupal SA-CORE-2026-019](https://www.drupal.org/sa-core-2026-019); [CVE-2026-136716](https://www.cve.org/CVERecord?id=CVE-2026-136716).
+- **Publication:** 27 Nov 2026. **Retrieval:** 28 Nov 2026, 00:56:59 IST (Asia/Kolkata). **Effective date:** vendor patch guidance.
+- **Previous vs new:** This Drupal installer/access-bypass advisory was not previously logged. CERT-In rates CRITICAL and reports active exploitation. Affected Drupal Core: before 10.6.23; 11.0.0 before 11.3.23; 11.4.0 before 11.4.14. In unusual/incomplete installation states, improper handling of install.php may allow bypass and website takeover; administrators should review logs, including unexpected user-1 account changes, and update.
+- **Applicability:** Main repository inspected uses Next.js/Vercel and no Drupal dependency was found in inspected package/config. This is not proof that external microsites, vendor sites, legacy subdomains or abandoned CMS installations do not exist.
+- **Risk / priority:** CRITICAL advisory; P1 inventory check. Active exploitation reported; Luxmi Drupal exposure unconfirmed.
+- **Impacted files/routes:** External/legacy CMS assets and domain/subdomain inventory; no Next.js route directly affected.
+- **AI analysis / change:** No code patch. Confirm all domains, microsites and vendor assets; if Drupal exists, inspect version, installer exposure and logs/user-1 changes, then update per vendor.
+- **Validation evidence:** CERT-In note and Drupal vendor advisory reviewed; Next.js package/config inspected. External asset inventory and logs unavailable.
+- **Unresolved:** Does Luxmi have any Drupal site, subdomain, vendor microsite or abandoned install?
+
+### Entry — CERT-In CIVN-2026-0580, Multiple Vulnerabilities in Mitel MiCollab
+
+- **Authority / source:** CERT-In / MeitY — [official note](https://www.cert-in.org.in/s2cMainServlet?VLCODE=CIVN-2026-0580&pageid=PUBVLNOTES01); [Mitel vendor advisory MISA-2026-0012](https://www.mitel.com/support/security-advisories/mitel-product-security-advisory-misa-2026-0012). CVEs: CVE-2026-133275, 133303, 133311, 133323, 133324.
+- **Publication:** 27 Nov 2026. **Retrieval:** 28 Nov 2026, 00:56:59 IST (Asia/Kolkata). **Effective date:** vendor patch guidance.
+- **Previous vs new:** MiCollab was not included in prior product-advisory review. CERT-In rates CRITICAL and reports active exploitation. MiCollab 10.3 (10.3.0.18) and earlier may allow unauthenticated arbitrary file upload, command execution, sensitive information disclosure or authentication bypass; upgrade per vendor.
+- **Applicability:** Conditional on Luxmi using MiCollab or a vendor-managed instance. Repository configuration does not establish communications-platform inventory.
+- **Risk / priority:** CRITICAL advisory; P1 asset/version check. Exposure unconfirmed.
+- **Impacted files/routes:** Potential communications server/instance and admin endpoints; no website route/source file directly identified.
+- **AI analysis / change:** Inventory communications systems; upgrade if affected and review access/logs. No website code patch.
+- **Validation evidence:** CERT-In and Mitel vendor advisory reviewed; no communications inventory, installed version, logs or provider attestation.
+- **Unresolved:** Is MiCollab used by Luxmi or any provider? If yes, what version and patch status?
+
+### Regulatory-source review — 28 Nov
+
+- **SEBI:** Official circular listing's latest surfaced item is 27 Nov *FPI Participation in Exchange Traded Commodity Derivatives (ETCDs)*; no direct MFD website impact identified. [Official circular](https://www.sebi.gov.in/legal/circulars/nov-2026/fpi-participation-in-exchange-traded-commodity-derivatives-etcds-_105989.html). Previously logged KRA circular and digital-accessibility deadline remain open human-review items.
+- **AMFI:** MFD circular listing still shows CIR/ARN-33/2026-27 dated 28 Jul 2026 as latest; no new MFD-specific circular surfaced. [Official list](https://www.amfiindia.com/distributor/amfi-circulars).
+- **RBI:** Notifications and updated master directions reviewed; 27 Nov KYC updates displayed for regulated bank categories. No direct MFD website requirement identified. [RBI notifications](https://www.rbi.org.in/scripts/NotificationUser.aspx).
+- **CERT-In advisories:** 2026 list still shows CIAD-2026-0062 dated 20 Nov as latest; no later advisory surfaced. [Official list](https://www.cert-in.org.in/s2cMainServlet?pageid=PUBADVLIST02&year=2026).
+- **DPDP / MeitY:** Targeted search did not surface a new amendment, corrigendum or commencement change; earlier phased schedule remains recorded. Coverage is not exhaustive.
+- **CERT-In AI Security Auditing Guidelines v1.0 (4 Nov):** reviewed as a framework; not identified as a new binding MFD website rule. No AI feature deployment identified in inspected website package/config. [Official PDF](https://www.cert-in.org.in/PDF/AI_Security_Auditing_Guidelines.pdf).
+- **Consumer Affairs / Income Tax:** no direct MFD website advertising/e-commerce/tax-disclosure change surfaced in targeted search.
+
+### Repository audit evidence — latest main run #87 (historical CI, not run locally)
+
+- Run #87, created 27 Nov 2026: [GitHub Actions](https://github.com/shivpawan007/LuxmiInvestCare/actions/runs/45997250609).
+- Latest stored audit report generated 27 Nov 2026 12:17:36 UTC (17:47:36 IST), commit eb07b574691570533b15b4c6e291397d25e10b9d.
+- Audit status **FAIL**: production dependencies 3 vulnerabilities (1 critical, 1 high, 1 low); full tree 6 (1 low, 3 moderate, 1 high, 1 critical); high promotion.return-on-investment finding on /calculators/sip.
+- 13/13 public routes HTTP 200; compliance scan 115 files; build and audit-report steps succeeded; final fail-gate failed. Findings remain open; successful checks do not clear the gate.
+- This automation did not run npm audit, lint, TypeScript, build, accessibility audit, route probe or penetration test locally. The GitHub workflow is historical evidence only.
+
+### GitHub changes / evidence
+
+- **JSON log update commit:** [a931d8d1c8a647cdda51e2c0c6355dfc96c58005](https://github.com/shivpawan007/LuxmiInvestCare/commit/a931d8d1c8a647cdda51e2c0c6355dfc96c58005)
+- **Human-review triage:** [Issue #23](https://github.com/shivpawan007/LuxmiInvestCare/issues/23) — existing P1 device/hosting inventory triage updated with these advisories.
+- **Compliance PR:** [PR #18](https://github.com/shivpawan007/LuxmiInvestCare/pull/18), remains open/draft. Branch compliance/regulatory-watch-2026-11-23 is **29 commits ahead / 6 behind main** and diverged; main head at review was 776d36a83418df3d374af3158a58bdf3b5cc6fcf. Do not merge until synchronized and reviewed.
+- **Changes:** Four entries and a daily-run record appended; monitoring source list unchanged (28 sources already includes CERT-In vulnerability-note index). No website code/content change.
+- **Validation:** JSON parsed after append; four new entries IDs checked. Source configuration was not changed. No local app/security tests were run.
+- **Unresolved:** Endpoint, CMS, phone-system, VM and provider asset inventories; exact patch responsibility/status; existing audit #87 blockers; accessibility scope/audit; KRA applicability; DPDP privacy implementation; branch synchronization.
+
+**No merge or production deployment.**
