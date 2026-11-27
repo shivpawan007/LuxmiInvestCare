@@ -614,7 +614,11 @@
       "changeSummary": "Append product-specific Mozilla advisory and version checks to security triage. No website patch.",
       "commitPRLinks": [
         "https://github.com/shivpawan007/LuxmiInvestCare/pull/18",
-        "https://github.com/shivpawan007/LuxmiInvestCare/issues/23"
+        "https://github.com/shivpawan007/LuxmiInvestCare/issues/23",
+        "https://github.com/shivpawan007/LuxmiInvestCare/commit/a931d8d1c8a647cdda51e2c0c6355dfc96c58005",
+        "https://github.com/shivpawan007/LuxmiInvestCare/commit/0656d3f1fc78753331d9a7630e50f4f3b37d7953",
+        "https://github.com/shivpawan007/LuxmiInvestCare/issues/23#issuecomment-7226604686",
+        "https://github.com/shivpawan007/LuxmiInvestCare/pull/18#issuecomment-7226605172"
       ],
       "validationEvidence": [
         "CERT-In 2026 Vulnerability Notes index reviewed on 28 Nov 2026; individual advisory pages inspected.",
@@ -650,7 +654,11 @@
       "changeSummary": "Added KVM advisory to the asset-inventory review. No code change.",
       "commitPRLinks": [
         "https://github.com/shivpawan007/LuxmiInvestCare/pull/18",
-        "https://github.com/shivpawan007/LuxmiInvestCare/issues/23"
+        "https://github.com/shivpawan007/LuxmiInvestCare/issues/23",
+        "https://github.com/shivpawan007/LuxmiInvestCare/commit/a931d8d1c8a647cdda51e2c0c6355dfc96c58005",
+        "https://github.com/shivpawan007/LuxmiInvestCare/commit/0656d3f1fc78753331d9a7630e50f4f3b37d7953",
+        "https://github.com/shivpawan007/LuxmiInvestCare/issues/23#issuecomment-7226604686",
+        "https://github.com/shivpawan007/LuxmiInvestCare/pull/18#issuecomment-7226605172"
       ],
       "validationEvidence": [
         "CERT-In 2026 Vulnerability Notes index reviewed on 28 Nov 2026; individual advisory pages inspected.",
@@ -686,7 +694,11 @@
       "changeSummary": "Recorded Drupal advisory and asset check requirement; no website code change.",
       "commitPRLinks": [
         "https://github.com/shivpawan007/LuxmiInvestCare/pull/18",
-        "https://github.com/shivpawan007/LuxmiInvestCare/issues/23"
+        "https://github.com/shivpawan007/LuxmiInvestCare/issues/23",
+        "https://github.com/shivpawan007/LuxmiInvestCare/commit/a931d8d1c8a647cdda51e2c0c6355dfc96c58005",
+        "https://github.com/shivpawan007/LuxmiInvestCare/commit/0656d3f1fc78753331d9a7630e50f4f3b37d7953",
+        "https://github.com/shivpawan007/LuxmiInvestCare/issues/23#issuecomment-7226604686",
+        "https://github.com/shivpawan007/LuxmiInvestCare/pull/18#issuecomment-7226605172"
       ],
       "validationEvidence": [
         "CERT-In 2026 Vulnerability Notes index reviewed on 28 Nov 2026; individual advisory pages inspected.",
@@ -722,7 +734,11 @@
       "changeSummary": "Logged MiCollab advisory for conditional asset triage; no code/content changes.",
       "commitPRLinks": [
         "https://github.com/shivpawan007/LuxmiInvestCare/pull/18",
-        "https://github.com/shivpawan007/LuxmiInvestCare/issues/23"
+        "https://github.com/shivpawan007/LuxmiInvestCare/issues/23",
+        "https://github.com/shivpawan007/LuxmiInvestCare/commit/a931d8d1c8a647cdda51e2c0c6355dfc96c58005",
+        "https://github.com/shivpawan007/LuxmiInvestCare/commit/0656d3f1fc78753331d9a7630e50f4f3b37d7953",
+        "https://github.com/shivpawan007/LuxmiInvestCare/issues/23#issuecomment-7226604686",
+        "https://github.com/shivpawan007/LuxmiInvestCare/pull/18#issuecomment-7226605172"
       ],
       "validationEvidence": [
         "CERT-In 2026 Vulnerability Notes index reviewed on 28 Nov 2026; individual advisory pages inspected.",
@@ -917,6 +933,40 @@
         "draft": true
       },
       "limitations": "GitHub compare did not return a timestamp; snapshot is recorded as a supplemental observation from this review. This JSON commit's SHA is not self-referential; it will be verified in the PR comment."
+    },
+    {
+      "id": "SUPPLEMENTAL-2026-11-28-COMMIT-INDEX",
+      "timestamp": "2026-11-28T00:56:59+05:30",
+      "timezone": "Asia/Kolkata",
+      "updates": [
+        "Added four 27 Nov CERT-In product vulnerability notes (Mozilla CRITICAL, KVM HIGH, Drupal CRITICAL/actively exploited, Mitel MiCollab CRITICAL/actively exploited) to entries and the 28 Nov daily run.",
+        "JSON append commit and Markdown append commit verified; Issue #23 asset triage and PR #18 comments posted.",
+        "No application code or source configuration changed. Source count remains 28; no merge or production deployment."
+      ],
+      "branch": "compliance/regulatory-watch-2026-11-23",
+      "commits": [
+        "https://github.com/shivpawan007/LuxmiInvestCare/commit/a931d8d1c8a647cdda51e2c0c6355dfc96c58005",
+        "https://github.com/shivpawan007/LuxmiInvestCare/commit/0656d3f1fc78753331d9a7630e50f4f3b37d7953",
+        "https://github.com/shivpawan007/LuxmiInvestCare/issues/23#issuecomment-7226604686",
+        "https://github.com/shivpawan007/LuxmiInvestCare/pull/18#issuecomment-7226605172",
+        "https://github.com/shivpawan007/LuxmiInvestCare/pull/18"
+      ],
+      "branchStatusSnapshot": {
+        "mainSHA": "776d36a83418df3d374af3158a58bdf3b5cc6fcf",
+        "preSupplementHeadSHA": "ae2d6845ded29483d91a32beee373e1e922883d8",
+        "aheadBy": 29,
+        "behindBy": 6,
+        "status": "diverged",
+        "changedFiles": [
+          "compliance/regulatory-log.json",
+          "compliance/regulatory-log.md",
+          "config/mfd-compliance-sources.json"
+        ],
+        "mergeable": false,
+        "draft": true,
+        "snapshotAt": "2026-11-28T00:56:59+05:30"
+      },
+      "limitations": "This supplement is committed after the initial JSON and Markdown append commits. The supplemental JSON commit is not self-referential; its SHA is added to the Markdown follow-up."
     }
   ],
   "dailyRuns": [
@@ -1945,13 +1995,18 @@
         ],
         "draft": true,
         "mergeable": false,
-        "mergeableState": "unknown"
+        "mergeableState": "unknown",
+        "snapshotAt": "2026-11-28T00:56:59+05:30",
+        "note": "Snapshot before the 28 Nov log commits; branch head will advance, but remains behind main."
       },
       "changes": [
         "Appended four CERT-In vulnerability entries dated 27 Nov (Mozilla CRITICAL, Linux KVM HIGH, Drupal CRITICAL active exploitation, Mitel MiCollab CRITICAL active exploitation) to the append-only regulatory log.",
         "Added a new daily run record for 28 Nov; monitoring source list unchanged at 28 because CERT-In vulnerability-notes index already covers these items.",
         "No website code, marketing copy, forms, calculators, privacy flows or route changes made; product applicability depends on device/server asset inventory.",
-        "Updated existing P1 Issue #23 asset triage and PR #18 discussion after log commits."
+        "Updated existing P1 Issue #23 asset triage and PR #18 discussion after log commits.",
+        "Verified JSON entry append commit a931d8d and Markdown append commit 0656d3f.",
+        "Posted asset-triage update to Issue #23 (comment 7226604686) and summary to PR #18 (comment 7226605172).",
+        "PR #18 comparison before today's commits: 29 ahead/6 behind main, diverged, mergeable=false; main SHA 776d36a83418df3d374af3158a58bdf3b5cc6fcf. No merge/deploy."
       ],
       "unresolvedQuestions": [
         "Are Firefox/Firefox ESR/Thunderbird installed on Luxmi staff/admin devices; are affected versions patched?",
