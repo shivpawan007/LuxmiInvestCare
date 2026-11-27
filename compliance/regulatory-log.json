@@ -590,6 +590,150 @@
         "Confirm operational policy with compliance/legal professional if client onboarding/transaction facilitation involves screening responsibilities."
       ],
       "historicalEntry": "New source-review entry. Does not alter prior sanctions-list or AML records."
+    },
+    {
+      "id": "CERTIN-MOZILLA-CIVN-2026-0577",
+      "authority": "CERT-In / MeitY",
+      "sourceTitle": "Multiple Vulnerabilities in Mozilla Products — CIVN-2026-0577",
+      "sourceURL": "https://www.cert-in.org.in/s2cMainServlet?VLCODE=CIVN-2026-0577&pageid=PUBVLNOTES01",
+      "officialPDFURL": null,
+      "publicationDate": "2026-11-27",
+      "effectiveDate": "Vendor remediation/update guidance; no new statutory commencement date",
+      "previousRequirement": "Previous review covered product-specific WhatsApp/NGINX notes; Mozilla vulnerability note not yet logged. Routine endpoint browser/email client patching remains necessary.",
+      "newRequirement": "CERT-In reports CRITICAL multiple Mozilla vulnerabilities. Affected: Firefox before 161; Firefox ESR before 153.8 and 115.46; Thunderbird before 161 and 153.8. Remote exploitation may lead to privilege escalation, security bypass, sensitive-information disclosure, spoofing or DoS; update to vendor-fixed releases.",
+      "applicabilityAssessment": "Conditional on Luxmi-owned/staff devices using affected Firefox, Firefox ESR or Thunderbird versions. The repository does not establish staff device inventory or installed versions. No website-route exposure is implied.",
+      "risk": {
+        "severity": "CRITICAL (CERT-In advisory rating; actual Luxmi exposure unconfirmed)",
+        "priority": "P1-asset-inventory",
+        "reason": "CERT-In product advisory severity is high/critical, but Luxmi asset exposure is not established; prioritize inventory/version confirmation and patching if present."
+      },
+      "impactedFilesRoutes": [
+        "Staff endpoint browsers/email clients; no public route or repository source file directly identified."
+      ],
+      "aiAnalysis": "This is an endpoint-security advisory, not a new MFD website rule. Because browser and email clients may be used for business communication/admin access, inventory and update checks are prudent. Do not claim the organisation is affected until versions are verified.",
+      "changeSummary": "Append product-specific Mozilla advisory and version checks to security triage. No website patch.",
+      "commitPRLinks": [
+        "https://github.com/shivpawan007/LuxmiInvestCare/pull/18",
+        "https://github.com/shivpawan007/LuxmiInvestCare/issues/23"
+      ],
+      "validationEvidence": [
+        "CERT-In 2026 Vulnerability Notes index reviewed on 28 Nov 2026; individual advisory pages inspected.",
+        "Read-only inspection of main package.json (Next.js), vercel.json and next.config.ts; repository configuration indicates Vercel-oriented Next.js, not evidence of third-party device/hosting assets.",
+        "No endpoint/hosting asset inventory, installed software versions, vendor attestations or security telemetry available.",
+        "Mozilla vendor advisories linked by CERT-In: https://www.mozilla.org/en-US/security/advisories/mfsa2026-131/ through mfsa2026-135/"
+      ],
+      "unresolvedQuestions": [
+        "Verify Firefox/Firefox ESR/Thunderbird inventory and version on staff/admin devices; patch affected versions and record verification."
+      ],
+      "historicalEntry": null
+    },
+    {
+      "id": "CERTIN-KVM-CIVN-2026-0578",
+      "authority": "CERT-In / MeitY",
+      "sourceTitle": "Memory Management Vulnerability in Linux Kernel KVM — CIVN-2026-0578",
+      "sourceURL": "https://www.cert-in.org.in/s2cMainServlet?VLCODE=CIVN-2026-0578&pageid=PUBVLNOTES01",
+      "officialPDFURL": null,
+      "publicationDate": "2026-11-27",
+      "effectiveDate": "Vendor remediation/update guidance; no new statutory commencement date",
+      "previousRequirement": "Prior review logged NGINX/WhatsApp and other device advisories; this Linux KVM host-memory vulnerability had not been logged.",
+      "newRequirement": "CERT-In rates HIGH. Listed affected Linux kernel versions include versions before 5.16, 6.1.193, 6.12.118, 6.18.64, 7.3.5 and 7.4-rc2. Under specific nested AMD virtualization conditions, a privileged guest attacker may obtain host memory read/write access.",
+      "applicabilityAssessment": "Conditional on Luxmi or its vendor operating affected Linux KVM virtualization hosts. Vercel-oriented repository configuration does not establish underlying managed hypervisor versions; no self-managed KVM host is identified.",
+      "risk": {
+        "severity": "HIGH (CERT-In advisory rating; infrastructure exposure unconfirmed)",
+        "priority": "P1-asset-inventory",
+        "reason": "CERT-In product advisory severity is high/critical, but Luxmi asset exposure is not established; prioritize inventory/version confirmation and patching if present."
+      },
+      "impactedFilesRoutes": [
+        "Potential virtualization hosts and vendor-managed infrastructure; no public route/source file directly affected."
+      ],
+      "aiAnalysis": "Treat as host/virtualization asset triage. Do not attempt application-code remediation for a kernel/hypervisor vulnerability. Managed hosting provider should verify and patch if within their infrastructure.",
+      "changeSummary": "Added KVM advisory to the asset-inventory review. No code change.",
+      "commitPRLinks": [
+        "https://github.com/shivpawan007/LuxmiInvestCare/pull/18",
+        "https://github.com/shivpawan007/LuxmiInvestCare/issues/23"
+      ],
+      "validationEvidence": [
+        "CERT-In 2026 Vulnerability Notes index reviewed on 28 Nov 2026; individual advisory pages inspected.",
+        "Read-only inspection of main package.json (Next.js), vercel.json and next.config.ts; repository configuration indicates Vercel-oriented Next.js, not evidence of third-party device/hosting assets.",
+        "No endpoint/hosting asset inventory, installed software versions, vendor attestations or security telemetry available.",
+        "CVE-2026-99312 identified in CERT-In note."
+      ],
+      "unresolvedQuestions": [
+        "Confirm whether any Luxmi-controlled Linux KVM hosts exist; if yes, identify exact kernel versions and patch. If hosted, request provider assurance as appropriate."
+      ],
+      "historicalEntry": null
+    },
+    {
+      "id": "CERTIN-DRUPAL-CIVN-2026-0579",
+      "authority": "CERT-In / MeitY",
+      "sourceTitle": "Access Bypass Vulnerability in Drupal — CIVN-2026-0579",
+      "sourceURL": "https://www.cert-in.org.in/s2cMainServlet?VLCODE=CIVN-2026-0579&pageid=PUBVLNOTES01",
+      "officialPDFURL": null,
+      "publicationDate": "2026-11-27",
+      "effectiveDate": "Vendor remediation/update guidance; no new statutory commencement date",
+      "previousRequirement": "Previous review did not identify Drupal as a Luxmi website technology; no Drupal advisory had been logged for this run.",
+      "newRequirement": "CERT-In rates CRITICAL and reports active exploitation. Affected Drupal Core versions: before 10.6.23; 11.0.0 before 11.3.23; 11.4.0 before 11.4.14. An improperly secured install.php in unusual/incomplete installation states can allow access bypass and website takeover. Administrators should review logs, including unexpected user-1 account changes, and update.",
+      "applicabilityAssessment": "Repository main package/config inspection shows a Next.js/Vercel application and no Drupal dependency in package.json. No Drupal instance was identified in the inspected repo; external microsites, vendor systems or abandoned installations are not inventoried.",
+      "risk": {
+        "severity": "CRITICAL (CERT-In advisory rating; active exploitation reported; Luxmi Drupal exposure not established)",
+        "priority": "P1-asset-inventory",
+        "reason": "CERT-In product advisory severity is high/critical, but Luxmi asset exposure is not established; prioritize inventory/version confirmation and patching if present."
+      },
+      "impactedFilesRoutes": [
+        "External web/CMS assets and hosting inventory; no Next.js public route directly affected by this Drupal core note."
+      ],
+      "aiAnalysis": "Drupal-specific finding. Repository framework is not Drupal, so no code patch is indicated. However, critical active exploitation warrants confirmation that Luxmi has no Drupal-based campaign site, legacy subdomain, vendor-managed microsite or abandoned install.",
+      "changeSummary": "Recorded Drupal advisory and asset check requirement; no website code change.",
+      "commitPRLinks": [
+        "https://github.com/shivpawan007/LuxmiInvestCare/pull/18",
+        "https://github.com/shivpawan007/LuxmiInvestCare/issues/23"
+      ],
+      "validationEvidence": [
+        "CERT-In 2026 Vulnerability Notes index reviewed on 28 Nov 2026; individual advisory pages inspected.",
+        "Read-only inspection of main package.json (Next.js), vercel.json and next.config.ts; repository configuration indicates Vercel-oriented Next.js, not evidence of third-party device/hosting assets.",
+        "No endpoint/hosting asset inventory, installed software versions, vendor attestations or security telemetry available.",
+        "CERT-In states active exploitation in the wild and advises log review where affected Drupal installer exposure may persist."
+      ],
+      "unresolvedQuestions": [
+        "Confirm all Luxmi domains/subdomains and third-party marketing sites; if Drupal is present, inventory version, inspect installer exposure/logs/user-1 changes, and update to vendor-fixed release."
+      ],
+      "historicalEntry": null
+    },
+    {
+      "id": "CERTIN-MITEL-MICOLLAB-CIVN-2026-0580",
+      "authority": "CERT-In / MeitY",
+      "sourceTitle": "Multiple Vulnerabilities in Mitel MiCollab — CIVN-2026-0580",
+      "sourceURL": "https://www.cert-in.org.in/s2cMainServlet?VLCODE=CIVN-2026-0580&pageid=PUBVLNOTES01",
+      "officialPDFURL": null,
+      "publicationDate": "2026-11-27",
+      "effectiveDate": "Vendor remediation/update guidance; no new statutory commencement date",
+      "previousRequirement": "Previous watch had not logged a MiCollab vulnerability note; business communications software inventory was not available.",
+      "newRequirement": "CERT-In rates CRITICAL and says vulnerabilities are exploited in the wild. Mitel MiCollab version 10.3 (10.3.0.18) and earlier may permit unauthenticated arbitrary file upload, command execution, sensitive-information disclosure or authentication bypass. Vendor advises upgrading.",
+      "applicabilityAssessment": "Conditional on Luxmi using Mitel MiCollab or a vendor-managed instance. Repository does not establish any MiCollab deployment or communications-platform inventory.",
+      "risk": {
+        "severity": "CRITICAL (CERT-In advisory rating; active exploitation reported; Luxmi exposure unconfirmed)",
+        "priority": "P1-asset-inventory",
+        "reason": "CERT-In product advisory severity is high/critical, but Luxmi asset exposure is not established; prioritize inventory/version confirmation and patching if present."
+      },
+      "impactedFilesRoutes": [
+        "Potential business communications servers/instances and admin endpoints; no website route/source file directly identified."
+      ],
+      "aiAnalysis": "Critical, actively exploited vendor-specific risk. Check business communications inventory and vendor ownership; no Next.js/Vercel source patch is appropriate unless a deployment is discovered.",
+      "changeSummary": "Logged MiCollab advisory for conditional asset triage; no code/content changes.",
+      "commitPRLinks": [
+        "https://github.com/shivpawan007/LuxmiInvestCare/pull/18",
+        "https://github.com/shivpawan007/LuxmiInvestCare/issues/23"
+      ],
+      "validationEvidence": [
+        "CERT-In 2026 Vulnerability Notes index reviewed on 28 Nov 2026; individual advisory pages inspected.",
+        "Read-only inspection of main package.json (Next.js), vercel.json and next.config.ts; repository configuration indicates Vercel-oriented Next.js, not evidence of third-party device/hosting assets.",
+        "No endpoint/hosting asset inventory, installed software versions, vendor attestations or security telemetry available.",
+        "CERT-In note says vulnerabilities are known to be exploited in the wild."
+      ],
+      "unresolvedQuestions": [
+        "Confirm whether MiCollab is used by Luxmi or any provider; if version 10.3/10.3.0.18 or earlier is present, upgrade per Mitel advisory and review access/logs."
+      ],
+      "historicalEntry": null
     }
   ],
   "updates": [
@@ -1621,6 +1765,210 @@
         "No local npm audit, ESLint, TypeScript, build, route check, accessibility audit or penetration test was run.",
         "Latest main workflow audit #86 is historical GitHub evidence: steps succeeded except final audit fail-gate; not a fresh local run.",
         "Gmail connector requires interactive authorization; recipient could not be verified and no email was sent."
+      ]
+    },
+    {
+      "id": "REGWATCH-2026-11-28-005659IST",
+      "retrievedAt": "2026-11-28T00:56:59+05:30",
+      "timezone": "Asia/Kolkata",
+      "reviewPeriod": "Fresh official-source review through 28 Nov 2026; SEBI/AMFI/RBI and CERT-In latest listings reviewed",
+      "regulatoryUpdateStatus": "NO_NEW_DIRECT_MFD_WEBSITE_REGULATION_IDENTIFIED; FOUR_NEW_CERTIN_PRODUCT_VULNERABILITY_NOTES_CRITICAL/HIGH; ASSET_APPLICABILITY_UNCONFIRMED",
+      "sourceChecks": [
+        {
+          "authority": "SEBI",
+          "sourceTitle": "Official SEBI circular listing",
+          "url": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=1&smid=0&ssid=7",
+          "result": "Latest surfaced circular dated 27 Nov 2026: FPI Participation in Exchange Traded Commodity Derivatives (ETCDs). No direct MFD website applicability identified. 25 Nov KRA circular and accessibility extension remain previously logged."
+        },
+        {
+          "authority": "AMFI",
+          "sourceTitle": "AMFI MFD circulars listing",
+          "url": "https://www.amfiindia.com/distributor/amfi-circulars",
+          "result": "Latest displayed MFD-specific item remains CIR/ARN-33/2026-27 dated 28 Jul 2026; no new MFD-specific circular surfaced."
+        },
+        {
+          "authority": "RBI",
+          "sourceTitle": "RBI notification and master directions listing",
+          "url": "https://www.rbi.org.in/scripts/NotificationUser.aspx",
+          "result": "Reviewed notifications and updated KYC directions shown as 27 Nov 2026 for regulated bank categories. No direct MFD website obligation identified."
+        },
+        {
+          "authority": "CERT-In / MeitY",
+          "sourceTitle": "CERT-In 2026 vulnerability notes index",
+          "url": "https://www.cert-in.org.in/s2cMainServlet?pageid=VLNLIST02&year=2026",
+          "result": "New notes dated 27 Nov: CIVN-2026-0577 Mozilla (CRITICAL), 0578 Linux KVM (HIGH), 0579 Drupal (CRITICAL, active exploitation) and 0580 Mitel MiCollab (CRITICAL, active exploitation). Conditional asset/version triage required."
+        },
+        {
+          "authority": "CERT-In / MeitY",
+          "sourceTitle": "CERT-In 2026 advisory index",
+          "url": "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBADVLIST02&year=2026",
+          "result": "Latest listed advisory remains CIAD-2026-0062 dated 20 Nov; no newer advisory surfaced."
+        },
+        {
+          "authority": "MeitY / Government of India",
+          "sourceTitle": "DPDP Rules and Gazette targeted review",
+          "url": "https://www.meity.gov.in/documents/act-and-policies/digital-personal-data-protection-rules-2025-gDOxUjMtQWa?pageTitle=Digital-Personal-Data-Protection-Rules-2025",
+          "result": "Targeted searches did not surface a new DPDP amendment, corrigendum or commencement change. Existing phased commencement remains logged; search coverage is not exhaustive."
+        },
+        {
+          "authority": "CERT-In / MeitY",
+          "sourceTitle": "AI Security Auditing Guidelines v1.0 (4 Nov 2026)",
+          "url": "https://www.cert-in.org.in/PDF/AI_Security_Auditing_Guidelines.pdf",
+          "result": "Guideline framework reviewed; not identified as a new binding MFD website rule. No AI system deployment was identified in inspected website package/config; if Luxmi deploys AI features, scope and risk tier should be assessed."
+        },
+        {
+          "authority": "Department of Consumer Affairs / Income Tax Department",
+          "sourceTitle": "Official portal targeted search",
+          "url": "https://consumeraffairs.gov.in/; https://www.incometax.gov.in/iec/foportal/",
+          "result": "No new direct MFD website advertising, e-commerce or tax-disclosure requirement surfaced in this limited targeted review."
+        }
+      ],
+      "newEntries": [
+        "CERTIN-MOZILLA-CIVN-2026-0577",
+        "CERTIN-KVM-CIVN-2026-0578",
+        "CERTIN-DRUPAL-CIVN-2026-0579",
+        "CERTIN-MITEL-MICOLLAB-CIVN-2026-0580"
+      ],
+      "continuingItems": [
+        {
+          "id": "ISSUE-23-CERTIN-ASSET-TRIAGE",
+          "severity": "CRITICAL/HIGH advisory triage",
+          "priority": "P1",
+          "status": "OPEN",
+          "humanReviewIssue": "https://github.com/shivpawan007/LuxmiInvestCare/issues/23",
+          "summary": "Verify Mozilla, Drupal, KVM and Mitel assets in addition to WhatsApp and NGINX. Two critical advisories (Drupal and Mitel) report active exploitation; exposure is unconfirmed."
+        },
+        {
+          "id": "PR-18-REGULATORY-LOG",
+          "severity": "MEDIUM",
+          "priority": "P2",
+          "status": "OPEN-DRAFT",
+          "humanReviewPR": "https://github.com/shivpawan007/LuxmiInvestCare/pull/18",
+          "summary": "Append watch entries; synchronize branch against main before review."
+        },
+        {
+          "id": "ISSUE-20-SECURITY-REVIEW",
+          "severity": "HIGH",
+          "priority": "P1",
+          "status": "OPEN",
+          "humanReviewIssue": "https://github.com/shivpawan007/LuxmiInvestCare/issues/20",
+          "summary": "Broader security review remains open."
+        },
+        {
+          "id": "PR-17-SECURITY-HARDENING",
+          "severity": "HIGH",
+          "priority": "P1",
+          "status": "OPEN",
+          "humanReviewPR": "https://github.com/shivpawan007/LuxmiInvestCare/pull/17",
+          "summary": "Dependency/security remediation and build failures still require review."
+        },
+        {
+          "id": "ISSUE-19-ACCESSIBILITY",
+          "severity": "HIGH",
+          "priority": "P1",
+          "status": "OPEN",
+          "humanReviewIssue": "https://github.com/shivpawan007/LuxmiInvestCare/issues/19",
+          "summary": "Confirm applicability and IAAP audit plan before 31 Jan 2027."
+        },
+        {
+          "id": "ISSUE-21-GMP-IMPERSONATION",
+          "severity": "MEDIUM",
+          "priority": "P2",
+          "status": "OPEN",
+          "humanReviewIssue": "https://github.com/shivpawan007/LuxmiInvestCare/issues/21",
+          "summary": "Verify official channels, impersonation and GMP content."
+        },
+        {
+          "id": "ISSUE-22-KRA",
+          "severity": "MEDIUM",
+          "priority": "P2",
+          "status": "OPEN",
+          "humanReviewIssue": "https://github.com/shivpawan007/LuxmiInvestCare/issues/22",
+          "summary": "Confirm KRA circular applicability and processes before 24 Dec 2026."
+        }
+      ],
+      "latestMainAudit": {
+        "workflowRun": "https://github.com/shivpawan007/LuxmiInvestCare/actions/runs/45997250609",
+        "runNumber": 87,
+        "runCreatedAt": "2026-11-27T12:16:23Z",
+        "reportGeneratedAt": "2026-11-27T12:17:36.183Z",
+        "commit": "eb07b574691570533b15b4c6e291397d25e10b9d",
+        "workflowConclusion": "FAIL",
+        "auditStatus": "FAIL",
+        "productionVulnerabilities": "Critical gate present; detailed counts retained in latest audit report; not re-run locally",
+        "fullTreeVulnerabilities": "Medium development-only findings recorded",
+        "contentFinding": {
+          "severity": "HIGH",
+          "rule": "promotion.return-on-investment",
+          "route": "/calculators/sip"
+        },
+        "routeProbe": {
+          "passed": 13,
+          "failed": 0,
+          "total": 13
+        },
+        "checks": {
+          "forbiddenPromotionalLanguage": false,
+          "mfdIdentity": true,
+          "arn365140": true,
+          "mfdTagline": true,
+          "distributionRemunerationDisclosure": true,
+          "standardRiskWarning": true,
+          "liveRouteProbe": true,
+          "dependencyAudit": false
+        },
+        "steps": {
+          "dependencyInstall": "success",
+          "officialSourceCheck": "success",
+          "complianceScan": "success",
+          "dependencyAudit": "success",
+          "productionBuild": "success",
+          "weeklyRandomAudit": "success",
+          "reportUpload": "success",
+          "reportCommit": "success",
+          "finalFailGate": "failure"
+        },
+        "note": "GitHub workflow run #87 is historical CI evidence; no local audit/tests/build were run during this watch."
+      },
+      "branchStatus": {
+        "pullRequest": "https://github.com/shivpawan007/LuxmiInvestCare/pull/18",
+        "branch": "compliance/regulatory-watch-2026-11-23",
+        "headSHA": "ae2d6845ded29483d91a32beee373e1e922883d8",
+        "mainSHA": "776d36a83418df3d374af3158a58bdf3b5cc6fcf",
+        "aheadBy": 29,
+        "behindBy": 6,
+        "status": "diverged",
+        "changedFiles": [
+          "compliance/regulatory-log.json",
+          "compliance/regulatory-log.md",
+          "config/mfd-compliance-sources.json"
+        ],
+        "draft": true,
+        "mergeable": false,
+        "mergeableState": "unknown"
+      },
+      "changes": [
+        "Appended four CERT-In vulnerability entries dated 27 Nov (Mozilla CRITICAL, Linux KVM HIGH, Drupal CRITICAL active exploitation, Mitel MiCollab CRITICAL active exploitation) to the append-only regulatory log.",
+        "Added a new daily run record for 28 Nov; monitoring source list unchanged at 28 because CERT-In vulnerability-notes index already covers these items.",
+        "No website code, marketing copy, forms, calculators, privacy flows or route changes made; product applicability depends on device/server asset inventory.",
+        "Updated existing P1 Issue #23 asset triage and PR #18 discussion after log commits."
+      ],
+      "unresolvedQuestions": [
+        "Are Firefox/Firefox ESR/Thunderbird installed on Luxmi staff/admin devices; are affected versions patched?",
+        "Does Luxmi or any vendor-managed subdomain/site use Drupal, including legacy/abandoned install states? Review subdomain inventory and logs if present.",
+        "Does Luxmi use Mitel MiCollab (10.3.0.18 or earlier); confirm version and update if affected.",
+        "Does Luxmi or its hosting provider operate Linux KVM hosts with affected kernels? Confirm provider scope and remediation responsibility.",
+        "Verify WhatsApp Business and NGINX/F5 status from prior Issue #23; exposure remains unconfirmed.",
+        "Resolve existing P1 dependency/security audit and high SIP promotional-language finding; latest audit #87 failed.",
+        "Confirm accessibility circular applicability and IAAP audit owner by 31 Jan 2027; KRA circular scope/process by 24 Dec 2026.",
+        "Confirm DPDP retention, processor, consent/withdrawal, rights-request and breach-response arrangements."
+      ],
+      "productionDeployment": "none",
+      "limitations": [
+        "No endpoint inventory, installed-version evidence, vendor attestations, hosting inventory or incident telemetry available.",
+        "Targeted source search and repository/config inspection are not exhaustive; external social accounts, subdomains and vendor assets not independently inventoried.",
+        "No local npm audit, ESLint, TypeScript, build, route probe, accessibility audit or penetration test was run. CI run #87 is remote historical evidence.",
+        "Gmail profile resolution required interactive input; no recipient was verified and no email was sent."
       ]
     }
   ]
